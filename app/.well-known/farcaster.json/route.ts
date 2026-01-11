@@ -10,7 +10,7 @@ function withValidProperties(
 }
 
 export async function GET() {
-    //   const URL = process.env.NEXT_PUBLIC_URL as string;
+    // const URL = process.env.NEXT_PUBLIC_URL as string;
     return Response.json({
         accountAssociation: {
             header: "eyJmaWQiOjIwNzY0ODgsInR5cGUiOiJhdXRoIiwia2V5IjoiMHgxNzE0QTVhRDYzYjRhMkNiOTI0M0UyODZEOEY4OTk2Q0EwMGJEODQ1In0",
@@ -21,24 +21,24 @@ export async function GET() {
             version: "1",
             name: "Aviator",
             homeUrl: "https://aviator-sand.vercel.app",
-            iconUrl: "https://aviator-sand.vercel.app/i.png",
-            splashImageUrl: "https://aviator-sand.vercel.app/l.png",
+            iconUrl: "https://aviator-sand.vercel.app/logo.png",
+            splashImageUrl: "https://aviator-sand.vercel.app/Aviator-Logo.png",
             splashBackgroundColor: "#000000",
             webhookUrl: "https://aviator-sand.vercel.app/api/webhook",
             subtitle: "Fast, fun, social",
-            description: "A fast, fun way to challenge friends in real time.",
+            description: "Aviator - Multiply your fund with fun",
             screenshotUrls: [
-                "https://aviator-sand.vercel.app/s1.png",
-                "https://aviator-sand.vercel.app/s2.png",
-                "https://aviator-sand.vercel.app/s3.png",
+                "https://aviator-sand.vercel.app/aviator-game.png",
+                "https://aviator-sand.vercel.app/aviator-game.png",
+                "https://aviator-sand.vercel.app/aviator-game.png",
             ],
             primaryCategory: "social",
             tags: ["aviator", "miniapp", "baseapp"],
-            heroImageUrl: "https://aviator-sand.vercel.app/og.png",
+            heroImageUrl: "https://aviator-sand.vercel.app/aviator.png",
             tagline: "Play instantly",
             ogTitle: "Aviator",
-            ogDescription: "Challenge friends in real time.",
-            ogImageUrl: "https://aviator-sand.vercel.app/og.png",
+            ogDescription: "Aviator - Multiply your fund with fun",
+            ogImageUrl: "https://aviator-sand.vercel.app/aviator.png",
             noindex: true,
         },
     });

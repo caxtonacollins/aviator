@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function withValidProperties(
   properties: Record<string, undefined | string | string[]>
 ) {

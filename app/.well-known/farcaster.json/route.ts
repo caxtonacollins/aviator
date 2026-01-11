@@ -1,46 +1,45 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 function withValidProperties(
-  properties: Record<string, undefined | string | string[]>
+    properties: Record<string, undefined | string | string[]>
 ) {
-  return Object.fromEntries(
-    Object.entries(properties).filter(([_, value]) =>
-      Array.isArray(value) ? value.length > 0 : !!value
-    )
-  );
+    return Object.fromEntries(
+        Object.entries(properties).filter(([_, value]) =>
+            Array.isArray(value) ? value.length > 0 : !!value
+        )
+    );
 }
 
 export async function GET() {
-//   const URL = process.env.NEXT_PUBLIC_URL as string;
-  return Response.json({
-    accountAssociation: {
-      // these will be added in step 5
-      header: "",
-      payload: "",
-      signature: "",
-    },
-    miniapp: {
-      version: "1",
-      name: "Aviator",
-      homeUrl: "https://aviator-sand.vercel.app",
-      iconUrl: "https://aviator-sand.vercel.app/i.png",
-      splashImageUrl: "https://aviator-sand.vercel.app/l.png",
-      splashBackgroundColor: "#000000",
-      webhookUrl: "https://aviator-sand.vercel.app/api/webhook",
-      subtitle: "Fast, fun, social",
-      description: "A fast, fun way to challenge friends in real time.",
-      screenshotUrls: [
-        "https://aviator-sand.vercel.app/s1.png",
-        "https://aviator-sand.vercel.app/s2.png",
-        "https://aviator-sand.vercel.app/s3.png",
-      ],
-      primaryCategory: "social",
-      tags: ["aviator", "miniapp", "baseapp"],
-      heroImageUrl: "https://aviator-sand.vercel.app/og.png",
-      tagline: "Play instantly",
-      ogTitle: "Aviator",
-      ogDescription: "Challenge friends in real time.",
-      ogImageUrl: "https://aviator-sand.vercel.app/og.png",
-      noindex: true,
-    },
-  });
+    //   const URL = process.env.NEXT_PUBLIC_URL as string;
+    return Response.json({
+        accountAssociation: {
+            header: "eyJmaWQiOjIwNzY0ODgsInR5cGUiOiJhdXRoIiwia2V5IjoiMHgxNzE0QTVhRDYzYjRhMkNiOTI0M0UyODZEOEY4OTk2Q0EwMGJEODQ1In0",
+            payload: "eyJkb21haW4iOiJhdmlhdG9yLXNhbmQudmVyY2VsLmFwcCJ9",
+            signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFVyq55xA4qePGHE09R0gbtgHXklEpE2e_4bkTaqxFuazfnF6eKegL_cXwjgnO1FckBrfAa3Agz4L47kq0MsyMZHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        miniapp: {
+            version: "1",
+            name: "Aviator",
+            homeUrl: "https://aviator-sand.vercel.app",
+            iconUrl: "https://aviator-sand.vercel.app/i.png",
+            splashImageUrl: "https://aviator-sand.vercel.app/l.png",
+            splashBackgroundColor: "#000000",
+            webhookUrl: "https://aviator-sand.vercel.app/api/webhook",
+            subtitle: "Fast, fun, social",
+            description: "A fast, fun way to challenge friends in real time.",
+            screenshotUrls: [
+                "https://aviator-sand.vercel.app/s1.png",
+                "https://aviator-sand.vercel.app/s2.png",
+                "https://aviator-sand.vercel.app/s3.png",
+            ],
+            primaryCategory: "social",
+            tags: ["aviator", "miniapp", "baseapp"],
+            heroImageUrl: "https://aviator-sand.vercel.app/og.png",
+            tagline: "Play instantly",
+            ogTitle: "Aviator",
+            ogDescription: "Challenge friends in real time.",
+            ogImageUrl: "https://aviator-sand.vercel.app/og.png",
+            noindex: true,
+        },
+    });
 }

@@ -2,8 +2,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Wallet } from "@coinbase/onchainkit/wallet";
+import { useEffect } from "react";
+import { sdk } from '@farcaster/miniapp-sdk';
 
 export default function Home() {
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
+  
   return (
     <div className={styles.container}>
       <header className={styles.headerWrapper}>

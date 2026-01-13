@@ -1,0 +1,27 @@
+{
+  "name": "aviator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aviator Game - Full Stack Application",
+  "scripts": {
+    "install:all": "pnpm install && pnpm --filter aviator-backend install && pnpm --filter aviator install",
+    "dev": "pnpm --parallel --filter \"aviator-backend|aviator\" dev",
+    "build": "pnpm --parallel --filter \"aviator-backend|aviator\" build",
+    "start": "pnpm --parallel --filter \"aviator-backend|aviator\" start",
+    "lint": "pnpm --parallel --filter \"aviator-backend|aviator\" lint",
+    "format": "pnpm --parallel --filter \"aviator-backend|aviator\" format",
+    "backend:dev": "pnpm --filter aviator-backend dev",
+    "frontend:dev": "pnpm --filter aviator dev",
+    "backend:build": "pnpm --filter aviator-backend build",
+    "frontend:build": "pnpm --filter aviator build",
+    "backend:start": "pnpm --filter aviator-backend start",
+    "frontend:start": "pnpm --filter aviator start",
+    "backend:lint": "pnpm --filter aviator-backend lint",
+    "frontend:lint": "pnpm --filter aviator lint"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@10.10.0"
+}

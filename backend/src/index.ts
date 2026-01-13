@@ -1,4 +1,9 @@
-import express, { type Express, type Request, type Response, type NextFunction } from 'express';
+import express, {
+  type Express,
+  type Request,
+  type Response,
+  type NextFunction,
+} from 'express';
 import { createServer } from 'http';
 import { config } from 'dotenv';
 import { Server } from 'socket.io';
@@ -22,7 +27,7 @@ const io = new Server(server);
 
 io.on('connection', (socket) => {
   console.log('New WebSocket connection');
-  
+
   socket.on('message', (message: string) => {
     console.log('Received:', message);
     // Echo the message back to the client
@@ -37,6 +42,7 @@ io.on('connection', (socket) => {
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
+  next();
 });
 
 server.listen(port, () => {

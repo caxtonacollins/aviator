@@ -1,0 +1,38 @@
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm';
+import { Round } from './round.entity.ts';
+
+@Entity({ name: 'player_bets' })
+export class PlayerBet {
+  @PrimaryGeneratedColumn()
+  id!: number;
+
+  @Column({ type: 'varchar', length: 64 })
+  address!: string;
+
+  @Column({ type: 'numeric', precision: 18, scale: 8 })
+  amount!: number;
+
+  @Column({ default: false })
+  cashedOut!: boolean;
+
+  @Column({ type: 'numeric', precision: 10, scale: 4, nullable: true })
+  cashoutMultiplier!: number | null;
+
+  @Column({ type: 'numeric', precision: 18, scale: 8, nullable: true })
+  payout!: number | null;
+
+  @Column({ type: 'bigint' })
+  timestamp!: number;
+
+  @ManyToOne(() => Round, (round) => round.players, { onDelete: 'CASCADE' })
+  round!: Round;
+
+  @CreateDateColumn()
+  createdAt!: Date;
+}

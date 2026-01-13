@@ -7,6 +7,7 @@ import express, {
 import { createServer } from 'http';
 import { config } from 'dotenv';
 import { Server } from 'socket.io';
+import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
 
 config();
 
@@ -39,18 +40,31 @@ io.on('connection', (socket) => {
   });
 });
 
+// 404 handler for unhandled routes
+app.all('*', notFoundHandler);
+
+app.use(errorHandler);
+
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
   next();
 });
 
-server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+
+process.on('unhandledRejection', (reason: Error | any, promise: Promise<any>) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason.message || reason);
+  server.close(() => process.exit(1));
 });
 
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+process.on('uncaughtException', (err: Error) => {
+  console.error('Uncaught Exception! Shutting down...');
+  console.error(err.name, err.message);
+  server.close(() => process.exit(1));
+});
+
+server.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
 export default app;

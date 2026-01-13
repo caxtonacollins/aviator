@@ -3,7 +3,7 @@
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 [submodule "frontend"]
 	path = frontend
-	url = git@github.com:caxtonacollins/frontend.git
+	url = https://github.com/caxtonacollins/aviator/frontend.git
 [submodule "contracts"]
 	path = contracts
 	url = https://github.com/caxtonacollins/aviator/contracts.git

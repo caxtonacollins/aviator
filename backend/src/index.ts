@@ -55,13 +55,13 @@ app.use(notFoundHandler);
 
 app.use(errorHandler);
 
-// app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-//   logger.error(`Uncaught Exception: ${err.message}`, {
-//     stack: err.stack,
-//   });
-//   res.status(500).json({ error: 'Something went wrong!' });
-//   next();
-// });
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  logger.error(`Uncaught Exception: ${err.message}`, {
+    stack: err.stack,
+  });
+  res.status(500).json({ error: 'Something went wrong!' });
+  next();
+});
 
 
 process.on('unhandledRejection', (reason: Error | any, promise: Promise<any>) => {

@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import express, {
   type Express,
   type Request,
@@ -10,6 +11,8 @@ import { Server } from 'socket.io';
 import morgan from 'morgan';
 import { logger } from './utils/logger.ts';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.ts';
+import { AppDataSource } from './config/database.ts';
+import roundsRouter from './routes/rounds.ts';
 
 config();
 
@@ -26,11 +29,13 @@ app.use(
       write: (message) => logger.info(message.trim()),
     },
   })
-)
+);
 
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok' });
 });
+
+app.use('/api/rounds', roundsRouter);
 
 const server = createServer(app);
 
@@ -50,6 +55,21 @@ io.on('connection', (socket) => {
   });
 });
 
+// Initialize DB and start server
+(async () => {
+  try {
+    await AppDataSource.initialize();
+    logger.info('Database connected');
+
+    server.listen(port, () => {
+      logger.info(`Server is running on http://localhost:${port}`);
+    });
+  } catch (err) {
+    logger.error('Failed to initialize database', { err });
+    process.exit(1);
+  }
+})();
+
 // 404 handler for unhandled routes
 app.use(notFoundHandler);
 
@@ -63,7 +83,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-
 process.on('unhandledRejection', (reason: Error | any, promise: Promise<any>) => {
   logger.error(`Unhandled Rejection: ${reason?.message || reason}`, {
     stack: reason?.stack,
@@ -76,10 +95,6 @@ process.on('uncaughtException', (err: Error) => {
     stack: err.stack,
   });
   server.close(() => process.exit(1));
-});
-
-server.listen(port, () => {
-  logger.info(`Server is running on http://localhost:${port}`)
 });
 
 export default app;

@@ -1,7 +1,7 @@
-import { AppError } from '@/errors/errors.js';
-import { Request, Response, NextFunction } from 'express';
+import { AppError } from '../errors/errors.ts';
+import type { Request, Response, NextFunction, RequestHandler, ErrorRequestHandler } from 'express'
 
-export const errorHandler = (
+export const errorHandler: ErrorRequestHandler = (
     err: Error,
     req: Request,
     res: Response,
@@ -59,7 +59,7 @@ export const errorHandler = (
 };
 
 // 404 handler - catch all unhandled routes
-export const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
+export const notFoundHandler: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 };
 

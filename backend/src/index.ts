@@ -7,7 +7,9 @@ import express, {
 import { createServer } from 'http';
 import { config } from 'dotenv';
 import { Server } from 'socket.io';
-import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
+import morgan from 'morgan';
+import { logger } from './utils/logger.ts';
+import { notFoundHandler, errorHandler } from './middleware/errorHandler.ts';
 
 config();
 
@@ -18,6 +20,14 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  morgan('combined', {
+    stream: {
+      write: (message) => logger.info(message.trim()),
+    },
+  })
+)
+
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok' });
 });
@@ -27,44 +37,49 @@ const server = createServer(app);
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-  console.log('New WebSocket connection');
+  logger.info('New WebSocket connection');
 
   socket.on('message', (message: string) => {
-    console.log('Received:', message);
+    logger.info(`Received: ${message}`);
     // Echo the message back to the client
     socket.emit(`Server received: ${message}`);
   });
 
   socket.on('close', () => {
-    console.log('Client disconnected');
+    logger.info('Client disconnected');
   });
 });
 
 // 404 handler for unhandled routes
-app.all('*', notFoundHandler);
+app.use(notFoundHandler);
 
 app.use(errorHandler);
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
-  next();
-});
+// app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+//   logger.error(`Uncaught Exception: ${err.message}`, {
+//     stack: err.stack,
+//   });
+//   res.status(500).json({ error: 'Something went wrong!' });
+//   next();
+// });
 
 
 process.on('unhandledRejection', (reason: Error | any, promise: Promise<any>) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason.message || reason);
+  logger.error(`Unhandled Rejection: ${reason?.message || reason}`, {
+    stack: reason?.stack,
+  });
   server.close(() => process.exit(1));
 });
 
 process.on('uncaughtException', (err: Error) => {
-  console.error('Uncaught Exception! Shutting down...');
-  console.error(err.name, err.message);
+  logger.error(`Uncaught Exception: ${err.message}`, {
+    stack: err.stack,
+  });
   server.close(() => process.exit(1));
 });
 
 server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  logger.info(`Server is running on http://localhost:${port}`)
 });
 
 export default app;

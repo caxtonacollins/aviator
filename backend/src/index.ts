@@ -67,12 +67,19 @@ io.on('connection', (socket) => {
     logger.info('Database connected');
     // Start game engine
     const engine = new GameEngine(io);
-    engine.start().catch((e) => logger.error('Engine start failed', { e }));
+    await engine.start();
     server.listen(port, () => {
       logger.info(`Server is running on http://localhost:${port}`);
     });
   } catch (err) {
-    logger.error('Failed to initialize database', { err });
+    const errorMessage =
+      err instanceof Error ? err.stack || err.message : JSON.stringify(err);
+    logger.error(`Failed to initialize database: ${errorMessage}`);
+    if (String(errorMessage).includes('does not exist')) {
+      logger.error(
+        'Database not found. Create it (e.g. `createdb aviator`), run `pnpm --filter aviator-backend run db:sync`, or start a Postgres container: `docker run --name aviator-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=aviator -p 5432:5432 -d postgres:15`'
+      );
+    }
     process.exit(1);
   }
 })();
@@ -90,7 +97,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-process.on('unhandledRejection', (reason: Error | any, promise: Promise<any>) => {
+process.on('unhandledRejection', (reason: Error) => {
   logger.error(`Unhandled Rejection: ${reason?.message || reason}`, {
     stack: reason?.stack,
   });

@@ -11,8 +11,10 @@ import {
 } from './game-utils.ts';
 import { LeaderboardService } from './leaderboard.service.ts';
 import { HistoryService } from './history.service.ts';
+import { logger } from '@/utils/logger.ts';
 
 export class GameEngine {
+  private isRunning = false;
   private io: Server;
   private currentRound: Round | null = null;
   private flyingInterval: NodeJS.Timeout | null = null;
@@ -23,6 +25,10 @@ export class GameEngine {
 
   constructor(io: Server) {
     this.io = io;
+
+    this.initializeEngine().catch((error) => {
+      logger.error('Failed to initialize game engine', { error });
+    });
 
     this.io.on('connection', (socket) => {
       socket.emit('GAME_STATE_UPDATE', this.currentRound || null);
@@ -49,6 +55,21 @@ export class GameEngine {
     });
   }
 
+  private async initializeEngine() {
+    try {
+      // Ensure database is connected
+      if (!AppDataSource.isInitialized) {
+        await AppDataSource.initialize();
+      }
+      this.isRunning = true;
+      logger.info('Game engine initialized');
+      await this.startNewRound();
+    } catch (error) {
+      logger.error('Failed to initialize game engine', { error });
+      throw error;
+    }
+  }
+
   private get roundRepo() {
     return AppDataSource.getRepository(Round);
   }
@@ -59,7 +80,7 @@ export class GameEngine {
 
   async start() {
     // ensure there is at least one round
-    const r = await this.roundRepo.findOne({ order: { roundId: 'DESC' } });
+    const r = await this.roundRepo.findOne({ where: {}, order: { roundId: 'DESC' } });
     if (!r) {
       await this.startNewRound();
     } else if (r.phase === 'BETTING') {
@@ -73,7 +94,7 @@ export class GameEngine {
   }
 
   async startNewRound() {
-    const last = await this.roundRepo.findOne({ order: { roundId: 'DESC' } });
+    const last = await this.roundRepo.findOne({ where: {}, order: { roundId: 'DESC' } });
     const nextId = last ? last.roundId + 1 : 1;
     const serverSeed = generateServerSeed();
     const serverSeedHash = hashServerSeed(serverSeed);

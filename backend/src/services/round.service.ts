@@ -13,14 +13,18 @@ export class RoundService {
     if (!AppDataSource.isInitialized) throw new Error('Database not initialized');
     return AppDataSource.getRepository(PlayerBet);
   }
-
+  
   async createRound(round: Partial<Round>) {
     const entity = this.roundRepo.create(round);
     return this.roundRepo.save(entity);
   }
 
   async getCurrentRound() {
-    return this.roundRepo.findOne({ relations: ['players'], order: { roundId: 'DESC' } });
+    return this.roundRepo.findOne({
+      where: {},
+      relations: ['players'],
+      order: { roundId: 'DESC' },
+    });
   }
 
   async addBet(roundId: number, bet: Partial<PlayerBet>) {

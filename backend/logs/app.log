@@ -66,3 +66,196 @@
 2026-01-14 15:24:11 [error]: Failed to initialize database
 2026-01-14 15:30:07 [error]: Failed to initialize database
 2026-01-14 15:31:10 [error]: Failed to initialize database
+2026-01-14 15:49:11 [error]: Failed to initialize database
+2026-01-14 15:50:46 [error]: Failed to initialize database: error: database "aviator" does not exist
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 15:52:48 [error]: Failed to initialize database: error: database "aviator" does not exist
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:03:33 [error]: Failed to initialize database: error: password authentication failed for user "postgres"
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:06:07 [error]: Failed to initialize database: error: password authentication failed for user "postgres"
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:06:28 [error]: Failed to initialize database: error: password authentication failed for user "postgres"
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:06:40 [error]: Failed to initialize database: error: password authentication failed for user "postgres"
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:10:40 [error]: Failed to initialize database: error: password authentication failed for user "postgres"
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:14:14 [error]: Failed to initialize database: error: password authentication failed for user "postgres"
+    at Parser.parseErrorMessage (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/pg-protocol@1.10.3/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+    at Readable.push (node:internal/streams/readable:390:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+2026-01-14 16:15:56 [info]: Database connected
+2026-01-14 16:15:56 [error]: Engine start failed
+2026-01-14 16:15:56 [info]: Server is running on http://localhost:3001
+2026-01-14 16:29:38 [info]: Database connected
+2026-01-14 16:29:38 [error]: Engine start failed
+2026-01-14 16:29:38 [info]: Server is running on http://localhost:3001
+2026-01-14 16:29:44 [info]: Database connected
+2026-01-14 16:29:44 [error]: Engine start failed
+2026-01-14 16:29:44 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:01 [info]: Database connected
+2026-01-14 16:30:01 [error]: Engine start failed
+2026-01-14 16:30:01 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:08 [info]: Database connected
+2026-01-14 16:30:08 [error]: Engine start failed
+2026-01-14 16:30:08 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:11 [info]: Database connected
+2026-01-14 16:30:11 [error]: Engine start failed
+2026-01-14 16:30:11 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:15 [info]: Database connected
+2026-01-14 16:30:15 [error]: Engine start failed
+2026-01-14 16:30:15 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:19 [info]: Database connected
+2026-01-14 16:30:20 [info]: Database connected
+2026-01-14 16:30:20 [error]: Engine start failed
+2026-01-14 16:30:20 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:25 [info]: Database connected
+2026-01-14 16:30:25 [error]: Engine start failed
+2026-01-14 16:30:25 [info]: Server is running on http://localhost:3001
+2026-01-14 16:30:56 [info]: Database connected
+2026-01-14 16:30:56 [info]: Game engine initialized
+2026-01-14 16:30:56 [error]: Failed to initialize game engine
+2026-01-14 16:30:56 [error]: Engine start failed
+2026-01-14 16:30:56 [error]: Failed to initialize game engine
+2026-01-14 16:30:56 [info]: Server is running on http://localhost:3001
+2026-01-14 16:32:42 [info]: Database connected
+2026-01-14 16:33:22 [info]: Database connected
+2026-01-14 16:33:22 [info]: Game engine initialized
+2026-01-14 16:33:22 [error]: Failed to initialize game engine
+2026-01-14 16:33:22 [error]: Engine start failed
+2026-01-14 16:33:22 [error]: Failed to initialize game engine
+2026-01-14 16:33:22 [info]: Server is running on http://localhost:3001
+2026-01-14 16:34:18 [info]: Database connected
+2026-01-14 16:35:41 [info]: Database connected
+2026-01-14 16:38:05 [info]: Database connected
+2026-01-14 16:38:05 [info]: Game engine initialized
+2026-01-14 16:38:05 [error]: Failed to initialize game engine
+2026-01-14 16:38:05 [error]: Failed to initialize game engine
+2026-01-14 16:38:05 [error]: Failed to initialize database: QueryFailedError: relation "rounds" does not exist
+    at PostgresQueryRunner.query (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/driver/src/driver/postgres/PostgresQueryRunner.ts:325:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async SelectQueryBuilder.loadRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3868:25)
+    at async SelectQueryBuilder.executeEntitiesAndRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3614:26)
+    at async SelectQueryBuilder.getRawAndEntities (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1671:29)
+    at async SelectQueryBuilder.getOne (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1698:25)
+    at async GameEngine.start (/home/caxton/Desktop/projects/aviator/backend/src/services/game-engine.service.ts:83:15)
+    at async <anonymous> (/home/caxton/Desktop/projects/aviator/backend/src/index.ts:70:5)
+2026-01-14 16:38:43 [info]: Database connected
+2026-01-14 16:38:43 [info]: Game engine initialized
+2026-01-14 16:38:43 [error]: Failed to initialize game engine
+2026-01-14 16:38:43 [error]: Failed to initialize game engine
+2026-01-14 16:38:43 [error]: Failed to initialize database: QueryFailedError: relation "rounds" does not exist
+    at PostgresQueryRunner.query (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/driver/src/driver/postgres/PostgresQueryRunner.ts:325:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async SelectQueryBuilder.loadRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3868:25)
+    at async SelectQueryBuilder.executeEntitiesAndRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3614:26)
+    at async SelectQueryBuilder.getRawAndEntities (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1671:29)
+    at async SelectQueryBuilder.getOne (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1698:25)
+    at async GameEngine.start (/home/caxton/Desktop/projects/aviator/backend/src/services/game-engine.service.ts:83:15)
+    at async <anonymous> (/home/caxton/Desktop/projects/aviator/backend/src/index.ts:70:5)
+2026-01-14 16:40:04 [info]: Database connected
+2026-01-14 16:40:04 [info]: Game engine initialized
+2026-01-14 16:40:04 [error]: Failed to initialize game engine
+2026-01-14 16:40:04 [error]: Failed to initialize game engine
+2026-01-14 16:40:04 [error]: Failed to initialize database: QueryFailedError: relation "rounds" does not exist
+    at PostgresQueryRunner.query (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/driver/src/driver/postgres/PostgresQueryRunner.ts:325:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async SelectQueryBuilder.loadRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3868:25)
+    at async SelectQueryBuilder.executeEntitiesAndRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3614:26)
+    at async SelectQueryBuilder.getRawAndEntities (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1671:29)
+    at async SelectQueryBuilder.getOne (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1698:25)
+    at async GameEngine.start (/home/caxton/Desktop/projects/aviator/backend/src/services/game-engine.service.ts:83:15)
+    at async <anonymous> (/home/caxton/Desktop/projects/aviator/backend/src/index.ts:70:5)
+2026-01-14 16:40:08 [info]: Database connected
+2026-01-14 16:40:08 [info]: Game engine initialized
+2026-01-14 16:40:08 [error]: Failed to initialize game engine
+2026-01-14 16:40:08 [error]: Failed to initialize game engine
+2026-01-14 16:40:08 [error]: Failed to initialize database: QueryFailedError: relation "rounds" does not exist
+    at PostgresQueryRunner.query (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/driver/src/driver/postgres/PostgresQueryRunner.ts:325:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async SelectQueryBuilder.loadRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3868:25)
+    at async SelectQueryBuilder.executeEntitiesAndRawResults (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:3614:26)
+    at async SelectQueryBuilder.getRawAndEntities (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1671:29)
+    at async SelectQueryBuilder.getOne (/home/caxton/Desktop/projects/aviator/node_modules/.pnpm/typeorm@0.3.28_pg@8.16.3_ts-node@10.9.2_@types+node@20.19.29_typescript@5.9.3_/node_modules/typeorm/query-builder/src/query-builder/SelectQueryBuilder.ts:1698:25)
+    at async GameEngine.start (/home/caxton/Desktop/projects/aviator/backend/src/services/game-engine.service.ts:83:15)
+    at async <anonymous> (/home/caxton/Desktop/projects/aviator/backend/src/index.ts:70:5)
+2026-01-14 16:43:37 [info]: Database connected
+2026-01-14 16:43:37 [info]: Game engine initialized
+2026-01-14 16:43:37 [info]: Server is running on http://localhost:3001
+2026-01-14 16:43:46 [info]: Database connected
+2026-01-14 16:43:46 [info]: Game engine initialized
+2026-01-14 16:43:46 [info]: Server is running on http://localhost:3001
+2026-01-14 16:44:56 [info]: Database connected
+2026-01-14 16:44:56 [info]: Game engine initialized
+2026-01-14 16:44:56 [info]: Server is running on http://localhost:3001
+2026-01-14 16:46:49 [error]: Failed to initialize database
+2026-01-14 16:47:08 [error]: Migration failed
+2026-01-14 16:55:02 [info]: Database connected
+2026-01-14 16:55:02 [info]: Game engine initialized
+2026-01-14 16:55:02 [info]: Server is running on http://localhost:3001
+2026-01-14 16:55:24 [info]: Database connected
+2026-01-14 16:55:24 [info]: Game engine initialized
+2026-01-14 16:55:24 [info]: Server is running on http://localhost:3001

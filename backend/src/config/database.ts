@@ -10,7 +10,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const isCompiled = path.extname(__filename) === '.js';
-console.log(isCompiled);
 const entitiesPath = isCompiled
   ? path.join(__dirname, '..', 'entities', '*.js')
   : path.join(__dirname, '..', 'entities', '*.ts');
@@ -20,7 +19,7 @@ export const AppDataSource = new DataSource({
   host: process.env.DB_HOST || '127.0.0.1',
   port: parseInt(process.env.DB_PORT || '5432'),
   username: process.env.DB_USERNAME || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
+  password: process.env.DB_PASSWORD || 'password',
   database: process.env.DB_DATABASE || 'aviator_dev',
   synchronize: process.env.DB_SYNCHRONIZE === 'true',
   logging: process.env.DB_LOGGING === 'true',

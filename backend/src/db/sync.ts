@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { AppDataSource } from '../config/database';
-import { logger } from '../utils/logger';
+import { AppDataSource } from '../config/database.ts';
+import { logger } from '../utils/logger.ts';
 
 (async () => {
   try {

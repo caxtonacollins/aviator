@@ -26,7 +26,7 @@ describe('API basic flows', () => {
     const round = current.body.round;
     const res = await request(app)
       .post(`/api/rounds/${round.roundId}/bets`)
-      .send({ address: '0xabc', amount: 0.01 });
+      .send({ address: '0xabc', amount: 0.001 });
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);

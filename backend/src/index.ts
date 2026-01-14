@@ -9,13 +9,13 @@ import { createServer } from 'http';
 import { config } from 'dotenv';
 import { Server } from 'socket.io';
 import morgan from 'morgan';
-import { AppDataSource } from './config/database.ts';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.ts';
 import { GameEngine } from './services/game-engine.service.ts';
 import { logger } from './utils/logger.ts';
 import roundsRouter from './routes/rounds.ts';
 import leaderboardRouter from './routes/leaderboard.ts';
 import historyRouter from './routes/history.ts';
+import { AppDataSource } from '@/config/database.ts';
 
 config();
 

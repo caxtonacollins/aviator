@@ -1,4 +1,4 @@
 packages:
-  - 'aviator-backend'
-  - 'aviator'
+  - 'backend'
+  - 'frontend'
   - 'contracts'

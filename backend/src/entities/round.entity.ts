@@ -45,7 +45,7 @@ export class Round {
   @Column({ type: 'numeric', precision: 18, scale: 8, default: 0 })
   totalPayouts!: number;
 
-  @Column({ default: false })
+  @Column({ type: 'boolean', default: false })
   settled!: boolean;
 
   @Column({ type: 'jsonb', nullable: true })

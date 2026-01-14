@@ -60,7 +60,11 @@ io.on('connection', (socket) => {
   try {
     await AppDataSource.initialize();
     logger.info('Database connected');
-
+    // Start game engine
+    import('./services/game-engine.service').then(({ GameEngine }) => {
+      const engine = new GameEngine(io);
+      engine.start().catch((e) => logger.error('Engine start failed', { e }));
+    }).catch(e => logger.error('Failed to load game engine', { e }));
     server.listen(port, () => {
       logger.info(`Server is running on http://localhost:${port}`);
     });

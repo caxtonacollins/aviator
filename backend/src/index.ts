@@ -35,7 +35,12 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok' });
 });
 
+import leaderboardRouter from './routes/leaderboard.ts';
+import historyRouter from './routes/history.ts';
+
 app.use('/api/rounds', roundsRouter);
+app.use('/api/leaderboard', leaderboardRouter);
+app.use('/api/history', historyRouter);
 
 const server = createServer(app);
 
@@ -61,10 +66,12 @@ io.on('connection', (socket) => {
     await AppDataSource.initialize();
     logger.info('Database connected');
     // Start game engine
-    import('./services/game-engine.service').then(({ GameEngine }) => {
-      const engine = new GameEngine(io);
-      engine.start().catch((e) => logger.error('Engine start failed', { e }));
-    }).catch(e => logger.error('Failed to load game engine', { e }));
+    import('./services/game-engine.service.ts')
+      .then(({ GameEngine }) => {
+        const engine = new GameEngine(io);
+        engine.start().catch((e) => logger.error('Engine start failed', { e }));
+      })
+      .catch((e) => logger.error('Failed to load game engine', { e }));
     server.listen(port, () => {
       logger.info(`Server is running on http://localhost:${port}`);
     });

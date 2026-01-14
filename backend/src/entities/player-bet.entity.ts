@@ -18,7 +18,7 @@ export class PlayerBet {
   @Column({ type: 'numeric', precision: 18, scale: 8 })
   amount!: number;
 
-  @Column({ default: false })
+  @Column({ type: 'boolean', default: false })
   cashedOut!: boolean;
 
   @Column({ type: 'numeric', precision: 10, scale: 4, nullable: true })

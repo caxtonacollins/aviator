@@ -62,3 +62,7 @@
 2026-01-14 00:30:14 [info]: Server is running on http://localhost:3001
 2026-01-14 00:30:21 [info]: Server is running on http://localhost:3001
 2026-01-14 00:30:22 [info]: Server is running on http://localhost:3001
+2026-01-14 15:20:00 [error]: Failed to initialize database
+2026-01-14 15:24:11 [error]: Failed to initialize database
+2026-01-14 15:30:07 [error]: Failed to initialize database
+2026-01-14 15:31:10 [error]: Failed to initialize database

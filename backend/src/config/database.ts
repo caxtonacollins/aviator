@@ -1,12 +1,19 @@
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const isCompiled = path.extname(__filename) === '.js';
+console.log(isCompiled);
 const entitiesPath = isCompiled
-  ? path.join(__dirname, '..', 'entities', '*{.js,.cjs}')
-  : path.join(__dirname, '..', 'entities', '*{.ts,.js}');
+  ? path.join(__dirname, '..', 'entities', '*.js')
+  : path.join(__dirname, '..', 'entities', '*.ts');
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -18,6 +25,6 @@ export const AppDataSource = new DataSource({
   synchronize: process.env.DB_SYNCHRONIZE === 'true',
   logging: process.env.DB_LOGGING === 'true',
   entities: [entitiesPath],
-  migrations: [path.join(__dirname, '..', 'migrations', '*{.ts,.js}')],
-  subscribers: [path.join(__dirname, '..', 'subscribers', '**', '*{.ts,.js}')],
+  migrations: [path.join(__dirname, '..', 'migrations', '*.{ts,js}')],
+  subscribers: [path.join(__dirname, '..', 'subscribers', '**/*.{ts,js}')],
 });

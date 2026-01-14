@@ -14,6 +14,10 @@ export class HistoryService {
   }
 
   async latest(limit = 20) {
-    return this.repo.createQueryBuilder('h').orderBy('h.timestamp', 'DESC').limit(limit).getMany();
+    return this.repo
+      .createQueryBuilder('h')
+      .orderBy('h.timestamp', 'DESC')
+      .limit(limit)
+      .getMany();
   }
 }

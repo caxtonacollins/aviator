@@ -2,7 +2,13 @@ import { Server } from 'socket.io';
 import { Round } from '../entities/round.entity.ts';
 import { PlayerBet } from '../entities/player-bet.entity.ts';
 import { AppDataSource } from '../config/database.ts';
-import { generateCrashMultiplier, calculateCurrentMultiplier, calculatePlanePosition, generateServerSeed, hashServerSeed } from './game-utils.ts';
+import {
+  generateCrashMultiplier,
+  calculateCurrentMultiplier,
+  calculatePlanePosition,
+  generateServerSeed,
+  hashServerSeed,
+} from './game-utils.ts';
 import { LeaderboardService } from './leaderboard.service.ts';
 import { HistoryService } from './history.service.ts';
 
@@ -126,7 +132,10 @@ export class GameEngine {
 
       this.broadcastGameState();
 
-      if (elapsed >= flyingDuration || this.currentRound!.currentMultiplier >= targetCrash) {
+      if (
+        elapsed >= flyingDuration ||
+        this.currentRound!.currentMultiplier >= targetCrash
+      ) {
         await this.crashRound(targetCrash);
       }
     }, 50);
@@ -145,13 +154,19 @@ export class GameEngine {
     this.currentRound.currentMultiplier = crashMultiplier;
 
     // determine losers (non-cashed) and update leaderboard
-    const players: PlayerBet[] = await this.betRepo.find({ where: { round: { id: this.currentRound.id } } });
+    const players: PlayerBet[] = await this.betRepo.find({
+      where: { round: { id: this.currentRound.id } },
+    });
 
     for (const p of players) {
       if (!p.cashedOut) {
         p.payout = 0;
         await this.betRepo.save(p);
-        await this.leaderboardService.updateFromBet({ address: p.address, amount: Number(p.amount), cashedOut: false });
+        await this.leaderboardService.updateFromBet({
+          address: p.address,
+          amount: Number(p.amount),
+          cashedOut: false,
+        });
       }
     }
 
@@ -165,7 +180,7 @@ export class GameEngine {
       timestamp: Date.now(),
       totalBets: Number(this.currentRound.totalBets || 0),
       totalPayouts: Number(this.currentRound.totalPayouts || 0),
-      winnersCount: players.filter(p => p.cashedOut).length,
+      winnersCount: players.filter((p) => p.cashedOut).length,
     });
 
     this.broadcastGameState();
@@ -175,11 +190,21 @@ export class GameEngine {
   }
 
   async placeBet(address: string, amount: number) {
-    if (!this.currentRound || this.currentRound.phase !== 'BETTING') throw new Error('Betting closed');
-    const bet = this.betRepo.create({ address, amount, cashedOut: false, cashoutMultiplier: null, payout: null, timestamp: Date.now(), round: this.currentRound });
+    if (!this.currentRound || this.currentRound.phase !== 'BETTING')
+      throw new Error('Betting closed');
+    const bet = this.betRepo.create({
+      address,
+      amount,
+      cashedOut: false,
+      cashoutMultiplier: null,
+      payout: null,
+      timestamp: Date.now(),
+      round: this.currentRound,
+    });
     await this.betRepo.save(bet);
 
-    this.currentRound.totalBets = Number(this.currentRound.totalBets || 0) + Number(amount);
+    this.currentRound.totalBets =
+      Number(this.currentRound.totalBets || 0) + Number(amount);
     await this.roundRepo.save(this.currentRound);
 
     // keep leaderboard updated with wager
@@ -191,20 +216,31 @@ export class GameEngine {
   }
 
   async cashOutById(betId: number) {
-    const bet = await this.betRepo.findOne({ where: { id: betId }, relations: ['round'] });
+    const bet = await this.betRepo.findOne({
+      where: { id: betId },
+      relations: ['round'],
+    });
     if (!bet) throw new Error('Bet not found');
     if (bet.cashedOut) throw new Error('Already cashed out');
-    if (!this.currentRound || this.currentRound.phase !== 'FLYING') throw new Error('Cannot cash out now');
+    if (!this.currentRound || this.currentRound.phase !== 'FLYING')
+      throw new Error('Cannot cash out now');
 
     bet.cashedOut = true;
     bet.cashoutMultiplier = this.currentRound.currentMultiplier;
     bet.payout = Number(bet.amount) * Number(bet.cashoutMultiplier || 1);
     await this.betRepo.save(bet);
 
-    this.currentRound.totalPayouts = Number(this.currentRound.totalPayouts || 0) + Number(bet.payout || 0);
+    this.currentRound.totalPayouts =
+      Number(this.currentRound.totalPayouts || 0) + Number(bet.payout || 0);
     await this.roundRepo.save(this.currentRound);
 
-    await this.leaderboardService.updateFromBet({ address: bet.address, amount: Number(bet.amount), cashedOut: true, payout: Number(bet.payout), cashoutMultiplier: Number(bet.cashoutMultiplier) });
+    await this.leaderboardService.updateFromBet({
+      address: bet.address,
+      amount: Number(bet.amount),
+      cashedOut: true,
+      payout: Number(bet.payout),
+      cashoutMultiplier: Number(bet.cashoutMultiplier),
+    });
 
     this.broadcastGameState();
 

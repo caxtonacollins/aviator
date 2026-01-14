@@ -21,7 +21,7 @@ export function generateCrashMultiplier(serverSeed: string): number {
   random = random * (1 - HOUSE_EDGE);
 
   if (random === 0) random = 0.0001;
-  const crashPoint = Math.floor((99 / (1 - random)) / 100 * 100) / 100;
+  const crashPoint = Math.floor((99 / (1 - random) / 100) * 100) / 100;
 
   return Math.max(1.01, Math.min(100, crashPoint));
 }

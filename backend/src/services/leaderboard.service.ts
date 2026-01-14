@@ -8,7 +8,13 @@ export class LeaderboardService {
     return AppDataSource.getRepository(LeaderboardEntry);
   }
 
-  async updateFromBet(bet: { address: string; amount: number; cashedOut: boolean; payout?: number | null; cashoutMultiplier?: number | null }) {
+  async updateFromBet(bet: {
+    address: string;
+    amount: number;
+    cashedOut: boolean;
+    payout?: number | null;
+    cashoutMultiplier?: number | null;
+  }) {
     const addr = bet.address;
     let entry = await this.repo.findOneBy({ address: addr });
 
@@ -24,7 +30,10 @@ export class LeaderboardService {
       const profit = Number(bet.payout) - Number(bet.amount);
       entry.totalWon = Number(entry.totalWon || 0) + profit;
       if (profit > Number(entry.biggestWin || 0)) entry.biggestWin = profit;
-      if (bet.cashoutMultiplier && Number(bet.cashoutMultiplier) > Number(entry.biggestMultiplier || 0)) {
+      if (
+        bet.cashoutMultiplier &&
+        Number(bet.cashoutMultiplier) > Number(entry.biggestMultiplier || 0)
+      ) {
         entry.biggestMultiplier = Number(bet.cashoutMultiplier);
       }
     }
@@ -33,6 +42,10 @@ export class LeaderboardService {
   }
 
   async getTop(limit = 100) {
-    return this.repo.createQueryBuilder('lb').orderBy('lb.totalWon', 'DESC').limit(limit).getMany();
+    return this.repo
+      .createQueryBuilder('lb')
+      .orderBy('lb.totalWon', 'DESC')
+      .limit(limit)
+      .getMany();
   }
 }

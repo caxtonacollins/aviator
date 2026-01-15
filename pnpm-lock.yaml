@@ -10,6 +10,12 @@ importers:
 
   backend:
     dependencies:
+      '@types/cors':
+        specifier: ^2.8.19
+        version: 2.8.19
+      cors:
+        specifier: ^2.8.5
+        version: 2.8.5
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -113,6 +119,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.3(react@19.2.3)
+      socket.io-client:
+        specifier: ^4.8.3
+        version: 4.8.3(bufferutil@4.1.0)(utf-8-validate@5.0.10)
       viem:
         specifier: ^2.31.6
         version: 2.44.2(bufferutil@4.1.0)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@3.25.76)

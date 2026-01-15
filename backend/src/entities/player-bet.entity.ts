@@ -27,6 +27,9 @@ export class PlayerBet {
   @Column({ type: 'numeric', precision: 18, scale: 8, nullable: true })
   payout!: number | null;
 
+  @Column({ type: 'varchar', length: 128, nullable: true })
+  txHash!: string | null;
+
   @Column({ type: 'bigint' })
   timestamp!: number;
 

@@ -259,3 +259,149 @@
 2026-01-14 16:55:24 [info]: Database connected
 2026-01-14 16:55:24 [info]: Game engine initialized
 2026-01-14 16:55:24 [info]: Server is running on http://localhost:3001
+2026-01-14 17:30:03 [info]: Database connected
+2026-01-14 17:30:03 [info]: Game engine initialized
+2026-01-14 17:30:03 [info]: Server is running on http://localhost:3001
+2026-01-14 17:44:56 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-14 21:04:52 [info]: Database connected
+2026-01-14 21:04:52 [info]: Game engine initialized
+2026-01-14 21:04:52 [info]: Server is running on http://localhost:3001
+2026-01-14 21:05:37 [info]: Database connected
+2026-01-14 21:05:37 [info]: Game engine initialized
+2026-01-14 21:05:37 [info]: Server is running on http://localhost:3001
+2026-01-14 21:05:41 [info]: Database connected
+2026-01-14 21:05:41 [info]: Game engine initialized
+2026-01-14 21:05:41 [info]: Server is running on http://localhost:3001
+2026-01-14 21:49:44 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-14 22:36:08 [info]: Database connected
+2026-01-14 22:36:08 [info]: Game engine initialized
+2026-01-14 22:36:08 [info]: Server is running on http://localhost:3001
+2026-01-14 22:36:12 [info]: New WebSocket connection
+2026-01-14 22:42:14 [info]: ::1 - - [14/Jan/2026:21:42:14 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-14 22:43:32 [info]: ::1 - - [14/Jan/2026:21:43:32 +0000] "GET /api/rounds/current HTTP/1.1" 200 556 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-14 22:46:50 [info]: ::1 - - [14/Jan/2026:21:46:50 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-14 22:51:17 [info]: ::1 - - [14/Jan/2026:21:51:17 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-14 22:54:02 [info]: ::1 - - [14/Jan/2026:21:54:02 +0000] "GET /api/rounds/current HTTP/1.1" 200 556 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-14 22:54:26 [info]: New WebSocket connection
+2026-01-14 22:54:26 [info]: ::1 - - [14/Jan/2026:21:54:26 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-14 23:00:34 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-14 23:03:39 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-14 23:03:39 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 00:13:16 [info]: Database connected
+2026-01-15 00:13:16 [info]: Game engine initialized
+2026-01-15 00:13:16 [info]: Server is running on http://localhost:3001
+2026-01-15 00:13:27 [info]: New WebSocket connection
+2026-01-15 00:15:12 [info]: New WebSocket connection
+2026-01-15 00:15:12 [info]: ::1 - - [14/Jan/2026:23:15:12 +0000] "GET /api/rounds/current HTTP/1.1" 200 569 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 00:27:32 [info]: New WebSocket connection
+2026-01-15 00:27:32 [info]: ::1 - - [14/Jan/2026:23:27:32 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 00:29:24 [info]: ::1 - - [14/Jan/2026:23:29:24 +0000] "GET /api/rounds/current HTTP/1.1" 200 566 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 00:29:24 [info]: New WebSocket connection
+2026-01-15 00:34:10 [info]: Database connected
+2026-01-15 00:34:10 [info]: Game engine initialized
+2026-01-15 00:34:10 [info]: Server is running on http://localhost:3001
+2026-01-15 00:34:11 [info]: New WebSocket connection
+2026-01-15 00:34:35 [info]: Database connected
+2026-01-15 00:34:35 [info]: Game engine initialized
+2026-01-15 00:34:35 [info]: Server is running on http://localhost:3001
+2026-01-15 00:34:36 [info]: New WebSocket connection
+2026-01-15 00:39:03 [info]: Database connected
+2026-01-15 00:39:03 [info]: Game engine initialized
+2026-01-15 00:39:03 [info]: Server is running on http://localhost:3001
+2026-01-15 00:39:05 [info]: New WebSocket connection
+2026-01-15 00:39:19 [info]: Database connected
+2026-01-15 00:39:19 [info]: Game engine initialized
+2026-01-15 00:39:20 [info]: Server is running on http://localhost:3001
+2026-01-15 00:39:24 [info]: New WebSocket connection
+2026-01-15 00:40:16 [info]: Database connected
+2026-01-15 00:40:16 [info]: Game engine initialized
+2026-01-15 00:40:16 [info]: Server is running on http://localhost:3001
+2026-01-15 00:40:16 [info]: New WebSocket connection
+2026-01-15 00:44:12 [info]: New WebSocket connection
+2026-01-15 00:47:09 [error]: Migration failed
+2026-01-15 00:49:51 [info]: New WebSocket connection
+2026-01-15 00:49:51 [info]: ::1 - - [14/Jan/2026:23:49:51 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 00:53:58 [info]: New WebSocket connection
+2026-01-15 00:53:58 [info]: ::1 - - [14/Jan/2026:23:53:58 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 00:55:35 [info]: New WebSocket connection
+2026-01-15 00:55:35 [info]: ::1 - - [14/Jan/2026:23:55:35 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:08:19 [info]: Database connected
+2026-01-15 01:08:19 [info]: Game engine initialized
+2026-01-15 01:08:19 [info]: Server is running on http://localhost:3001
+2026-01-15 01:09:26 [info]: New WebSocket connection
+2026-01-15 01:09:26 [info]: ::1 - - [15/Jan/2026:00:09:26 +0000] "GET /api/rounds/current HTTP/1.1" 200 554 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:09:27 [info]: ::1 - - [15/Jan/2026:00:09:27 +0000] "GET /api/leaderboard HTTP/1.1" 200 33 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:11:45 [info]: New WebSocket connection
+2026-01-15 01:11:45 [info]: ::1 - - [15/Jan/2026:00:11:45 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:11:45 [info]: ::1 - - [15/Jan/2026:00:11:45 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:14:08 [info]: New WebSocket connection
+2026-01-15 01:14:08 [info]: ::1 - - [15/Jan/2026:00:14:08 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:14:09 [info]: ::1 - - [15/Jan/2026:00:14:09 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:14:29 [info]: New WebSocket connection
+2026-01-15 01:14:29 [info]: ::1 - - [15/Jan/2026:00:14:29 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:14:29 [info]: ::1 - - [15/Jan/2026:00:14:29 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:16:06 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 01:17:24 [info]: Database connected
+2026-01-15 01:17:24 [info]: Game engine initialized
+2026-01-15 01:17:24 [info]: Server is running on http://localhost:3001
+2026-01-15 01:17:26 [info]: New WebSocket connection
+2026-01-15 01:22:21 [info]: ::1 - - [15/Jan/2026:00:22:21 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:21 [info]: ::1 - - [15/Jan/2026:00:22:21 +0000] "GET /api/rounds/current HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:21 [info]: ::1 - - [15/Jan/2026:00:22:21 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:21 [info]: ::1 - - [15/Jan/2026:00:22:21 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:29 [info]: ::1 - - [15/Jan/2026:00:22:29 +0000] "GET /api/rounds/current HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:29 [info]: ::1 - - [15/Jan/2026:00:22:29 +0000] "GET /api/rounds/current HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:29 [info]: ::1 - - [15/Jan/2026:00:22:29 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:22:29 [info]: ::1 - - [15/Jan/2026:00:22:29 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:32:11 [info]: New WebSocket connection
+2026-01-15 01:32:11 [info]: ::1 - - [15/Jan/2026:00:32:11 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:32:11 [info]: ::1 - - [15/Jan/2026:00:32:11 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:34:42 [info]: ::1 - - [15/Jan/2026:00:34:42 +0000] "GET /api/rounds/current HTTP/1.1" 200 571 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:34:43 [info]: ::1 - - [15/Jan/2026:00:34:43 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 01:35:00 [info]: New WebSocket connection
+2026-01-15 10:51:48 [info]: Database connected
+2026-01-15 10:51:48 [info]: Game engine initialized
+2026-01-15 10:51:48 [info]: Server is running on http://localhost:3001
+2026-01-15 10:58:18 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 11:44:15 [info]: Database connected
+2026-01-15 11:44:15 [info]: Game engine initialized
+2026-01-15 11:44:15 [info]: Server is running on http://localhost:3001
+2026-01-15 11:48:00 [info]: New WebSocket connection
+2026-01-15 11:48:00 [info]: ::1 - - [15/Jan/2026:10:48:00 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 11:48:00 [info]: ::1 - - [15/Jan/2026:10:48:00 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 11:49:58 [info]: New WebSocket connection
+2026-01-15 11:49:58 [info]: ::1 - - [15/Jan/2026:10:49:58 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 11:49:58 [info]: ::1 - - [15/Jan/2026:10:49:58 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:04:21 [info]: New WebSocket connection
+2026-01-15 12:04:21 [info]: ::1 - - [15/Jan/2026:11:04:21 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:04:21 [info]: ::1 - - [15/Jan/2026:11:04:21 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:09:46 [info]: New WebSocket connection
+2026-01-15 12:09:46 [info]: ::1 - - [15/Jan/2026:11:09:46 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:09:47 [info]: ::1 - - [15/Jan/2026:11:09:47 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:11:30 [info]: New WebSocket connection
+2026-01-15 12:11:30 [info]: ::1 - - [15/Jan/2026:11:11:30 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:11:31 [info]: ::1 - - [15/Jan/2026:11:11:31 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:21:35 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 12:26:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 12:33:49 [info]: Database connected
+2026-01-15 12:33:49 [info]: Game engine initialized
+2026-01-15 12:33:49 [info]: Server is running on http://localhost:3001
+2026-01-15 12:33:50 [info]: New WebSocket connection
+2026-01-15 12:34:27 [info]: New WebSocket connection
+2026-01-15 12:34:27 [info]: ::1 - - [15/Jan/2026:11:34:27 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 12:34:27 [info]: ::1 - - [15/Jan/2026:11:34:27 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:04:17 [info]: New WebSocket connection
+2026-01-15 13:04:17 [info]: ::1 - - [15/Jan/2026:12:04:17 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:04:17 [info]: ::1 - - [15/Jan/2026:12:04:17 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:16:00 [info]: ::1 - - [15/Jan/2026:12:16:00 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:16:00 [info]: ::1 - - [15/Jan/2026:12:16:00 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:17:55 [info]: New WebSocket connection
+2026-01-15 13:17:55 [info]: ::1 - - [15/Jan/2026:12:17:55 +0000] "GET /api/rounds/current HTTP/1.1" 200 556 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:17:55 [info]: ::1 - - [15/Jan/2026:12:17:55 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:24:23 [info]: New WebSocket connection
+2026-01-15 13:24:23 [info]: ::1 - - [15/Jan/2026:12:24:23 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:24:23 [info]: ::1 - - [15/Jan/2026:12:24:23 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:26:23 [info]: New WebSocket connection
+2026-01-15 13:26:23 [info]: ::1 - - [15/Jan/2026:12:26:23 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:26:24 [info]: ::1 - - [15/Jan/2026:12:26:24 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 13:37:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"

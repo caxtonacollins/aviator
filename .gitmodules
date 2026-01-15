@@ -1,12 +1,3 @@
 [submodule "contracts/lib/openzeppelin-contracts"]
 	path = contracts/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/caxtonacollins/aviator/frontend.git
-[submodule "backend"]
-	path = backend
-	url = https://github.com/caxtonacollins/aviator/backend.git
-[submodule "contracts"]
-	path = contracts
-	url = https://github.com/caxtonacollins/aviator/contracts.git

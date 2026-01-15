@@ -152,3 +152,4 @@
     at async <anonymous> (/home/caxton/Desktop/projects/aviator/backend/src/index.ts:70:5)
 2026-01-14 16:46:49 [error]: Failed to initialize database
 2026-01-14 16:47:08 [error]: Migration failed
+2026-01-15 14:21:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"

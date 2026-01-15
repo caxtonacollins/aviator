@@ -259,3 +259,8 @@
 2026-01-14 16:55:24 [info]: Database connected
 2026-01-14 16:55:24 [info]: Game engine initialized
 2026-01-14 16:55:24 [info]: Server is running on http://localhost:3001
+2026-01-15 14:19:34 [info]: Database connected
+2026-01-15 14:19:34 [info]: Game engine initialized
+2026-01-15 14:19:34 [info]: Server is running on http://localhost:3001
+2026-01-15 14:19:35 [info]: New WebSocket connection
+2026-01-15 14:21:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"

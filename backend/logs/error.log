@@ -152,14 +152,4 @@
     at async <anonymous> (/home/caxton/Desktop/projects/aviator/backend/src/index.ts:70:5)
 2026-01-14 16:46:49 [error]: Failed to initialize database
 2026-01-14 16:47:08 [error]: Migration failed
-2026-01-14 17:44:56 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-14 21:49:44 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-14 23:00:34 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-14 23:03:39 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-14 23:03:39 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-15 00:47:09 [error]: Migration failed
-2026-01-15 01:16:06 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-15 10:58:18 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-15 12:21:35 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-15 12:26:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
-2026-01-15 13:37:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 14:21:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"

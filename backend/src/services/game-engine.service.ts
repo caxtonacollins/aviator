@@ -33,15 +33,18 @@ export class GameEngine {
     this.io.on('connection', (socket) => {
       socket.emit('GAME_STATE_UPDATE', this.currentRound || null);
 
-      socket.on('PLACE_BET', async (data: { address: string; amount: number }) => {
-        try {
-          await this.placeBet(data.address, data.amount);
-          socket.emit('BET_PLACED', { success: true });
-          this.broadcastGameState();
-        } catch (err) {
-          socket.emit('ERROR', { message: (err as Error).message });
+      socket.on(
+        'PLACE_BET',
+        async (data: { address: string; amount: number; txHash?: string }) => {
+          try {
+            await this.placeBet(data.address, data.amount, data.txHash);
+            socket.emit('BET_PLACED', { success: true });
+            this.broadcastGameState();
+          } catch (err) {
+            socket.emit('ERROR', { message: (err as Error).message });
+          }
         }
-      });
+      );
 
       socket.on('CASH_OUT', async (data: { betId: number }) => {
         try {
@@ -210,7 +213,7 @@ export class GameEngine {
     setTimeout(() => this.startNewRound(), 30000);
   }
 
-  async placeBet(address: string, amount: number) {
+  async placeBet(address: string, amount: number, txHash?: string) {
     if (!this.currentRound || this.currentRound.phase !== 'BETTING')
       throw new Error('Betting closed');
     const bet = this.betRepo.create({
@@ -219,6 +222,7 @@ export class GameEngine {
       cashedOut: false,
       cashoutMultiplier: null,
       payout: null,
+      txHash: txHash || null,
       timestamp: Date.now(),
       round: this.currentRound,
     });

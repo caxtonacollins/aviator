@@ -9,6 +9,7 @@ import { createServer } from 'http';
 import { config } from 'dotenv';
 import { Server } from 'socket.io';
 import morgan from 'morgan';
+import cors from 'cors';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.ts';
 import { GameEngine } from './services/game-engine.service.ts';
 import { logger } from './utils/logger.ts';
@@ -23,6 +24,14 @@ const app: Express = express();
 const port = process.env.PORT || 3001;
 
 // Middleware
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://aviator.farcast.app' 
+    : 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -76,9 +85,7 @@ io.on('connection', (socket) => {
       err instanceof Error ? err.stack || err.message : JSON.stringify(err);
     logger.error(`Failed to initialize database: ${errorMessage}`);
     if (String(errorMessage).includes('does not exist')) {
-      logger.error(
-        'Database not found. Create it (e.g. `createdb aviator`), run `pnpm --filter aviator-backend run db:sync`, or start a Postgres container: `docker run --name aviator-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=aviator -p 5432:5432 -d postgres:15`'
-      );
+      logger.error('Database not found.', errorMessage);
     }
     process.exit(1);
   }

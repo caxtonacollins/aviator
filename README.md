@@ -12,6 +12,7 @@ A high-performance backend server for the Aviator game, built with Node.js, Expr
 - **Environment** configuration
 - **Code Quality** with ESLint and Prettier
 
+
 ## 🛠 Installation
 
 1. Clone the repository:

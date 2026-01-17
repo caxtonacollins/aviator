@@ -5,7 +5,6 @@ import { GameProvider } from "@/context/GameContext";
 import GameBoard from "@/components/GameBoard";
 import BetControls from "@/components/BetControls";
 import RoundInfo from "@/components/RoundInfo";
-import StatsPanel from "@/components/StatsPanel";
 import HistoryBar from "@/components/HistoryBar";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 

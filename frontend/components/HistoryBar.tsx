@@ -21,7 +21,7 @@ const HistoryBar: React.FC = () => {
                 : "bg-red-600/30 text-red-300"
             }`}
           >
-            {game.crashMultiplier.toFixed(2)}x
+            {Number(game.crashMultiplier).toFixed(2)}x
           </div>
         ))}
       </div>

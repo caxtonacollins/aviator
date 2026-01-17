@@ -31,7 +31,26 @@ export class GameEngine {
     });
 
     this.io.on('connection', (socket) => {
-      socket.emit('GAME_STATE_UPDATE', this.currentRound || null);
+      (async () => {
+        try {
+          // Fetch current round with player relations on connection
+          const round = await this.roundRepo.findOne({
+            where: {},
+            relations: ['players'],
+            order: { roundId: 'DESC' },
+          });
+          const roundData = round
+            ? {
+                ...round,
+                players: round.players || [],
+              }
+            : this.currentRound;
+          socket.emit('GAME_STATE_UPDATE', roundData);
+        } catch (error) {
+          logger.error('Failed to emit initial game state', { error });
+          socket.emit('GAME_STATE_UPDATE', this.currentRound || null);
+        }
+      })();
 
       socket.on(
         'PLACE_BET',
@@ -39,7 +58,7 @@ export class GameEngine {
           try {
             await this.placeBet(data.address, data.amount, data.txHash);
             socket.emit('BET_PLACED', { success: true });
-            this.broadcastGameState();
+            await this.broadcastGameState();
           } catch (err) {
             socket.emit('ERROR', { message: (err as Error).message });
           }
@@ -50,7 +69,7 @@ export class GameEngine {
         try {
           await this.cashOutById(data.betId);
           socket.emit('CASH_OUT_SUCCESS', { success: true });
-          this.broadcastGameState();
+          await this.broadcastGameState();
         } catch (err) {
           socket.emit('ERROR', { message: (err as Error).message });
         }
@@ -96,44 +115,144 @@ export class GameEngine {
     }
   }
 
-  async startNewRound() {
-    const last = await this.roundRepo.findOne({ where: {}, order: { roundId: 'DESC' } });
-    const nextId = last ? last.roundId + 1 : 1;
-    const serverSeed = generateServerSeed();
-    const serverSeedHash = hashServerSeed(serverSeed);
+  private async executeWithRetry<T>(
+    operation: () => Promise<T>,
+    maxRetries = 5,
+    baseDelayMs = 100,
+    attempt = 1
+  ): Promise<T> {
+    try {
+      return await operation();
+    } catch (error: any) {
+      if (attempt >= maxRetries) {
+        logger.error('Max retries reached, giving up', { attempt, maxRetries, error });
+        throw error;
+      }
 
-    const round = this.roundRepo.create({
-      roundId: nextId,
-      phase: 'BETTING',
-      startTime: Date.now(),
-      flyStartTime: null,
-      crashMultiplier: null,
-      currentMultiplier: 1.0,
-      serverSeed,
-      serverSeedHash,
-      totalBets: 0,
-      totalPayouts: 0,
-      settled: false,
-      planePosition: { x: 10, y: 80 },
-    });
+      // Exponential backoff with jitter
+      const delayMs = Math.min(
+        1000, // max delay of 1 second
+        baseDelayMs * Math.pow(2, attempt - 1) + Math.random() * 100
+      );
 
-    await this.roundRepo.save(round);
-    this.currentRound = round;
-    this.broadcastGameState();
+      logger.warn(`Operation failed, retrying (${attempt}/${maxRetries})`, {
+        error: error.message,
+        nextRetryIn: `${delayMs}ms`,
+      });
 
-    this.scheduleFlyingPhase();
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      return this.executeWithRetry(operation, maxRetries, baseDelayMs, attempt + 1);
+    }
+  }
+
+  async startNewRound(): Promise<Round> {
+    return this.executeWithRetry<Round>(
+      async () => {
+        const queryRunner = AppDataSource.createQueryRunner();
+
+        try {
+          await queryRunner.connect();
+          await queryRunner.startTransaction('SERIALIZABLE'); // Use SERIALIZABLE isolation level
+
+          // Get the latest round with a lock
+          const last = await queryRunner.manager.findOne(Round, {
+            where: {},
+            order: { roundId: 'DESC' },
+            lock: { mode: 'pessimistic_write' },
+          });
+
+          // Double check if a new round was created while we were waiting for the lock
+          if (this.currentRound && (!last || this.currentRound.id !== last.id)) {
+            logger.info('A new round was already created, returning existing round');
+            return this.currentRound;
+          }
+
+          const nextId = last ? last.roundId + 1 : 1;
+          const serverSeed = generateServerSeed();
+          const serverSeedHash = hashServerSeed(serverSeed);
+
+          logger.info(`Creating new round with ID: ${nextId}`);
+
+          const round = this.roundRepo.create({
+            roundId: nextId,
+            phase: 'BETTING',
+            startTime: Date.now(),
+            flyStartTime: Date.now() + 10000,
+            crashMultiplier: null,
+            currentMultiplier: 1.0,
+            serverSeed,
+            serverSeedHash,
+            totalBets: 0,
+            totalPayouts: 0,
+            settled: false,
+            planePosition: { x: 10, y: 80 },
+          });
+
+          await queryRunner.manager.save(round);
+          await queryRunner.commitTransaction();
+
+          this.currentRound = round;
+          this.broadcastGameState();
+          this.scheduleFlyingPhase();
+
+          logger.info(
+            `Successfully created new round with ID: ${round.id}, Round ID: ${round.roundId}`
+          );
+          return round;
+        } catch (error: any) {
+          await queryRunner.rollbackTransaction().catch((rollbackError) => {
+            logger.error('Failed to rollback transaction', { error: rollbackError });
+          });
+
+          if (
+            error.code === '23505' ||
+            error.message.includes('duplicate key') ||
+            error.code === '40001' /* serialization_failure */
+          ) {
+            throw error; // Will be caught by executeWithRetry
+          }
+
+          logger.error('Unexpected error in startNewRound', { error });
+          throw error;
+        } finally {
+          await queryRunner.release().catch((releaseError) => {
+            logger.error('Failed to release query runner', { error: releaseError });
+          });
+        }
+      },
+      5,
+      100
+    ); // 5 retries, starting with 100ms delay
   }
 
   private scheduleFlyingPhase() {
     if (this.bettingTimeout) clearTimeout(this.bettingTimeout);
-    this.bettingTimeout = setTimeout(() => this.startFlyingPhase(), 10000);
+    // If a scheduled flyStartTime exists (e.g., after restart), use the remaining time
+    const now = Date.now();
+    const remainingMs =
+      this.currentRound && this.currentRound.flyStartTime
+        ? Math.max(0, Number(this.currentRound.flyStartTime) - now)
+        : 10000;
+
+    logger.info(
+      `Scheduling flying phase in ${remainingMs}ms for round ${this.currentRound?.roundId}`
+    );
+
+    this.bettingTimeout = setTimeout(() => this.startFlyingPhase(), remainingMs);
   }
 
   async startFlyingPhase() {
-    if (!this.currentRound || this.currentRound.phase !== 'BETTING') return;
+    if (!this.currentRound || this.currentRound.phase !== 'BETTING') {
+      logger.info('startFlyingPhase aborted: no current betting round');
+      return;
+    }
 
     const targetCrash = generateCrashMultiplier(this.currentRound.serverSeed || '');
     const flyingDuration = Math.min(20000, Math.max(2000, targetCrash * 2000));
+
+    logger.info(
+      `Starting flying phase for round ${this.currentRound.roundId} targetCrash=${targetCrash} duration=${flyingDuration}ms`
+    );
 
     this.currentRound.phase = 'FLYING';
     this.currentRound.flyStartTime = Date.now();
@@ -154,7 +273,7 @@ export class GameEngine {
         await this.roundRepo.save(this.currentRound!);
       }
 
-      this.broadcastGameState();
+      await this.broadcastGameState();
 
       if (
         elapsed >= flyingDuration ||
@@ -206,6 +325,10 @@ export class GameEngine {
       totalPayouts: Number(this.currentRound.totalPayouts || 0),
       winnersCount: players.filter((p) => p.cashedOut).length,
     });
+
+    // Broadcast updated history to all clients
+    const latestHistory = await this.historyService.latest(28);
+    this.io.emit('HISTORY_UPDATE', latestHistory);
 
     this.broadcastGameState();
 
@@ -272,7 +395,29 @@ export class GameEngine {
     return bet;
   }
 
-  broadcastGameState() {
-    this.io.emit('GAME_STATE_UPDATE', this.currentRound);
+  async broadcastGameState() {
+    try {
+      // Fetch the current round with player relations to ensure we have the latest data
+      if (this.currentRound) {
+        const roundWithPlayers = await this.roundRepo.findOne({
+          where: { id: this.currentRound.id },
+          relations: ['players'],
+        });
+        if (roundWithPlayers) {
+          // Convert to plain object to ensure proper serialization for Socket.IO
+          const roundData = {
+            ...roundWithPlayers,
+            players: roundWithPlayers.players || [],
+          };
+          this.io.emit('GAME_STATE_UPDATE', roundData);
+        } else {
+          this.io.emit('GAME_STATE_UPDATE', this.currentRound);
+        }
+      }
+    } catch (error) {
+      logger.error('Failed to broadcast game state', { error });
+      // Fallback: broadcast current round without relations if query fails
+      this.io.emit('GAME_STATE_UPDATE', this.currentRound);
+    }
   }
 }

@@ -43,3 +43,10 @@ export interface LeaderboardEntry {
   biggestWin: number;
   biggestMultiplier: number;
 }
+
+export interface PlaneState {
+  x: number;
+  y: number;
+  ts: number;
+  angle?: number;
+}

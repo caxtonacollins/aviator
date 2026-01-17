@@ -23,7 +23,7 @@ export class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <div className="p-8 text-center text-red-400">
-          <h2 className="text-xl font-bold">Something went wrong</h2>
+          <h2>Something went wrong on our end. Please try again later.</h2>
           <p>Please refresh the page or contact support.</p>
         </div>
       );

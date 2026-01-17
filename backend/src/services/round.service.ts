@@ -28,8 +28,25 @@ export class RoundService {
   }
 
   async addBet(roundId: number, bet: Partial<PlayerBet>) {
-    const round = await this.roundRepo.findOneBy({ roundId });
+    const round = await this.roundRepo.findOne({ 
+      where: { roundId },
+      relations: ['players']
+    });
+    
     if (!round) throw new Error('Round not found');
+    
+    // Check if player already has a bet in this round
+    const existingBet = round.players.find(p => p.address.toLowerCase() === bet.address?.toLowerCase());
+    
+    if (existingBet) {
+      // Update existing bet
+      existingBet.amount = bet.amount || existingBet.amount;
+      existingBet.txHash = bet.txHash || existingBet.txHash;
+      existingBet.timestamp = bet.timestamp || existingBet.timestamp;
+      return this.betRepo.save(existingBet);
+    }
+    
+    // Create new bet
     const betEntity = this.betRepo.create({ ...bet, round });
     return this.betRepo.save(betEntity);
   }

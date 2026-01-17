@@ -153,3 +153,15 @@
 2026-01-14 16:46:49 [error]: Failed to initialize database
 2026-01-14 16:47:08 [error]: Migration failed
 2026-01-15 14:21:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 18:32:22 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 18:32:22 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 00:39:46 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 01:00:57 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 01:08:05 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 10:30:50 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 10:43:46 [error]: Failed to start new round
+2026-01-16 10:44:35 [error]: Failed to start new round
+2026-01-16 11:00:15 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-17 00:24:10 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-17 02:05:49 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-17 10:49:43 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions

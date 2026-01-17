@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import manager from "./gameSocketManager";
 import { RoundData, GameHistory, LeaderboardEntry } from "@/types/game";
 
@@ -17,7 +17,22 @@ export function useGame(options: { wsUrl?: string } = {}) {
   const [isConnected, setIsConnected] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchInitialHistory = useCallback(async () => {
+    try {
+      
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/history`);
+      if (response.ok) {
+        const data = await response.json();
+        setGameHistory(data.history);
+      }
+    } catch (err) {
+      console.error("Failed to fetch game history:", err);
+    }
+  }, []);
+
   useEffect(() => {
+    fetchInitialHistory();
+
     const handler = (message: any) => {
       if (message.type === "_OPEN") {
         setIsConnected(true);
@@ -65,14 +80,13 @@ export function useGame(options: { wsUrl?: string } = {}) {
         if (round) setRoundData(round);
         const lb = await r.fetchLeaderboard();
         setLeaderboard(lb);
-        unsubscribe();
       } catch (e) {
         // ignore; socket will update state when ready
       }
     })();
 
     return () => {
-      unsubscribe();
+      // unsubscribe();
     };
   }, [wsUrl]);
 
@@ -83,7 +97,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
       try {
         if (!houseAddress)
           throw new Error(
-            "House address not configured (NEXT_PUBLIC_HOUSE_ADDRESS)"
+            "House address not configured (NEXT_PUBLIC_HOUSE_ADDRESS)",
           );
         txHash = await transferUSDC(houseAddress, amount);
       } catch (err) {
@@ -110,7 +124,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
 
       return { success: true, txHash };
     },
-    [roundData, transferUSDC, houseAddress]
+    [roundData, transferUSDC, houseAddress],
   );
 
   const cashOut = useCallback(async (betId: number) => {
@@ -150,57 +164,100 @@ export function useGame(options: { wsUrl?: string } = {}) {
   };
 }
 
-// convenience: helpers copied from old hooks
 export function usePlayerBet(
   roundData: RoundData | null,
-  playerAddress: string | null
+  playerAddress: string | null,
 ) {
   if (!roundData || !playerAddress) return null;
   return (
     roundData.players.find(
-      (p) => p.address.toLowerCase() === playerAddress.toLowerCase()
+      (p) => p.address.toLowerCase() === playerAddress.toLowerCase(),
     ) || null
   );
 }
 
 export function useRoundCountdown(roundData: RoundData | null) {
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
-    if (roundData?.phase !== "CRASHED") return;
+    let interval: NodeJS.Timeout | null = null;
 
-    let timeLeft = 30;
-    setCountdown(timeLeft);
+    const cleanup = () => {
+      if (interval) clearInterval(interval);
+      interval = null;
+    };
 
-    const interval = setInterval(() => {
-      timeLeft--;
+    if (!roundData) {
+      setCountdown(0);
+      return cleanup;
+    }
+
+    if (roundData.phase === "CRASHED") {
+      // 30s countdown after crash
+      let timeLeft = 30;
       setCountdown(timeLeft);
+      interval = setInterval(() => {
+        timeLeft--;
+        setCountdown(timeLeft);
+        if (timeLeft <= 0 && interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      }, 1000);
+    } else if (roundData.phase === "BETTING") {
+      // Use scheduled flyStartTime if provided, otherwise default to 10s
+      const flyAt = roundData.flyStartTime
+        ? Number(roundData.flyStartTime)
+        : Date.now() + 10000;
+      const update = () => {
+        const secsLeft = Math.max(0, Math.ceil((flyAt - Date.now()) / 1000));
+        setCountdown(secsLeft);
+        if (secsLeft <= 0 && interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      };
+      update();
+      interval = setInterval(update, 1000);
+    } else {
+      setCountdown(0);
+    }
 
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [roundData?.phase, roundData?.roundId]);
+    return cleanup;
+  }, [roundData?.phase, roundData?.flyStartTime, roundData?.roundId]);
 
   return countdown;
 }
 
 export function useMultiplierAnimation(roundData: RoundData | null) {
   const [displayMultiplier, setDisplayMultiplier] = useState(1.0);
+  const rafRef = useRef<number | null>(null);
+
   useEffect(() => {
+    const stop = () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+
     if (roundData?.phase === "FLYING") {
       setDisplayMultiplier(roundData.currentMultiplier);
-      const raf = requestAnimationFrame(function animate() {
-        setDisplayMultiplier((m) => Math.max(m, roundData.currentMultiplier));
-        requestAnimationFrame(animate);
-      });
-      return () => cancelAnimationFrame(raf);
-    } else if (roundData?.phase === "CRASHED") {
-      setDisplayMultiplier(roundData.crashMultiplier || 1.0);
+      const animate = () => {
+        setDisplayMultiplier((m) =>
+          Math.max(m, roundData?.currentMultiplier ?? m),
+        );
+        rafRef.current = requestAnimationFrame(animate);
+      };
+      rafRef.current = requestAnimationFrame(animate);
+      return () => stop();
     } else {
-      setDisplayMultiplier(1.0);
+      stop();
+      if (roundData?.phase === "CRASHED") {
+        setDisplayMultiplier(roundData.crashMultiplier || 1.0);
+      } else {
+        setDisplayMultiplier(1.0);
+      }
     }
   }, [
     roundData?.phase,

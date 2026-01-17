@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useWalletClient, usePublicClient } from 'wagmi';
 import { parseUnits } from 'viem';
+import { useProfile } from '@farcaster/auth-kit';
+import { useAccount } from 'wagmi';
 
 const ERC20_ABI = [
   { name: 'transfer', type: 'function', stateMutability: 'nonpayable', inputs: [{ name: 'to', type: 'address' }, { name: 'amount', type: 'uint256' }], outputs: [{ name: '', type: 'bool' }] },
@@ -9,6 +11,7 @@ const ERC20_ABI = [
 
 export default function useUSDC() {
   const { data: walletClient } = useWalletClient();
+  const { address, isConnected } = useAccount();
   const publicClient = usePublicClient();
   const [balance, setBalance] = useState<number | null>(null);
   const usdcAddress = (process.env.NEXT_PUBLIC_USDC_ADDRESS || '') as `0x${string}`;
@@ -24,6 +27,7 @@ export default function useUSDC() {
         functionName: 'balanceOf',
         args: [walletClient.account.address as `0x${string}`],
       });
+      console.log("balance", balance);
       return Number(balance) / (10 ** decimals);
     } catch (error) {
       console.error('Error fetching balance:', error);
@@ -68,7 +72,7 @@ export default function useUSDC() {
     [walletClient, publicClient, usdcAddress, decimals, fetchBalance]
   );
 
-  const walletAddress = walletClient?.account?.address;
+  const walletAddress = address;
 
   return {
     usdcAddress,

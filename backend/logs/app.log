@@ -264,3 +264,1790 @@
 2026-01-15 14:19:34 [info]: Server is running on http://localhost:3001
 2026-01-15 14:19:35 [info]: New WebSocket connection
 2026-01-15 14:21:00 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 18:30:14 [info]: Database connected
+2026-01-15 18:30:14 [info]: Game engine initialized
+2026-01-15 18:30:14 [info]: Server is running on http://localhost:3001
+2026-01-15 18:30:20 [info]: New WebSocket connection
+2026-01-15 18:32:22 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 18:32:22 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-15 23:35:46 [info]: Database connected
+2026-01-15 23:35:46 [info]: Game engine initialized
+2026-01-15 23:35:47 [info]: Server is running on http://localhost:3001
+2026-01-15 23:35:52 [info]: New WebSocket connection
+2026-01-15 23:37:52 [info]: New WebSocket connection
+2026-01-15 23:37:52 [info]: ::1 - - [15/Jan/2026:22:37:52 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-15 23:37:53 [info]: ::1 - - [15/Jan/2026:22:37:53 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:00:26 [info]: Database connected
+2026-01-16 00:00:26 [info]: Game engine initialized
+2026-01-16 00:00:26 [info]: Server is running on http://localhost:3001
+2026-01-16 00:00:34 [info]: New WebSocket connection
+2026-01-16 00:01:30 [info]: Database connected
+2026-01-16 00:01:30 [info]: Game engine initialized
+2026-01-16 00:01:31 [info]: Server is running on http://localhost:3001
+2026-01-16 00:01:40 [info]: Database connected
+2026-01-16 00:01:40 [info]: Game engine initialized
+2026-01-16 00:01:40 [info]: Server is running on http://localhost:3001
+2026-01-16 00:01:41 [info]: New WebSocket connection
+2026-01-16 00:01:46 [info]: Database connected
+2026-01-16 00:01:46 [info]: Game engine initialized
+2026-01-16 00:01:46 [info]: Server is running on http://localhost:3001
+2026-01-16 00:01:49 [info]: New WebSocket connection
+2026-01-16 00:02:16 [info]: Database connected
+2026-01-16 00:02:16 [info]: Game engine initialized
+2026-01-16 00:02:16 [info]: Server is running on http://localhost:3001
+2026-01-16 00:02:17 [info]: New WebSocket connection
+2026-01-16 00:05:38 [info]: Database connected
+2026-01-16 00:05:38 [info]: Game engine initialized
+2026-01-16 00:05:39 [info]: Server is running on http://localhost:3001
+2026-01-16 00:05:42 [info]: New WebSocket connection
+2026-01-16 00:06:49 [info]: ::1 - - [15/Jan/2026:23:06:49 +0000] "GET /health HTTP/1.1" 200 15 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:07:05 [info]: Database connected
+2026-01-16 00:07:05 [info]: Game engine initialized
+2026-01-16 00:07:05 [info]: Server is running on http://localhost:3001
+2026-01-16 00:07:07 [info]: New WebSocket connection
+2026-01-16 00:07:08 [info]: ::1 - - [15/Jan/2026:23:07:08 +0000] "GET /health HTTP/1.1" 200 15 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:08:32 [info]: ::1 - - [15/Jan/2026:23:08:32 +0000] "GET /rounds HTTP/1.1" 404 64 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:08:38 [info]: ::1 - - [15/Jan/2026:23:08:38 +0000] "GET /api/rounds HTTP/1.1" 404 68 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:09:01 [info]: ::1 - - [15/Jan/2026:23:09:01 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:11:10 [info]: ::1 - - [15/Jan/2026:23:11:10 +0000] "GET /api/rounds/598/bets HTTP/1.1" 404 77 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:14:06 [info]: ::1 - - [15/Jan/2026:23:14:06 +0000] "POST /api/rounds/598/bets HTTP/1.1" 500 117 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:16:46 [info]: Database connected
+2026-01-16 00:16:46 [info]: Game engine initialized
+2026-01-16 00:16:46 [info]: Server is running on http://localhost:3001
+2026-01-16 00:16:46 [info]: New WebSocket connection
+2026-01-16 00:18:53 [info]: ::1 - - [15/Jan/2026:23:18:53 +0000] "POST /api/rounds/598/bets HTTP/1.1" 500 117 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:20:11 [info]: ::1 - - [15/Jan/2026:23:20:11 +0000] "POST /api/rounds/598/bets HTTP/1.1" 200 776 "-" "PostmanRuntime/7.49.1"
+2026-01-16 00:22:32 [info]: New WebSocket connection
+2026-01-16 00:22:33 [info]: ::1 - - [15/Jan/2026:23:22:33 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:22:33 [info]: ::1 - - [15/Jan/2026:23:22:33 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:28:24 [info]: New WebSocket connection
+2026-01-16 00:28:24 [info]: ::1 - - [15/Jan/2026:23:28:24 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:28:25 [info]: ::1 - - [15/Jan/2026:23:28:25 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:31:19 [info]: ::1 - - [15/Jan/2026:23:31:19 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:31:19 [info]: ::1 - - [15/Jan/2026:23:31:19 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:32:27 [info]: New WebSocket connection
+2026-01-16 00:32:27 [info]: ::1 - - [15/Jan/2026:23:32:27 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:32:27 [info]: ::1 - - [15/Jan/2026:23:32:27 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:38:04 [info]: ::1 - - [15/Jan/2026:23:38:04 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:38:04 [info]: ::1 - - [15/Jan/2026:23:38:04 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:38:31 [info]: ::1 - - [15/Jan/2026:23:38:31 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:38:31 [info]: ::1 - - [15/Jan/2026:23:38:31 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 00:39:46 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 01:00:57 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 01:06:25 [info]: Database connected
+2026-01-16 01:06:25 [info]: Game engine initialized
+2026-01-16 01:06:25 [info]: Server is running on http://localhost:3001
+2026-01-16 01:06:35 [info]: Database connected
+2026-01-16 01:06:35 [info]: Game engine initialized
+2026-01-16 01:06:36 [info]: Server is running on http://localhost:3001
+2026-01-16 01:06:39 [info]: New WebSocket connection
+2026-01-16 01:08:05 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 10:30:08 [info]: Database connected
+2026-01-16 10:30:08 [info]: Game engine initialized
+2026-01-16 10:30:08 [info]: Server is running on http://localhost:3001
+2026-01-16 10:30:50 [error]: Unhandled Rejection: duplicate key value violates unique constraint "UQ_190af5394aab7d00cf6c2fc1b88"
+2026-01-16 10:34:38 [info]: Database connected
+2026-01-16 10:34:38 [info]: Game engine initialized
+2026-01-16 10:34:38 [info]: Server is running on http://localhost:3001
+2026-01-16 10:40:21 [info]: Database connected
+2026-01-16 10:40:21 [info]: Game engine initialized
+2026-01-16 10:40:21 [info]: Server is running on http://localhost:3001
+2026-01-16 10:40:27 [info]: Database connected
+2026-01-16 10:40:27 [info]: Game engine initialized
+2026-01-16 10:40:27 [info]: Server is running on http://localhost:3001
+2026-01-16 10:41:32 [info]: Database connected
+2026-01-16 10:41:32 [info]: Game engine initialized
+2026-01-16 10:41:32 [info]: Server is running on http://localhost:3001
+2026-01-16 10:43:04 [info]: New WebSocket connection
+2026-01-16 10:43:46 [error]: Failed to start new round
+2026-01-16 10:43:46 [info]: Race condition detected, retrying to create new round
+2026-01-16 10:44:35 [error]: Failed to start new round
+2026-01-16 10:44:35 [info]: Race condition detected, retrying to create new round
+2026-01-16 10:45:53 [info]: Database connected
+2026-01-16 10:45:53 [info]: Game engine initialized
+2026-01-16 10:45:53 [info]: Creating new round with ID: 710
+2026-01-16 10:45:53 [info]: Successfully created new round with ID: 736, Round ID: 710
+2026-01-16 10:45:53 [info]: Server is running on http://localhost:3001
+2026-01-16 10:45:55 [info]: New WebSocket connection
+2026-01-16 10:46:34 [info]: Creating new round with ID: 711
+2026-01-16 10:46:35 [info]: Successfully created new round with ID: 737, Round ID: 711
+2026-01-16 10:57:39 [info]: Database connected
+2026-01-16 10:57:39 [info]: Game engine initialized
+2026-01-16 10:57:39 [info]: Creating new round with ID: 712
+2026-01-16 10:57:40 [info]: Successfully created new round with ID: 738, Round ID: 712
+2026-01-16 10:57:40 [info]: Server is running on http://localhost:3001
+2026-01-16 10:58:26 [info]: Creating new round with ID: 713
+2026-01-16 10:58:26 [info]: Successfully created new round with ID: 739, Round ID: 713
+2026-01-16 10:58:27 [info]: Creating new round with ID: 714
+2026-01-16 10:58:27 [info]: Successfully created new round with ID: 740, Round ID: 714
+2026-01-16 10:59:11 [info]: Creating new round with ID: 715
+2026-01-16 10:59:11 [info]: Successfully created new round with ID: 741, Round ID: 715
+2026-01-16 10:59:11 [info]: A new round was already created, returning existing round
+2026-01-16 10:59:11 [info]: A new round was already created, returning existing round
+2026-01-16 10:59:11 [info]: Creating new round with ID: 716
+2026-01-16 10:59:11 [info]: Successfully created new round with ID: 742, Round ID: 716
+2026-01-16 11:00:04 [info]: Creating new round with ID: 717
+2026-01-16 11:00:05 [info]: Successfully created new round with ID: 743, Round ID: 717
+2026-01-16 11:00:05 [info]: A new round was already created, returning existing round
+2026-01-16 11:00:15 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-16 23:41:07 [info]: Database connected
+2026-01-16 23:41:07 [info]: Game engine initialized
+2026-01-16 23:41:07 [info]: Creating new round with ID: 718
+2026-01-16 23:41:07 [info]: Server is running on http://localhost:3001
+2026-01-16 23:41:07 [info]: Successfully created new round with ID: 745, Round ID: 718
+2026-01-16 23:41:48 [info]: Creating new round with ID: 719
+2026-01-16 23:41:48 [info]: Successfully created new round with ID: 746, Round ID: 719
+2026-01-16 23:42:29 [info]: Creating new round with ID: 720
+2026-01-16 23:42:29 [info]: Successfully created new round with ID: 747, Round ID: 720
+2026-01-16 23:43:13 [info]: Creating new round with ID: 721
+2026-01-16 23:43:13 [info]: Successfully created new round with ID: 748, Round ID: 721
+2026-01-16 23:43:54 [info]: Creating new round with ID: 722
+2026-01-16 23:43:54 [info]: Successfully created new round with ID: 749, Round ID: 722
+2026-01-16 23:44:34 [info]: Creating new round with ID: 723
+2026-01-16 23:44:34 [info]: Successfully created new round with ID: 750, Round ID: 723
+2026-01-16 23:45:15 [info]: Creating new round with ID: 724
+2026-01-16 23:45:15 [info]: Successfully created new round with ID: 751, Round ID: 724
+2026-01-16 23:45:56 [info]: Creating new round with ID: 725
+2026-01-16 23:45:56 [info]: Successfully created new round with ID: 752, Round ID: 725
+2026-01-16 23:46:36 [info]: Creating new round with ID: 726
+2026-01-16 23:46:36 [info]: Successfully created new round with ID: 753, Round ID: 726
+2026-01-16 23:47:20 [info]: Creating new round with ID: 727
+2026-01-16 23:47:20 [info]: Successfully created new round with ID: 754, Round ID: 727
+2026-01-16 23:48:11 [info]: Creating new round with ID: 728
+2026-01-16 23:48:11 [info]: Successfully created new round with ID: 755, Round ID: 728
+2026-01-16 23:48:53 [info]: Creating new round with ID: 729
+2026-01-16 23:48:53 [info]: Successfully created new round with ID: 756, Round ID: 729
+2026-01-16 23:49:38 [info]: New WebSocket connection
+2026-01-16 23:49:39 [info]: ::1 - - [16/Jan/2026:22:49:39 +0000] "GET /api/rounds/current HTTP/1.1" 200 556 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:49:39 [info]: ::1 - - [16/Jan/2026:22:49:39 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:49:54 [info]: Creating new round with ID: 730
+2026-01-16 23:49:54 [info]: Successfully created new round with ID: 757, Round ID: 730
+2026-01-16 23:50:34 [info]: Creating new round with ID: 731
+2026-01-16 23:50:34 [info]: Successfully created new round with ID: 758, Round ID: 731
+2026-01-16 23:51:19 [info]: Creating new round with ID: 732
+2026-01-16 23:51:19 [info]: Successfully created new round with ID: 759, Round ID: 732
+2026-01-16 23:52:00 [info]: Creating new round with ID: 733
+2026-01-16 23:52:00 [info]: Successfully created new round with ID: 760, Round ID: 733
+2026-01-16 23:52:16 [info]: New WebSocket connection
+2026-01-16 23:52:16 [info]: ::1 - - [16/Jan/2026:22:52:16 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:52:16 [info]: ::1 - - [16/Jan/2026:22:52:16 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:52:42 [info]: Creating new round with ID: 734
+2026-01-16 23:52:42 [info]: Successfully created new round with ID: 761, Round ID: 734
+2026-01-16 23:53:23 [info]: Creating new round with ID: 735
+2026-01-16 23:53:23 [info]: Successfully created new round with ID: 762, Round ID: 735
+2026-01-16 23:54:05 [info]: Creating new round with ID: 736
+2026-01-16 23:54:05 [info]: Successfully created new round with ID: 763, Round ID: 736
+2026-01-16 23:54:26 [info]: New WebSocket connection
+2026-01-16 23:54:26 [info]: ::1 - - [16/Jan/2026:22:54:26 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:54:26 [info]: ::1 - - [16/Jan/2026:22:54:26 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:54:48 [info]: Creating new round with ID: 737
+2026-01-16 23:54:48 [info]: Successfully created new round with ID: 764, Round ID: 737
+2026-01-16 23:55:33 [info]: Creating new round with ID: 738
+2026-01-16 23:55:33 [info]: Successfully created new round with ID: 765, Round ID: 738
+2026-01-16 23:55:50 [info]: New WebSocket connection
+2026-01-16 23:55:50 [info]: ::1 - - [16/Jan/2026:22:55:50 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:55:50 [info]: ::1 - - [16/Jan/2026:22:55:50 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:56:17 [info]: Creating new round with ID: 739
+2026-01-16 23:56:17 [info]: Successfully created new round with ID: 766, Round ID: 739
+2026-01-16 23:57:03 [info]: Creating new round with ID: 740
+2026-01-16 23:57:03 [info]: Successfully created new round with ID: 767, Round ID: 740
+2026-01-16 23:57:47 [info]: Creating new round with ID: 741
+2026-01-16 23:57:47 [info]: Successfully created new round with ID: 768, Round ID: 741
+2026-01-16 23:57:50 [info]: New WebSocket connection
+2026-01-16 23:57:50 [info]: ::1 - - [16/Jan/2026:22:57:50 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:57:50 [info]: ::1 - - [16/Jan/2026:22:57:50 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
+2026-01-16 23:58:27 [info]: Creating new round with ID: 742
+2026-01-16 23:58:27 [info]: Successfully created new round with ID: 769, Round ID: 742
+2026-01-16 23:59:24 [info]: Creating new round with ID: 743
+2026-01-16 23:59:24 [info]: Successfully created new round with ID: 770, Round ID: 743
+2026-01-17 00:00:04 [info]: Creating new round with ID: 744
+2026-01-17 00:00:04 [info]: Successfully created new round with ID: 771, Round ID: 744
+2026-01-17 00:00:44 [info]: Creating new round with ID: 745
+2026-01-17 00:00:44 [info]: Successfully created new round with ID: 772, Round ID: 745
+2026-01-17 00:01:29 [info]: Creating new round with ID: 746
+2026-01-17 00:01:29 [info]: Successfully created new round with ID: 773, Round ID: 746
+2026-01-17 00:02:11 [info]: Creating new round with ID: 747
+2026-01-17 00:02:11 [info]: Successfully created new round with ID: 774, Round ID: 747
+2026-01-17 00:02:57 [info]: Creating new round with ID: 748
+2026-01-17 00:02:57 [info]: Successfully created new round with ID: 775, Round ID: 748
+2026-01-17 00:03:41 [info]: Creating new round with ID: 749
+2026-01-17 00:03:42 [info]: Successfully created new round with ID: 776, Round ID: 749
+2026-01-17 00:13:33 [info]: Database connected
+2026-01-17 00:13:33 [info]: Game engine initialized
+2026-01-17 00:13:33 [info]: Creating new round with ID: 750
+2026-01-17 00:13:33 [info]: Server is running on http://localhost:3001
+2026-01-17 00:13:33 [info]: Successfully created new round with ID: 777, Round ID: 750
+2026-01-17 00:14:15 [info]: Creating new round with ID: 751
+2026-01-17 00:14:15 [info]: Successfully created new round with ID: 778, Round ID: 751
+2026-01-17 00:14:55 [info]: New WebSocket connection
+2026-01-17 00:14:55 [info]: ::1 - - [16/Jan/2026:23:14:55 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:14:55 [info]: ::1 - - [16/Jan/2026:23:14:55 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:14:56 [info]: Creating new round with ID: 752
+2026-01-17 00:14:56 [info]: Successfully created new round with ID: 779, Round ID: 752
+2026-01-17 00:15:38 [info]: Creating new round with ID: 753
+2026-01-17 00:15:38 [info]: Successfully created new round with ID: 780, Round ID: 753
+2026-01-17 00:16:20 [info]: Creating new round with ID: 754
+2026-01-17 00:16:20 [info]: Successfully created new round with ID: 781, Round ID: 754
+2026-01-17 00:17:02 [info]: Creating new round with ID: 755
+2026-01-17 00:17:02 [info]: Successfully created new round with ID: 782, Round ID: 755
+2026-01-17 00:17:57 [info]: Creating new round with ID: 756
+2026-01-17 00:17:57 [info]: Successfully created new round with ID: 783, Round ID: 756
+2026-01-17 00:18:42 [info]: Creating new round with ID: 757
+2026-01-17 00:18:42 [info]: Successfully created new round with ID: 784, Round ID: 757
+2026-01-17 00:19:26 [info]: Creating new round with ID: 758
+2026-01-17 00:19:26 [info]: Successfully created new round with ID: 785, Round ID: 758
+2026-01-17 00:20:11 [info]: Creating new round with ID: 759
+2026-01-17 00:20:11 [info]: Successfully created new round with ID: 786, Round ID: 759
+2026-01-17 00:20:54 [info]: Creating new round with ID: 760
+2026-01-17 00:20:54 [info]: Successfully created new round with ID: 787, Round ID: 760
+2026-01-17 00:21:34 [info]: Creating new round with ID: 761
+2026-01-17 00:21:34 [info]: Successfully created new round with ID: 788, Round ID: 761
+2026-01-17 00:22:18 [info]: Creating new round with ID: 762
+2026-01-17 00:22:18 [info]: Successfully created new round with ID: 789, Round ID: 762
+2026-01-17 00:22:59 [info]: Creating new round with ID: 763
+2026-01-17 00:23:00 [info]: Successfully created new round with ID: 790, Round ID: 763
+2026-01-17 00:24:00 [info]: Creating new round with ID: 764
+2026-01-17 00:24:00 [info]: Successfully created new round with ID: 791, Round ID: 764
+2026-01-17 00:24:00 [info]: A new round was already created, returning existing round
+2026-01-17 00:24:10 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-17 00:25:11 [info]: Database connected
+2026-01-17 00:25:11 [info]: Game engine initialized
+2026-01-17 00:25:11 [info]: Creating new round with ID: 765
+2026-01-17 00:25:11 [info]: Successfully created new round with ID: 793, Round ID: 765
+2026-01-17 00:25:11 [info]: Server is running on http://localhost:3001
+2026-01-17 00:25:12 [info]: New WebSocket connection
+2026-01-17 00:25:15 [info]: Database connected
+2026-01-17 00:25:15 [info]: Game engine initialized
+2026-01-17 00:25:16 [info]: Creating new round with ID: 766
+2026-01-17 00:25:16 [info]: Server is running on http://localhost:3001
+2026-01-17 00:25:16 [info]: Successfully created new round with ID: 794, Round ID: 766
+2026-01-17 00:25:17 [info]: New WebSocket connection
+2026-01-17 00:25:23 [info]: Database connected
+2026-01-17 00:25:23 [info]: Game engine initialized
+2026-01-17 00:25:23 [info]: Creating new round with ID: 767
+2026-01-17 00:25:23 [info]: Successfully created new round with ID: 795, Round ID: 767
+2026-01-17 00:25:23 [info]: Server is running on http://localhost:3001
+2026-01-17 00:25:24 [info]: New WebSocket connection
+2026-01-17 00:25:56 [info]: Database connected
+2026-01-17 00:25:56 [info]: Game engine initialized
+2026-01-17 00:25:56 [info]: Creating new round with ID: 768
+2026-01-17 00:25:56 [info]: Server is running on http://localhost:3001
+2026-01-17 00:25:56 [info]: Successfully created new round with ID: 796, Round ID: 768
+2026-01-17 00:25:57 [info]: New WebSocket connection
+2026-01-17 00:26:04 [info]: Database connected
+2026-01-17 00:26:04 [info]: Game engine initialized
+2026-01-17 00:26:04 [info]: Creating new round with ID: 769
+2026-01-17 00:26:04 [info]: Successfully created new round with ID: 797, Round ID: 769
+2026-01-17 00:26:04 [info]: Server is running on http://localhost:3001
+2026-01-17 00:26:06 [info]: New WebSocket connection
+2026-01-17 00:26:47 [info]: Creating new round with ID: 770
+2026-01-17 00:26:47 [info]: Successfully created new round with ID: 798, Round ID: 770
+2026-01-17 00:27:28 [info]: Creating new round with ID: 771
+2026-01-17 00:27:28 [info]: Successfully created new round with ID: 799, Round ID: 771
+2026-01-17 00:27:28 [info]: A new round was already created, returning existing round
+2026-01-17 00:28:09 [info]: Creating new round with ID: 772
+2026-01-17 00:28:09 [info]: Successfully created new round with ID: 800, Round ID: 772
+2026-01-17 00:28:50 [info]: Creating new round with ID: 773
+2026-01-17 00:28:50 [info]: Successfully created new round with ID: 801, Round ID: 773
+2026-01-17 00:28:50 [info]: A new round was already created, returning existing round
+2026-01-17 00:28:57 [info]: New WebSocket connection
+2026-01-17 00:28:57 [info]: ::1 - - [16/Jan/2026:23:28:57 +0000] "GET /api/rounds/current HTTP/1.1" 200 525 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:28:57 [info]: ::1 - - [16/Jan/2026:23:28:57 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:29:00 [info]: A new round was already created, returning existing round
+2026-01-17 00:29:32 [info]: Creating new round with ID: 774
+2026-01-17 00:29:32 [info]: Successfully created new round with ID: 802, Round ID: 774
+2026-01-17 00:30:12 [info]: Creating new round with ID: 775
+2026-01-17 00:30:12 [info]: Successfully created new round with ID: 803, Round ID: 775
+2026-01-17 00:30:12 [info]: A new round was already created, returning existing round
+2026-01-17 00:30:55 [info]: Creating new round with ID: 776
+2026-01-17 00:30:55 [info]: Successfully created new round with ID: 804, Round ID: 776
+2026-01-17 00:31:16 [info]: Database connected
+2026-01-17 00:31:16 [info]: Game engine initialized
+2026-01-17 00:31:16 [info]: Creating new round with ID: 777
+2026-01-17 00:31:16 [info]: Server is running on http://localhost:3001
+2026-01-17 00:31:16 [info]: Successfully created new round with ID: 805, Round ID: 777
+2026-01-17 00:31:18 [info]: New WebSocket connection
+2026-01-17 00:31:59 [info]: Creating new round with ID: 778
+2026-01-17 00:31:59 [info]: Successfully created new round with ID: 806, Round ID: 778
+2026-01-17 00:32:47 [info]: Creating new round with ID: 779
+2026-01-17 00:32:47 [info]: Successfully created new round with ID: 807, Round ID: 779
+2026-01-17 00:33:33 [info]: Creating new round with ID: 780
+2026-01-17 00:33:33 [info]: Successfully created new round with ID: 808, Round ID: 780
+2026-01-17 00:34:14 [info]: Creating new round with ID: 781
+2026-01-17 00:34:14 [info]: Successfully created new round with ID: 809, Round ID: 781
+2026-01-17 00:35:04 [info]: Creating new round with ID: 782
+2026-01-17 00:35:04 [info]: Successfully created new round with ID: 810, Round ID: 782
+2026-01-17 00:35:45 [info]: Creating new round with ID: 783
+2026-01-17 00:35:45 [info]: Successfully created new round with ID: 811, Round ID: 783
+2026-01-17 00:36:18 [info]: Database connected
+2026-01-17 00:36:18 [info]: Game engine initialized
+2026-01-17 00:36:18 [info]: Creating new round with ID: 784
+2026-01-17 00:36:18 [info]: Server is running on http://localhost:3001
+2026-01-17 00:36:18 [info]: Successfully created new round with ID: 812, Round ID: 784
+2026-01-17 00:36:20 [info]: New WebSocket connection
+2026-01-17 00:36:59 [info]: Creating new round with ID: 785
+2026-01-17 00:36:59 [info]: Successfully created new round with ID: 813, Round ID: 785
+2026-01-17 00:37:04 [info]: Database connected
+2026-01-17 00:37:04 [info]: Game engine initialized
+2026-01-17 00:37:04 [info]: Creating new round with ID: 786
+2026-01-17 00:37:04 [info]: Successfully created new round with ID: 814, Round ID: 786
+2026-01-17 00:37:04 [info]: Server is running on http://localhost:3001
+2026-01-17 00:37:04 [info]: New WebSocket connection
+2026-01-17 00:37:45 [info]: Database connected
+2026-01-17 00:37:45 [info]: Game engine initialized
+2026-01-17 00:37:45 [info]: Creating new round with ID: 787
+2026-01-17 00:37:45 [info]: Successfully created new round with ID: 815, Round ID: 787
+2026-01-17 00:37:45 [info]: Server is running on http://localhost:3001
+2026-01-17 00:37:47 [info]: New WebSocket connection
+2026-01-17 00:38:26 [info]: Creating new round with ID: 788
+2026-01-17 00:38:26 [info]: Successfully created new round with ID: 816, Round ID: 788
+2026-01-17 00:38:46 [info]: Database connected
+2026-01-17 00:38:46 [info]: Game engine initialized
+2026-01-17 00:38:46 [info]: Creating new round with ID: 789
+2026-01-17 00:38:46 [info]: Successfully created new round with ID: 817, Round ID: 789
+2026-01-17 00:38:46 [info]: Server is running on http://localhost:3001
+2026-01-17 00:38:46 [info]: New WebSocket connection
+2026-01-17 00:39:34 [info]: Creating new round with ID: 790
+2026-01-17 00:39:35 [info]: Successfully created new round with ID: 818, Round ID: 790
+2026-01-17 00:40:15 [info]: Creating new round with ID: 791
+2026-01-17 00:40:15 [info]: Successfully created new round with ID: 819, Round ID: 791
+2026-01-17 00:40:58 [info]: Creating new round with ID: 792
+2026-01-17 00:40:58 [info]: Successfully created new round with ID: 820, Round ID: 792
+2026-01-17 00:41:42 [info]: Creating new round with ID: 793
+2026-01-17 00:41:42 [info]: Successfully created new round with ID: 821, Round ID: 793
+2026-01-17 00:42:24 [info]: Creating new round with ID: 794
+2026-01-17 00:42:24 [info]: Successfully created new round with ID: 822, Round ID: 794
+2026-01-17 00:42:56 [info]: New WebSocket connection
+2026-01-17 00:42:58 [info]: ::1 - - [16/Jan/2026:23:42:58 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:42:58 [info]: ::1 - - [16/Jan/2026:23:42:58 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:43:08 [info]: Creating new round with ID: 795
+2026-01-17 00:43:08 [info]: Successfully created new round with ID: 823, Round ID: 795
+2026-01-17 00:43:50 [info]: Creating new round with ID: 796
+2026-01-17 00:43:50 [info]: Successfully created new round with ID: 824, Round ID: 796
+2026-01-17 00:44:30 [info]: Creating new round with ID: 797
+2026-01-17 00:44:30 [info]: Successfully created new round with ID: 825, Round ID: 797
+2026-01-17 00:45:22 [info]: Creating new round with ID: 798
+2026-01-17 00:45:22 [info]: Successfully created new round with ID: 826, Round ID: 798
+2026-01-17 00:46:03 [info]: Creating new round with ID: 799
+2026-01-17 00:46:03 [info]: Successfully created new round with ID: 827, Round ID: 799
+2026-01-17 00:46:47 [info]: Creating new round with ID: 800
+2026-01-17 00:46:47 [info]: Successfully created new round with ID: 828, Round ID: 800
+2026-01-17 00:47:31 [info]: Creating new round with ID: 801
+2026-01-17 00:47:31 [info]: Successfully created new round with ID: 829, Round ID: 801
+2026-01-17 00:47:52 [info]: New WebSocket connection
+2026-01-17 00:47:52 [info]: ::1 - - [16/Jan/2026:23:47:52 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:47:53 [info]: ::1 - - [16/Jan/2026:23:47:53 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 00:48:14 [info]: Creating new round with ID: 802
+2026-01-17 00:48:14 [info]: Successfully created new round with ID: 830, Round ID: 802
+2026-01-17 00:48:55 [info]: Creating new round with ID: 803
+2026-01-17 00:48:55 [info]: Successfully created new round with ID: 831, Round ID: 803
+2026-01-17 00:49:40 [info]: Creating new round with ID: 804
+2026-01-17 00:49:40 [info]: Successfully created new round with ID: 832, Round ID: 804
+2026-01-17 00:50:37 [info]: Creating new round with ID: 805
+2026-01-17 00:50:37 [info]: Successfully created new round with ID: 833, Round ID: 805
+2026-01-17 00:51:17 [info]: Creating new round with ID: 806
+2026-01-17 00:51:17 [info]: Successfully created new round with ID: 834, Round ID: 806
+2026-01-17 00:52:01 [info]: Creating new round with ID: 807
+2026-01-17 00:52:01 [info]: Successfully created new round with ID: 835, Round ID: 807
+2026-01-17 00:52:41 [info]: Creating new round with ID: 808
+2026-01-17 00:52:41 [info]: Successfully created new round with ID: 836, Round ID: 808
+2026-01-17 00:53:31 [info]: Creating new round with ID: 809
+2026-01-17 00:53:31 [info]: Successfully created new round with ID: 837, Round ID: 809
+2026-01-17 00:54:12 [info]: Creating new round with ID: 810
+2026-01-17 00:54:12 [info]: Successfully created new round with ID: 838, Round ID: 810
+2026-01-17 00:54:56 [info]: Creating new round with ID: 811
+2026-01-17 00:54:56 [info]: Successfully created new round with ID: 839, Round ID: 811
+2026-01-17 00:55:44 [info]: Creating new round with ID: 812
+2026-01-17 00:55:44 [info]: Successfully created new round with ID: 840, Round ID: 812
+2026-01-17 00:56:26 [info]: Creating new round with ID: 813
+2026-01-17 00:56:26 [info]: Successfully created new round with ID: 841, Round ID: 813
+2026-01-17 00:57:08 [info]: Creating new round with ID: 814
+2026-01-17 00:57:08 [info]: Successfully created new round with ID: 842, Round ID: 814
+2026-01-17 00:57:49 [info]: Creating new round with ID: 815
+2026-01-17 00:57:49 [info]: Successfully created new round with ID: 843, Round ID: 815
+2026-01-17 00:58:34 [info]: Creating new round with ID: 816
+2026-01-17 00:58:34 [info]: Successfully created new round with ID: 844, Round ID: 816
+2026-01-17 00:59:16 [info]: Creating new round with ID: 817
+2026-01-17 00:59:16 [info]: Successfully created new round with ID: 845, Round ID: 817
+2026-01-17 00:59:57 [info]: Creating new round with ID: 818
+2026-01-17 00:59:57 [info]: Successfully created new round with ID: 846, Round ID: 818
+2026-01-17 01:00:38 [info]: Creating new round with ID: 819
+2026-01-17 01:00:38 [info]: Successfully created new round with ID: 847, Round ID: 819
+2026-01-17 01:01:20 [info]: Creating new round with ID: 820
+2026-01-17 01:01:20 [info]: Successfully created new round with ID: 848, Round ID: 820
+2026-01-17 01:02:02 [info]: Creating new round with ID: 821
+2026-01-17 01:02:02 [info]: Successfully created new round with ID: 849, Round ID: 821
+2026-01-17 01:02:44 [info]: Creating new round with ID: 822
+2026-01-17 01:02:44 [info]: Successfully created new round with ID: 850, Round ID: 822
+2026-01-17 01:03:28 [info]: Creating new round with ID: 823
+2026-01-17 01:03:28 [info]: Successfully created new round with ID: 851, Round ID: 823
+2026-01-17 01:04:12 [info]: Creating new round with ID: 824
+2026-01-17 01:04:12 [info]: Successfully created new round with ID: 852, Round ID: 824
+2026-01-17 01:04:38 [info]: New WebSocket connection
+2026-01-17 01:04:38 [info]: ::1 - - [17/Jan/2026:00:04:38 +0000] "GET /api/rounds/current HTTP/1.1" 200 570 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:04:39 [info]: ::1 - - [17/Jan/2026:00:04:39 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:04:54 [info]: Creating new round with ID: 825
+2026-01-17 01:04:54 [info]: Successfully created new round with ID: 853, Round ID: 825
+2026-01-17 01:05:34 [info]: Creating new round with ID: 826
+2026-01-17 01:05:34 [info]: Successfully created new round with ID: 854, Round ID: 826
+2026-01-17 01:06:21 [info]: Creating new round with ID: 827
+2026-01-17 01:06:21 [info]: Successfully created new round with ID: 855, Round ID: 827
+2026-01-17 01:07:04 [info]: Creating new round with ID: 828
+2026-01-17 01:07:04 [info]: Successfully created new round with ID: 856, Round ID: 828
+2026-01-17 01:07:50 [info]: Creating new round with ID: 829
+2026-01-17 01:07:50 [info]: Successfully created new round with ID: 857, Round ID: 829
+2026-01-17 01:08:32 [info]: Creating new round with ID: 830
+2026-01-17 01:08:32 [info]: Successfully created new round with ID: 858, Round ID: 830
+2026-01-17 01:09:15 [info]: Creating new round with ID: 831
+2026-01-17 01:09:15 [info]: Successfully created new round with ID: 859, Round ID: 831
+2026-01-17 01:09:58 [info]: Creating new round with ID: 832
+2026-01-17 01:09:58 [info]: Successfully created new round with ID: 860, Round ID: 832
+2026-01-17 01:10:42 [info]: Creating new round with ID: 833
+2026-01-17 01:10:42 [info]: Successfully created new round with ID: 861, Round ID: 833
+2026-01-17 01:11:38 [info]: Creating new round with ID: 834
+2026-01-17 01:11:38 [info]: Successfully created new round with ID: 862, Round ID: 834
+2026-01-17 01:12:21 [info]: Creating new round with ID: 835
+2026-01-17 01:12:21 [info]: Successfully created new round with ID: 863, Round ID: 835
+2026-01-17 01:13:21 [info]: Creating new round with ID: 836
+2026-01-17 01:13:21 [info]: Successfully created new round with ID: 864, Round ID: 836
+2026-01-17 01:13:40 [info]: Database connected
+2026-01-17 01:13:40 [info]: Game engine initialized
+2026-01-17 01:13:40 [info]: Creating new round with ID: 837
+2026-01-17 01:13:40 [info]: Scheduling flying phase in 9970ms for round 837
+2026-01-17 01:13:40 [info]: Successfully created new round with ID: 865, Round ID: 837
+2026-01-17 01:13:40 [info]: Scheduling flying phase in 9958ms for round 837
+2026-01-17 01:13:40 [info]: Server is running on http://localhost:3001
+2026-01-17 01:13:41 [info]: New WebSocket connection
+2026-01-17 01:13:49 [info]: Database connected
+2026-01-17 01:13:49 [info]: Game engine initialized
+2026-01-17 01:13:50 [info]: Creating new round with ID: 838
+2026-01-17 01:13:50 [info]: Scheduling flying phase in 373ms for round 837
+2026-01-17 01:13:50 [info]: Server is running on http://localhost:3001
+2026-01-17 01:13:50 [info]: Scheduling flying phase in 9946ms for round 838
+2026-01-17 01:13:50 [info]: Successfully created new round with ID: 866, Round ID: 838
+2026-01-17 01:13:50 [info]: New WebSocket connection
+2026-01-17 01:14:00 [info]: Starting flying phase for round 838 targetCrash=2.5 duration=5000ms
+2026-01-17 01:14:34 [info]: Creating new round with ID: 839
+2026-01-17 01:14:34 [info]: Scheduling flying phase in 9986ms for round 839
+2026-01-17 01:14:34 [info]: Successfully created new round with ID: 867, Round ID: 839
+2026-01-17 01:14:44 [info]: Starting flying phase for round 839 targetCrash=1.3 duration=2600ms
+2026-01-17 01:15:14 [info]: Database connected
+2026-01-17 01:15:14 [info]: Game engine initialized
+2026-01-17 01:15:14 [info]: Creating new round with ID: 840
+2026-01-17 01:15:14 [info]: Scheduling flying phase in 9955ms for round 840
+2026-01-17 01:15:14 [info]: Successfully created new round with ID: 868, Round ID: 840
+2026-01-17 01:15:14 [info]: Scheduling flying phase in 9940ms for round 840
+2026-01-17 01:15:14 [info]: Server is running on http://localhost:3001
+2026-01-17 01:15:18 [info]: New WebSocket connection
+2026-01-17 01:15:24 [info]: Starting flying phase for round 840 targetCrash=1.65 duration=3300ms
+2026-01-17 01:15:56 [info]: Creating new round with ID: 841
+2026-01-17 01:15:56 [info]: Scheduling flying phase in 9992ms for round 841
+2026-01-17 01:15:56 [info]: Successfully created new round with ID: 869, Round ID: 841
+2026-01-17 01:16:06 [info]: Starting flying phase for round 841 targetCrash=1.71 duration=3420ms
+2026-01-17 01:16:58 [info]: Database connected
+2026-01-17 01:16:58 [info]: Game engine initialized
+2026-01-17 01:16:58 [info]: Creating new round with ID: 842
+2026-01-17 01:16:58 [info]: Server is running on http://localhost:3001
+2026-01-17 01:16:58 [info]: Scheduling flying phase in 9960ms for round 842
+2026-01-17 01:16:58 [info]: Successfully created new round with ID: 870, Round ID: 842
+2026-01-17 01:16:59 [info]: New WebSocket connection
+2026-01-17 01:17:08 [info]: Starting flying phase for round 842 targetCrash=1.16 duration=2320ms
+2026-01-17 01:17:39 [info]: Creating new round with ID: 843
+2026-01-17 01:17:39 [info]: Scheduling flying phase in 9986ms for round 843
+2026-01-17 01:17:39 [info]: Successfully created new round with ID: 871, Round ID: 843
+2026-01-17 01:17:49 [info]: Starting flying phase for round 843 targetCrash=1.25 duration=2500ms
+2026-01-17 01:18:10 [info]: New WebSocket connection
+2026-01-17 01:18:10 [info]: ::1 - - [17/Jan/2026:00:18:10 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:18:10 [info]: ::1 - - [17/Jan/2026:00:18:10 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:18:20 [info]: Creating new round with ID: 844
+2026-01-17 01:18:20 [info]: Scheduling flying phase in 9981ms for round 844
+2026-01-17 01:18:20 [info]: Successfully created new round with ID: 872, Round ID: 844
+2026-01-17 01:18:30 [info]: Starting flying phase for round 844 targetCrash=1.41 duration=2820ms
+2026-01-17 01:19:02 [info]: Creating new round with ID: 845
+2026-01-17 01:19:02 [info]: Scheduling flying phase in 9992ms for round 845
+2026-01-17 01:19:02 [info]: Successfully created new round with ID: 873, Round ID: 845
+2026-01-17 01:19:12 [info]: Starting flying phase for round 845 targetCrash=2.72 duration=5440ms
+2026-01-17 01:19:46 [info]: Creating new round with ID: 846
+2026-01-17 01:19:46 [info]: Scheduling flying phase in 9992ms for round 846
+2026-01-17 01:19:46 [info]: Successfully created new round with ID: 874, Round ID: 846
+2026-01-17 01:19:56 [info]: Starting flying phase for round 846 targetCrash=5.16 duration=10320ms
+2026-01-17 01:20:34 [info]: Creating new round with ID: 847
+2026-01-17 01:20:34 [info]: Scheduling flying phase in 9995ms for round 847
+2026-01-17 01:20:34 [info]: Successfully created new round with ID: 875, Round ID: 847
+2026-01-17 01:20:44 [info]: Starting flying phase for round 847 targetCrash=1.02 duration=2040ms
+2026-01-17 01:21:14 [info]: Creating new round with ID: 848
+2026-01-17 01:21:14 [info]: Scheduling flying phase in 9995ms for round 848
+2026-01-17 01:21:14 [info]: Successfully created new round with ID: 876, Round ID: 848
+2026-01-17 01:21:24 [info]: Starting flying phase for round 848 targetCrash=3.26 duration=6520ms
+2026-01-17 01:21:59 [info]: Creating new round with ID: 849
+2026-01-17 01:21:59 [info]: Scheduling flying phase in 9994ms for round 849
+2026-01-17 01:21:59 [info]: Successfully created new round with ID: 877, Round ID: 849
+2026-01-17 01:22:09 [info]: Starting flying phase for round 849 targetCrash=4.48 duration=8960ms
+2026-01-17 01:22:46 [info]: Creating new round with ID: 850
+2026-01-17 01:22:46 [info]: Scheduling flying phase in 9995ms for round 850
+2026-01-17 01:22:46 [info]: Successfully created new round with ID: 878, Round ID: 850
+2026-01-17 01:22:56 [info]: Starting flying phase for round 850 targetCrash=1.11 duration=2220ms
+2026-01-17 01:23:27 [info]: Creating new round with ID: 851
+2026-01-17 01:23:27 [info]: Scheduling flying phase in 9979ms for round 851
+2026-01-17 01:23:27 [info]: Successfully created new round with ID: 879, Round ID: 851
+2026-01-17 01:23:37 [info]: Starting flying phase for round 851 targetCrash=2.88 duration=5760ms
+2026-01-17 01:24:11 [info]: Creating new round with ID: 852
+2026-01-17 01:24:11 [info]: Scheduling flying phase in 9995ms for round 852
+2026-01-17 01:24:11 [info]: Successfully created new round with ID: 880, Round ID: 852
+2026-01-17 01:24:21 [info]: Starting flying phase for round 852 targetCrash=3.5 duration=7000ms
+2026-01-17 01:24:57 [info]: Creating new round with ID: 853
+2026-01-17 01:24:57 [info]: Scheduling flying phase in 9994ms for round 853
+2026-01-17 01:24:57 [info]: Successfully created new round with ID: 881, Round ID: 853
+2026-01-17 01:25:07 [info]: Starting flying phase for round 853 targetCrash=1.23 duration=2460ms
+2026-01-17 01:25:38 [info]: Creating new round with ID: 854
+2026-01-17 01:25:38 [info]: Scheduling flying phase in 9992ms for round 854
+2026-01-17 01:25:38 [info]: Successfully created new round with ID: 882, Round ID: 854
+2026-01-17 01:25:48 [info]: Starting flying phase for round 854 targetCrash=2.5 duration=5000ms
+2026-01-17 01:26:22 [info]: Creating new round with ID: 855
+2026-01-17 01:26:22 [info]: Scheduling flying phase in 9995ms for round 855
+2026-01-17 01:26:22 [info]: Successfully created new round with ID: 883, Round ID: 855
+2026-01-17 01:26:32 [info]: Starting flying phase for round 855 targetCrash=5.62 duration=11240ms
+2026-01-17 01:27:10 [info]: Creating new round with ID: 856
+2026-01-17 01:27:10 [info]: Scheduling flying phase in 9995ms for round 856
+2026-01-17 01:27:10 [info]: Successfully created new round with ID: 884, Round ID: 856
+2026-01-17 01:27:18 [info]: New WebSocket connection
+2026-01-17 01:27:18 [info]: ::1 - - [17/Jan/2026:00:27:18 +0000] "GET /api/rounds/current HTTP/1.1" 200 536 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:27:19 [info]: ::1 - - [17/Jan/2026:00:27:19 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:27:20 [info]: Starting flying phase for round 856 targetCrash=2.27 duration=4540ms
+2026-01-17 01:27:54 [info]: Creating new round with ID: 857
+2026-01-17 01:27:54 [info]: Scheduling flying phase in 9995ms for round 857
+2026-01-17 01:27:54 [info]: Successfully created new round with ID: 885, Round ID: 857
+2026-01-17 01:28:04 [info]: Starting flying phase for round 857 targetCrash=1.15 duration=2300ms
+2026-01-17 01:28:35 [info]: Creating new round with ID: 858
+2026-01-17 01:28:35 [info]: Scheduling flying phase in 9996ms for round 858
+2026-01-17 01:28:35 [info]: Successfully created new round with ID: 886, Round ID: 858
+2026-01-17 01:28:45 [info]: Starting flying phase for round 858 targetCrash=2.74 duration=5480ms
+2026-01-17 01:29:43 [info]: Database connected
+2026-01-17 01:29:43 [info]: Game engine initialized
+2026-01-17 01:29:43 [info]: Creating new round with ID: 859
+2026-01-17 01:29:43 [info]: Scheduling flying phase in 9965ms for round 859
+2026-01-17 01:29:43 [info]: Successfully created new round with ID: 887, Round ID: 859
+2026-01-17 01:29:43 [info]: Scheduling flying phase in 9952ms for round 859
+2026-01-17 01:29:43 [info]: Server is running on http://localhost:3001
+2026-01-17 01:29:46 [info]: New WebSocket connection
+2026-01-17 01:29:53 [info]: Starting flying phase for round 859 targetCrash=3.37 duration=6740ms
+2026-01-17 01:30:28 [info]: Creating new round with ID: 860
+2026-01-17 01:30:28 [info]: Scheduling flying phase in 9989ms for round 860
+2026-01-17 01:30:28 [info]: Successfully created new round with ID: 888, Round ID: 860
+2026-01-17 01:30:28 [info]: A new round was already created, returning existing round
+2026-01-17 01:30:38 [info]: Starting flying phase for round 860 targetCrash=1.4 duration=2800ms
+2026-01-17 01:31:10 [info]: Creating new round with ID: 861
+2026-01-17 01:31:10 [info]: Scheduling flying phase in 9922ms for round 861
+2026-01-17 01:31:10 [info]: Successfully created new round with ID: 889, Round ID: 861
+2026-01-17 01:31:13 [info]: New WebSocket connection
+2026-01-17 01:31:15 [info]: ::1 - - [17/Jan/2026:00:31:15 +0000] "GET /api/rounds/current HTTP/1.1" 200 536 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:31:15 [info]: ::1 - - [17/Jan/2026:00:31:15 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:31:20 [info]: Starting flying phase for round 861 targetCrash=6.13 duration=12260ms
+2026-01-17 01:31:59 [info]: Creating new round with ID: 862
+2026-01-17 01:31:59 [info]: Scheduling flying phase in 9871ms for round 862
+2026-01-17 01:31:59 [info]: Successfully created new round with ID: 890, Round ID: 862
+2026-01-17 01:32:09 [info]: Starting flying phase for round 862 targetCrash=20.28 duration=20000ms
+2026-01-17 01:33:00 [info]: Creating new round with ID: 863
+2026-01-17 01:33:00 [info]: Scheduling flying phase in 9994ms for round 863
+2026-01-17 01:33:00 [info]: Successfully created new round with ID: 891, Round ID: 863
+2026-01-17 01:33:00 [info]: A new round was already created, returning existing round
+2026-01-17 01:33:10 [info]: Starting flying phase for round 863 targetCrash=3.25 duration=6500ms
+2026-01-17 01:33:45 [info]: Creating new round with ID: 864
+2026-01-17 01:33:45 [info]: Scheduling flying phase in 9875ms for round 864
+2026-01-17 01:33:45 [info]: Successfully created new round with ID: 892, Round ID: 864
+2026-01-17 01:33:55 [info]: Starting flying phase for round 864 targetCrash=1.16 duration=2320ms
+2026-01-17 01:34:26 [info]: Creating new round with ID: 865
+2026-01-17 01:34:26 [info]: Scheduling flying phase in 9990ms for round 865
+2026-01-17 01:34:26 [info]: Successfully created new round with ID: 893, Round ID: 865
+2026-01-17 01:34:27 [info]: New WebSocket connection
+2026-01-17 01:34:27 [info]: ::1 - - [17/Jan/2026:00:34:27 +0000] "GET /api/rounds/current HTTP/1.1" 200 536 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:34:28 [info]: ::1 - - [17/Jan/2026:00:34:28 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:34:36 [info]: Starting flying phase for round 865 targetCrash=2.14 duration=4280ms
+2026-01-17 01:35:10 [info]: Creating new round with ID: 866
+2026-01-17 01:35:10 [info]: Scheduling flying phase in 9995ms for round 866
+2026-01-17 01:35:10 [info]: Successfully created new round with ID: 894, Round ID: 866
+2026-01-17 01:35:10 [info]: A new round was already created, returning existing round
+2026-01-17 01:35:20 [info]: Starting flying phase for round 866 targetCrash=1.32 duration=2640ms
+2026-01-17 01:35:51 [info]: Creating new round with ID: 867
+2026-01-17 01:35:51 [info]: Scheduling flying phase in 9927ms for round 867
+2026-01-17 01:35:51 [info]: Successfully created new round with ID: 895, Round ID: 867
+2026-01-17 01:35:51 [info]: A new round was already created, returning existing round
+2026-01-17 01:36:01 [info]: Starting flying phase for round 867 targetCrash=1.3 duration=2600ms
+2026-01-17 01:36:33 [info]: Creating new round with ID: 868
+2026-01-17 01:36:33 [info]: Scheduling flying phase in 9995ms for round 868
+2026-01-17 01:36:33 [info]: Successfully created new round with ID: 896, Round ID: 868
+2026-01-17 01:36:43 [info]: Starting flying phase for round 868 targetCrash=1.73 duration=3460ms
+2026-01-17 01:37:15 [info]: Creating new round with ID: 869
+2026-01-17 01:37:16 [info]: Scheduling flying phase in 9991ms for round 869
+2026-01-17 01:37:16 [info]: Successfully created new round with ID: 897, Round ID: 869
+2026-01-17 01:37:25 [info]: Starting flying phase for round 869 targetCrash=1.1 duration=2200ms
+2026-01-17 01:37:57 [info]: Creating new round with ID: 870
+2026-01-17 01:37:57 [info]: Scheduling flying phase in 9993ms for round 870
+2026-01-17 01:37:57 [info]: Successfully created new round with ID: 898, Round ID: 870
+2026-01-17 01:38:07 [info]: Starting flying phase for round 870 targetCrash=1.05 duration=2100ms
+2026-01-17 01:38:37 [info]: Creating new round with ID: 871
+2026-01-17 01:38:37 [info]: Scheduling flying phase in 9896ms for round 871
+2026-01-17 01:38:37 [info]: Successfully created new round with ID: 899, Round ID: 871
+2026-01-17 01:38:47 [info]: Starting flying phase for round 871 targetCrash=1.42 duration=2840ms
+2026-01-17 01:39:10 [info]: New WebSocket connection
+2026-01-17 01:39:10 [info]: ::1 - - [17/Jan/2026:00:39:10 +0000] "GET /api/rounds/current HTTP/1.1" 200 559 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:39:11 [info]: ::1 - - [17/Jan/2026:00:39:11 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:39:19 [info]: Creating new round with ID: 872
+2026-01-17 01:39:19 [info]: Scheduling flying phase in 9995ms for round 872
+2026-01-17 01:39:19 [info]: Successfully created new round with ID: 900, Round ID: 872
+2026-01-17 01:39:29 [info]: Starting flying phase for round 872 targetCrash=2.41 duration=4820ms
+2026-01-17 01:40:03 [info]: Creating new round with ID: 873
+2026-01-17 01:40:03 [info]: Scheduling flying phase in 9996ms for round 873
+2026-01-17 01:40:03 [info]: Successfully created new round with ID: 901, Round ID: 873
+2026-01-17 01:40:13 [info]: Starting flying phase for round 873 targetCrash=1.62 duration=3240ms
+2026-01-17 01:40:45 [info]: Creating new round with ID: 874
+2026-01-17 01:40:45 [info]: Scheduling flying phase in 9981ms for round 874
+2026-01-17 01:40:45 [info]: Successfully created new round with ID: 902, Round ID: 874
+2026-01-17 01:40:55 [info]: Starting flying phase for round 874 targetCrash=1.54 duration=3080ms
+2026-01-17 01:41:02 [info]: New WebSocket connection
+2026-01-17 01:41:02 [info]: ::1 - - [17/Jan/2026:00:41:02 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:41:03 [info]: ::1 - - [17/Jan/2026:00:41:03 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:41:27 [info]: Creating new round with ID: 875
+2026-01-17 01:41:27 [info]: Scheduling flying phase in 9992ms for round 875
+2026-01-17 01:41:27 [info]: Successfully created new round with ID: 903, Round ID: 875
+2026-01-17 01:41:37 [info]: Starting flying phase for round 875 targetCrash=1.17 duration=2340ms
+2026-01-17 01:42:08 [info]: Creating new round with ID: 876
+2026-01-17 01:42:08 [info]: Scheduling flying phase in 9977ms for round 876
+2026-01-17 01:42:08 [info]: Successfully created new round with ID: 904, Round ID: 876
+2026-01-17 01:42:18 [info]: Starting flying phase for round 876 targetCrash=2.6 duration=5200ms
+2026-01-17 01:42:52 [info]: Creating new round with ID: 877
+2026-01-17 01:42:52 [info]: Scheduling flying phase in 9993ms for round 877
+2026-01-17 01:42:52 [info]: Successfully created new round with ID: 905, Round ID: 877
+2026-01-17 01:43:02 [info]: Starting flying phase for round 877 targetCrash=3.91 duration=7820ms
+2026-01-17 01:43:38 [info]: Creating new round with ID: 878
+2026-01-17 01:43:38 [info]: Scheduling flying phase in 9995ms for round 878
+2026-01-17 01:43:38 [info]: Successfully created new round with ID: 906, Round ID: 878
+2026-01-17 01:43:48 [info]: Starting flying phase for round 878 targetCrash=1.13 duration=2260ms
+2026-01-17 01:44:19 [info]: Creating new round with ID: 879
+2026-01-17 01:44:19 [info]: Scheduling flying phase in 9992ms for round 879
+2026-01-17 01:44:19 [info]: Successfully created new round with ID: 907, Round ID: 879
+2026-01-17 01:44:29 [info]: Starting flying phase for round 879 targetCrash=1.11 duration=2220ms
+2026-01-17 01:45:00 [info]: Creating new round with ID: 880
+2026-01-17 01:45:00 [info]: Scheduling flying phase in 9981ms for round 880
+2026-01-17 01:45:00 [info]: Successfully created new round with ID: 908, Round ID: 880
+2026-01-17 01:45:10 [info]: Starting flying phase for round 880 targetCrash=1.03 duration=2060ms
+2026-01-17 01:45:40 [info]: Creating new round with ID: 881
+2026-01-17 01:45:40 [info]: Scheduling flying phase in 9996ms for round 881
+2026-01-17 01:45:40 [info]: Successfully created new round with ID: 909, Round ID: 881
+2026-01-17 01:45:50 [info]: Starting flying phase for round 881 targetCrash=6.36 duration=12720ms
+2026-01-17 01:46:30 [info]: Creating new round with ID: 882
+2026-01-17 01:46:30 [info]: Scheduling flying phase in 9983ms for round 882
+2026-01-17 01:46:30 [info]: Successfully created new round with ID: 910, Round ID: 882
+2026-01-17 01:46:40 [info]: Starting flying phase for round 882 targetCrash=3.19 duration=6380ms
+2026-01-17 01:47:18 [info]: Creating new round with ID: 883
+2026-01-17 01:47:18 [info]: Scheduling flying phase in 9934ms for round 883
+2026-01-17 01:47:18 [info]: Successfully created new round with ID: 911, Round ID: 883
+2026-01-17 01:47:18 [info]: A new round was already created, returning existing round
+2026-01-17 01:47:28 [info]: Starting flying phase for round 883 targetCrash=1.62 duration=3240ms
+2026-01-17 01:48:14 [info]: Creating new round with ID: 884
+2026-01-17 01:48:14 [info]: Creating new round with ID: 884
+2026-01-17 01:48:14 [info]: Scheduling flying phase in 9972ms for round 884
+2026-01-17 01:48:14 [info]: Successfully created new round with ID: 912, Round ID: 884
+2026-01-17 01:48:14 [warn]: Operation failed, retrying (1/5)
+2026-01-17 01:48:14 [info]: Creating new round with ID: 885
+2026-01-17 01:48:14 [info]: Scheduling flying phase in 9985ms for round 885
+2026-01-17 01:48:14 [info]: Successfully created new round with ID: 914, Round ID: 885
+2026-01-17 01:48:23 [info]: New WebSocket connection
+2026-01-17 01:48:24 [info]: Starting flying phase for round 885 targetCrash=6.78 duration=13560ms
+2026-01-17 01:49:03 [info]: Creating new round with ID: 886
+2026-01-17 01:49:03 [info]: Scheduling flying phase in 9995ms for round 886
+2026-01-17 01:49:03 [info]: Successfully created new round with ID: 915, Round ID: 886
+2026-01-17 01:49:13 [info]: Starting flying phase for round 886 targetCrash=1.32 duration=2640ms
+2026-01-17 01:49:45 [info]: Creating new round with ID: 887
+2026-01-17 01:49:45 [info]: Scheduling flying phase in 9993ms for round 887
+2026-01-17 01:49:45 [info]: Successfully created new round with ID: 916, Round ID: 887
+2026-01-17 01:49:55 [info]: Starting flying phase for round 887 targetCrash=1.32 duration=2640ms
+2026-01-17 01:50:26 [info]: Creating new round with ID: 888
+2026-01-17 01:50:26 [info]: Scheduling flying phase in 9995ms for round 888
+2026-01-17 01:50:26 [info]: Successfully created new round with ID: 917, Round ID: 888
+2026-01-17 01:50:36 [info]: Starting flying phase for round 888 targetCrash=9.9 duration=19800ms
+2026-01-17 01:51:19 [info]: Creating new round with ID: 889
+2026-01-17 01:51:19 [info]: Scheduling flying phase in 9991ms for round 889
+2026-01-17 01:51:19 [info]: Successfully created new round with ID: 918, Round ID: 889
+2026-01-17 01:51:29 [info]: Starting flying phase for round 889 targetCrash=1.2 duration=2400ms
+2026-01-17 01:52:00 [info]: Creating new round with ID: 890
+2026-01-17 01:52:00 [info]: Scheduling flying phase in 9995ms for round 890
+2026-01-17 01:52:00 [info]: Successfully created new round with ID: 919, Round ID: 890
+2026-01-17 01:52:10 [info]: Starting flying phase for round 890 targetCrash=3.9 duration=7800ms
+2026-01-17 01:52:46 [info]: Creating new round with ID: 891
+2026-01-17 01:52:46 [info]: Scheduling flying phase in 9996ms for round 891
+2026-01-17 01:52:46 [info]: Successfully created new round with ID: 920, Round ID: 891
+2026-01-17 01:52:56 [info]: Starting flying phase for round 891 targetCrash=1.01 duration=2020ms
+2026-01-17 01:53:26 [info]: Creating new round with ID: 892
+2026-01-17 01:53:26 [info]: Scheduling flying phase in 9995ms for round 892
+2026-01-17 01:53:26 [info]: Successfully created new round with ID: 921, Round ID: 892
+2026-01-17 01:53:36 [info]: Starting flying phase for round 892 targetCrash=2.77 duration=5540ms
+2026-01-17 01:53:53 [info]: ::1 - - [17/Jan/2026:00:53:53 +0000] "GET /api/history HTTP/1.1" 200 3808 "-" "PostmanRuntime/7.49.1"
+2026-01-17 01:54:11 [info]: Creating new round with ID: 893
+2026-01-17 01:54:11 [info]: Scheduling flying phase in 9996ms for round 893
+2026-01-17 01:54:11 [info]: Successfully created new round with ID: 922, Round ID: 893
+2026-01-17 01:54:21 [info]: Starting flying phase for round 893 targetCrash=2.36 duration=4720ms
+2026-01-17 01:54:54 [info]: Creating new round with ID: 894
+2026-01-17 01:54:54 [info]: Scheduling flying phase in 9994ms for round 894
+2026-01-17 01:54:54 [info]: Successfully created new round with ID: 923, Round ID: 894
+2026-01-17 01:55:04 [info]: Starting flying phase for round 894 targetCrash=1.04 duration=2080ms
+2026-01-17 01:55:35 [info]: Creating new round with ID: 895
+2026-01-17 01:55:35 [info]: Scheduling flying phase in 9997ms for round 895
+2026-01-17 01:55:35 [info]: Successfully created new round with ID: 924, Round ID: 895
+2026-01-17 01:55:45 [info]: Starting flying phase for round 895 targetCrash=1.91 duration=3820ms
+2026-01-17 01:56:18 [info]: Creating new round with ID: 896
+2026-01-17 01:56:18 [info]: Scheduling flying phase in 9996ms for round 896
+2026-01-17 01:56:18 [info]: Successfully created new round with ID: 925, Round ID: 896
+2026-01-17 01:56:28 [info]: Starting flying phase for round 896 targetCrash=29.29 duration=20000ms
+2026-01-17 01:56:36 [info]: ::1 - - [17/Jan/2026:00:56:36 +0000] "GET /api/history HTTP/1.1" 200 3808 "-" "PostmanRuntime/7.49.1"
+2026-01-17 01:57:18 [info]: Creating new round with ID: 897
+2026-01-17 01:57:18 [info]: Scheduling flying phase in 9984ms for round 897
+2026-01-17 01:57:18 [info]: Successfully created new round with ID: 926, Round ID: 897
+2026-01-17 01:57:28 [info]: Starting flying phase for round 897 targetCrash=1.43 duration=2860ms
+2026-01-17 01:57:59 [info]: Creating new round with ID: 898
+2026-01-17 01:57:59 [info]: Scheduling flying phase in 9994ms for round 898
+2026-01-17 01:57:59 [info]: Successfully created new round with ID: 927, Round ID: 898
+2026-01-17 01:58:09 [info]: Starting flying phase for round 898 targetCrash=3.15 duration=6300ms
+2026-01-17 01:58:45 [info]: Creating new round with ID: 899
+2026-01-17 01:58:45 [info]: Scheduling flying phase in 9996ms for round 899
+2026-01-17 01:58:45 [info]: Successfully created new round with ID: 928, Round ID: 899
+2026-01-17 01:58:45 [info]: A new round was already created, returning existing round
+2026-01-17 01:58:55 [info]: Starting flying phase for round 899 targetCrash=2.92 duration=5840ms
+2026-01-17 01:59:29 [info]: Creating new round with ID: 900
+2026-01-17 01:59:29 [info]: Scheduling flying phase in 9966ms for round 900
+2026-01-17 01:59:29 [info]: Successfully created new round with ID: 929, Round ID: 900
+2026-01-17 01:59:32 [info]: ::1 - - [17/Jan/2026:00:59:32 +0000] "GET /api/history HTTP/1.1" 200 3809 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:59:32 [info]: New WebSocket connection
+2026-01-17 01:59:34 [info]: ::1 - - [17/Jan/2026:00:59:34 +0000] "GET /api/rounds/current HTTP/1.1" 200 536 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:59:34 [info]: ::1 - - [17/Jan/2026:00:59:34 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 01:59:39 [info]: Starting flying phase for round 900 targetCrash=1.52 duration=3040ms
+2026-01-17 02:00:11 [info]: Creating new round with ID: 901
+2026-01-17 02:00:11 [info]: Scheduling flying phase in 9993ms for round 901
+2026-01-17 02:00:11 [info]: Successfully created new round with ID: 930, Round ID: 901
+2026-01-17 02:00:21 [info]: Starting flying phase for round 901 targetCrash=27.32 duration=20000ms
+2026-01-17 02:00:23 [info]: ::1 - - [17/Jan/2026:01:00:23 +0000] "GET /api/history HTTP/1.1" 200 3809 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:00:23 [info]: New WebSocket connection
+2026-01-17 02:00:23 [info]: ::1 - - [17/Jan/2026:01:00:23 +0000] "GET /api/rounds/current HTTP/1.1" 200 554 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:00:23 [info]: ::1 - - [17/Jan/2026:01:00:23 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:01:11 [info]: Creating new round with ID: 902
+2026-01-17 02:01:11 [info]: Scheduling flying phase in 9995ms for round 902
+2026-01-17 02:01:11 [info]: Successfully created new round with ID: 931, Round ID: 902
+2026-01-17 02:01:21 [info]: Starting flying phase for round 902 targetCrash=1.22 duration=2440ms
+2026-01-17 02:01:52 [info]: Creating new round with ID: 903
+2026-01-17 02:01:52 [info]: Scheduling flying phase in 9992ms for round 903
+2026-01-17 02:01:52 [info]: Successfully created new round with ID: 932, Round ID: 903
+2026-01-17 02:02:02 [info]: Starting flying phase for round 903 targetCrash=1.56 duration=3120ms
+2026-01-17 02:02:27 [info]: ::1 - - [17/Jan/2026:01:02:27 +0000] "GET /api/history HTTP/1.1" 200 3810 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:02:27 [info]: New WebSocket connection
+2026-01-17 02:02:28 [info]: ::1 - - [17/Jan/2026:01:02:28 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:02:28 [info]: ::1 - - [17/Jan/2026:01:02:28 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:02:34 [info]: Creating new round with ID: 904
+2026-01-17 02:02:34 [info]: Scheduling flying phase in 9995ms for round 904
+2026-01-17 02:02:34 [info]: Successfully created new round with ID: 933, Round ID: 904
+2026-01-17 02:02:44 [info]: Starting flying phase for round 904 targetCrash=24.86 duration=20000ms
+2026-01-17 02:02:46 [info]: ::1 - - [17/Jan/2026:01:02:46 +0000] "GET /api/history HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:02:46 [info]: New WebSocket connection
+2026-01-17 02:02:46 [info]: ::1 - - [17/Jan/2026:01:02:46 +0000] "GET /api/rounds/current HTTP/1.1" 200 566 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:02:46 [info]: ::1 - - [17/Jan/2026:01:02:46 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:03:35 [info]: Creating new round with ID: 905
+2026-01-17 02:03:35 [info]: Scheduling flying phase in 9996ms for round 905
+2026-01-17 02:03:35 [info]: Successfully created new round with ID: 934, Round ID: 905
+2026-01-17 02:03:45 [info]: Starting flying phase for round 905 targetCrash=1.64 duration=3280ms
+2026-01-17 02:04:17 [info]: Creating new round with ID: 906
+2026-01-17 02:04:17 [info]: Scheduling flying phase in 9982ms for round 906
+2026-01-17 02:04:17 [info]: Successfully created new round with ID: 935, Round ID: 906
+2026-01-17 02:04:27 [info]: Starting flying phase for round 906 targetCrash=1.01 duration=2020ms
+2026-01-17 02:04:31 [info]: ::1 - - [17/Jan/2026:01:04:31 +0000] "GET /api/history HTTP/1.1" 200 3811 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:04:32 [info]: New WebSocket connection
+2026-01-17 02:04:32 [info]: ::1 - - [17/Jan/2026:01:04:32 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:04:32 [info]: ::1 - - [17/Jan/2026:01:04:32 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:04:57 [info]: Creating new round with ID: 907
+2026-01-17 02:04:57 [info]: Scheduling flying phase in 9978ms for round 907
+2026-01-17 02:04:57 [info]: Successfully created new round with ID: 936, Round ID: 907
+2026-01-17 02:05:07 [info]: Starting flying phase for round 907 targetCrash=1.28 duration=2560ms
+2026-01-17 02:05:39 [info]: Creating new round with ID: 908
+2026-01-17 02:05:39 [info]: Scheduling flying phase in 9981ms for round 908
+2026-01-17 02:05:39 [info]: Successfully created new round with ID: 937, Round ID: 908
+2026-01-17 02:05:39 [info]: A new round was already created, returning existing round
+2026-01-17 02:05:45 [info]: ::1 - - [17/Jan/2026:01:05:45 +0000] "GET /api/history HTTP/1.1" 200 3811 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:05:45 [info]: New WebSocket connection
+2026-01-17 02:05:45 [info]: ::1 - - [17/Jan/2026:01:05:45 +0000] "GET /api/rounds/current HTTP/1.1" 200 536 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:05:45 [info]: ::1 - - [17/Jan/2026:01:05:45 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 02:05:49 [info]: Starting flying phase for round 908 targetCrash=1.84 duration=3680ms
+2026-01-17 02:05:49 [info]: A new round was already created, returning existing round
+2026-01-17 02:05:49 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-17 02:06:22 [info]: Creating new round with ID: 909
+2026-01-17 02:06:22 [info]: Scheduling flying phase in 9982ms for round 909
+2026-01-17 02:06:22 [info]: Successfully created new round with ID: 939, Round ID: 909
+2026-01-17 02:06:32 [info]: Starting flying phase for round 909 targetCrash=1.29 duration=2580ms
+2026-01-17 02:07:03 [info]: Creating new round with ID: 910
+2026-01-17 02:07:03 [info]: Scheduling flying phase in 9994ms for round 910
+2026-01-17 02:07:03 [info]: Successfully created new round with ID: 940, Round ID: 910
+2026-01-17 09:54:51 [info]: Database connected
+2026-01-17 09:54:51 [info]: Game engine initialized
+2026-01-17 09:54:51 [info]: Creating new round with ID: 911
+2026-01-17 09:54:51 [info]: Scheduling flying phase in 0ms for round 910
+2026-01-17 09:54:51 [info]: Server is running on http://localhost:3001
+2026-01-17 09:54:51 [info]: Starting flying phase for round 910 targetCrash=1.12 duration=2240ms
+2026-01-17 09:54:51 [info]: Scheduling flying phase in 9974ms for round 911
+2026-01-17 09:54:51 [info]: Successfully created new round with ID: 941, Round ID: 911
+2026-01-17 09:55:01 [info]: startFlyingPhase aborted: no current betting round
+2026-01-17 09:55:12 [info]: ::1 - - [17/Jan/2026:08:55:12 +0000] "GET /api/history HTTP/1.1" 200 3811 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 09:55:12 [info]: New WebSocket connection
+2026-01-17 09:55:13 [info]: ::1 - - [17/Jan/2026:08:55:13 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 09:55:13 [info]: ::1 - - [17/Jan/2026:08:55:13 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 09:55:22 [info]: Creating new round with ID: 912
+2026-01-17 09:55:22 [info]: Scheduling flying phase in 9996ms for round 912
+2026-01-17 09:55:22 [info]: Successfully created new round with ID: 942, Round ID: 912
+2026-01-17 09:55:32 [info]: Starting flying phase for round 912 targetCrash=2.23 duration=4460ms
+2026-01-17 09:56:05 [info]: Creating new round with ID: 913
+2026-01-17 09:56:05 [info]: Scheduling flying phase in 9993ms for round 913
+2026-01-17 09:56:05 [info]: Successfully created new round with ID: 943, Round ID: 913
+2026-01-17 09:56:15 [info]: Starting flying phase for round 913 targetCrash=1.44 duration=2880ms
+2026-01-17 09:56:47 [info]: Creating new round with ID: 914
+2026-01-17 09:56:47 [info]: Scheduling flying phase in 9996ms for round 914
+2026-01-17 09:56:47 [info]: Successfully created new round with ID: 944, Round ID: 914
+2026-01-17 09:56:57 [info]: Starting flying phase for round 914 targetCrash=1.76 duration=3520ms
+2026-01-17 09:57:29 [info]: Creating new round with ID: 915
+2026-01-17 09:57:29 [info]: Scheduling flying phase in 9998ms for round 915
+2026-01-17 09:57:29 [info]: Successfully created new round with ID: 945, Round ID: 915
+2026-01-17 09:57:39 [info]: Starting flying phase for round 915 targetCrash=1.81 duration=3620ms
+2026-01-17 09:58:12 [info]: Creating new round with ID: 916
+2026-01-17 09:58:12 [info]: Scheduling flying phase in 9996ms for round 916
+2026-01-17 09:58:12 [info]: Successfully created new round with ID: 946, Round ID: 916
+2026-01-17 09:58:22 [info]: Starting flying phase for round 916 targetCrash=3.94 duration=7880ms
+2026-01-17 09:58:59 [info]: Creating new round with ID: 917
+2026-01-17 09:58:59 [info]: Scheduling flying phase in 9983ms for round 917
+2026-01-17 09:58:59 [info]: Successfully created new round with ID: 947, Round ID: 917
+2026-01-17 09:59:09 [info]: Starting flying phase for round 917 targetCrash=1.92 duration=3840ms
+2026-01-17 09:59:41 [info]: Creating new round with ID: 918
+2026-01-17 09:59:41 [info]: Scheduling flying phase in 9983ms for round 918
+2026-01-17 09:59:41 [info]: Successfully created new round with ID: 948, Round ID: 918
+2026-01-17 09:59:51 [info]: Starting flying phase for round 918 targetCrash=1.56 duration=3120ms
+2026-01-17 09:59:52 [info]: ::1 - - [17/Jan/2026:08:59:52 +0000] "GET /api/history HTTP/1.1" 200 3810 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 09:59:53 [info]: New WebSocket connection
+2026-01-17 09:59:54 [info]: ::1 - - [17/Jan/2026:08:59:54 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 09:59:54 [info]: ::1 - - [17/Jan/2026:08:59:54 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 10:00:24 [info]: Creating new round with ID: 919
+2026-01-17 10:00:24 [info]: Scheduling flying phase in 9983ms for round 919
+2026-01-17 10:00:24 [info]: Successfully created new round with ID: 949, Round ID: 919
+2026-01-17 10:00:34 [info]: Starting flying phase for round 919 targetCrash=3.55 duration=7100ms
+2026-01-17 10:01:09 [info]: Creating new round with ID: 920
+2026-01-17 10:01:09 [info]: Scheduling flying phase in 9996ms for round 920
+2026-01-17 10:01:09 [info]: Successfully created new round with ID: 950, Round ID: 920
+2026-01-17 10:01:19 [info]: Starting flying phase for round 920 targetCrash=7.21 duration=14420ms
+2026-01-17 10:01:59 [info]: Creating new round with ID: 921
+2026-01-17 10:01:59 [info]: Scheduling flying phase in 9998ms for round 921
+2026-01-17 10:01:59 [info]: Successfully created new round with ID: 951, Round ID: 921
+2026-01-17 10:01:59 [info]: A new round was already created, returning existing round
+2026-01-17 10:02:09 [info]: Starting flying phase for round 921 targetCrash=3.55 duration=7100ms
+2026-01-17 10:02:45 [info]: Creating new round with ID: 922
+2026-01-17 10:02:45 [info]: Scheduling flying phase in 9996ms for round 922
+2026-01-17 10:02:45 [info]: Successfully created new round with ID: 952, Round ID: 922
+2026-01-17 10:02:55 [info]: Starting flying phase for round 922 targetCrash=3.04 duration=6080ms
+2026-01-17 10:03:29 [info]: Creating new round with ID: 923
+2026-01-17 10:03:30 [info]: Scheduling flying phase in 9996ms for round 923
+2026-01-17 10:03:30 [info]: Successfully created new round with ID: 953, Round ID: 923
+2026-01-17 10:03:40 [info]: Starting flying phase for round 923 targetCrash=3.65 duration=7300ms
+2026-01-17 10:04:15 [info]: Creating new round with ID: 924
+2026-01-17 10:04:15 [info]: Scheduling flying phase in 9984ms for round 924
+2026-01-17 10:04:15 [info]: Successfully created new round with ID: 954, Round ID: 924
+2026-01-17 10:04:25 [info]: Starting flying phase for round 924 targetCrash=1.11 duration=2220ms
+2026-01-17 10:04:56 [info]: Creating new round with ID: 925
+2026-01-17 10:04:56 [info]: Scheduling flying phase in 9995ms for round 925
+2026-01-17 10:04:56 [info]: Successfully created new round with ID: 955, Round ID: 925
+2026-01-17 10:05:06 [info]: Starting flying phase for round 925 targetCrash=1.15 duration=2300ms
+2026-01-17 10:05:37 [info]: Creating new round with ID: 926
+2026-01-17 10:05:37 [info]: Scheduling flying phase in 9997ms for round 926
+2026-01-17 10:05:37 [info]: Successfully created new round with ID: 956, Round ID: 926
+2026-01-17 10:05:47 [info]: Starting flying phase for round 926 targetCrash=2.11 duration=4220ms
+2026-01-17 10:06:20 [info]: Creating new round with ID: 927
+2026-01-17 10:06:20 [info]: Scheduling flying phase in 9984ms for round 927
+2026-01-17 10:06:20 [info]: Successfully created new round with ID: 957, Round ID: 927
+2026-01-17 10:06:30 [info]: Starting flying phase for round 927 targetCrash=8.18 duration=16360ms
+2026-01-17 10:07:11 [info]: Creating new round with ID: 928
+2026-01-17 10:07:11 [info]: Scheduling flying phase in 9996ms for round 928
+2026-01-17 10:07:11 [info]: Successfully created new round with ID: 958, Round ID: 928
+2026-01-17 10:07:21 [info]: Starting flying phase for round 928 targetCrash=1.21 duration=2420ms
+2026-01-17 10:07:52 [info]: Creating new round with ID: 929
+2026-01-17 10:07:52 [info]: Scheduling flying phase in 9985ms for round 929
+2026-01-17 10:07:52 [info]: Successfully created new round with ID: 959, Round ID: 929
+2026-01-17 10:08:02 [info]: Starting flying phase for round 929 targetCrash=16.13 duration=20000ms
+2026-01-17 10:08:50 [info]: Creating new round with ID: 930
+2026-01-17 10:08:50 [info]: Scheduling flying phase in 9984ms for round 930
+2026-01-17 10:08:50 [info]: Successfully created new round with ID: 960, Round ID: 930
+2026-01-17 10:09:00 [info]: Starting flying phase for round 930 targetCrash=2.06 duration=4120ms
+2026-01-17 10:09:33 [info]: Creating new round with ID: 931
+2026-01-17 10:09:33 [info]: Scheduling flying phase in 9997ms for round 931
+2026-01-17 10:09:33 [info]: Successfully created new round with ID: 961, Round ID: 931
+2026-01-17 10:09:43 [info]: Starting flying phase for round 931 targetCrash=1.93 duration=3860ms
+2026-01-17 10:10:16 [info]: Creating new round with ID: 932
+2026-01-17 10:10:16 [info]: Scheduling flying phase in 9996ms for round 932
+2026-01-17 10:10:16 [info]: Successfully created new round with ID: 962, Round ID: 932
+2026-01-17 10:10:26 [info]: Starting flying phase for round 932 targetCrash=3.39 duration=6780ms
+2026-01-17 10:11:01 [info]: Creating new round with ID: 933
+2026-01-17 10:11:01 [info]: Scheduling flying phase in 9996ms for round 933
+2026-01-17 10:11:01 [info]: Successfully created new round with ID: 963, Round ID: 933
+2026-01-17 10:11:11 [info]: Starting flying phase for round 933 targetCrash=1.2 duration=2400ms
+2026-01-17 10:11:42 [info]: Creating new round with ID: 934
+2026-01-17 10:11:42 [info]: Scheduling flying phase in 9996ms for round 934
+2026-01-17 10:11:42 [info]: Successfully created new round with ID: 964, Round ID: 934
+2026-01-17 10:11:52 [info]: Starting flying phase for round 934 targetCrash=1.08 duration=2160ms
+2026-01-17 10:12:23 [info]: Creating new round with ID: 935
+2026-01-17 10:12:23 [info]: Scheduling flying phase in 9996ms for round 935
+2026-01-17 10:12:23 [info]: Successfully created new round with ID: 965, Round ID: 935
+2026-01-17 10:12:33 [info]: Starting flying phase for round 935 targetCrash=4.32 duration=8640ms
+2026-01-17 10:13:10 [info]: Creating new round with ID: 936
+2026-01-17 10:13:10 [info]: Scheduling flying phase in 9983ms for round 936
+2026-01-17 10:13:10 [info]: Successfully created new round with ID: 966, Round ID: 936
+2026-01-17 10:13:20 [info]: Starting flying phase for round 936 targetCrash=1.33 duration=2660ms
+2026-01-17 10:13:51 [info]: Creating new round with ID: 937
+2026-01-17 10:13:51 [info]: Scheduling flying phase in 9984ms for round 937
+2026-01-17 10:13:51 [info]: Successfully created new round with ID: 967, Round ID: 937
+2026-01-17 10:14:01 [info]: Starting flying phase for round 937 targetCrash=1.37 duration=2740ms
+2026-01-17 10:14:33 [info]: Creating new round with ID: 938
+2026-01-17 10:14:33 [info]: Scheduling flying phase in 9983ms for round 938
+2026-01-17 10:14:33 [info]: Successfully created new round with ID: 968, Round ID: 938
+2026-01-17 10:14:43 [info]: Starting flying phase for round 938 targetCrash=1.01 duration=2020ms
+2026-01-17 10:15:13 [info]: Creating new round with ID: 939
+2026-01-17 10:15:13 [info]: Scheduling flying phase in 9983ms for round 939
+2026-01-17 10:15:13 [info]: Successfully created new round with ID: 969, Round ID: 939
+2026-01-17 10:15:23 [info]: Starting flying phase for round 939 targetCrash=21.31 duration=20000ms
+2026-01-17 10:16:13 [info]: Creating new round with ID: 940
+2026-01-17 10:16:13 [info]: Scheduling flying phase in 9979ms for round 940
+2026-01-17 10:16:13 [info]: Successfully created new round with ID: 970, Round ID: 940
+2026-01-17 10:16:23 [info]: Starting flying phase for round 940 targetCrash=1.69 duration=3380ms
+2026-01-17 10:16:55 [info]: Creating new round with ID: 941
+2026-01-17 10:16:55 [info]: Scheduling flying phase in 9982ms for round 941
+2026-01-17 10:16:55 [info]: Successfully created new round with ID: 971, Round ID: 941
+2026-01-17 10:17:05 [info]: Starting flying phase for round 941 targetCrash=1.57 duration=3140ms
+2026-01-17 10:17:37 [info]: Creating new round with ID: 942
+2026-01-17 10:17:37 [info]: Scheduling flying phase in 9998ms for round 942
+2026-01-17 10:17:37 [info]: Successfully created new round with ID: 972, Round ID: 942
+2026-01-17 10:17:47 [info]: Starting flying phase for round 942 targetCrash=2.11 duration=4220ms
+2026-01-17 10:18:20 [info]: Creating new round with ID: 943
+2026-01-17 10:18:20 [info]: Scheduling flying phase in 9996ms for round 943
+2026-01-17 10:18:20 [info]: Successfully created new round with ID: 973, Round ID: 943
+2026-01-17 10:18:30 [info]: Starting flying phase for round 943 targetCrash=1.51 duration=3020ms
+2026-01-17 10:19:02 [info]: Creating new round with ID: 944
+2026-01-17 10:19:02 [info]: Scheduling flying phase in 9991ms for round 944
+2026-01-17 10:19:02 [info]: Successfully created new round with ID: 974, Round ID: 944
+2026-01-17 10:40:03 [info]: Database connected
+2026-01-17 10:40:03 [info]: Game engine initialized
+2026-01-17 10:40:03 [info]: Creating new round with ID: 945
+2026-01-17 10:40:03 [info]: Scheduling flying phase in 9985ms for round 945
+2026-01-17 10:40:03 [info]: Successfully created new round with ID: 975, Round ID: 945
+2026-01-17 10:40:03 [info]: Scheduling flying phase in 9981ms for round 945
+2026-01-17 10:40:03 [info]: Server is running on http://localhost:3001
+2026-01-17 10:40:06 [info]: New WebSocket connection
+2026-01-17 10:40:13 [info]: Starting flying phase for round 945 targetCrash=1.43 duration=2860ms
+2026-01-17 10:40:46 [info]: Database connected
+2026-01-17 10:40:46 [info]: Game engine initialized
+2026-01-17 10:40:46 [info]: Creating new round with ID: 946
+2026-01-17 10:40:46 [info]: Scheduling flying phase in 9985ms for round 946
+2026-01-17 10:40:46 [info]: Successfully created new round with ID: 976, Round ID: 946
+2026-01-17 10:40:46 [info]: Scheduling flying phase in 9980ms for round 946
+2026-01-17 10:40:46 [info]: Server is running on http://localhost:3001
+2026-01-17 10:40:46 [info]: New WebSocket connection
+2026-01-17 10:40:56 [info]: Starting flying phase for round 946 targetCrash=1.14 duration=2280ms
+2026-01-17 10:41:26 [info]: Creating new round with ID: 947
+2026-01-17 10:41:26 [info]: Scheduling flying phase in 9996ms for round 947
+2026-01-17 10:41:26 [info]: Successfully created new round with ID: 977, Round ID: 947
+2026-01-17 10:41:36 [info]: Starting flying phase for round 947 targetCrash=4.63 duration=9260ms
+2026-01-17 10:42:14 [info]: Creating new round with ID: 948
+2026-01-17 10:42:14 [info]: Scheduling flying phase in 9965ms for round 948
+2026-01-17 10:42:14 [info]: Successfully created new round with ID: 978, Round ID: 948
+2026-01-17 10:42:24 [info]: Starting flying phase for round 948 targetCrash=1.39 duration=2780ms
+2026-01-17 10:42:32 [info]: ::1 - - [17/Jan/2026:09:42:32 +0000] "GET /api/history HTTP/1.1" 200 3810 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 10:42:32 [info]: New WebSocket connection
+2026-01-17 10:42:33 [info]: ::1 - - [17/Jan/2026:09:42:33 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 10:42:33 [info]: ::1 - - [17/Jan/2026:09:42:33 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 10:42:57 [info]: Creating new round with ID: 949
+2026-01-17 10:42:57 [info]: Scheduling flying phase in 9965ms for round 949
+2026-01-17 10:42:57 [info]: Successfully created new round with ID: 979, Round ID: 949
+2026-01-17 10:43:07 [info]: Starting flying phase for round 949 targetCrash=26.66 duration=20000ms
+2026-01-17 10:43:57 [info]: Creating new round with ID: 950
+2026-01-17 10:43:57 [info]: Scheduling flying phase in 9997ms for round 950
+2026-01-17 10:43:57 [info]: Successfully created new round with ID: 980, Round ID: 950
+2026-01-17 10:44:07 [info]: Starting flying phase for round 950 targetCrash=1.78 duration=3560ms
+2026-01-17 10:44:40 [info]: Creating new round with ID: 951
+2026-01-17 10:44:40 [info]: Scheduling flying phase in 9996ms for round 951
+2026-01-17 10:44:40 [info]: Successfully created new round with ID: 981, Round ID: 951
+2026-01-17 10:44:49 [info]: Database connected
+2026-01-17 10:44:49 [info]: Game engine initialized
+2026-01-17 10:44:49 [info]: Creating new round with ID: 952
+2026-01-17 10:44:49 [info]: Scheduling flying phase in 9983ms for round 952
+2026-01-17 10:44:49 [info]: Successfully created new round with ID: 982, Round ID: 952
+2026-01-17 10:44:49 [info]: Scheduling flying phase in 9979ms for round 952
+2026-01-17 10:44:49 [info]: Server is running on http://localhost:3001
+2026-01-17 10:44:52 [info]: Database connected
+2026-01-17 10:44:52 [info]: Game engine initialized
+2026-01-17 10:44:52 [info]: Creating new round with ID: 953
+2026-01-17 10:44:52 [info]: Scheduling flying phase in 9966ms for round 953
+2026-01-17 10:44:52 [info]: Successfully created new round with ID: 983, Round ID: 953
+2026-01-17 10:44:52 [info]: Scheduling flying phase in 9958ms for round 953
+2026-01-17 10:44:52 [info]: Server is running on http://localhost:3001
+2026-01-17 10:44:53 [info]: New WebSocket connection
+2026-01-17 10:45:02 [info]: Starting flying phase for round 953 targetCrash=1.35 duration=2700ms
+2026-01-17 10:45:34 [info]: Creating new round with ID: 954
+2026-01-17 10:45:34 [info]: Scheduling flying phase in 9996ms for round 954
+2026-01-17 10:45:34 [info]: Successfully created new round with ID: 984, Round ID: 954
+2026-01-17 10:45:44 [info]: Starting flying phase for round 954 targetCrash=16.01 duration=20000ms
+2026-01-17 10:46:32 [info]: Creating new round with ID: 955
+2026-01-17 10:46:32 [info]: Scheduling flying phase in 9874ms for round 955
+2026-01-17 10:46:32 [info]: Successfully created new round with ID: 985, Round ID: 955
+2026-01-17 10:46:42 [info]: Starting flying phase for round 955 targetCrash=1.24 duration=2480ms
+2026-01-17 10:47:13 [info]: Creating new round with ID: 956
+2026-01-17 10:47:13 [info]: Scheduling flying phase in 9995ms for round 956
+2026-01-17 10:47:13 [info]: Successfully created new round with ID: 986, Round ID: 956
+2026-01-17 10:47:13 [info]: A new round was already created, returning existing round
+2026-01-17 10:47:23 [info]: Starting flying phase for round 956 targetCrash=9.99 duration=19980ms
+2026-01-17 10:48:06 [info]: Creating new round with ID: 957
+2026-01-17 10:48:06 [info]: Scheduling flying phase in 9997ms for round 957
+2026-01-17 10:48:06 [info]: Successfully created new round with ID: 987, Round ID: 957
+2026-01-17 10:48:16 [info]: Starting flying phase for round 957 targetCrash=1.34 duration=2680ms
+2026-01-17 10:48:48 [info]: Creating new round with ID: 958
+2026-01-17 10:48:48 [info]: Scheduling flying phase in 9997ms for round 958
+2026-01-17 10:48:48 [info]: Successfully created new round with ID: 988, Round ID: 958
+2026-01-17 10:48:58 [info]: Starting flying phase for round 958 targetCrash=1.2 duration=2400ms
+2026-01-17 10:49:30 [info]: Creating new round with ID: 959
+2026-01-17 10:49:30 [info]: Scheduling flying phase in 9998ms for round 959
+2026-01-17 10:49:30 [info]: Successfully created new round with ID: 989, Round ID: 959
+2026-01-17 10:49:30 [info]: A new round was already created, returning existing round
+2026-01-17 10:49:40 [info]: Starting flying phase for round 959 targetCrash=2.91 duration=5820ms
+2026-01-17 10:49:40 [info]: A new round was already created, returning existing round
+2026-01-17 10:49:43 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-17 10:50:15 [info]: Creating new round with ID: 960
+2026-01-17 10:50:15 [info]: Scheduling flying phase in 9995ms for round 960
+2026-01-17 10:50:15 [info]: Successfully created new round with ID: 991, Round ID: 960
+2026-01-17 10:50:25 [info]: Starting flying phase for round 960 targetCrash=10.48 duration=20000ms
+2026-01-17 10:51:09 [info]: Creating new round with ID: 961
+2026-01-17 10:51:09 [info]: Scheduling flying phase in 9998ms for round 961
+2026-01-17 10:51:09 [info]: Successfully created new round with ID: 992, Round ID: 961
+2026-01-17 10:51:09 [info]: A new round was already created, returning existing round
+2026-01-17 10:51:19 [info]: Starting flying phase for round 961 targetCrash=2.75 duration=5500ms
+2026-01-17 10:51:54 [info]: Creating new round with ID: 962
+2026-01-17 10:51:54 [info]: Scheduling flying phase in 9997ms for round 962
+2026-01-17 10:51:54 [info]: Successfully created new round with ID: 993, Round ID: 962
+2026-01-17 10:52:04 [info]: Starting flying phase for round 962 targetCrash=4.55 duration=9100ms
+2026-01-17 10:52:41 [info]: Creating new round with ID: 963
+2026-01-17 10:52:41 [info]: Scheduling flying phase in 9996ms for round 963
+2026-01-17 10:52:41 [info]: Successfully created new round with ID: 994, Round ID: 963
+2026-01-17 10:52:51 [info]: Starting flying phase for round 963 targetCrash=1.96 duration=3920ms
+2026-01-17 10:53:24 [info]: Creating new round with ID: 964
+2026-01-17 10:53:24 [info]: Scheduling flying phase in 9991ms for round 964
+2026-01-17 10:53:24 [info]: Successfully created new round with ID: 995, Round ID: 964
+2026-01-17 10:53:34 [info]: Starting flying phase for round 964 targetCrash=3.89 duration=7780ms
+2026-01-17 11:32:05 [info]: Database connected
+2026-01-17 11:32:05 [info]: Game engine initialized
+2026-01-17 11:32:05 [info]: Server is running on http://localhost:3001
+2026-01-17 11:32:05 [info]: Creating new round with ID: 965
+2026-01-17 11:32:05 [info]: Scheduling flying phase in 9968ms for round 965
+2026-01-17 11:32:05 [info]: Successfully created new round with ID: 996, Round ID: 965
+2026-01-17 11:32:15 [info]: Starting flying phase for round 965 targetCrash=18.94 duration=20000ms
+2026-01-17 11:32:17 [info]: ::1 - - [17/Jan/2026:10:32:17 +0000] "GET /api/history HTTP/1.1" 200 5703 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:32:17 [info]: New WebSocket connection
+2026-01-17 11:32:17 [info]: ::1 - - [17/Jan/2026:10:32:17 +0000] "GET /api/rounds/current HTTP/1.1" 200 566 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:32:18 [info]: ::1 - - [17/Jan/2026:10:32:18 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:33:05 [info]: Creating new round with ID: 966
+2026-01-17 11:33:05 [info]: Scheduling flying phase in 9996ms for round 966
+2026-01-17 11:33:05 [info]: Successfully created new round with ID: 997, Round ID: 966
+2026-01-17 11:33:09 [info]: Database connected
+2026-01-17 11:33:09 [info]: Game engine initialized
+2026-01-17 11:33:09 [info]: Creating new round with ID: 967
+2026-01-17 11:33:09 [info]: Scheduling flying phase in 9984ms for round 967
+2026-01-17 11:33:09 [info]: Successfully created new round with ID: 998, Round ID: 967
+2026-01-17 11:33:09 [info]: Scheduling flying phase in 9977ms for round 967
+2026-01-17 11:33:09 [info]: Server is running on http://localhost:3001
+2026-01-17 11:33:11 [info]: New WebSocket connection
+2026-01-17 11:33:19 [info]: Starting flying phase for round 967 targetCrash=1.61 duration=3220ms
+2026-01-17 11:33:51 [info]: Creating new round with ID: 968
+2026-01-17 11:33:51 [info]: Scheduling flying phase in 9817ms for round 968
+2026-01-17 11:33:51 [info]: Successfully created new round with ID: 999, Round ID: 968
+2026-01-17 11:34:01 [info]: Starting flying phase for round 968 targetCrash=2.4 duration=4800ms
+2026-01-17 11:34:04 [info]: ::1 - - [17/Jan/2026:10:34:04 +0000] "GET /api/history HTTP/1.1" 200 5325 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:34:04 [info]: New WebSocket connection
+2026-01-17 11:34:04 [info]: ::1 - - [17/Jan/2026:10:34:04 +0000] "GET /api/rounds/current HTTP/1.1" 200 558 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:34:05 [info]: ::1 - - [17/Jan/2026:10:34:05 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:34:34 [info]: Creating new round with ID: 969
+2026-01-17 11:34:34 [info]: Scheduling flying phase in 9983ms for round 969
+2026-01-17 11:34:34 [info]: Successfully created new round with ID: 1000, Round ID: 969
+2026-01-17 11:34:44 [info]: Starting flying phase for round 969 targetCrash=2.25 duration=4500ms
+2026-01-17 11:35:00 [info]: ::1 - - [17/Jan/2026:10:35:00 +0000] "GET /api/history HTTP/1.1" 200 5325 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:35:00 [info]: New WebSocket connection
+2026-01-17 11:35:00 [info]: ::1 - - [17/Jan/2026:10:35:00 +0000] "GET /api/rounds/current HTTP/1.1" 200 571 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:35:00 [info]: ::1 - - [17/Jan/2026:10:35:00 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 11:35:18 [info]: Creating new round with ID: 970
+2026-01-17 11:35:18 [info]: Scheduling flying phase in 9983ms for round 970
+2026-01-17 11:35:18 [info]: Successfully created new round with ID: 1001, Round ID: 970
+2026-01-17 11:35:28 [info]: Starting flying phase for round 970 targetCrash=1.8 duration=3600ms
+2026-01-17 11:36:00 [info]: Creating new round with ID: 971
+2026-01-17 11:36:00 [info]: Scheduling flying phase in 9994ms for round 971
+2026-01-17 11:36:00 [info]: Successfully created new round with ID: 1002, Round ID: 971
+2026-01-17 11:36:10 [info]: Starting flying phase for round 971 targetCrash=3.5 duration=7000ms
+2026-01-17 11:36:46 [info]: Creating new round with ID: 972
+2026-01-17 11:36:46 [info]: Scheduling flying phase in 9997ms for round 972
+2026-01-17 11:36:46 [info]: Successfully created new round with ID: 1003, Round ID: 972
+2026-01-17 11:36:56 [info]: Starting flying phase for round 972 targetCrash=1.33 duration=2660ms
+2026-01-17 11:37:27 [info]: Creating new round with ID: 973
+2026-01-17 11:37:27 [info]: Scheduling flying phase in 9988ms for round 973
+2026-01-17 11:37:27 [info]: Successfully created new round with ID: 1004, Round ID: 973
+2026-01-17 11:37:37 [info]: Starting flying phase for round 973 targetCrash=3.12 duration=6240ms
+2026-01-17 11:38:12 [info]: Creating new round with ID: 974
+2026-01-17 11:38:12 [info]: Scheduling flying phase in 9997ms for round 974
+2026-01-17 11:38:12 [info]: Successfully created new round with ID: 1005, Round ID: 974
+2026-01-17 11:38:22 [info]: Starting flying phase for round 974 targetCrash=1.2 duration=2400ms
+2026-01-17 11:38:53 [info]: Creating new round with ID: 975
+2026-01-17 11:38:53 [info]: Scheduling flying phase in 9997ms for round 975
+2026-01-17 11:38:53 [info]: Successfully created new round with ID: 1006, Round ID: 975
+2026-01-17 11:39:03 [info]: Starting flying phase for round 975 targetCrash=1.98 duration=3960ms
+2026-01-17 11:39:36 [info]: Creating new round with ID: 976
+2026-01-17 11:39:36 [info]: Scheduling flying phase in 9998ms for round 976
+2026-01-17 11:39:36 [info]: Successfully created new round with ID: 1007, Round ID: 976
+2026-01-17 11:39:46 [info]: Starting flying phase for round 976 targetCrash=4.41 duration=8820ms
+2026-01-17 11:40:23 [info]: Creating new round with ID: 977
+2026-01-17 11:40:23 [info]: Scheduling flying phase in 9983ms for round 977
+2026-01-17 11:40:23 [info]: Successfully created new round with ID: 1008, Round ID: 977
+2026-01-17 11:40:33 [info]: Starting flying phase for round 977 targetCrash=3.57 duration=7140ms
+2026-01-17 11:41:09 [info]: Creating new round with ID: 978
+2026-01-17 11:41:09 [info]: Scheduling flying phase in 9994ms for round 978
+2026-01-17 11:41:09 [info]: Successfully created new round with ID: 1009, Round ID: 978
+2026-01-17 11:41:19 [info]: Starting flying phase for round 978 targetCrash=1.24 duration=2480ms
+2026-01-17 11:41:50 [info]: Creating new round with ID: 979
+2026-01-17 11:41:50 [info]: Scheduling flying phase in 9997ms for round 979
+2026-01-17 11:41:50 [info]: Successfully created new round with ID: 1010, Round ID: 979
+2026-01-17 11:42:00 [info]: Starting flying phase for round 979 targetCrash=1.08 duration=2160ms
+2026-01-17 11:42:30 [info]: Creating new round with ID: 980
+2026-01-17 11:42:30 [info]: Scheduling flying phase in 9998ms for round 980
+2026-01-17 11:42:30 [info]: Successfully created new round with ID: 1011, Round ID: 980
+2026-01-17 11:42:40 [info]: Starting flying phase for round 980 targetCrash=3.03 duration=6060ms
+2026-01-17 11:43:15 [info]: Creating new round with ID: 981
+2026-01-17 11:43:15 [info]: Scheduling flying phase in 9997ms for round 981
+2026-01-17 11:43:15 [info]: Successfully created new round with ID: 1012, Round ID: 981
+2026-01-17 11:43:25 [info]: Starting flying phase for round 981 targetCrash=5.43 duration=10860ms
+2026-01-17 11:44:03 [info]: Creating new round with ID: 982
+2026-01-17 11:44:03 [info]: Scheduling flying phase in 9996ms for round 982
+2026-01-17 11:44:03 [info]: Successfully created new round with ID: 1013, Round ID: 982
+2026-01-17 11:44:13 [info]: Starting flying phase for round 982 targetCrash=4.93 duration=9860ms
+2026-01-17 11:44:51 [info]: Creating new round with ID: 983
+2026-01-17 11:44:51 [info]: Scheduling flying phase in 9996ms for round 983
+2026-01-17 11:44:51 [info]: Successfully created new round with ID: 1014, Round ID: 983
+2026-01-17 11:45:01 [info]: Starting flying phase for round 983 targetCrash=2.21 duration=4420ms
+2026-01-17 11:45:34 [info]: Creating new round with ID: 984
+2026-01-17 11:45:34 [info]: Scheduling flying phase in 9985ms for round 984
+2026-01-17 11:45:34 [info]: Successfully created new round with ID: 1015, Round ID: 984
+2026-01-17 11:45:44 [info]: Starting flying phase for round 984 targetCrash=1.22 duration=2440ms
+2026-01-17 11:46:15 [info]: Creating new round with ID: 985
+2026-01-17 11:46:15 [info]: Scheduling flying phase in 9983ms for round 985
+2026-01-17 11:46:15 [info]: Successfully created new round with ID: 1016, Round ID: 985
+2026-01-17 11:46:25 [info]: Starting flying phase for round 985 targetCrash=1.06 duration=2120ms
+2026-01-17 11:46:56 [info]: Creating new round with ID: 986
+2026-01-17 11:46:56 [info]: Scheduling flying phase in 9997ms for round 986
+2026-01-17 11:46:56 [info]: Successfully created new round with ID: 1017, Round ID: 986
+2026-01-17 11:47:06 [info]: Starting flying phase for round 986 targetCrash=1.62 duration=3240ms
+2026-01-17 11:47:38 [info]: Creating new round with ID: 987
+2026-01-17 11:47:38 [info]: Scheduling flying phase in 9998ms for round 987
+2026-01-17 11:47:38 [info]: Successfully created new round with ID: 1018, Round ID: 987
+2026-01-17 11:47:48 [info]: Starting flying phase for round 987 targetCrash=1.24 duration=2480ms
+2026-01-17 11:48:19 [info]: Creating new round with ID: 988
+2026-01-17 11:48:19 [info]: Scheduling flying phase in 9997ms for round 988
+2026-01-17 11:48:19 [info]: Successfully created new round with ID: 1019, Round ID: 988
+2026-01-17 11:48:29 [info]: Starting flying phase for round 988 targetCrash=1.08 duration=2160ms
+2026-01-17 11:49:00 [info]: Creating new round with ID: 989
+2026-01-17 11:49:00 [info]: Scheduling flying phase in 9985ms for round 989
+2026-01-17 11:49:00 [info]: Successfully created new round with ID: 1020, Round ID: 989
+2026-01-17 11:49:10 [info]: Starting flying phase for round 989 targetCrash=1.05 duration=2100ms
+2026-01-17 11:49:40 [info]: Creating new round with ID: 990
+2026-01-17 11:49:40 [info]: Scheduling flying phase in 9998ms for round 990
+2026-01-17 11:49:40 [info]: Successfully created new round with ID: 1021, Round ID: 990
+2026-01-17 11:49:50 [info]: Starting flying phase for round 990 targetCrash=4.87 duration=9740ms
+2026-01-17 11:50:27 [info]: Creating new round with ID: 991
+2026-01-17 11:50:27 [info]: Scheduling flying phase in 9997ms for round 991
+2026-01-17 11:50:27 [info]: Successfully created new round with ID: 1022, Round ID: 991
+2026-01-17 11:50:37 [info]: Starting flying phase for round 991 targetCrash=1.44 duration=2880ms
+2026-01-17 11:51:09 [info]: Creating new round with ID: 992
+2026-01-17 11:51:09 [info]: Scheduling flying phase in 9984ms for round 992
+2026-01-17 11:51:09 [info]: Successfully created new round with ID: 1023, Round ID: 992
+2026-01-17 11:51:19 [info]: Starting flying phase for round 992 targetCrash=4.22 duration=8440ms
+2026-01-17 11:51:56 [info]: Creating new round with ID: 993
+2026-01-17 11:51:56 [info]: Scheduling flying phase in 9992ms for round 993
+2026-01-17 11:51:56 [info]: Successfully created new round with ID: 1024, Round ID: 993
+2026-01-17 11:52:06 [info]: Starting flying phase for round 993 targetCrash=1.47 duration=2940ms
+2026-01-17 11:52:37 [info]: Creating new round with ID: 994
+2026-01-17 11:52:37 [info]: Scheduling flying phase in 9996ms for round 994
+2026-01-17 11:52:37 [info]: Successfully created new round with ID: 1025, Round ID: 994
+2026-01-17 11:52:47 [info]: Starting flying phase for round 994 targetCrash=1.06 duration=2120ms
+2026-01-17 11:53:18 [info]: Creating new round with ID: 995
+2026-01-17 11:53:18 [info]: Scheduling flying phase in 9996ms for round 995
+2026-01-17 11:53:18 [info]: Successfully created new round with ID: 1026, Round ID: 995
+2026-01-17 11:53:28 [info]: Starting flying phase for round 995 targetCrash=1.01 duration=2020ms
+2026-01-17 11:53:58 [info]: Creating new round with ID: 996
+2026-01-17 11:53:58 [info]: Scheduling flying phase in 9998ms for round 996
+2026-01-17 11:53:58 [info]: Successfully created new round with ID: 1027, Round ID: 996
+2026-01-17 11:54:08 [info]: Starting flying phase for round 996 targetCrash=1.2 duration=2400ms
+2026-01-17 11:54:39 [info]: Creating new round with ID: 997
+2026-01-17 11:54:39 [info]: Scheduling flying phase in 9997ms for round 997
+2026-01-17 11:54:39 [info]: Successfully created new round with ID: 1028, Round ID: 997
+2026-01-17 11:54:49 [info]: Starting flying phase for round 997 targetCrash=1.13 duration=2260ms
+2026-01-17 11:55:20 [info]: Creating new round with ID: 998
+2026-01-17 11:55:20 [info]: Scheduling flying phase in 9984ms for round 998
+2026-01-17 11:55:20 [info]: Successfully created new round with ID: 1029, Round ID: 998
+2026-01-17 11:55:30 [info]: Starting flying phase for round 998 targetCrash=1.64 duration=3280ms
+2026-01-17 11:56:02 [info]: Creating new round with ID: 999
+2026-01-17 11:56:02 [info]: Scheduling flying phase in 9996ms for round 999
+2026-01-17 11:56:02 [info]: Successfully created new round with ID: 1030, Round ID: 999
+2026-01-17 11:56:12 [info]: Starting flying phase for round 999 targetCrash=9.41 duration=18820ms
+2026-01-17 11:56:54 [info]: Creating new round with ID: 1000
+2026-01-17 11:56:54 [info]: Scheduling flying phase in 9993ms for round 1000
+2026-01-17 11:56:54 [info]: Successfully created new round with ID: 1031, Round ID: 1000
+2026-01-17 11:57:04 [info]: Starting flying phase for round 1000 targetCrash=1.05 duration=2100ms
+2026-01-17 11:57:35 [info]: Creating new round with ID: 1001
+2026-01-17 11:57:35 [info]: Scheduling flying phase in 9985ms for round 1001
+2026-01-17 11:57:35 [info]: Successfully created new round with ID: 1032, Round ID: 1001
+2026-01-17 11:57:45 [info]: Starting flying phase for round 1001 targetCrash=3.34 duration=6680ms
+2026-01-17 11:58:10 [info]: Database connected
+2026-01-17 11:58:10 [info]: Game engine initialized
+2026-01-17 11:58:10 [info]: Creating new round with ID: 1002
+2026-01-17 11:58:10 [info]: Scheduling flying phase in 9982ms for round 1002
+2026-01-17 11:58:10 [info]: Successfully created new round with ID: 1033, Round ID: 1002
+2026-01-17 11:58:10 [info]: Scheduling flying phase in 9977ms for round 1002
+2026-01-17 11:58:10 [info]: Server is running on http://localhost:3001
+2026-01-17 11:58:11 [info]: New WebSocket connection
+2026-01-17 11:58:20 [info]: Starting flying phase for round 1002 targetCrash=1.27 duration=2540ms
+2026-01-17 11:58:52 [info]: Creating new round with ID: 1003
+2026-01-17 11:58:52 [info]: Scheduling flying phase in 9995ms for round 1003
+2026-01-17 11:58:52 [info]: Successfully created new round with ID: 1034, Round ID: 1003
+2026-01-17 11:59:02 [info]: Starting flying phase for round 1003 targetCrash=1.7 duration=3400ms
+2026-01-17 11:59:34 [info]: Creating new round with ID: 1004
+2026-01-17 11:59:34 [info]: Scheduling flying phase in 9997ms for round 1004
+2026-01-17 11:59:34 [info]: Successfully created new round with ID: 1035, Round ID: 1004
+2026-01-17 11:59:44 [info]: Starting flying phase for round 1004 targetCrash=1.46 duration=2920ms
+2026-01-17 12:00:16 [info]: Creating new round with ID: 1005
+2026-01-17 12:00:16 [info]: Scheduling flying phase in 9996ms for round 1005
+2026-01-17 12:00:16 [info]: Successfully created new round with ID: 1036, Round ID: 1005
+2026-01-17 12:00:26 [info]: Starting flying phase for round 1005 targetCrash=2.87 duration=5740ms
+2026-01-17 12:01:00 [info]: Creating new round with ID: 1006
+2026-01-17 12:01:00 [info]: Scheduling flying phase in 9985ms for round 1006
+2026-01-17 12:01:00 [info]: Successfully created new round with ID: 1037, Round ID: 1006
+2026-01-17 12:01:10 [info]: Starting flying phase for round 1006 targetCrash=9.16 duration=18320ms
+2026-01-17 12:01:52 [info]: Creating new round with ID: 1007
+2026-01-17 12:01:52 [info]: Scheduling flying phase in 9982ms for round 1007
+2026-01-17 12:01:52 [info]: Successfully created new round with ID: 1038, Round ID: 1007
+2026-01-17 12:02:02 [info]: Starting flying phase for round 1007 targetCrash=1.08 duration=2160ms
+2026-01-17 12:02:33 [info]: Creating new round with ID: 1008
+2026-01-17 12:02:33 [info]: Scheduling flying phase in 9997ms for round 1008
+2026-01-17 12:02:33 [info]: Successfully created new round with ID: 1039, Round ID: 1008
+2026-01-17 12:02:43 [info]: Starting flying phase for round 1008 targetCrash=1.12 duration=2240ms
+2026-01-17 12:03:14 [info]: Creating new round with ID: 1009
+2026-01-17 12:03:14 [info]: Scheduling flying phase in 9998ms for round 1009
+2026-01-17 12:03:14 [info]: Successfully created new round with ID: 1040, Round ID: 1009
+2026-01-17 12:03:24 [info]: Starting flying phase for round 1009 targetCrash=1.32 duration=2640ms
+2026-01-17 12:03:55 [info]: Creating new round with ID: 1010
+2026-01-17 12:03:55 [info]: Scheduling flying phase in 9988ms for round 1010
+2026-01-17 12:03:55 [info]: Successfully created new round with ID: 1041, Round ID: 1010
+2026-01-17 12:04:05 [info]: Starting flying phase for round 1010 targetCrash=5.5 duration=11000ms
+2026-01-17 12:04:43 [info]: Creating new round with ID: 1011
+2026-01-17 12:04:43 [info]: Scheduling flying phase in 9979ms for round 1011
+2026-01-17 12:04:43 [info]: Successfully created new round with ID: 1042, Round ID: 1011
+2026-01-17 12:04:53 [info]: Starting flying phase for round 1011 targetCrash=1.76 duration=3520ms
+2026-01-17 12:05:26 [info]: Creating new round with ID: 1012
+2026-01-17 12:05:26 [info]: Scheduling flying phase in 9994ms for round 1012
+2026-01-17 12:05:26 [info]: Successfully created new round with ID: 1043, Round ID: 1012
+2026-01-17 12:05:36 [info]: Starting flying phase for round 1012 targetCrash=1.74 duration=3480ms
+2026-01-17 12:05:46 [info]: ::1 - - [17/Jan/2026:11:05:46 +0000] "GET /api/history HTTP/1.1" 200 5354 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 12:05:46 [info]: New WebSocket connection
+2026-01-17 12:05:46 [info]: ::1 - - [17/Jan/2026:11:05:46 +0000] "GET /api/rounds/current HTTP/1.1" 200 573 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 12:05:47 [info]: ::1 - - [17/Jan/2026:11:05:47 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-17 12:06:09 [info]: Creating new round with ID: 1013
+2026-01-17 12:06:09 [info]: Scheduling flying phase in 9997ms for round 1013
+2026-01-17 12:06:09 [info]: Successfully created new round with ID: 1044, Round ID: 1013
+2026-01-17 12:06:19 [info]: Starting flying phase for round 1013 targetCrash=2.2 duration=4400ms
+2026-01-17 12:06:52 [info]: Creating new round with ID: 1014
+2026-01-17 12:06:52 [info]: Scheduling flying phase in 9994ms for round 1014
+2026-01-17 12:06:52 [info]: Successfully created new round with ID: 1045, Round ID: 1014
+2026-01-17 12:07:02 [info]: Starting flying phase for round 1014 targetCrash=3.05 duration=6100ms
+2026-01-17 12:07:37 [info]: Creating new round with ID: 1015
+2026-01-17 12:07:37 [info]: Scheduling flying phase in 9998ms for round 1015
+2026-01-17 12:07:37 [info]: Successfully created new round with ID: 1046, Round ID: 1015
+2026-01-17 12:07:47 [info]: Starting flying phase for round 1015 targetCrash=1.15 duration=2300ms
+2026-01-17 12:08:18 [info]: Creating new round with ID: 1016
+2026-01-17 12:08:18 [info]: Scheduling flying phase in 9983ms for round 1016
+2026-01-17 12:08:18 [info]: Successfully created new round with ID: 1047, Round ID: 1016
+2026-01-17 12:08:28 [info]: Starting flying phase for round 1016 targetCrash=1.92 duration=3840ms
+2026-01-17 12:09:01 [info]: Creating new round with ID: 1017
+2026-01-17 12:09:01 [info]: Scheduling flying phase in 9997ms for round 1017
+2026-01-17 12:09:01 [info]: Successfully created new round with ID: 1048, Round ID: 1017
+2026-01-17 12:09:11 [info]: Starting flying phase for round 1017 targetCrash=2.74 duration=5480ms
+2026-01-17 12:09:46 [info]: Creating new round with ID: 1018
+2026-01-17 12:09:46 [info]: Scheduling flying phase in 9990ms for round 1018
+2026-01-17 12:09:46 [info]: Successfully created new round with ID: 1049, Round ID: 1018
+2026-01-17 12:09:56 [info]: Starting flying phase for round 1018 targetCrash=10.27 duration=20000ms
+2026-01-17 12:10:39 [info]: Creating new round with ID: 1019
+2026-01-17 12:10:39 [info]: Scheduling flying phase in 9983ms for round 1019
+2026-01-17 12:10:39 [info]: Successfully created new round with ID: 1050, Round ID: 1019
+2026-01-17 12:10:49 [info]: Starting flying phase for round 1019 targetCrash=3.07 duration=6140ms
+2026-01-17 12:11:24 [info]: Creating new round with ID: 1020
+2026-01-17 12:11:24 [info]: Scheduling flying phase in 9996ms for round 1020
+2026-01-17 12:11:24 [info]: Successfully created new round with ID: 1051, Round ID: 1020
+2026-01-17 12:11:34 [info]: Starting flying phase for round 1020 targetCrash=3.43 duration=6860ms
+2026-01-17 12:50:32 [info]: Database connected
+2026-01-17 12:50:32 [info]: Game engine initialized
+2026-01-17 12:50:32 [info]: Creating new round with ID: 1021
+2026-01-17 12:50:32 [info]: Scheduling flying phase in 9987ms for round 1021
+2026-01-17 12:50:32 [info]: Successfully created new round with ID: 1052, Round ID: 1021
+2026-01-17 12:50:32 [info]: Scheduling flying phase in 9983ms for round 1021
+2026-01-17 12:50:32 [info]: Server is running on http://localhost:3001
+2026-01-17 12:50:33 [info]: New WebSocket connection
+2026-01-17 12:50:42 [info]: Starting flying phase for round 1021 targetCrash=3.3 duration=6600ms
+2026-01-17 12:51:17 [info]: Creating new round with ID: 1022
+2026-01-17 12:51:17 [info]: Scheduling flying phase in 9996ms for round 1022
+2026-01-17 12:51:17 [info]: Successfully created new round with ID: 1053, Round ID: 1022
+2026-01-17 12:51:27 [info]: Starting flying phase for round 1022 targetCrash=1.53 duration=3060ms
+2026-01-17 12:51:59 [info]: Creating new round with ID: 1023
+2026-01-17 12:51:59 [info]: Scheduling flying phase in 9998ms for round 1023
+2026-01-17 12:51:59 [info]: Successfully created new round with ID: 1054, Round ID: 1023
+2026-01-17 12:52:09 [info]: Starting flying phase for round 1023 targetCrash=1.16 duration=2320ms
+2026-01-17 12:52:40 [info]: Creating new round with ID: 1024
+2026-01-17 12:52:40 [info]: Scheduling flying phase in 9996ms for round 1024
+2026-01-17 12:52:40 [info]: Successfully created new round with ID: 1055, Round ID: 1024
+2026-01-17 12:52:50 [info]: Starting flying phase for round 1024 targetCrash=2.39 duration=4780ms
+2026-01-17 12:53:24 [info]: Creating new round with ID: 1025
+2026-01-17 12:53:24 [info]: Scheduling flying phase in 9996ms for round 1025
+2026-01-17 12:53:24 [info]: Successfully created new round with ID: 1056, Round ID: 1025
+2026-01-17 12:53:34 [info]: Starting flying phase for round 1025 targetCrash=3.26 duration=6520ms
+2026-01-17 12:54:09 [info]: Creating new round with ID: 1026
+2026-01-17 12:54:09 [info]: Scheduling flying phase in 9997ms for round 1026
+2026-01-17 12:54:09 [info]: Successfully created new round with ID: 1057, Round ID: 1026
+2026-01-17 12:54:19 [info]: Starting flying phase for round 1026 targetCrash=1.48 duration=2960ms
+2026-01-17 12:54:51 [info]: Creating new round with ID: 1027
+2026-01-17 12:54:52 [info]: Scheduling flying phase in 8907ms for round 1027
+2026-01-17 12:54:52 [info]: Successfully created new round with ID: 1058, Round ID: 1027
+2026-01-17 12:55:01 [info]: Starting flying phase for round 1027 targetCrash=4.37 duration=8740ms
+2026-01-17 12:55:37 [info]: Creating new round with ID: 1028
+2026-01-17 12:55:37 [info]: Scheduling flying phase in 9996ms for round 1028
+2026-01-17 12:55:37 [info]: Successfully created new round with ID: 1059, Round ID: 1028
+2026-01-17 12:55:48 [info]: Starting flying phase for round 1028 targetCrash=9.07 duration=18140ms
+2026-01-17 12:56:29 [info]: Creating new round with ID: 1029
+2026-01-17 12:56:29 [info]: Scheduling flying phase in 9998ms for round 1029
+2026-01-17 12:56:29 [info]: Successfully created new round with ID: 1060, Round ID: 1029
+2026-01-17 12:56:39 [info]: Starting flying phase for round 1029 targetCrash=8.76 duration=17520ms
+2026-01-17 12:57:21 [info]: Creating new round with ID: 1030
+2026-01-17 12:57:21 [info]: Scheduling flying phase in 9995ms for round 1030
+2026-01-17 12:57:21 [info]: Successfully created new round with ID: 1061, Round ID: 1030
+2026-01-17 12:57:31 [info]: Starting flying phase for round 1030 targetCrash=1.97 duration=3940ms
+2026-01-17 12:58:04 [info]: Creating new round with ID: 1031
+2026-01-17 12:58:04 [info]: Scheduling flying phase in 9996ms for round 1031
+2026-01-17 12:58:04 [info]: Successfully created new round with ID: 1062, Round ID: 1031
+2026-01-17 12:58:14 [info]: Starting flying phase for round 1031 targetCrash=3.43 duration=6860ms
+2026-01-17 12:58:49 [info]: Creating new round with ID: 1032
+2026-01-17 12:58:49 [info]: Scheduling flying phase in 9996ms for round 1032
+2026-01-17 12:58:49 [info]: Successfully created new round with ID: 1063, Round ID: 1032
+2026-01-17 12:58:59 [info]: Starting flying phase for round 1032 targetCrash=1.65 duration=3300ms
+2026-01-17 12:59:31 [info]: Creating new round with ID: 1033
+2026-01-17 12:59:31 [info]: Scheduling flying phase in 9984ms for round 1033
+2026-01-17 12:59:31 [info]: Successfully created new round with ID: 1064, Round ID: 1033
+2026-01-17 12:59:41 [info]: Starting flying phase for round 1033 targetCrash=1.14 duration=2280ms
+2026-01-17 13:00:12 [info]: Creating new round with ID: 1034
+2026-01-17 13:00:12 [info]: Scheduling flying phase in 9985ms for round 1034
+2026-01-17 13:00:12 [info]: Successfully created new round with ID: 1065, Round ID: 1034
+2026-01-17 13:00:22 [info]: Starting flying phase for round 1034 targetCrash=1.11 duration=2220ms
+2026-01-17 13:00:53 [info]: Creating new round with ID: 1035
+2026-01-17 13:00:53 [info]: Scheduling flying phase in 9982ms for round 1035
+2026-01-17 13:00:53 [info]: Successfully created new round with ID: 1066, Round ID: 1035
+2026-01-17 13:01:03 [info]: Starting flying phase for round 1035 targetCrash=1.47 duration=2940ms
+2026-01-17 13:01:35 [info]: Creating new round with ID: 1036
+2026-01-17 13:01:35 [info]: Scheduling flying phase in 9996ms for round 1036
+2026-01-17 13:01:35 [info]: Successfully created new round with ID: 1067, Round ID: 1036
+2026-01-17 13:01:45 [info]: Starting flying phase for round 1036 targetCrash=1.25 duration=2500ms
+2026-01-17 13:02:16 [info]: Creating new round with ID: 1037
+2026-01-17 13:02:16 [info]: Scheduling flying phase in 9998ms for round 1037
+2026-01-17 13:02:16 [info]: Successfully created new round with ID: 1068, Round ID: 1037
+2026-01-17 13:02:26 [info]: Starting flying phase for round 1037 targetCrash=6.92 duration=13840ms
+2026-01-17 13:03:06 [info]: Creating new round with ID: 1038
+2026-01-17 13:03:06 [info]: Scheduling flying phase in 9996ms for round 1038
+2026-01-17 13:03:06 [info]: Successfully created new round with ID: 1069, Round ID: 1038
+2026-01-17 13:03:16 [info]: Starting flying phase for round 1038 targetCrash=1.2 duration=2400ms
+2026-01-17 13:03:47 [info]: Creating new round with ID: 1039
+2026-01-17 13:03:47 [info]: Scheduling flying phase in 9998ms for round 1039
+2026-01-17 13:03:47 [info]: Successfully created new round with ID: 1070, Round ID: 1039
+2026-01-17 13:03:57 [info]: Starting flying phase for round 1039 targetCrash=4.18 duration=8360ms
+2026-01-17 13:04:33 [info]: Creating new round with ID: 1040
+2026-01-17 13:04:33 [info]: Scheduling flying phase in 9996ms for round 1040
+2026-01-17 13:04:33 [info]: Successfully created new round with ID: 1071, Round ID: 1040
+2026-01-17 13:04:43 [info]: Starting flying phase for round 1040 targetCrash=1.46 duration=2920ms
+2026-01-17 13:05:15 [info]: Creating new round with ID: 1041
+2026-01-17 13:05:15 [info]: Scheduling flying phase in 9983ms for round 1041
+2026-01-17 13:05:15 [info]: Successfully created new round with ID: 1072, Round ID: 1041
+2026-01-17 13:05:25 [info]: Starting flying phase for round 1041 targetCrash=6.18 duration=12360ms
+2026-01-17 13:06:04 [info]: Creating new round with ID: 1042
+2026-01-17 13:06:04 [info]: Scheduling flying phase in 9997ms for round 1042
+2026-01-17 13:06:04 [info]: Successfully created new round with ID: 1073, Round ID: 1042
+2026-01-17 13:06:14 [info]: Starting flying phase for round 1042 targetCrash=2.62 duration=5240ms
+2026-01-17 13:06:48 [info]: Creating new round with ID: 1043
+2026-01-17 13:06:48 [info]: Scheduling flying phase in 9996ms for round 1043
+2026-01-17 13:06:48 [info]: Successfully created new round with ID: 1074, Round ID: 1043
+2026-01-17 13:06:58 [info]: Starting flying phase for round 1043 targetCrash=1.04 duration=2080ms
+2026-01-17 13:07:28 [info]: Creating new round with ID: 1044
+2026-01-17 13:07:28 [info]: Scheduling flying phase in 9996ms for round 1044
+2026-01-17 13:07:28 [info]: Successfully created new round with ID: 1075, Round ID: 1044
+2026-01-17 13:07:38 [info]: Starting flying phase for round 1044 targetCrash=1.63 duration=3260ms
+2026-01-17 13:08:11 [info]: Creating new round with ID: 1045
+2026-01-17 13:08:11 [info]: Scheduling flying phase in 9996ms for round 1045
+2026-01-17 13:08:11 [info]: Successfully created new round with ID: 1076, Round ID: 1045
+2026-01-17 13:08:21 [info]: Starting flying phase for round 1045 targetCrash=5.06 duration=10120ms
+2026-01-17 13:08:58 [info]: Creating new round with ID: 1046
+2026-01-17 13:08:58 [info]: Scheduling flying phase in 9998ms for round 1046
+2026-01-17 13:08:58 [info]: Successfully created new round with ID: 1077, Round ID: 1046
+2026-01-17 13:09:08 [info]: Starting flying phase for round 1046 targetCrash=1.18 duration=2360ms
+2026-01-17 13:09:39 [info]: Creating new round with ID: 1047
+2026-01-17 13:09:39 [info]: Scheduling flying phase in 9985ms for round 1047
+2026-01-17 13:09:39 [info]: Successfully created new round with ID: 1078, Round ID: 1047
+2026-01-17 13:09:49 [info]: Starting flying phase for round 1047 targetCrash=4.41 duration=8820ms
+2026-01-17 13:10:26 [info]: Creating new round with ID: 1048
+2026-01-17 13:10:26 [info]: Scheduling flying phase in 9983ms for round 1048
+2026-01-17 13:10:26 [info]: Successfully created new round with ID: 1079, Round ID: 1048
+2026-01-17 13:10:36 [info]: Starting flying phase for round 1048 targetCrash=5.74 duration=11480ms
+2026-01-17 13:11:14 [info]: Creating new round with ID: 1049
+2026-01-17 13:11:14 [info]: Scheduling flying phase in 9956ms for round 1049
+2026-01-17 13:11:14 [info]: Successfully created new round with ID: 1080, Round ID: 1049
+2026-01-17 13:11:24 [info]: Starting flying phase for round 1049 targetCrash=1.64 duration=3280ms
+2026-01-17 13:11:57 [info]: Creating new round with ID: 1050
+2026-01-17 13:11:57 [info]: Scheduling flying phase in 9996ms for round 1050
+2026-01-17 13:11:57 [info]: Successfully created new round with ID: 1081, Round ID: 1050
+2026-01-17 13:12:07 [info]: Starting flying phase for round 1050 targetCrash=4.14 duration=8280ms
+2026-01-17 13:12:43 [info]: Creating new round with ID: 1051
+2026-01-17 13:12:43 [info]: Scheduling flying phase in 9984ms for round 1051
+2026-01-17 13:12:43 [info]: Successfully created new round with ID: 1082, Round ID: 1051
+2026-01-17 13:12:53 [info]: Starting flying phase for round 1051 targetCrash=1.78 duration=3560ms
+2026-01-17 13:13:25 [info]: Creating new round with ID: 1052
+2026-01-17 13:13:25 [info]: Scheduling flying phase in 9983ms for round 1052
+2026-01-17 13:13:25 [info]: Successfully created new round with ID: 1083, Round ID: 1052
+2026-01-17 13:13:35 [info]: Starting flying phase for round 1052 targetCrash=2.7 duration=5400ms
+2026-01-17 13:14:10 [info]: Creating new round with ID: 1053
+2026-01-17 13:14:10 [info]: Scheduling flying phase in 9997ms for round 1053
+2026-01-17 13:14:10 [info]: Successfully created new round with ID: 1084, Round ID: 1053
+2026-01-17 13:14:20 [info]: Starting flying phase for round 1053 targetCrash=1.71 duration=3420ms
+2026-01-17 13:14:52 [info]: Creating new round with ID: 1054
+2026-01-17 13:14:52 [info]: Scheduling flying phase in 9996ms for round 1054
+2026-01-17 13:14:52 [info]: Successfully created new round with ID: 1085, Round ID: 1054
+2026-01-17 13:15:02 [info]: Starting flying phase for round 1054 targetCrash=1.07 duration=2140ms
+2026-01-17 13:15:33 [info]: Creating new round with ID: 1055
+2026-01-17 13:15:33 [info]: Scheduling flying phase in 9984ms for round 1055
+2026-01-17 13:15:33 [info]: Successfully created new round with ID: 1086, Round ID: 1055
+2026-01-17 13:15:43 [info]: Starting flying phase for round 1055 targetCrash=4.56 duration=9120ms
+2026-01-17 13:16:19 [info]: Creating new round with ID: 1056
+2026-01-17 13:16:20 [info]: Scheduling flying phase in 9985ms for round 1056
+2026-01-17 13:16:20 [info]: Successfully created new round with ID: 1087, Round ID: 1056
+2026-01-17 13:16:29 [info]: Starting flying phase for round 1056 targetCrash=3.39 duration=6780ms
+2026-01-17 13:17:05 [info]: Creating new round with ID: 1057
+2026-01-17 13:17:05 [info]: Scheduling flying phase in 9998ms for round 1057
+2026-01-17 13:17:05 [info]: Successfully created new round with ID: 1088, Round ID: 1057
+2026-01-17 13:17:15 [info]: Starting flying phase for round 1057 targetCrash=1.16 duration=2320ms
+2026-01-17 13:17:46 [info]: Creating new round with ID: 1058
+2026-01-17 13:17:46 [info]: Scheduling flying phase in 9996ms for round 1058
+2026-01-17 13:17:46 [info]: Successfully created new round with ID: 1089, Round ID: 1058
+2026-01-17 13:17:56 [info]: Starting flying phase for round 1058 targetCrash=5.42 duration=10840ms
+2026-01-17 13:18:34 [info]: Creating new round with ID: 1059
+2026-01-17 13:18:34 [info]: Scheduling flying phase in 9984ms for round 1059
+2026-01-17 13:18:34 [info]: Successfully created new round with ID: 1090, Round ID: 1059
+2026-01-17 13:18:44 [info]: Starting flying phase for round 1059 targetCrash=1.99 duration=3980ms
+2026-01-17 13:19:17 [info]: Creating new round with ID: 1060
+2026-01-17 13:19:17 [info]: Scheduling flying phase in 9997ms for round 1060
+2026-01-17 13:19:17 [info]: Successfully created new round with ID: 1091, Round ID: 1060
+2026-01-17 13:19:27 [info]: Starting flying phase for round 1060 targetCrash=8.43 duration=16860ms
+2026-01-17 13:20:08 [info]: Creating new round with ID: 1061
+2026-01-17 13:20:08 [info]: Scheduling flying phase in 9996ms for round 1061
+2026-01-17 13:20:08 [info]: Successfully created new round with ID: 1092, Round ID: 1061
+2026-01-17 13:20:18 [info]: Starting flying phase for round 1061 targetCrash=1.26 duration=2520ms
+2026-01-17 13:20:49 [info]: Creating new round with ID: 1062
+2026-01-17 13:20:49 [info]: Scheduling flying phase in 9984ms for round 1062
+2026-01-17 13:20:49 [info]: Successfully created new round with ID: 1093, Round ID: 1062
+2026-01-17 13:20:59 [info]: Starting flying phase for round 1062 targetCrash=2.47 duration=4940ms
+2026-01-17 13:21:33 [info]: Creating new round with ID: 1063
+2026-01-17 13:21:33 [info]: Scheduling flying phase in 9996ms for round 1063
+2026-01-17 13:21:33 [info]: Successfully created new round with ID: 1094, Round ID: 1063
+2026-01-17 13:21:43 [info]: Starting flying phase for round 1063 targetCrash=1.12 duration=2240ms
+2026-01-17 13:22:14 [info]: Creating new round with ID: 1064
+2026-01-17 13:22:14 [info]: Scheduling flying phase in 9996ms for round 1064
+2026-01-17 13:22:14 [info]: Successfully created new round with ID: 1095, Round ID: 1064
+2026-01-17 13:22:24 [info]: Starting flying phase for round 1064 targetCrash=27.18 duration=20000ms
+2026-01-17 13:23:14 [info]: Creating new round with ID: 1065
+2026-01-17 13:23:14 [info]: Scheduling flying phase in 9972ms for round 1065
+2026-01-17 13:23:14 [info]: Successfully created new round with ID: 1096, Round ID: 1065
+2026-01-17 13:23:24 [info]: Starting flying phase for round 1065 targetCrash=3.15 duration=6300ms
+2026-01-17 13:23:59 [info]: Creating new round with ID: 1066
+2026-01-17 13:23:59 [info]: Scheduling flying phase in 9984ms for round 1066
+2026-01-17 13:23:59 [info]: Successfully created new round with ID: 1097, Round ID: 1066
+2026-01-17 13:24:09 [info]: Starting flying phase for round 1066 targetCrash=2.19 duration=4380ms
+2026-01-17 13:24:42 [info]: Creating new round with ID: 1067
+2026-01-17 13:24:42 [info]: Scheduling flying phase in 9996ms for round 1067
+2026-01-17 13:24:42 [info]: Successfully created new round with ID: 1098, Round ID: 1067
+2026-01-17 13:24:52 [info]: Starting flying phase for round 1067 targetCrash=1.53 duration=3060ms
+2026-01-17 13:25:24 [info]: Creating new round with ID: 1068
+2026-01-17 13:25:24 [info]: Scheduling flying phase in 9983ms for round 1068
+2026-01-17 13:25:24 [info]: Successfully created new round with ID: 1099, Round ID: 1068
+2026-01-17 13:25:34 [info]: Starting flying phase for round 1068 targetCrash=1.05 duration=2100ms
+2026-01-17 13:26:04 [info]: Creating new round with ID: 1069
+2026-01-17 13:26:04 [info]: Scheduling flying phase in 9997ms for round 1069
+2026-01-17 13:26:04 [info]: Successfully created new round with ID: 1100, Round ID: 1069
+2026-01-17 13:26:14 [info]: Starting flying phase for round 1069 targetCrash=1.17 duration=2340ms
+2026-01-17 13:26:45 [info]: Creating new round with ID: 1070
+2026-01-17 13:26:45 [info]: Scheduling flying phase in 9996ms for round 1070
+2026-01-17 13:26:45 [info]: Successfully created new round with ID: 1101, Round ID: 1070
+2026-01-17 13:26:55 [info]: Starting flying phase for round 1070 targetCrash=1.03 duration=2060ms
+2026-01-17 13:27:26 [info]: Creating new round with ID: 1071
+2026-01-17 13:27:26 [info]: Scheduling flying phase in 9983ms for round 1071
+2026-01-17 13:27:26 [info]: Successfully created new round with ID: 1102, Round ID: 1071
+2026-01-17 13:27:36 [info]: Starting flying phase for round 1071 targetCrash=1.39 duration=2780ms
+2026-01-17 13:28:07 [info]: Creating new round with ID: 1072
+2026-01-17 13:28:07 [info]: Scheduling flying phase in 9984ms for round 1072
+2026-01-17 13:28:07 [info]: Successfully created new round with ID: 1103, Round ID: 1072
+2026-01-17 13:28:17 [info]: Starting flying phase for round 1072 targetCrash=1.06 duration=2120ms
+2026-01-17 13:28:48 [info]: Creating new round with ID: 1073
+2026-01-17 13:28:48 [info]: Scheduling flying phase in 9997ms for round 1073
+2026-01-17 13:28:48 [info]: Successfully created new round with ID: 1104, Round ID: 1073
+2026-01-17 13:28:58 [info]: Starting flying phase for round 1073 targetCrash=1.01 duration=2020ms
+2026-01-17 13:29:28 [info]: Creating new round with ID: 1074
+2026-01-17 13:29:28 [info]: Scheduling flying phase in 9984ms for round 1074
+2026-01-17 13:29:28 [info]: Successfully created new round with ID: 1105, Round ID: 1074
+2026-01-17 13:29:38 [info]: Starting flying phase for round 1074 targetCrash=3.22 duration=6440ms
+2026-01-17 13:30:13 [info]: Creating new round with ID: 1075
+2026-01-17 13:30:13 [info]: Scheduling flying phase in 9985ms for round 1075
+2026-01-17 13:30:13 [info]: Successfully created new round with ID: 1106, Round ID: 1075
+2026-01-17 13:30:23 [info]: Starting flying phase for round 1075 targetCrash=1.01 duration=2020ms
+2026-01-17 13:30:53 [info]: Creating new round with ID: 1076
+2026-01-17 13:30:53 [info]: Scheduling flying phase in 9999ms for round 1076
+2026-01-17 13:30:53 [info]: Successfully created new round with ID: 1107, Round ID: 1076
+2026-01-17 13:31:03 [info]: Starting flying phase for round 1076 targetCrash=2.74 duration=5480ms
+2026-01-17 13:31:38 [info]: Creating new round with ID: 1077
+2026-01-17 13:31:38 [info]: Scheduling flying phase in 9996ms for round 1077
+2026-01-17 13:31:38 [info]: Successfully created new round with ID: 1108, Round ID: 1077
+2026-01-17 13:31:48 [info]: Starting flying phase for round 1077 targetCrash=6.14 duration=12280ms
+2026-01-17 13:32:26 [info]: Creating new round with ID: 1078
+2026-01-17 13:32:26 [info]: Scheduling flying phase in 9997ms for round 1078
+2026-01-17 13:32:26 [info]: Successfully created new round with ID: 1109, Round ID: 1078
+2026-01-17 13:32:36 [info]: Starting flying phase for round 1078 targetCrash=1.48 duration=2960ms
+2026-01-17 13:33:08 [info]: Creating new round with ID: 1079
+2026-01-17 13:33:08 [info]: Scheduling flying phase in 9998ms for round 1079
+2026-01-17 13:33:08 [info]: Successfully created new round with ID: 1110, Round ID: 1079
+2026-01-17 13:33:18 [info]: Starting flying phase for round 1079 targetCrash=1.99 duration=3980ms
+2026-01-17 13:33:51 [info]: Creating new round with ID: 1080
+2026-01-17 13:33:51 [info]: Scheduling flying phase in 9997ms for round 1080
+2026-01-17 13:33:51 [info]: Successfully created new round with ID: 1111, Round ID: 1080
+2026-01-17 13:34:01 [info]: Starting flying phase for round 1080 targetCrash=1.66 duration=3320ms
+2026-01-17 13:34:34 [info]: Creating new round with ID: 1081
+2026-01-17 13:34:34 [info]: Scheduling flying phase in 9997ms for round 1081
+2026-01-17 13:34:34 [info]: Successfully created new round with ID: 1112, Round ID: 1081
+2026-01-17 13:34:44 [info]: Starting flying phase for round 1081 targetCrash=1.96 duration=3920ms
+2026-01-17 13:35:16 [info]: Creating new round with ID: 1082
+2026-01-17 13:35:17 [info]: Scheduling flying phase in 9180ms for round 1082
+2026-01-17 13:35:17 [info]: Successfully created new round with ID: 1113, Round ID: 1082
+2026-01-17 13:35:26 [info]: Starting flying phase for round 1082 targetCrash=1.12 duration=2240ms
+2026-01-17 13:35:57 [info]: Creating new round with ID: 1083
+2026-01-17 13:35:57 [info]: Scheduling flying phase in 9996ms for round 1083
+2026-01-17 13:35:57 [info]: Successfully created new round with ID: 1114, Round ID: 1083
+2026-01-17 13:36:07 [info]: Starting flying phase for round 1083 targetCrash=1.22 duration=2440ms
+2026-01-17 13:36:38 [info]: Creating new round with ID: 1084
+2026-01-17 13:36:38 [info]: Scheduling flying phase in 9998ms for round 1084
+2026-01-17 13:36:38 [info]: Successfully created new round with ID: 1115, Round ID: 1084
+2026-01-17 13:36:48 [info]: Starting flying phase for round 1084 targetCrash=1.01 duration=2020ms
+2026-01-17 13:37:19 [info]: Creating new round with ID: 1085
+2026-01-17 13:37:19 [info]: Scheduling flying phase in 9983ms for round 1085
+2026-01-17 13:37:19 [info]: Successfully created new round with ID: 1116, Round ID: 1085
+2026-01-17 13:37:29 [info]: Starting flying phase for round 1085 targetCrash=8.52 duration=17040ms
+2026-01-17 13:38:10 [info]: Creating new round with ID: 1086
+2026-01-17 13:38:10 [info]: Scheduling flying phase in 9996ms for round 1086
+2026-01-17 13:38:10 [info]: Successfully created new round with ID: 1117, Round ID: 1086
+2026-01-17 13:38:20 [info]: Starting flying phase for round 1086 targetCrash=1.16 duration=2320ms
+2026-01-17 13:38:51 [info]: Creating new round with ID: 1087
+2026-01-17 13:38:51 [info]: Scheduling flying phase in 9996ms for round 1087
+2026-01-17 13:38:51 [info]: Successfully created new round with ID: 1118, Round ID: 1087
+2026-01-17 13:39:01 [info]: Starting flying phase for round 1087 targetCrash=1.99 duration=3980ms
+2026-01-17 13:39:34 [info]: Creating new round with ID: 1088
+2026-01-17 13:39:34 [info]: Scheduling flying phase in 9998ms for round 1088
+2026-01-17 13:39:34 [info]: Successfully created new round with ID: 1119, Round ID: 1088
+2026-01-17 13:39:44 [info]: Starting flying phase for round 1088 targetCrash=1.11 duration=2220ms
+2026-01-17 13:40:15 [info]: Creating new round with ID: 1089
+2026-01-17 13:40:15 [info]: Scheduling flying phase in 9919ms for round 1089
+2026-01-17 13:40:15 [info]: Successfully created new round with ID: 1120, Round ID: 1089
+2026-01-17 13:40:25 [info]: Starting flying phase for round 1089 targetCrash=6.33 duration=12660ms
+2026-01-17 13:41:04 [info]: Creating new round with ID: 1090
+2026-01-17 13:41:04 [info]: Scheduling flying phase in 9917ms for round 1090
+2026-01-17 13:41:04 [info]: Successfully created new round with ID: 1121, Round ID: 1090
+2026-01-17 13:41:14 [info]: Starting flying phase for round 1090 targetCrash=5.68 duration=11360ms
+2026-01-17 13:41:53 [info]: Creating new round with ID: 1091
+2026-01-17 13:41:53 [info]: Scheduling flying phase in 9967ms for round 1091
+2026-01-17 13:41:53 [info]: Successfully created new round with ID: 1122, Round ID: 1091
+2026-01-17 13:42:03 [info]: Starting flying phase for round 1091 targetCrash=6.68 duration=13360ms
+2026-01-17 13:42:42 [info]: Creating new round with ID: 1092
+2026-01-17 13:42:43 [info]: Scheduling flying phase in 9673ms for round 1092
+2026-01-17 13:42:43 [info]: Successfully created new round with ID: 1123, Round ID: 1092
+2026-01-17 13:42:52 [info]: Starting flying phase for round 1092 targetCrash=2.01 duration=4019.9999999999995ms
+2026-01-17 13:43:26 [info]: Creating new round with ID: 1093
+2026-01-17 13:43:26 [info]: Scheduling flying phase in 9916ms for round 1093
+2026-01-17 13:43:26 [info]: Successfully created new round with ID: 1124, Round ID: 1093
+2026-01-17 13:43:36 [info]: Starting flying phase for round 1093 targetCrash=4.9 duration=9800ms
+2026-01-17 13:44:13 [info]: Creating new round with ID: 1094
+2026-01-17 13:44:13 [info]: Scheduling flying phase in 9864ms for round 1094
+2026-01-17 13:44:13 [info]: Successfully created new round with ID: 1125, Round ID: 1094
+2026-01-17 13:44:13 [info]: A new round was already created, returning existing round
+2026-01-17 13:44:23 [info]: Starting flying phase for round 1094 targetCrash=1.46 duration=2920ms
+2026-01-17 13:44:55 [info]: Creating new round with ID: 1095
+2026-01-17 13:44:55 [info]: Scheduling flying phase in 9996ms for round 1095
+2026-01-17 13:44:55 [info]: Successfully created new round with ID: 1126, Round ID: 1095
+2026-01-17 13:45:05 [info]: Starting flying phase for round 1095 targetCrash=2.17 duration=4340ms
+2026-01-17 13:45:39 [info]: Creating new round with ID: 1096
+2026-01-17 13:45:39 [info]: Scheduling flying phase in 9996ms for round 1096
+2026-01-17 13:45:39 [info]: Successfully created new round with ID: 1127, Round ID: 1096
+2026-01-17 13:45:49 [info]: Starting flying phase for round 1096 targetCrash=1.69 duration=3380ms
+2026-01-17 13:46:22 [info]: Creating new round with ID: 1097
+2026-01-17 13:46:22 [info]: Scheduling flying phase in 9928ms for round 1097
+2026-01-17 13:46:22 [info]: Successfully created new round with ID: 1128, Round ID: 1097
+2026-01-17 13:46:32 [info]: Starting flying phase for round 1097 targetCrash=3.41 duration=6820ms
+2026-01-17 13:47:08 [info]: Creating new round with ID: 1098
+2026-01-17 13:47:08 [info]: Scheduling flying phase in 9996ms for round 1098
+2026-01-17 13:47:08 [info]: Successfully created new round with ID: 1129, Round ID: 1098
+2026-01-17 13:47:18 [info]: Starting flying phase for round 1098 targetCrash=2.79 duration=5580ms
+2026-01-17 13:47:53 [info]: Creating new round with ID: 1099
+2026-01-17 13:47:53 [info]: Scheduling flying phase in 9918ms for round 1099
+2026-01-17 13:47:53 [info]: Successfully created new round with ID: 1130, Round ID: 1099
+2026-01-17 13:47:53 [info]: A new round was already created, returning existing round
+2026-01-17 13:48:03 [info]: Starting flying phase for round 1099 targetCrash=1.05 duration=2100ms
+2026-01-17 13:48:34 [info]: Creating new round with ID: 1100
+2026-01-17 13:48:34 [info]: Scheduling flying phase in 9917ms for round 1100
+2026-01-17 13:48:34 [info]: Successfully created new round with ID: 1131, Round ID: 1100
+2026-01-17 13:48:44 [info]: Starting flying phase for round 1100 targetCrash=1.03 duration=2060ms
+2026-01-17 13:49:14 [info]: Creating new round with ID: 1101
+2026-01-17 13:49:14 [info]: Scheduling flying phase in 9997ms for round 1101
+2026-01-17 13:49:14 [info]: Successfully created new round with ID: 1132, Round ID: 1101
+2026-01-17 13:49:14 [info]: A new round was already created, returning existing round
+2026-01-17 13:49:24 [info]: Starting flying phase for round 1101 targetCrash=1.77 duration=3540ms
+2026-01-17 13:49:57 [info]: Creating new round with ID: 1102
+2026-01-17 13:49:57 [info]: Scheduling flying phase in 9996ms for round 1102
+2026-01-17 13:49:57 [info]: Successfully created new round with ID: 1133, Round ID: 1102
+2026-01-17 13:50:07 [info]: Starting flying phase for round 1102 targetCrash=2.54 duration=5080ms
+2026-01-17 13:50:41 [info]: Creating new round with ID: 1103
+2026-01-17 13:50:41 [info]: Scheduling flying phase in 9998ms for round 1103
+2026-01-17 13:50:41 [info]: Successfully created new round with ID: 1134, Round ID: 1103
+2026-01-17 13:50:52 [info]: Starting flying phase for round 1103 targetCrash=2.89 duration=5780ms
+2026-01-17 13:51:26 [info]: Creating new round with ID: 1104
+2026-01-17 13:51:26 [info]: Scheduling flying phase in 9983ms for round 1104
+2026-01-17 13:51:26 [info]: Successfully created new round with ID: 1135, Round ID: 1104
+2026-01-17 13:51:36 [info]: Starting flying phase for round 1104 targetCrash=9.16 duration=18320ms
+2026-01-17 13:52:18 [info]: Creating new round with ID: 1105
+2026-01-17 13:52:18 [info]: Scheduling flying phase in 9983ms for round 1105
+2026-01-17 13:52:18 [info]: Successfully created new round with ID: 1136, Round ID: 1105
+2026-01-17 13:52:28 [info]: Starting flying phase for round 1105 targetCrash=2 duration=4000ms
+2026-01-17 13:53:01 [info]: Creating new round with ID: 1106
+2026-01-17 13:53:01 [info]: Scheduling flying phase in 9996ms for round 1106
+2026-01-17 13:53:01 [info]: Successfully created new round with ID: 1137, Round ID: 1106
+2026-01-17 13:53:11 [info]: Starting flying phase for round 1106 targetCrash=1.54 duration=3080ms
+2026-01-17 13:53:43 [info]: Creating new round with ID: 1107
+2026-01-17 13:53:43 [info]: Scheduling flying phase in 9984ms for round 1107
+2026-01-17 13:53:43 [info]: Successfully created new round with ID: 1138, Round ID: 1107
+2026-01-17 13:53:53 [info]: Starting flying phase for round 1107 targetCrash=2.99 duration=5980ms
+2026-01-17 13:54:28 [info]: Creating new round with ID: 1108
+2026-01-17 13:54:28 [info]: Scheduling flying phase in 9998ms for round 1108
+2026-01-17 13:54:28 [info]: Successfully created new round with ID: 1139, Round ID: 1108
+2026-01-17 13:54:38 [info]: Starting flying phase for round 1108 targetCrash=12.01 duration=20000ms
+2026-01-17 13:55:23 [info]: Creating new round with ID: 1109
+2026-01-17 13:55:23 [info]: Scheduling flying phase in 9996ms for round 1109
+2026-01-17 13:55:23 [info]: Successfully created new round with ID: 1140, Round ID: 1109
+2026-01-17 13:55:33 [info]: Starting flying phase for round 1109 targetCrash=1.03 duration=2060ms
+2026-01-17 13:56:03 [info]: Creating new round with ID: 1110
+2026-01-17 13:56:03 [info]: Scheduling flying phase in 9980ms for round 1110
+2026-01-17 13:56:03 [info]: Successfully created new round with ID: 1141, Round ID: 1110
+2026-01-17 13:56:13 [info]: Starting flying phase for round 1110 targetCrash=1.17 duration=2340ms
+2026-01-17 13:56:44 [info]: Creating new round with ID: 1111
+2026-01-17 13:56:44 [info]: Scheduling flying phase in 9984ms for round 1111
+2026-01-17 13:56:44 [info]: Successfully created new round with ID: 1142, Round ID: 1111
+2026-01-17 13:56:54 [info]: Starting flying phase for round 1111 targetCrash=1.26 duration=2520ms
+2026-01-17 13:57:25 [info]: Creating new round with ID: 1112
+2026-01-17 13:57:25 [info]: Scheduling flying phase in 9984ms for round 1112
+2026-01-17 13:57:25 [info]: Successfully created new round with ID: 1143, Round ID: 1112
+2026-01-17 13:57:35 [info]: Starting flying phase for round 1112 targetCrash=6.55 duration=13100ms
+2026-01-17 13:58:14 [info]: Creating new round with ID: 1113
+2026-01-17 13:58:14 [info]: Scheduling flying phase in 9996ms for round 1113
+2026-01-17 13:58:14 [info]: Successfully created new round with ID: 1144, Round ID: 1113
+2026-01-17 13:58:24 [info]: Starting flying phase for round 1113 targetCrash=2.85 duration=5700ms
+2026-01-17 13:58:59 [info]: Creating new round with ID: 1114
+2026-01-17 13:58:59 [info]: Scheduling flying phase in 9983ms for round 1114
+2026-01-17 13:58:59 [info]: Successfully created new round with ID: 1145, Round ID: 1114
+2026-01-17 13:59:09 [info]: Starting flying phase for round 1114 targetCrash=1.64 duration=3280ms
+2026-01-17 13:59:41 [info]: Creating new round with ID: 1115
+2026-01-17 13:59:41 [info]: Scheduling flying phase in 9983ms for round 1115
+2026-01-17 13:59:41 [info]: Successfully created new round with ID: 1146, Round ID: 1115
+2026-01-17 13:59:51 [info]: Starting flying phase for round 1115 targetCrash=1.55 duration=3100ms
+2026-01-17 14:00:23 [info]: Creating new round with ID: 1116
+2026-01-17 14:00:23 [info]: Scheduling flying phase in 9985ms for round 1116
+2026-01-17 14:00:23 [info]: Successfully created new round with ID: 1147, Round ID: 1116
+2026-01-17 14:00:33 [info]: Starting flying phase for round 1116 targetCrash=3.13 duration=6260ms
+2026-01-17 14:01:08 [info]: Creating new round with ID: 1117
+2026-01-17 14:01:08 [info]: Scheduling flying phase in 9996ms for round 1117
+2026-01-17 14:01:08 [info]: Successfully created new round with ID: 1148, Round ID: 1117
+2026-01-17 14:01:18 [info]: Starting flying phase for round 1117 targetCrash=3.05 duration=6100ms
+2026-01-17 14:01:53 [info]: Creating new round with ID: 1118
+2026-01-17 14:01:53 [info]: Scheduling flying phase in 9990ms for round 1118
+2026-01-17 14:01:53 [info]: Successfully created new round with ID: 1149, Round ID: 1118
+2026-01-17 14:02:03 [info]: Starting flying phase for round 1118 targetCrash=1.23 duration=2460ms
+2026-01-17 14:02:34 [info]: Creating new round with ID: 1119
+2026-01-17 14:02:34 [info]: Scheduling flying phase in 9996ms for round 1119
+2026-01-17 14:02:34 [info]: Successfully created new round with ID: 1150, Round ID: 1119
+2026-01-17 14:02:44 [info]: Starting flying phase for round 1119 targetCrash=2.51 duration=5020ms
+2026-01-17 14:03:18 [info]: Creating new round with ID: 1120
+2026-01-17 14:03:18 [info]: Scheduling flying phase in 9983ms for round 1120
+2026-01-17 14:03:18 [info]: Successfully created new round with ID: 1151, Round ID: 1120
+2026-01-17 14:03:18 [info]: A new round was already created, returning existing round
+2026-01-17 14:03:28 [info]: Starting flying phase for round 1120 targetCrash=2.68 duration=5360ms
+2026-01-17 14:04:02 [info]: Creating new round with ID: 1121
+2026-01-17 14:04:02 [info]: Scheduling flying phase in 9984ms for round 1121
+2026-01-17 14:04:02 [info]: Successfully created new round with ID: 1152, Round ID: 1121
+2026-01-17 14:04:12 [info]: Starting flying phase for round 1121 targetCrash=9.19 duration=18380ms
+2026-01-17 14:04:54 [info]: Creating new round with ID: 1122
+2026-01-17 14:04:54 [info]: Scheduling flying phase in 9984ms for round 1122
+2026-01-17 14:04:54 [info]: Successfully created new round with ID: 1153, Round ID: 1122
+2026-01-17 14:05:04 [info]: Starting flying phase for round 1122 targetCrash=2.3 duration=4600ms
+2026-01-17 14:05:38 [info]: Creating new round with ID: 1123
+2026-01-17 14:05:38 [info]: Scheduling flying phase in 9985ms for round 1123
+2026-01-17 14:05:38 [info]: Successfully created new round with ID: 1154, Round ID: 1123
+2026-01-17 14:05:48 [info]: Starting flying phase for round 1123 targetCrash=1.14 duration=2280ms
+2026-01-17 14:06:19 [info]: Creating new round with ID: 1124
+2026-01-17 14:06:19 [info]: Scheduling flying phase in 9998ms for round 1124
+2026-01-17 14:06:19 [info]: Successfully created new round with ID: 1155, Round ID: 1124
+2026-01-17 14:06:29 [info]: Starting flying phase for round 1124 targetCrash=2.13 duration=4260ms
+2026-01-17 14:07:02 [info]: Creating new round with ID: 1125
+2026-01-17 14:07:02 [info]: Scheduling flying phase in 9998ms for round 1125
+2026-01-17 14:07:02 [info]: Successfully created new round with ID: 1156, Round ID: 1125
+2026-01-17 14:07:12 [info]: Starting flying phase for round 1125 targetCrash=3.99 duration=7980ms
+2026-01-17 14:07:48 [info]: Creating new round with ID: 1126
+2026-01-17 14:07:48 [info]: Scheduling flying phase in 9984ms for round 1126
+2026-01-17 14:07:48 [info]: Successfully created new round with ID: 1157, Round ID: 1126
+2026-01-17 14:07:58 [info]: Starting flying phase for round 1126 targetCrash=1.17 duration=2340ms
+2026-01-17 14:08:29 [info]: Creating new round with ID: 1127
+2026-01-17 14:08:29 [info]: Scheduling flying phase in 9997ms for round 1127
+2026-01-17 14:08:29 [info]: Successfully created new round with ID: 1158, Round ID: 1127
+2026-01-17 14:08:39 [info]: Starting flying phase for round 1127 targetCrash=1.31 duration=2620ms
+2026-01-17 14:09:11 [info]: Creating new round with ID: 1128
+2026-01-17 14:09:11 [info]: Scheduling flying phase in 9995ms for round 1128
+2026-01-17 14:09:11 [info]: Successfully created new round with ID: 1159, Round ID: 1128
+2026-01-17 14:09:21 [info]: Starting flying phase for round 1128 targetCrash=7.52 duration=15040ms
+2026-01-17 14:10:01 [info]: Creating new round with ID: 1129
+2026-01-17 14:10:01 [info]: Scheduling flying phase in 9984ms for round 1129
+2026-01-17 14:10:01 [info]: Successfully created new round with ID: 1160, Round ID: 1129
+2026-01-17 14:10:11 [info]: Starting flying phase for round 1129 targetCrash=1.18 duration=2360ms
+2026-01-17 14:10:42 [info]: Creating new round with ID: 1130
+2026-01-17 14:10:42 [info]: Scheduling flying phase in 9985ms for round 1130
+2026-01-17 14:10:42 [info]: Successfully created new round with ID: 1161, Round ID: 1130
+2026-01-17 14:10:52 [info]: Starting flying phase for round 1130 targetCrash=9.75 duration=19500ms
+2026-01-17 14:11:34 [info]: Creating new round with ID: 1131
+2026-01-17 14:11:34 [info]: Scheduling flying phase in 9996ms for round 1131
+2026-01-17 14:11:34 [info]: Successfully created new round with ID: 1162, Round ID: 1131
+2026-01-17 14:11:44 [info]: Starting flying phase for round 1131 targetCrash=1.01 duration=2020ms
+2026-01-17 14:12:15 [info]: Creating new round with ID: 1132
+2026-01-17 14:12:15 [info]: Scheduling flying phase in 9996ms for round 1132
+2026-01-17 14:12:15 [info]: Successfully created new round with ID: 1163, Round ID: 1132
+2026-01-17 14:12:25 [info]: Starting flying phase for round 1132 targetCrash=1.44 duration=2880ms
+2026-01-17 14:12:56 [info]: Creating new round with ID: 1133
+2026-01-17 14:12:56 [info]: Scheduling flying phase in 9996ms for round 1133
+2026-01-17 14:12:56 [info]: Successfully created new round with ID: 1164, Round ID: 1133
+2026-01-17 14:13:06 [info]: Starting flying phase for round 1133 targetCrash=3.76 duration=7520ms

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { RoundService } from '../services/round.service.ts';
 
-const router = Router();
+const  router = Router();
 const roundService = new RoundService();
 
 router.get('/current', async (req, res) => {

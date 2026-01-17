@@ -1590,3 +1590,464 @@
 2026-01-17 12:11:24 [info]: Scheduling flying phase in 9996ms for round 1020
 2026-01-17 12:11:24 [info]: Successfully created new round with ID: 1051, Round ID: 1020
 2026-01-17 12:11:34 [info]: Starting flying phase for round 1020 targetCrash=3.43 duration=6860ms
+2026-01-17 12:50:32 [info]: Database connected
+2026-01-17 12:50:32 [info]: Game engine initialized
+2026-01-17 12:50:32 [info]: Creating new round with ID: 1021
+2026-01-17 12:50:32 [info]: Scheduling flying phase in 9987ms for round 1021
+2026-01-17 12:50:32 [info]: Successfully created new round with ID: 1052, Round ID: 1021
+2026-01-17 12:50:32 [info]: Scheduling flying phase in 9983ms for round 1021
+2026-01-17 12:50:32 [info]: Server is running on http://localhost:3001
+2026-01-17 12:50:33 [info]: New WebSocket connection
+2026-01-17 12:50:42 [info]: Starting flying phase for round 1021 targetCrash=3.3 duration=6600ms
+2026-01-17 12:51:17 [info]: Creating new round with ID: 1022
+2026-01-17 12:51:17 [info]: Scheduling flying phase in 9996ms for round 1022
+2026-01-17 12:51:17 [info]: Successfully created new round with ID: 1053, Round ID: 1022
+2026-01-17 12:51:27 [info]: Starting flying phase for round 1022 targetCrash=1.53 duration=3060ms
+2026-01-17 12:51:59 [info]: Creating new round with ID: 1023
+2026-01-17 12:51:59 [info]: Scheduling flying phase in 9998ms for round 1023
+2026-01-17 12:51:59 [info]: Successfully created new round with ID: 1054, Round ID: 1023
+2026-01-17 12:52:09 [info]: Starting flying phase for round 1023 targetCrash=1.16 duration=2320ms
+2026-01-17 12:52:40 [info]: Creating new round with ID: 1024
+2026-01-17 12:52:40 [info]: Scheduling flying phase in 9996ms for round 1024
+2026-01-17 12:52:40 [info]: Successfully created new round with ID: 1055, Round ID: 1024
+2026-01-17 12:52:50 [info]: Starting flying phase for round 1024 targetCrash=2.39 duration=4780ms
+2026-01-17 12:53:24 [info]: Creating new round with ID: 1025
+2026-01-17 12:53:24 [info]: Scheduling flying phase in 9996ms for round 1025
+2026-01-17 12:53:24 [info]: Successfully created new round with ID: 1056, Round ID: 1025
+2026-01-17 12:53:34 [info]: Starting flying phase for round 1025 targetCrash=3.26 duration=6520ms
+2026-01-17 12:54:09 [info]: Creating new round with ID: 1026
+2026-01-17 12:54:09 [info]: Scheduling flying phase in 9997ms for round 1026
+2026-01-17 12:54:09 [info]: Successfully created new round with ID: 1057, Round ID: 1026
+2026-01-17 12:54:19 [info]: Starting flying phase for round 1026 targetCrash=1.48 duration=2960ms
+2026-01-17 12:54:51 [info]: Creating new round with ID: 1027
+2026-01-17 12:54:52 [info]: Scheduling flying phase in 8907ms for round 1027
+2026-01-17 12:54:52 [info]: Successfully created new round with ID: 1058, Round ID: 1027
+2026-01-17 12:55:01 [info]: Starting flying phase for round 1027 targetCrash=4.37 duration=8740ms
+2026-01-17 12:55:37 [info]: Creating new round with ID: 1028
+2026-01-17 12:55:37 [info]: Scheduling flying phase in 9996ms for round 1028
+2026-01-17 12:55:37 [info]: Successfully created new round with ID: 1059, Round ID: 1028
+2026-01-17 12:55:48 [info]: Starting flying phase for round 1028 targetCrash=9.07 duration=18140ms
+2026-01-17 12:56:29 [info]: Creating new round with ID: 1029
+2026-01-17 12:56:29 [info]: Scheduling flying phase in 9998ms for round 1029
+2026-01-17 12:56:29 [info]: Successfully created new round with ID: 1060, Round ID: 1029
+2026-01-17 12:56:39 [info]: Starting flying phase for round 1029 targetCrash=8.76 duration=17520ms
+2026-01-17 12:57:21 [info]: Creating new round with ID: 1030
+2026-01-17 12:57:21 [info]: Scheduling flying phase in 9995ms for round 1030
+2026-01-17 12:57:21 [info]: Successfully created new round with ID: 1061, Round ID: 1030
+2026-01-17 12:57:31 [info]: Starting flying phase for round 1030 targetCrash=1.97 duration=3940ms
+2026-01-17 12:58:04 [info]: Creating new round with ID: 1031
+2026-01-17 12:58:04 [info]: Scheduling flying phase in 9996ms for round 1031
+2026-01-17 12:58:04 [info]: Successfully created new round with ID: 1062, Round ID: 1031
+2026-01-17 12:58:14 [info]: Starting flying phase for round 1031 targetCrash=3.43 duration=6860ms
+2026-01-17 12:58:49 [info]: Creating new round with ID: 1032
+2026-01-17 12:58:49 [info]: Scheduling flying phase in 9996ms for round 1032
+2026-01-17 12:58:49 [info]: Successfully created new round with ID: 1063, Round ID: 1032
+2026-01-17 12:58:59 [info]: Starting flying phase for round 1032 targetCrash=1.65 duration=3300ms
+2026-01-17 12:59:31 [info]: Creating new round with ID: 1033
+2026-01-17 12:59:31 [info]: Scheduling flying phase in 9984ms for round 1033
+2026-01-17 12:59:31 [info]: Successfully created new round with ID: 1064, Round ID: 1033
+2026-01-17 12:59:41 [info]: Starting flying phase for round 1033 targetCrash=1.14 duration=2280ms
+2026-01-17 13:00:12 [info]: Creating new round with ID: 1034
+2026-01-17 13:00:12 [info]: Scheduling flying phase in 9985ms for round 1034
+2026-01-17 13:00:12 [info]: Successfully created new round with ID: 1065, Round ID: 1034
+2026-01-17 13:00:22 [info]: Starting flying phase for round 1034 targetCrash=1.11 duration=2220ms
+2026-01-17 13:00:53 [info]: Creating new round with ID: 1035
+2026-01-17 13:00:53 [info]: Scheduling flying phase in 9982ms for round 1035
+2026-01-17 13:00:53 [info]: Successfully created new round with ID: 1066, Round ID: 1035
+2026-01-17 13:01:03 [info]: Starting flying phase for round 1035 targetCrash=1.47 duration=2940ms
+2026-01-17 13:01:35 [info]: Creating new round with ID: 1036
+2026-01-17 13:01:35 [info]: Scheduling flying phase in 9996ms for round 1036
+2026-01-17 13:01:35 [info]: Successfully created new round with ID: 1067, Round ID: 1036
+2026-01-17 13:01:45 [info]: Starting flying phase for round 1036 targetCrash=1.25 duration=2500ms
+2026-01-17 13:02:16 [info]: Creating new round with ID: 1037
+2026-01-17 13:02:16 [info]: Scheduling flying phase in 9998ms for round 1037
+2026-01-17 13:02:16 [info]: Successfully created new round with ID: 1068, Round ID: 1037
+2026-01-17 13:02:26 [info]: Starting flying phase for round 1037 targetCrash=6.92 duration=13840ms
+2026-01-17 13:03:06 [info]: Creating new round with ID: 1038
+2026-01-17 13:03:06 [info]: Scheduling flying phase in 9996ms for round 1038
+2026-01-17 13:03:06 [info]: Successfully created new round with ID: 1069, Round ID: 1038
+2026-01-17 13:03:16 [info]: Starting flying phase for round 1038 targetCrash=1.2 duration=2400ms
+2026-01-17 13:03:47 [info]: Creating new round with ID: 1039
+2026-01-17 13:03:47 [info]: Scheduling flying phase in 9998ms for round 1039
+2026-01-17 13:03:47 [info]: Successfully created new round with ID: 1070, Round ID: 1039
+2026-01-17 13:03:57 [info]: Starting flying phase for round 1039 targetCrash=4.18 duration=8360ms
+2026-01-17 13:04:33 [info]: Creating new round with ID: 1040
+2026-01-17 13:04:33 [info]: Scheduling flying phase in 9996ms for round 1040
+2026-01-17 13:04:33 [info]: Successfully created new round with ID: 1071, Round ID: 1040
+2026-01-17 13:04:43 [info]: Starting flying phase for round 1040 targetCrash=1.46 duration=2920ms
+2026-01-17 13:05:15 [info]: Creating new round with ID: 1041
+2026-01-17 13:05:15 [info]: Scheduling flying phase in 9983ms for round 1041
+2026-01-17 13:05:15 [info]: Successfully created new round with ID: 1072, Round ID: 1041
+2026-01-17 13:05:25 [info]: Starting flying phase for round 1041 targetCrash=6.18 duration=12360ms
+2026-01-17 13:06:04 [info]: Creating new round with ID: 1042
+2026-01-17 13:06:04 [info]: Scheduling flying phase in 9997ms for round 1042
+2026-01-17 13:06:04 [info]: Successfully created new round with ID: 1073, Round ID: 1042
+2026-01-17 13:06:14 [info]: Starting flying phase for round 1042 targetCrash=2.62 duration=5240ms
+2026-01-17 13:06:48 [info]: Creating new round with ID: 1043
+2026-01-17 13:06:48 [info]: Scheduling flying phase in 9996ms for round 1043
+2026-01-17 13:06:48 [info]: Successfully created new round with ID: 1074, Round ID: 1043
+2026-01-17 13:06:58 [info]: Starting flying phase for round 1043 targetCrash=1.04 duration=2080ms
+2026-01-17 13:07:28 [info]: Creating new round with ID: 1044
+2026-01-17 13:07:28 [info]: Scheduling flying phase in 9996ms for round 1044
+2026-01-17 13:07:28 [info]: Successfully created new round with ID: 1075, Round ID: 1044
+2026-01-17 13:07:38 [info]: Starting flying phase for round 1044 targetCrash=1.63 duration=3260ms
+2026-01-17 13:08:11 [info]: Creating new round with ID: 1045
+2026-01-17 13:08:11 [info]: Scheduling flying phase in 9996ms for round 1045
+2026-01-17 13:08:11 [info]: Successfully created new round with ID: 1076, Round ID: 1045
+2026-01-17 13:08:21 [info]: Starting flying phase for round 1045 targetCrash=5.06 duration=10120ms
+2026-01-17 13:08:58 [info]: Creating new round with ID: 1046
+2026-01-17 13:08:58 [info]: Scheduling flying phase in 9998ms for round 1046
+2026-01-17 13:08:58 [info]: Successfully created new round with ID: 1077, Round ID: 1046
+2026-01-17 13:09:08 [info]: Starting flying phase for round 1046 targetCrash=1.18 duration=2360ms
+2026-01-17 13:09:39 [info]: Creating new round with ID: 1047
+2026-01-17 13:09:39 [info]: Scheduling flying phase in 9985ms for round 1047
+2026-01-17 13:09:39 [info]: Successfully created new round with ID: 1078, Round ID: 1047
+2026-01-17 13:09:49 [info]: Starting flying phase for round 1047 targetCrash=4.41 duration=8820ms
+2026-01-17 13:10:26 [info]: Creating new round with ID: 1048
+2026-01-17 13:10:26 [info]: Scheduling flying phase in 9983ms for round 1048
+2026-01-17 13:10:26 [info]: Successfully created new round with ID: 1079, Round ID: 1048
+2026-01-17 13:10:36 [info]: Starting flying phase for round 1048 targetCrash=5.74 duration=11480ms
+2026-01-17 13:11:14 [info]: Creating new round with ID: 1049
+2026-01-17 13:11:14 [info]: Scheduling flying phase in 9956ms for round 1049
+2026-01-17 13:11:14 [info]: Successfully created new round with ID: 1080, Round ID: 1049
+2026-01-17 13:11:24 [info]: Starting flying phase for round 1049 targetCrash=1.64 duration=3280ms
+2026-01-17 13:11:57 [info]: Creating new round with ID: 1050
+2026-01-17 13:11:57 [info]: Scheduling flying phase in 9996ms for round 1050
+2026-01-17 13:11:57 [info]: Successfully created new round with ID: 1081, Round ID: 1050
+2026-01-17 13:12:07 [info]: Starting flying phase for round 1050 targetCrash=4.14 duration=8280ms
+2026-01-17 13:12:43 [info]: Creating new round with ID: 1051
+2026-01-17 13:12:43 [info]: Scheduling flying phase in 9984ms for round 1051
+2026-01-17 13:12:43 [info]: Successfully created new round with ID: 1082, Round ID: 1051
+2026-01-17 13:12:53 [info]: Starting flying phase for round 1051 targetCrash=1.78 duration=3560ms
+2026-01-17 13:13:25 [info]: Creating new round with ID: 1052
+2026-01-17 13:13:25 [info]: Scheduling flying phase in 9983ms for round 1052
+2026-01-17 13:13:25 [info]: Successfully created new round with ID: 1083, Round ID: 1052
+2026-01-17 13:13:35 [info]: Starting flying phase for round 1052 targetCrash=2.7 duration=5400ms
+2026-01-17 13:14:10 [info]: Creating new round with ID: 1053
+2026-01-17 13:14:10 [info]: Scheduling flying phase in 9997ms for round 1053
+2026-01-17 13:14:10 [info]: Successfully created new round with ID: 1084, Round ID: 1053
+2026-01-17 13:14:20 [info]: Starting flying phase for round 1053 targetCrash=1.71 duration=3420ms
+2026-01-17 13:14:52 [info]: Creating new round with ID: 1054
+2026-01-17 13:14:52 [info]: Scheduling flying phase in 9996ms for round 1054
+2026-01-17 13:14:52 [info]: Successfully created new round with ID: 1085, Round ID: 1054
+2026-01-17 13:15:02 [info]: Starting flying phase for round 1054 targetCrash=1.07 duration=2140ms
+2026-01-17 13:15:33 [info]: Creating new round with ID: 1055
+2026-01-17 13:15:33 [info]: Scheduling flying phase in 9984ms for round 1055
+2026-01-17 13:15:33 [info]: Successfully created new round with ID: 1086, Round ID: 1055
+2026-01-17 13:15:43 [info]: Starting flying phase for round 1055 targetCrash=4.56 duration=9120ms
+2026-01-17 13:16:19 [info]: Creating new round with ID: 1056
+2026-01-17 13:16:20 [info]: Scheduling flying phase in 9985ms for round 1056
+2026-01-17 13:16:20 [info]: Successfully created new round with ID: 1087, Round ID: 1056
+2026-01-17 13:16:29 [info]: Starting flying phase for round 1056 targetCrash=3.39 duration=6780ms
+2026-01-17 13:17:05 [info]: Creating new round with ID: 1057
+2026-01-17 13:17:05 [info]: Scheduling flying phase in 9998ms for round 1057
+2026-01-17 13:17:05 [info]: Successfully created new round with ID: 1088, Round ID: 1057
+2026-01-17 13:17:15 [info]: Starting flying phase for round 1057 targetCrash=1.16 duration=2320ms
+2026-01-17 13:17:46 [info]: Creating new round with ID: 1058
+2026-01-17 13:17:46 [info]: Scheduling flying phase in 9996ms for round 1058
+2026-01-17 13:17:46 [info]: Successfully created new round with ID: 1089, Round ID: 1058
+2026-01-17 13:17:56 [info]: Starting flying phase for round 1058 targetCrash=5.42 duration=10840ms
+2026-01-17 13:18:34 [info]: Creating new round with ID: 1059
+2026-01-17 13:18:34 [info]: Scheduling flying phase in 9984ms for round 1059
+2026-01-17 13:18:34 [info]: Successfully created new round with ID: 1090, Round ID: 1059
+2026-01-17 13:18:44 [info]: Starting flying phase for round 1059 targetCrash=1.99 duration=3980ms
+2026-01-17 13:19:17 [info]: Creating new round with ID: 1060
+2026-01-17 13:19:17 [info]: Scheduling flying phase in 9997ms for round 1060
+2026-01-17 13:19:17 [info]: Successfully created new round with ID: 1091, Round ID: 1060
+2026-01-17 13:19:27 [info]: Starting flying phase for round 1060 targetCrash=8.43 duration=16860ms
+2026-01-17 13:20:08 [info]: Creating new round with ID: 1061
+2026-01-17 13:20:08 [info]: Scheduling flying phase in 9996ms for round 1061
+2026-01-17 13:20:08 [info]: Successfully created new round with ID: 1092, Round ID: 1061
+2026-01-17 13:20:18 [info]: Starting flying phase for round 1061 targetCrash=1.26 duration=2520ms
+2026-01-17 13:20:49 [info]: Creating new round with ID: 1062
+2026-01-17 13:20:49 [info]: Scheduling flying phase in 9984ms for round 1062
+2026-01-17 13:20:49 [info]: Successfully created new round with ID: 1093, Round ID: 1062
+2026-01-17 13:20:59 [info]: Starting flying phase for round 1062 targetCrash=2.47 duration=4940ms
+2026-01-17 13:21:33 [info]: Creating new round with ID: 1063
+2026-01-17 13:21:33 [info]: Scheduling flying phase in 9996ms for round 1063
+2026-01-17 13:21:33 [info]: Successfully created new round with ID: 1094, Round ID: 1063
+2026-01-17 13:21:43 [info]: Starting flying phase for round 1063 targetCrash=1.12 duration=2240ms
+2026-01-17 13:22:14 [info]: Creating new round with ID: 1064
+2026-01-17 13:22:14 [info]: Scheduling flying phase in 9996ms for round 1064
+2026-01-17 13:22:14 [info]: Successfully created new round with ID: 1095, Round ID: 1064
+2026-01-17 13:22:24 [info]: Starting flying phase for round 1064 targetCrash=27.18 duration=20000ms
+2026-01-17 13:23:14 [info]: Creating new round with ID: 1065
+2026-01-17 13:23:14 [info]: Scheduling flying phase in 9972ms for round 1065
+2026-01-17 13:23:14 [info]: Successfully created new round with ID: 1096, Round ID: 1065
+2026-01-17 13:23:24 [info]: Starting flying phase for round 1065 targetCrash=3.15 duration=6300ms
+2026-01-17 13:23:59 [info]: Creating new round with ID: 1066
+2026-01-17 13:23:59 [info]: Scheduling flying phase in 9984ms for round 1066
+2026-01-17 13:23:59 [info]: Successfully created new round with ID: 1097, Round ID: 1066
+2026-01-17 13:24:09 [info]: Starting flying phase for round 1066 targetCrash=2.19 duration=4380ms
+2026-01-17 13:24:42 [info]: Creating new round with ID: 1067
+2026-01-17 13:24:42 [info]: Scheduling flying phase in 9996ms for round 1067
+2026-01-17 13:24:42 [info]: Successfully created new round with ID: 1098, Round ID: 1067
+2026-01-17 13:24:52 [info]: Starting flying phase for round 1067 targetCrash=1.53 duration=3060ms
+2026-01-17 13:25:24 [info]: Creating new round with ID: 1068
+2026-01-17 13:25:24 [info]: Scheduling flying phase in 9983ms for round 1068
+2026-01-17 13:25:24 [info]: Successfully created new round with ID: 1099, Round ID: 1068
+2026-01-17 13:25:34 [info]: Starting flying phase for round 1068 targetCrash=1.05 duration=2100ms
+2026-01-17 13:26:04 [info]: Creating new round with ID: 1069
+2026-01-17 13:26:04 [info]: Scheduling flying phase in 9997ms for round 1069
+2026-01-17 13:26:04 [info]: Successfully created new round with ID: 1100, Round ID: 1069
+2026-01-17 13:26:14 [info]: Starting flying phase for round 1069 targetCrash=1.17 duration=2340ms
+2026-01-17 13:26:45 [info]: Creating new round with ID: 1070
+2026-01-17 13:26:45 [info]: Scheduling flying phase in 9996ms for round 1070
+2026-01-17 13:26:45 [info]: Successfully created new round with ID: 1101, Round ID: 1070
+2026-01-17 13:26:55 [info]: Starting flying phase for round 1070 targetCrash=1.03 duration=2060ms
+2026-01-17 13:27:26 [info]: Creating new round with ID: 1071
+2026-01-17 13:27:26 [info]: Scheduling flying phase in 9983ms for round 1071
+2026-01-17 13:27:26 [info]: Successfully created new round with ID: 1102, Round ID: 1071
+2026-01-17 13:27:36 [info]: Starting flying phase for round 1071 targetCrash=1.39 duration=2780ms
+2026-01-17 13:28:07 [info]: Creating new round with ID: 1072
+2026-01-17 13:28:07 [info]: Scheduling flying phase in 9984ms for round 1072
+2026-01-17 13:28:07 [info]: Successfully created new round with ID: 1103, Round ID: 1072
+2026-01-17 13:28:17 [info]: Starting flying phase for round 1072 targetCrash=1.06 duration=2120ms
+2026-01-17 13:28:48 [info]: Creating new round with ID: 1073
+2026-01-17 13:28:48 [info]: Scheduling flying phase in 9997ms for round 1073
+2026-01-17 13:28:48 [info]: Successfully created new round with ID: 1104, Round ID: 1073
+2026-01-17 13:28:58 [info]: Starting flying phase for round 1073 targetCrash=1.01 duration=2020ms
+2026-01-17 13:29:28 [info]: Creating new round with ID: 1074
+2026-01-17 13:29:28 [info]: Scheduling flying phase in 9984ms for round 1074
+2026-01-17 13:29:28 [info]: Successfully created new round with ID: 1105, Round ID: 1074
+2026-01-17 13:29:38 [info]: Starting flying phase for round 1074 targetCrash=3.22 duration=6440ms
+2026-01-17 13:30:13 [info]: Creating new round with ID: 1075
+2026-01-17 13:30:13 [info]: Scheduling flying phase in 9985ms for round 1075
+2026-01-17 13:30:13 [info]: Successfully created new round with ID: 1106, Round ID: 1075
+2026-01-17 13:30:23 [info]: Starting flying phase for round 1075 targetCrash=1.01 duration=2020ms
+2026-01-17 13:30:53 [info]: Creating new round with ID: 1076
+2026-01-17 13:30:53 [info]: Scheduling flying phase in 9999ms for round 1076
+2026-01-17 13:30:53 [info]: Successfully created new round with ID: 1107, Round ID: 1076
+2026-01-17 13:31:03 [info]: Starting flying phase for round 1076 targetCrash=2.74 duration=5480ms
+2026-01-17 13:31:38 [info]: Creating new round with ID: 1077
+2026-01-17 13:31:38 [info]: Scheduling flying phase in 9996ms for round 1077
+2026-01-17 13:31:38 [info]: Successfully created new round with ID: 1108, Round ID: 1077
+2026-01-17 13:31:48 [info]: Starting flying phase for round 1077 targetCrash=6.14 duration=12280ms
+2026-01-17 13:32:26 [info]: Creating new round with ID: 1078
+2026-01-17 13:32:26 [info]: Scheduling flying phase in 9997ms for round 1078
+2026-01-17 13:32:26 [info]: Successfully created new round with ID: 1109, Round ID: 1078
+2026-01-17 13:32:36 [info]: Starting flying phase for round 1078 targetCrash=1.48 duration=2960ms
+2026-01-17 13:33:08 [info]: Creating new round with ID: 1079
+2026-01-17 13:33:08 [info]: Scheduling flying phase in 9998ms for round 1079
+2026-01-17 13:33:08 [info]: Successfully created new round with ID: 1110, Round ID: 1079
+2026-01-17 13:33:18 [info]: Starting flying phase for round 1079 targetCrash=1.99 duration=3980ms
+2026-01-17 13:33:51 [info]: Creating new round with ID: 1080
+2026-01-17 13:33:51 [info]: Scheduling flying phase in 9997ms for round 1080
+2026-01-17 13:33:51 [info]: Successfully created new round with ID: 1111, Round ID: 1080
+2026-01-17 13:34:01 [info]: Starting flying phase for round 1080 targetCrash=1.66 duration=3320ms
+2026-01-17 13:34:34 [info]: Creating new round with ID: 1081
+2026-01-17 13:34:34 [info]: Scheduling flying phase in 9997ms for round 1081
+2026-01-17 13:34:34 [info]: Successfully created new round with ID: 1112, Round ID: 1081
+2026-01-17 13:34:44 [info]: Starting flying phase for round 1081 targetCrash=1.96 duration=3920ms
+2026-01-17 13:35:16 [info]: Creating new round with ID: 1082
+2026-01-17 13:35:17 [info]: Scheduling flying phase in 9180ms for round 1082
+2026-01-17 13:35:17 [info]: Successfully created new round with ID: 1113, Round ID: 1082
+2026-01-17 13:35:26 [info]: Starting flying phase for round 1082 targetCrash=1.12 duration=2240ms
+2026-01-17 13:35:57 [info]: Creating new round with ID: 1083
+2026-01-17 13:35:57 [info]: Scheduling flying phase in 9996ms for round 1083
+2026-01-17 13:35:57 [info]: Successfully created new round with ID: 1114, Round ID: 1083
+2026-01-17 13:36:07 [info]: Starting flying phase for round 1083 targetCrash=1.22 duration=2440ms
+2026-01-17 13:36:38 [info]: Creating new round with ID: 1084
+2026-01-17 13:36:38 [info]: Scheduling flying phase in 9998ms for round 1084
+2026-01-17 13:36:38 [info]: Successfully created new round with ID: 1115, Round ID: 1084
+2026-01-17 13:36:48 [info]: Starting flying phase for round 1084 targetCrash=1.01 duration=2020ms
+2026-01-17 13:37:19 [info]: Creating new round with ID: 1085
+2026-01-17 13:37:19 [info]: Scheduling flying phase in 9983ms for round 1085
+2026-01-17 13:37:19 [info]: Successfully created new round with ID: 1116, Round ID: 1085
+2026-01-17 13:37:29 [info]: Starting flying phase for round 1085 targetCrash=8.52 duration=17040ms
+2026-01-17 13:38:10 [info]: Creating new round with ID: 1086
+2026-01-17 13:38:10 [info]: Scheduling flying phase in 9996ms for round 1086
+2026-01-17 13:38:10 [info]: Successfully created new round with ID: 1117, Round ID: 1086
+2026-01-17 13:38:20 [info]: Starting flying phase for round 1086 targetCrash=1.16 duration=2320ms
+2026-01-17 13:38:51 [info]: Creating new round with ID: 1087
+2026-01-17 13:38:51 [info]: Scheduling flying phase in 9996ms for round 1087
+2026-01-17 13:38:51 [info]: Successfully created new round with ID: 1118, Round ID: 1087
+2026-01-17 13:39:01 [info]: Starting flying phase for round 1087 targetCrash=1.99 duration=3980ms
+2026-01-17 13:39:34 [info]: Creating new round with ID: 1088
+2026-01-17 13:39:34 [info]: Scheduling flying phase in 9998ms for round 1088
+2026-01-17 13:39:34 [info]: Successfully created new round with ID: 1119, Round ID: 1088
+2026-01-17 13:39:44 [info]: Starting flying phase for round 1088 targetCrash=1.11 duration=2220ms
+2026-01-17 13:40:15 [info]: Creating new round with ID: 1089
+2026-01-17 13:40:15 [info]: Scheduling flying phase in 9919ms for round 1089
+2026-01-17 13:40:15 [info]: Successfully created new round with ID: 1120, Round ID: 1089
+2026-01-17 13:40:25 [info]: Starting flying phase for round 1089 targetCrash=6.33 duration=12660ms
+2026-01-17 13:41:04 [info]: Creating new round with ID: 1090
+2026-01-17 13:41:04 [info]: Scheduling flying phase in 9917ms for round 1090
+2026-01-17 13:41:04 [info]: Successfully created new round with ID: 1121, Round ID: 1090
+2026-01-17 13:41:14 [info]: Starting flying phase for round 1090 targetCrash=5.68 duration=11360ms
+2026-01-17 13:41:53 [info]: Creating new round with ID: 1091
+2026-01-17 13:41:53 [info]: Scheduling flying phase in 9967ms for round 1091
+2026-01-17 13:41:53 [info]: Successfully created new round with ID: 1122, Round ID: 1091
+2026-01-17 13:42:03 [info]: Starting flying phase for round 1091 targetCrash=6.68 duration=13360ms
+2026-01-17 13:42:42 [info]: Creating new round with ID: 1092
+2026-01-17 13:42:43 [info]: Scheduling flying phase in 9673ms for round 1092
+2026-01-17 13:42:43 [info]: Successfully created new round with ID: 1123, Round ID: 1092
+2026-01-17 13:42:52 [info]: Starting flying phase for round 1092 targetCrash=2.01 duration=4019.9999999999995ms
+2026-01-17 13:43:26 [info]: Creating new round with ID: 1093
+2026-01-17 13:43:26 [info]: Scheduling flying phase in 9916ms for round 1093
+2026-01-17 13:43:26 [info]: Successfully created new round with ID: 1124, Round ID: 1093
+2026-01-17 13:43:36 [info]: Starting flying phase for round 1093 targetCrash=4.9 duration=9800ms
+2026-01-17 13:44:13 [info]: Creating new round with ID: 1094
+2026-01-17 13:44:13 [info]: Scheduling flying phase in 9864ms for round 1094
+2026-01-17 13:44:13 [info]: Successfully created new round with ID: 1125, Round ID: 1094
+2026-01-17 13:44:13 [info]: A new round was already created, returning existing round
+2026-01-17 13:44:23 [info]: Starting flying phase for round 1094 targetCrash=1.46 duration=2920ms
+2026-01-17 13:44:55 [info]: Creating new round with ID: 1095
+2026-01-17 13:44:55 [info]: Scheduling flying phase in 9996ms for round 1095
+2026-01-17 13:44:55 [info]: Successfully created new round with ID: 1126, Round ID: 1095
+2026-01-17 13:45:05 [info]: Starting flying phase for round 1095 targetCrash=2.17 duration=4340ms
+2026-01-17 13:45:39 [info]: Creating new round with ID: 1096
+2026-01-17 13:45:39 [info]: Scheduling flying phase in 9996ms for round 1096
+2026-01-17 13:45:39 [info]: Successfully created new round with ID: 1127, Round ID: 1096
+2026-01-17 13:45:49 [info]: Starting flying phase for round 1096 targetCrash=1.69 duration=3380ms
+2026-01-17 13:46:22 [info]: Creating new round with ID: 1097
+2026-01-17 13:46:22 [info]: Scheduling flying phase in 9928ms for round 1097
+2026-01-17 13:46:22 [info]: Successfully created new round with ID: 1128, Round ID: 1097
+2026-01-17 13:46:32 [info]: Starting flying phase for round 1097 targetCrash=3.41 duration=6820ms
+2026-01-17 13:47:08 [info]: Creating new round with ID: 1098
+2026-01-17 13:47:08 [info]: Scheduling flying phase in 9996ms for round 1098
+2026-01-17 13:47:08 [info]: Successfully created new round with ID: 1129, Round ID: 1098
+2026-01-17 13:47:18 [info]: Starting flying phase for round 1098 targetCrash=2.79 duration=5580ms
+2026-01-17 13:47:53 [info]: Creating new round with ID: 1099
+2026-01-17 13:47:53 [info]: Scheduling flying phase in 9918ms for round 1099
+2026-01-17 13:47:53 [info]: Successfully created new round with ID: 1130, Round ID: 1099
+2026-01-17 13:47:53 [info]: A new round was already created, returning existing round
+2026-01-17 13:48:03 [info]: Starting flying phase for round 1099 targetCrash=1.05 duration=2100ms
+2026-01-17 13:48:34 [info]: Creating new round with ID: 1100
+2026-01-17 13:48:34 [info]: Scheduling flying phase in 9917ms for round 1100
+2026-01-17 13:48:34 [info]: Successfully created new round with ID: 1131, Round ID: 1100
+2026-01-17 13:48:44 [info]: Starting flying phase for round 1100 targetCrash=1.03 duration=2060ms
+2026-01-17 13:49:14 [info]: Creating new round with ID: 1101
+2026-01-17 13:49:14 [info]: Scheduling flying phase in 9997ms for round 1101
+2026-01-17 13:49:14 [info]: Successfully created new round with ID: 1132, Round ID: 1101
+2026-01-17 13:49:14 [info]: A new round was already created, returning existing round
+2026-01-17 13:49:24 [info]: Starting flying phase for round 1101 targetCrash=1.77 duration=3540ms
+2026-01-17 13:49:57 [info]: Creating new round with ID: 1102
+2026-01-17 13:49:57 [info]: Scheduling flying phase in 9996ms for round 1102
+2026-01-17 13:49:57 [info]: Successfully created new round with ID: 1133, Round ID: 1102
+2026-01-17 13:50:07 [info]: Starting flying phase for round 1102 targetCrash=2.54 duration=5080ms
+2026-01-17 13:50:41 [info]: Creating new round with ID: 1103
+2026-01-17 13:50:41 [info]: Scheduling flying phase in 9998ms for round 1103
+2026-01-17 13:50:41 [info]: Successfully created new round with ID: 1134, Round ID: 1103
+2026-01-17 13:50:52 [info]: Starting flying phase for round 1103 targetCrash=2.89 duration=5780ms
+2026-01-17 13:51:26 [info]: Creating new round with ID: 1104
+2026-01-17 13:51:26 [info]: Scheduling flying phase in 9983ms for round 1104
+2026-01-17 13:51:26 [info]: Successfully created new round with ID: 1135, Round ID: 1104
+2026-01-17 13:51:36 [info]: Starting flying phase for round 1104 targetCrash=9.16 duration=18320ms
+2026-01-17 13:52:18 [info]: Creating new round with ID: 1105
+2026-01-17 13:52:18 [info]: Scheduling flying phase in 9983ms for round 1105
+2026-01-17 13:52:18 [info]: Successfully created new round with ID: 1136, Round ID: 1105
+2026-01-17 13:52:28 [info]: Starting flying phase for round 1105 targetCrash=2 duration=4000ms
+2026-01-17 13:53:01 [info]: Creating new round with ID: 1106
+2026-01-17 13:53:01 [info]: Scheduling flying phase in 9996ms for round 1106
+2026-01-17 13:53:01 [info]: Successfully created new round with ID: 1137, Round ID: 1106
+2026-01-17 13:53:11 [info]: Starting flying phase for round 1106 targetCrash=1.54 duration=3080ms
+2026-01-17 13:53:43 [info]: Creating new round with ID: 1107
+2026-01-17 13:53:43 [info]: Scheduling flying phase in 9984ms for round 1107
+2026-01-17 13:53:43 [info]: Successfully created new round with ID: 1138, Round ID: 1107
+2026-01-17 13:53:53 [info]: Starting flying phase for round 1107 targetCrash=2.99 duration=5980ms
+2026-01-17 13:54:28 [info]: Creating new round with ID: 1108
+2026-01-17 13:54:28 [info]: Scheduling flying phase in 9998ms for round 1108
+2026-01-17 13:54:28 [info]: Successfully created new round with ID: 1139, Round ID: 1108
+2026-01-17 13:54:38 [info]: Starting flying phase for round 1108 targetCrash=12.01 duration=20000ms
+2026-01-17 13:55:23 [info]: Creating new round with ID: 1109
+2026-01-17 13:55:23 [info]: Scheduling flying phase in 9996ms for round 1109
+2026-01-17 13:55:23 [info]: Successfully created new round with ID: 1140, Round ID: 1109
+2026-01-17 13:55:33 [info]: Starting flying phase for round 1109 targetCrash=1.03 duration=2060ms
+2026-01-17 13:56:03 [info]: Creating new round with ID: 1110
+2026-01-17 13:56:03 [info]: Scheduling flying phase in 9980ms for round 1110
+2026-01-17 13:56:03 [info]: Successfully created new round with ID: 1141, Round ID: 1110
+2026-01-17 13:56:13 [info]: Starting flying phase for round 1110 targetCrash=1.17 duration=2340ms
+2026-01-17 13:56:44 [info]: Creating new round with ID: 1111
+2026-01-17 13:56:44 [info]: Scheduling flying phase in 9984ms for round 1111
+2026-01-17 13:56:44 [info]: Successfully created new round with ID: 1142, Round ID: 1111
+2026-01-17 13:56:54 [info]: Starting flying phase for round 1111 targetCrash=1.26 duration=2520ms
+2026-01-17 13:57:25 [info]: Creating new round with ID: 1112
+2026-01-17 13:57:25 [info]: Scheduling flying phase in 9984ms for round 1112
+2026-01-17 13:57:25 [info]: Successfully created new round with ID: 1143, Round ID: 1112
+2026-01-17 13:57:35 [info]: Starting flying phase for round 1112 targetCrash=6.55 duration=13100ms
+2026-01-17 13:58:14 [info]: Creating new round with ID: 1113
+2026-01-17 13:58:14 [info]: Scheduling flying phase in 9996ms for round 1113
+2026-01-17 13:58:14 [info]: Successfully created new round with ID: 1144, Round ID: 1113
+2026-01-17 13:58:24 [info]: Starting flying phase for round 1113 targetCrash=2.85 duration=5700ms
+2026-01-17 13:58:59 [info]: Creating new round with ID: 1114
+2026-01-17 13:58:59 [info]: Scheduling flying phase in 9983ms for round 1114
+2026-01-17 13:58:59 [info]: Successfully created new round with ID: 1145, Round ID: 1114
+2026-01-17 13:59:09 [info]: Starting flying phase for round 1114 targetCrash=1.64 duration=3280ms
+2026-01-17 13:59:41 [info]: Creating new round with ID: 1115
+2026-01-17 13:59:41 [info]: Scheduling flying phase in 9983ms for round 1115
+2026-01-17 13:59:41 [info]: Successfully created new round with ID: 1146, Round ID: 1115
+2026-01-17 13:59:51 [info]: Starting flying phase for round 1115 targetCrash=1.55 duration=3100ms
+2026-01-17 14:00:23 [info]: Creating new round with ID: 1116
+2026-01-17 14:00:23 [info]: Scheduling flying phase in 9985ms for round 1116
+2026-01-17 14:00:23 [info]: Successfully created new round with ID: 1147, Round ID: 1116
+2026-01-17 14:00:33 [info]: Starting flying phase for round 1116 targetCrash=3.13 duration=6260ms
+2026-01-17 14:01:08 [info]: Creating new round with ID: 1117
+2026-01-17 14:01:08 [info]: Scheduling flying phase in 9996ms for round 1117
+2026-01-17 14:01:08 [info]: Successfully created new round with ID: 1148, Round ID: 1117
+2026-01-17 14:01:18 [info]: Starting flying phase for round 1117 targetCrash=3.05 duration=6100ms
+2026-01-17 14:01:53 [info]: Creating new round with ID: 1118
+2026-01-17 14:01:53 [info]: Scheduling flying phase in 9990ms for round 1118
+2026-01-17 14:01:53 [info]: Successfully created new round with ID: 1149, Round ID: 1118
+2026-01-17 14:02:03 [info]: Starting flying phase for round 1118 targetCrash=1.23 duration=2460ms
+2026-01-17 14:02:34 [info]: Creating new round with ID: 1119
+2026-01-17 14:02:34 [info]: Scheduling flying phase in 9996ms for round 1119
+2026-01-17 14:02:34 [info]: Successfully created new round with ID: 1150, Round ID: 1119
+2026-01-17 14:02:44 [info]: Starting flying phase for round 1119 targetCrash=2.51 duration=5020ms
+2026-01-17 14:03:18 [info]: Creating new round with ID: 1120
+2026-01-17 14:03:18 [info]: Scheduling flying phase in 9983ms for round 1120
+2026-01-17 14:03:18 [info]: Successfully created new round with ID: 1151, Round ID: 1120
+2026-01-17 14:03:18 [info]: A new round was already created, returning existing round
+2026-01-17 14:03:28 [info]: Starting flying phase for round 1120 targetCrash=2.68 duration=5360ms
+2026-01-17 14:04:02 [info]: Creating new round with ID: 1121
+2026-01-17 14:04:02 [info]: Scheduling flying phase in 9984ms for round 1121
+2026-01-17 14:04:02 [info]: Successfully created new round with ID: 1152, Round ID: 1121
+2026-01-17 14:04:12 [info]: Starting flying phase for round 1121 targetCrash=9.19 duration=18380ms
+2026-01-17 14:04:54 [info]: Creating new round with ID: 1122
+2026-01-17 14:04:54 [info]: Scheduling flying phase in 9984ms for round 1122
+2026-01-17 14:04:54 [info]: Successfully created new round with ID: 1153, Round ID: 1122
+2026-01-17 14:05:04 [info]: Starting flying phase for round 1122 targetCrash=2.3 duration=4600ms
+2026-01-17 14:05:38 [info]: Creating new round with ID: 1123
+2026-01-17 14:05:38 [info]: Scheduling flying phase in 9985ms for round 1123
+2026-01-17 14:05:38 [info]: Successfully created new round with ID: 1154, Round ID: 1123
+2026-01-17 14:05:48 [info]: Starting flying phase for round 1123 targetCrash=1.14 duration=2280ms
+2026-01-17 14:06:19 [info]: Creating new round with ID: 1124
+2026-01-17 14:06:19 [info]: Scheduling flying phase in 9998ms for round 1124
+2026-01-17 14:06:19 [info]: Successfully created new round with ID: 1155, Round ID: 1124
+2026-01-17 14:06:29 [info]: Starting flying phase for round 1124 targetCrash=2.13 duration=4260ms
+2026-01-17 14:07:02 [info]: Creating new round with ID: 1125
+2026-01-17 14:07:02 [info]: Scheduling flying phase in 9998ms for round 1125
+2026-01-17 14:07:02 [info]: Successfully created new round with ID: 1156, Round ID: 1125
+2026-01-17 14:07:12 [info]: Starting flying phase for round 1125 targetCrash=3.99 duration=7980ms
+2026-01-17 14:07:48 [info]: Creating new round with ID: 1126
+2026-01-17 14:07:48 [info]: Scheduling flying phase in 9984ms for round 1126
+2026-01-17 14:07:48 [info]: Successfully created new round with ID: 1157, Round ID: 1126
+2026-01-17 14:07:58 [info]: Starting flying phase for round 1126 targetCrash=1.17 duration=2340ms
+2026-01-17 14:08:29 [info]: Creating new round with ID: 1127
+2026-01-17 14:08:29 [info]: Scheduling flying phase in 9997ms for round 1127
+2026-01-17 14:08:29 [info]: Successfully created new round with ID: 1158, Round ID: 1127
+2026-01-17 14:08:39 [info]: Starting flying phase for round 1127 targetCrash=1.31 duration=2620ms
+2026-01-17 14:09:11 [info]: Creating new round with ID: 1128
+2026-01-17 14:09:11 [info]: Scheduling flying phase in 9995ms for round 1128
+2026-01-17 14:09:11 [info]: Successfully created new round with ID: 1159, Round ID: 1128
+2026-01-17 14:09:21 [info]: Starting flying phase for round 1128 targetCrash=7.52 duration=15040ms
+2026-01-17 14:10:01 [info]: Creating new round with ID: 1129
+2026-01-17 14:10:01 [info]: Scheduling flying phase in 9984ms for round 1129
+2026-01-17 14:10:01 [info]: Successfully created new round with ID: 1160, Round ID: 1129
+2026-01-17 14:10:11 [info]: Starting flying phase for round 1129 targetCrash=1.18 duration=2360ms
+2026-01-17 14:10:42 [info]: Creating new round with ID: 1130
+2026-01-17 14:10:42 [info]: Scheduling flying phase in 9985ms for round 1130
+2026-01-17 14:10:42 [info]: Successfully created new round with ID: 1161, Round ID: 1130
+2026-01-17 14:10:52 [info]: Starting flying phase for round 1130 targetCrash=9.75 duration=19500ms
+2026-01-17 14:11:34 [info]: Creating new round with ID: 1131
+2026-01-17 14:11:34 [info]: Scheduling flying phase in 9996ms for round 1131
+2026-01-17 14:11:34 [info]: Successfully created new round with ID: 1162, Round ID: 1131
+2026-01-17 14:11:44 [info]: Starting flying phase for round 1131 targetCrash=1.01 duration=2020ms
+2026-01-17 14:12:15 [info]: Creating new round with ID: 1132
+2026-01-17 14:12:15 [info]: Scheduling flying phase in 9996ms for round 1132
+2026-01-17 14:12:15 [info]: Successfully created new round with ID: 1163, Round ID: 1132
+2026-01-17 14:12:25 [info]: Starting flying phase for round 1132 targetCrash=1.44 duration=2880ms
+2026-01-17 14:12:56 [info]: Creating new round with ID: 1133
+2026-01-17 14:12:56 [info]: Scheduling flying phase in 9996ms for round 1133
+2026-01-17 14:12:56 [info]: Successfully created new round with ID: 1164, Round ID: 1133
+2026-01-17 14:13:06 [info]: Starting flying phase for round 1133 targetCrash=3.76 duration=7520ms

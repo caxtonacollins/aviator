@@ -156,5 +156,3 @@ Countdown     Pay out USDC       Next round
 MIT
 
 ---
-
-**Status:** Active Development | **Last Updated:** January 2026

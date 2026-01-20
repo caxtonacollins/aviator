@@ -7,7 +7,7 @@ import useUSDC from "@/hooks/useUSDC";
 
 const BetControls: React.FC = () => {
   const { roundData, placeBet, cashOut } = useGameContext();
-  const { walletBalance, walletAddress } = useUSDC();
+  const { walletBalance, walletAddress, refreshBalance } = useUSDC();
   const [betAmount, setBetAmount] = useState("1");
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
@@ -34,6 +34,7 @@ const BetControls: React.FC = () => {
     setError(null);
     try {
       const res = await placeBet(walletAddress, parseFloat(betAmount));
+      await refreshBalance();
       if (res?.success) {
         setTxHash(res.txHash || null);
         setBetAmount("1"); // Reset after successful bet

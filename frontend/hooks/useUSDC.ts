@@ -1,36 +1,109 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useWalletClient, usePublicClient } from 'wagmi';
 import { parseUnits } from 'viem';
-import { useProfile } from '@farcaster/auth-kit';
 import { useAccount } from 'wagmi';
+import { setOnchainKitConfig } from '@coinbase/onchainkit';
+import { APIError, getPortfolios } from '@coinbase/onchainkit/api';
+import ERC20_ABI from '@/abis/usdc.json';
 
-const ERC20_ABI = [
-  { name: 'transfer', type: 'function', stateMutability: 'nonpayable', inputs: [{ name: 'to', type: 'address' }, { name: 'amount', type: 'uint256' }], outputs: [{ name: '', type: 'bool' }] },
-  { name: 'balanceOf', type: 'function', stateMutability: 'view', inputs: [{ name: 'owner', type: 'address' }], outputs: [{ name: '', type: 'uint256' }] },
-];
+interface TokenBalance {
+  address: string;
+  chainId: number;
+  decimals: number;
+  name: string;
+  symbol: string;
+  cryptoBalance: string;
+  fiatBalance: string;
+  image?: string;
+}
+
+interface Portfolio {
+  address: string;
+  tokenBalances: TokenBalance[];
+  portfolioBalanceInUsd: string;
+}
+
+interface PortfolioResponse {
+  portfolios: Portfolio[];
+}
 
 export default function useUSDC() {
   const { data: walletClient } = useWalletClient();
-  const { address, isConnected } = useAccount();
+  const { address } = useAccount();
   const publicClient = usePublicClient();
   const [balance, setBalance] = useState<number | null>(null);
   const usdcAddress = (process.env.NEXT_PUBLIC_USDC_ADDRESS || '') as `0x${string}`;
-  const houseAddress = process.env.NEXT_PUBLIC_HOUSE_ADDRESS as `0x${string}` | undefined;
-  const decimals = 6; // USDC typically uses 6 decimals
+  const houseAddress = process.env.NEXT_PUBLIC_GAME_CONTRACT_ADDRESS as `0x${string}` | undefined;
+  const decimals = 6;
+  setOnchainKitConfig({ apiKey: process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY || '' });
+
+
+  // Approve USDC spending for a specific contract
+  const approveUSDC = useCallback(async (spender: string, amount: number) => {
+    if (!walletClient?.account?.address || !publicClient) {
+      throw new Error('Wallet not connected');
+    }
+
+    try {
+      const amountInWei = parseUnits(amount.toString(), decimals);
+
+      const { request } = await publicClient.simulateContract({
+        address: usdcAddress,
+        abi: ERC20_ABI,
+        functionName: 'approve',
+        args: [spender, amountInWei],
+        account: walletClient.account.address,
+      });
+
+      const hash = await walletClient.writeContract(request);
+      await publicClient.waitForTransactionReceipt({ hash });
+      return hash;
+    } catch (error) {
+      console.error('Error approving USDC:', error);
+      throw error;
+    }
+  }, [walletClient, publicClient, usdcAddress, decimals]);
+
+  const checkAllowance = useCallback(async (owner: string, spender: string) => {
+    if (!publicClient) return 0;
+
+    try {
+      const allowance = await publicClient.readContract({
+        address: usdcAddress,
+        abi: ERC20_ABI,
+        functionName: 'allowance',
+        args: [owner, spender],
+      });
+
+      return Number(allowance) / (10 ** decimals);
+    } catch (error) {
+      console.error('Error checking allowance:', error);
+      return 0;
+    }
+  }, [publicClient, usdcAddress, decimals]);
 
   const fetchBalance = useCallback(async () => {
     if (!walletClient?.account?.address || !publicClient) return null;
     try {
-      const balance = await (publicClient as any).readContract({
-        address: usdcAddress,
-        abi: ERC20_ABI as any,
-        functionName: 'balanceOf',
-        args: [walletClient.account.address as `0x${string}`],
+      const response = await getPortfolios({
+        addresses: [walletClient.account.address],
       });
-      console.log("balance", balance);
-      return Number(balance) / (10 ** decimals);
+
+      if ('error' in response) {
+        console.error('Error fetching portfolio:', response.error);
+        return 0;
+      }
+      const portfolioData = response as unknown as PortfolioResponse;
+
+      const usdcToken = portfolioData.portfolios[0]?.tokenBalances?.find(
+        (token) => token.symbol === 'USDC' && token.chainId === 8453
+      );
+
+      if (!usdcToken) return 0;
+
+      return parseFloat(usdcToken.fiatBalance);
     } catch (error) {
-      console.error('Error fetching balance:', error);
+      console.error('Error fetching USDC balance:', error);
       return null;
     }
   }, [walletClient?.account?.address, publicClient, usdcAddress, decimals]);
@@ -49,14 +122,14 @@ export default function useUSDC() {
       if (!walletClient) throw new Error('No wallet client available');
       if (!usdcAddress) throw new Error('USDC token address not configured');
       const value = parseUnits(String(amount), decimals);
-      
+
       const hash = await (walletClient as any).writeContract({
         address: usdcAddress,
         abi: ERC20_ABI as any,
-        functionName: 'transfer',
-        args: [to as `0x${string}`, value],
+        functionName: 'placeBet',
+        args: [amount],
       });
-      
+
       try {
         if (publicClient && (publicClient as any).waitForTransactionReceipt) {
           await (publicClient as any).waitForTransactionReceipt({ hash });
@@ -72,14 +145,15 @@ export default function useUSDC() {
     [walletClient, publicClient, usdcAddress, decimals, fetchBalance]
   );
 
-  const walletAddress = address;
-
   return {
+    walletBalance: balance,
+    walletAddress: address,
+    refreshBalance: fetchBalance,
+    approveUSDC,
+    checkAllowance,
     usdcAddress,
     houseAddress,
     transferUSDC,
-    walletBalance: balance,
-    refreshBalance: fetchBalance,
-    walletAddress,
+    decimals,
   };
 }

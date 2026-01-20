@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import {Test, StdCheats} from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 import {AviatorGame} from "../src/AviatorGame.sol";
 import {ERC20Mock} from "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -300,18 +300,18 @@ contract AviatorGameTest is Test {
 
         // The live currentRound struct reflects in-memory updates. Assert against the public currentRound getter.
         (
-            uint256 idCR,
-            AviatorGame.GamePhase phaseCR,
-            uint256 startTimeCR,
-            uint256 flyStartTimeCR,
-            uint256 crashMultiplierCR,
-            bytes32 seedCR,
-            uint256 tbCR,
-            uint256 tpCR,
-            bool settledCR
+            uint256 idCr,
+            AviatorGame.GamePhase phaseCr,
+            uint256 startTimeCr,
+            uint256 flyStartTimeCr,
+            uint256 crashMultiplierCr,
+            bytes32 seedCr,
+            uint256 tbCr,
+            uint256 tpCr,
+            bool settledCr
         ) = aviator.currentRound();
-        assertEq(tbCR, BET_AMOUNT * 2);
-        assertEq(tpCR, 0);
-        assertEq(settledCR, false);
+        assertEq(tbCr, BET_AMOUNT * 2);
+        assertEq(tpCr, 0);
+        assertEq(settledCr, false);
     }
 }

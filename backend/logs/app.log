@@ -4284,3 +4284,1005 @@
 2026-01-20 20:05:39 [info]: Creating new round with ID: 1541
 2026-01-20 20:05:39 [info]: Scheduling flying phase in 9993ms for round 1541
 2026-01-20 20:05:39 [info]: Successfully created new round with ID: 1573, Round ID: 1541
+2026-01-20 20:05:49 [info]: Starting flying phase for round 1541 targetCrash=11.51 duration=20000ms
+2026-01-20 20:06:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:06:13 [info]: Creating new round with ID: 1542
+2026-01-20 20:06:13 [info]: Scheduling flying phase in 9997ms for round 1542
+2026-01-20 20:06:13 [info]: Successfully created new round with ID: 1574, Round ID: 1542
+2026-01-20 20:06:23 [info]: Starting flying phase for round 1542 targetCrash=2.09 duration=4180ms
+2026-01-20 20:06:27 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:06:37 [info]: Creating new round with ID: 1543
+2026-01-20 20:06:37 [info]: Scheduling flying phase in 9993ms for round 1543
+2026-01-20 20:06:37 [info]: Successfully created new round with ID: 1575, Round ID: 1543
+2026-01-20 20:06:47 [info]: Starting flying phase for round 1543 targetCrash=3.36 duration=6720ms
+2026-01-20 20:06:52 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:07:02 [info]: Creating new round with ID: 1544
+2026-01-20 20:07:02 [info]: Scheduling flying phase in 9981ms for round 1544
+2026-01-20 20:07:02 [info]: Successfully created new round with ID: 1576, Round ID: 1544
+2026-01-20 20:07:12 [info]: Starting flying phase for round 1544 targetCrash=6.1 duration=12200ms
+2026-01-20 20:07:21 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:07:31 [info]: Creating new round with ID: 1545
+2026-01-20 20:07:31 [info]: Scheduling flying phase in 9994ms for round 1545
+2026-01-20 20:07:31 [info]: Successfully created new round with ID: 1577, Round ID: 1545
+2026-01-20 20:07:41 [info]: Starting flying phase for round 1545 targetCrash=2.49 duration=4980ms
+2026-01-20 20:07:44 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:07:54 [info]: Creating new round with ID: 1546
+2026-01-20 20:07:54 [info]: Scheduling flying phase in 9997ms for round 1546
+2026-01-20 20:07:54 [info]: Successfully created new round with ID: 1578, Round ID: 1546
+2026-01-20 20:08:04 [info]: Starting flying phase for round 1546 targetCrash=1.61 duration=3220ms
+2026-01-20 20:08:07 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:08:17 [info]: Creating new round with ID: 1547
+2026-01-20 20:08:17 [info]: Scheduling flying phase in 9992ms for round 1547
+2026-01-20 20:08:17 [info]: Successfully created new round with ID: 1579, Round ID: 1547
+2026-01-20 20:08:27 [info]: Starting flying phase for round 1547 targetCrash=1.01 duration=2020ms
+2026-01-20 20:08:27 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:08:37 [info]: Creating new round with ID: 1548
+2026-01-20 20:08:37 [info]: Scheduling flying phase in 9998ms for round 1548
+2026-01-20 20:08:37 [info]: Successfully created new round with ID: 1580, Round ID: 1548
+2026-01-20 20:08:47 [info]: Starting flying phase for round 1548 targetCrash=1.95 duration=3900ms
+2026-01-20 20:08:50 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:09:00 [info]: Creating new round with ID: 1549
+2026-01-20 20:09:00 [info]: Scheduling flying phase in 9994ms for round 1549
+2026-01-20 20:09:00 [info]: Successfully created new round with ID: 1581, Round ID: 1549
+2026-01-20 20:09:10 [info]: Starting flying phase for round 1549 targetCrash=1.46 duration=2920ms
+2026-01-20 20:09:12 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:09:22 [info]: Creating new round with ID: 1550
+2026-01-20 20:09:22 [info]: Scheduling flying phase in 9996ms for round 1550
+2026-01-20 20:09:22 [info]: Successfully created new round with ID: 1582, Round ID: 1550
+2026-01-20 20:09:32 [info]: Starting flying phase for round 1550 targetCrash=1.58 duration=3160ms
+2026-01-20 20:09:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:09:44 [info]: Creating new round with ID: 1551
+2026-01-20 20:09:44 [info]: Scheduling flying phase in 9992ms for round 1551
+2026-01-20 20:09:44 [info]: Successfully created new round with ID: 1583, Round ID: 1551
+2026-01-20 20:09:54 [info]: Starting flying phase for round 1551 targetCrash=2.41 duration=4820ms
+2026-01-20 20:09:58 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:10:08 [info]: Creating new round with ID: 1552
+2026-01-20 20:10:08 [info]: Scheduling flying phase in 9997ms for round 1552
+2026-01-20 20:10:08 [info]: Successfully created new round with ID: 1584, Round ID: 1552
+2026-01-20 20:10:18 [info]: Starting flying phase for round 1552 targetCrash=4.28 duration=8560ms
+2026-01-20 20:10:25 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:10:35 [info]: Creating new round with ID: 1553
+2026-01-20 20:10:35 [info]: Scheduling flying phase in 9993ms for round 1553
+2026-01-20 20:10:35 [info]: Successfully created new round with ID: 1585, Round ID: 1553
+2026-01-20 20:10:45 [info]: Starting flying phase for round 1553 targetCrash=1.86 duration=3720ms
+2026-01-20 20:10:47 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:10:57 [info]: Creating new round with ID: 1554
+2026-01-20 20:10:57 [info]: Scheduling flying phase in 9983ms for round 1554
+2026-01-20 20:10:57 [info]: Successfully created new round with ID: 1586, Round ID: 1554
+2026-01-20 20:11:07 [info]: Starting flying phase for round 1554 targetCrash=3.25 duration=6500ms
+2026-01-20 20:11:12 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:11:22 [info]: Creating new round with ID: 1555
+2026-01-20 20:11:22 [info]: Scheduling flying phase in 9992ms for round 1555
+2026-01-20 20:11:22 [info]: Successfully created new round with ID: 1587, Round ID: 1555
+2026-01-20 20:11:32 [info]: Starting flying phase for round 1555 targetCrash=1.42 duration=2840ms
+2026-01-20 20:11:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:11:44 [info]: Creating new round with ID: 1556
+2026-01-20 20:11:44 [info]: Scheduling flying phase in 9998ms for round 1556
+2026-01-20 20:11:44 [info]: Successfully created new round with ID: 1588, Round ID: 1556
+2026-01-20 20:11:54 [info]: Starting flying phase for round 1556 targetCrash=3.36 duration=6720ms
+2026-01-20 20:12:01 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:12:11 [info]: Creating new round with ID: 1557
+2026-01-20 20:12:11 [info]: Scheduling flying phase in 9998ms for round 1557
+2026-01-20 20:12:11 [info]: Successfully created new round with ID: 1589, Round ID: 1557
+2026-01-20 20:12:21 [info]: Starting flying phase for round 1557 targetCrash=2.36 duration=4720ms
+2026-01-20 20:12:24 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:12:34 [info]: Creating new round with ID: 1558
+2026-01-20 20:12:34 [info]: Scheduling flying phase in 9991ms for round 1558
+2026-01-20 20:12:34 [info]: Successfully created new round with ID: 1590, Round ID: 1558
+2026-01-20 20:12:44 [info]: Starting flying phase for round 1558 targetCrash=1.62 duration=3240ms
+2026-01-20 20:12:46 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:12:56 [info]: Creating new round with ID: 1559
+2026-01-20 20:12:56 [info]: Scheduling flying phase in 9994ms for round 1559
+2026-01-20 20:12:56 [info]: Successfully created new round with ID: 1591, Round ID: 1559
+2026-01-20 20:13:06 [info]: Starting flying phase for round 1559 targetCrash=1.9 duration=3800ms
+2026-01-20 20:13:09 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:13:19 [info]: Creating new round with ID: 1560
+2026-01-20 20:13:19 [info]: Scheduling flying phase in 9998ms for round 1560
+2026-01-20 20:13:19 [info]: Successfully created new round with ID: 1592, Round ID: 1560
+2026-01-20 20:13:29 [info]: Starting flying phase for round 1560 targetCrash=4.12 duration=8240ms
+2026-01-20 20:13:36 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:13:46 [info]: Creating new round with ID: 1561
+2026-01-20 20:13:47 [info]: Scheduling flying phase in 8971ms for round 1561
+2026-01-20 20:13:47 [info]: Successfully created new round with ID: 1593, Round ID: 1561
+2026-01-20 20:13:56 [info]: Starting flying phase for round 1561 targetCrash=1.95 duration=3900ms
+2026-01-20 20:13:58 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:14:08 [info]: Creating new round with ID: 1562
+2026-01-20 20:14:08 [info]: Scheduling flying phase in 9993ms for round 1562
+2026-01-20 20:14:08 [info]: Successfully created new round with ID: 1594, Round ID: 1562
+2026-01-20 20:14:18 [info]: Starting flying phase for round 1562 targetCrash=1.05 duration=2100ms
+2026-01-20 20:14:19 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:14:29 [info]: Creating new round with ID: 1563
+2026-01-20 20:14:29 [info]: Scheduling flying phase in 9996ms for round 1563
+2026-01-20 20:14:29 [info]: Successfully created new round with ID: 1595, Round ID: 1563
+2026-01-20 20:14:39 [info]: Starting flying phase for round 1563 targetCrash=2.71 duration=5420ms
+2026-01-20 20:14:43 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:14:53 [info]: Creating new round with ID: 1564
+2026-01-20 20:14:53 [info]: Scheduling flying phase in 9979ms for round 1564
+2026-01-20 20:14:53 [info]: Successfully created new round with ID: 1596, Round ID: 1564
+2026-01-20 20:15:03 [info]: Starting flying phase for round 1564 targetCrash=10.56 duration=20000ms
+2026-01-20 20:15:16 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:15:26 [info]: Creating new round with ID: 1565
+2026-01-20 20:15:26 [info]: Scheduling flying phase in 9998ms for round 1565
+2026-01-20 20:15:26 [info]: Successfully created new round with ID: 1597, Round ID: 1565
+2026-01-20 20:15:36 [info]: Starting flying phase for round 1565 targetCrash=2.26 duration=4520ms
+2026-01-20 20:15:40 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:15:50 [info]: Creating new round with ID: 1566
+2026-01-20 20:15:50 [info]: Scheduling flying phase in 9916ms for round 1566
+2026-01-20 20:15:50 [info]: Successfully created new round with ID: 1598, Round ID: 1566
+2026-01-20 20:16:00 [info]: Starting flying phase for round 1566 targetCrash=1.31 duration=2620ms
+2026-01-20 20:16:02 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:16:12 [info]: Creating new round with ID: 1567
+2026-01-20 20:16:12 [info]: Scheduling flying phase in 9988ms for round 1567
+2026-01-20 20:16:12 [info]: Successfully created new round with ID: 1599, Round ID: 1567
+2026-01-20 20:16:22 [info]: Starting flying phase for round 1567 targetCrash=1.92 duration=3840ms
+2026-01-20 20:16:24 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:16:34 [info]: Creating new round with ID: 1568
+2026-01-20 20:16:34 [info]: Scheduling flying phase in 9993ms for round 1568
+2026-01-20 20:16:34 [info]: Successfully created new round with ID: 1600, Round ID: 1568
+2026-01-20 20:16:44 [info]: Starting flying phase for round 1568 targetCrash=7.11 duration=14220ms
+2026-01-20 20:16:54 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:17:04 [info]: Creating new round with ID: 1569
+2026-01-20 20:17:04 [info]: Scheduling flying phase in 9981ms for round 1569
+2026-01-20 20:17:04 [info]: Successfully created new round with ID: 1601, Round ID: 1569
+2026-01-20 20:17:14 [info]: Starting flying phase for round 1569 targetCrash=1.73 duration=3460ms
+2026-01-20 20:17:17 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:17:27 [info]: Creating new round with ID: 1570
+2026-01-20 20:17:27 [info]: Scheduling flying phase in 9993ms for round 1570
+2026-01-20 20:17:27 [info]: Successfully created new round with ID: 1602, Round ID: 1570
+2026-01-20 20:17:37 [info]: Starting flying phase for round 1570 targetCrash=4.36 duration=8720ms
+2026-01-20 20:17:43 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:17:53 [info]: Creating new round with ID: 1571
+2026-01-20 20:17:53 [info]: Scheduling flying phase in 9993ms for round 1571
+2026-01-20 20:17:53 [info]: Successfully created new round with ID: 1603, Round ID: 1571
+2026-01-20 20:18:03 [info]: Starting flying phase for round 1571 targetCrash=1.62 duration=3240ms
+2026-01-20 20:18:06 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:18:16 [info]: Creating new round with ID: 1572
+2026-01-20 20:18:16 [info]: Scheduling flying phase in 9996ms for round 1572
+2026-01-20 20:18:16 [info]: Successfully created new round with ID: 1604, Round ID: 1572
+2026-01-20 20:18:26 [info]: Starting flying phase for round 1572 targetCrash=1.02 duration=2040ms
+2026-01-20 20:18:26 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:18:36 [info]: Creating new round with ID: 1573
+2026-01-20 20:18:36 [info]: Scheduling flying phase in 9995ms for round 1573
+2026-01-20 20:18:36 [info]: Successfully created new round with ID: 1605, Round ID: 1573
+2026-01-20 20:18:46 [info]: Starting flying phase for round 1573 targetCrash=1.07 duration=2140ms
+2026-01-20 20:18:47 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:18:57 [info]: Creating new round with ID: 1574
+2026-01-20 20:18:57 [info]: Scheduling flying phase in 9992ms for round 1574
+2026-01-20 20:18:57 [info]: Successfully created new round with ID: 1606, Round ID: 1574
+2026-01-20 20:19:07 [info]: Starting flying phase for round 1574 targetCrash=6.38 duration=12760ms
+2026-01-20 20:19:16 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:19:26 [info]: Creating new round with ID: 1575
+2026-01-20 20:19:26 [info]: Scheduling flying phase in 9992ms for round 1575
+2026-01-20 20:19:26 [info]: Successfully created new round with ID: 1607, Round ID: 1575
+2026-01-20 20:19:36 [info]: Starting flying phase for round 1575 targetCrash=1.21 duration=2420ms
+2026-01-20 20:19:37 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:19:37 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:19:47 [info]: Creating new round with ID: 1576
+2026-01-20 20:19:47 [info]: Scheduling flying phase in 9990ms for round 1576
+2026-01-20 20:19:47 [info]: Successfully created new round with ID: 1608, Round ID: 1576
+2026-01-20 20:19:47 [info]: Creating new round with ID: 1577
+2026-01-20 20:19:47 [info]: Scheduling flying phase in 9990ms for round 1577
+2026-01-20 20:19:47 [info]: Successfully created new round with ID: 1609, Round ID: 1577
+2026-01-20 20:19:57 [info]: Starting flying phase for round 1577 targetCrash=1.63 duration=3260ms
+2026-01-20 20:19:59 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:20:09 [info]: Creating new round with ID: 1578
+2026-01-20 20:20:09 [info]: Scheduling flying phase in 9996ms for round 1578
+2026-01-20 20:20:09 [info]: Successfully created new round with ID: 1610, Round ID: 1578
+2026-01-20 20:20:19 [info]: Starting flying phase for round 1578 targetCrash=1.1 duration=2200ms
+2026-01-20 20:20:20 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:20:30 [info]: Creating new round with ID: 1579
+2026-01-20 20:20:30 [info]: Scheduling flying phase in 9997ms for round 1579
+2026-01-20 20:20:30 [info]: Successfully created new round with ID: 1611, Round ID: 1579
+2026-01-20 20:20:40 [info]: Starting flying phase for round 1579 targetCrash=1.49 duration=2980ms
+2026-01-20 20:20:42 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:20:52 [info]: Creating new round with ID: 1580
+2026-01-20 20:20:52 [info]: Scheduling flying phase in 9979ms for round 1580
+2026-01-20 20:20:52 [info]: Successfully created new round with ID: 1612, Round ID: 1580
+2026-01-20 20:21:02 [info]: Starting flying phase for round 1580 targetCrash=1.22 duration=2440ms
+2026-01-20 20:21:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:21:13 [info]: Creating new round with ID: 1581
+2026-01-20 20:21:13 [info]: Scheduling flying phase in 9973ms for round 1581
+2026-01-20 20:21:13 [info]: Successfully created new round with ID: 1613, Round ID: 1581
+2026-01-20 20:21:23 [info]: Starting flying phase for round 1581 targetCrash=29.86 duration=20000ms
+2026-01-20 20:21:43 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:21:53 [info]: Creating new round with ID: 1582
+2026-01-20 20:21:53 [info]: Scheduling flying phase in 9993ms for round 1582
+2026-01-20 20:21:53 [info]: Successfully created new round with ID: 1614, Round ID: 1582
+2026-01-20 20:22:03 [info]: Starting flying phase for round 1582 targetCrash=1.48 duration=2960ms
+2026-01-20 20:22:05 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:22:15 [info]: Creating new round with ID: 1583
+2026-01-20 20:22:15 [info]: Scheduling flying phase in 9992ms for round 1583
+2026-01-20 20:22:15 [info]: Successfully created new round with ID: 1615, Round ID: 1583
+2026-01-20 20:22:25 [info]: Starting flying phase for round 1583 targetCrash=2.51 duration=5020ms
+2026-01-20 20:22:29 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:22:39 [info]: Creating new round with ID: 1584
+2026-01-20 20:22:39 [info]: Scheduling flying phase in 9994ms for round 1584
+2026-01-20 20:22:39 [info]: Successfully created new round with ID: 1616, Round ID: 1584
+2026-01-20 20:22:49 [info]: Starting flying phase for round 1584 targetCrash=1.64 duration=3280ms
+2026-01-20 20:22:51 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:23:01 [info]: Creating new round with ID: 1585
+2026-01-20 20:23:01 [info]: Scheduling flying phase in 9981ms for round 1585
+2026-01-20 20:23:01 [info]: Successfully created new round with ID: 1617, Round ID: 1585
+2026-01-20 20:23:11 [info]: Starting flying phase for round 1585 targetCrash=2.15 duration=4300ms
+2026-01-20 20:23:14 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:23:24 [info]: Creating new round with ID: 1586
+2026-01-20 20:23:24 [info]: Scheduling flying phase in 9983ms for round 1586
+2026-01-20 20:23:24 [info]: Successfully created new round with ID: 1618, Round ID: 1586
+2026-01-20 20:23:34 [info]: Starting flying phase for round 1586 targetCrash=1.02 duration=2040ms
+2026-01-20 20:23:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:23:44 [info]: Creating new round with ID: 1587
+2026-01-20 20:23:45 [info]: Scheduling flying phase in 9994ms for round 1587
+2026-01-20 20:23:45 [info]: Successfully created new round with ID: 1619, Round ID: 1587
+2026-01-20 20:23:55 [info]: Starting flying phase for round 1587 targetCrash=1.11 duration=2220ms
+2026-01-20 20:23:55 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:24:05 [info]: Creating new round with ID: 1588
+2026-01-20 20:24:05 [info]: Scheduling flying phase in 9992ms for round 1588
+2026-01-20 20:24:05 [info]: Successfully created new round with ID: 1620, Round ID: 1588
+2026-01-20 20:24:15 [info]: Starting flying phase for round 1588 targetCrash=3.38 duration=6760ms
+2026-01-20 20:24:20 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:24:30 [info]: Creating new round with ID: 1589
+2026-01-20 20:24:30 [info]: Scheduling flying phase in 9997ms for round 1589
+2026-01-20 20:24:30 [info]: Successfully created new round with ID: 1621, Round ID: 1589
+2026-01-20 20:24:40 [info]: Starting flying phase for round 1589 targetCrash=4.37 duration=8740ms
+2026-01-20 20:24:47 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:24:57 [info]: Creating new round with ID: 1590
+2026-01-20 20:24:57 [info]: Scheduling flying phase in 9992ms for round 1590
+2026-01-20 20:24:57 [info]: Successfully created new round with ID: 1622, Round ID: 1590
+2026-01-20 20:25:07 [info]: Starting flying phase for round 1590 targetCrash=1.09 duration=2180ms
+2026-01-20 20:25:08 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:25:18 [info]: Creating new round with ID: 1591
+2026-01-20 20:25:18 [info]: Scheduling flying phase in 9992ms for round 1591
+2026-01-20 20:25:18 [info]: Successfully created new round with ID: 1623, Round ID: 1591
+2026-01-20 20:25:28 [info]: Starting flying phase for round 1591 targetCrash=1.2 duration=2400ms
+2026-01-20 20:25:29 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:25:39 [info]: Creating new round with ID: 1592
+2026-01-20 20:25:39 [info]: Scheduling flying phase in 9992ms for round 1592
+2026-01-20 20:25:39 [info]: Successfully created new round with ID: 1624, Round ID: 1592
+2026-01-20 20:25:49 [info]: Starting flying phase for round 1592 targetCrash=4.15 duration=8300ms
+2026-01-20 20:25:55 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:26:05 [info]: Creating new round with ID: 1593
+2026-01-20 20:26:05 [info]: Scheduling flying phase in 9993ms for round 1593
+2026-01-20 20:26:05 [info]: Successfully created new round with ID: 1625, Round ID: 1593
+2026-01-20 20:26:15 [info]: Starting flying phase for round 1593 targetCrash=1.51 duration=3020ms
+2026-01-20 20:26:17 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:26:27 [info]: Creating new round with ID: 1594
+2026-01-20 20:26:27 [info]: Scheduling flying phase in 9993ms for round 1594
+2026-01-20 20:26:27 [info]: Successfully created new round with ID: 1626, Round ID: 1594
+2026-01-20 20:26:37 [info]: Starting flying phase for round 1594 targetCrash=1.29 duration=2580ms
+2026-01-20 20:26:39 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:26:49 [info]: Creating new round with ID: 1595
+2026-01-20 20:26:49 [info]: Scheduling flying phase in 9971ms for round 1595
+2026-01-20 20:26:49 [info]: Successfully created new round with ID: 1627, Round ID: 1595
+2026-01-20 20:26:59 [info]: Starting flying phase for round 1595 targetCrash=1.01 duration=2020ms
+2026-01-20 20:26:59 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:27:09 [info]: Creating new round with ID: 1596
+2026-01-20 20:27:09 [info]: Scheduling flying phase in 9989ms for round 1596
+2026-01-20 20:27:09 [info]: Successfully created new round with ID: 1628, Round ID: 1596
+2026-01-20 20:27:19 [info]: Starting flying phase for round 1596 targetCrash=4.79 duration=9580ms
+2026-01-20 20:27:26 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:27:36 [info]: Creating new round with ID: 1597
+2026-01-20 20:27:36 [info]: Scheduling flying phase in 9996ms for round 1597
+2026-01-20 20:27:36 [info]: Successfully created new round with ID: 1629, Round ID: 1597
+2026-01-20 20:27:46 [info]: Starting flying phase for round 1597 targetCrash=2.33 duration=4660ms
+2026-01-20 20:27:50 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:27:50 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:27:50 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 20:28:00 [info]: Creating new round with ID: 1598
+2026-01-20 20:28:00 [info]: Scheduling flying phase in 9998ms for round 1598
+2026-01-20 20:28:00 [info]: Successfully created new round with ID: 1630, Round ID: 1598
+2026-01-20 20:28:00 [info]: A new round was already created, returning existing round
+2026-01-20 20:28:00 [info]: A new round was already created, returning existing round
+2026-01-20 20:28:10 [info]: Starting flying phase for round 1598 targetCrash=1.64 duration=3280ms
+2026-01-20 20:28:10 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-20 23:09:35 [info]: Database connected
+2026-01-20 23:09:35 [info]: Game engine initialized
+2026-01-20 23:09:35 [info]: ChainService initializing
+2026-01-20 23:09:35 [info]: ChainService initialized
+2026-01-20 23:09:35 [info]: Scheduling flying phase in 0ms for round 1598
+2026-01-20 23:09:35 [info]: Server is running on http://localhost:3001
+2026-01-20 23:09:35 [info]: Starting flying phase for round 1598 targetCrash=1.64 duration=3280ms
+2026-01-20 23:09:35 [info]: Creating new round with ID: 1599
+2026-01-20 23:09:35 [info]: Scheduling flying phase in 9925ms for round 1599
+2026-01-20 23:09:35 [info]: Successfully created new round with ID: 1632, Round ID: 1599
+2026-01-20 23:09:38 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:09:43 [info]: ::1 - - [20/Jan/2026:22:09:43 +0000] "GET /api/history HTTP/1.1" 200 5377 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:09:45 [info]: startFlyingPhase aborted: no current betting round
+2026-01-20 23:09:47 [info]: New WebSocket connection
+2026-01-20 23:09:48 [info]: Creating new round with ID: 1600
+2026-01-20 23:09:48 [info]: Scheduling flying phase in 9908ms for round 1600
+2026-01-20 23:09:48 [info]: Successfully created new round with ID: 1633, Round ID: 1600
+2026-01-20 23:09:52 [info]: ::1 - - [20/Jan/2026:22:09:52 +0000] "GET /api/rounds/current HTTP/1.1" 200 538 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:09:52 [info]: ::1 - - [20/Jan/2026:22:09:52 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:09:58 [info]: Starting flying phase for round 1600 targetCrash=1.36 duration=2720ms
+2026-01-20 23:09:59 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:10:09 [info]: Creating new round with ID: 1601
+2026-01-20 23:10:09 [info]: Scheduling flying phase in 9989ms for round 1601
+2026-01-20 23:10:09 [info]: Successfully created new round with ID: 1634, Round ID: 1601
+2026-01-20 23:10:19 [info]: Starting flying phase for round 1601 targetCrash=1.06 duration=2120ms
+2026-01-20 23:10:20 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:10:30 [info]: Creating new round with ID: 1602
+2026-01-20 23:10:30 [info]: Scheduling flying phase in 9989ms for round 1602
+2026-01-20 23:10:30 [info]: Successfully created new round with ID: 1635, Round ID: 1602
+2026-01-20 23:10:40 [info]: Starting flying phase for round 1602 targetCrash=1.31 duration=2620ms
+2026-01-20 23:10:41 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:10:51 [info]: Creating new round with ID: 1603
+2026-01-20 23:10:51 [info]: Scheduling flying phase in 9993ms for round 1603
+2026-01-20 23:10:51 [info]: Successfully created new round with ID: 1636, Round ID: 1603
+2026-01-20 23:11:01 [info]: Starting flying phase for round 1603 targetCrash=2.86 duration=5720ms
+2026-01-20 23:11:06 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:11:16 [info]: Creating new round with ID: 1604
+2026-01-20 23:11:16 [info]: Scheduling flying phase in 9995ms for round 1604
+2026-01-20 23:11:16 [info]: Successfully created new round with ID: 1637, Round ID: 1604
+2026-01-20 23:11:26 [info]: Starting flying phase for round 1604 targetCrash=1.07 duration=2140ms
+2026-01-20 23:11:26 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:11:36 [info]: Creating new round with ID: 1605
+2026-01-20 23:11:36 [info]: Scheduling flying phase in 9984ms for round 1605
+2026-01-20 23:11:36 [info]: Successfully created new round with ID: 1638, Round ID: 1605
+2026-01-20 23:11:46 [info]: Starting flying phase for round 1605 targetCrash=1.17 duration=2340ms
+2026-01-20 23:11:47 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:11:57 [info]: Creating new round with ID: 1606
+2026-01-20 23:11:57 [info]: Scheduling flying phase in 9995ms for round 1606
+2026-01-20 23:11:57 [info]: Successfully created new round with ID: 1639, Round ID: 1606
+2026-01-20 23:12:07 [info]: Starting flying phase for round 1606 targetCrash=1.07 duration=2140ms
+2026-01-20 23:12:08 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:12:18 [info]: Creating new round with ID: 1607
+2026-01-20 23:12:18 [info]: Scheduling flying phase in 9997ms for round 1607
+2026-01-20 23:12:18 [info]: Successfully created new round with ID: 1640, Round ID: 1607
+2026-01-20 23:12:28 [info]: Starting flying phase for round 1607 targetCrash=14.78 duration=20000ms
+2026-01-20 23:12:45 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:12:55 [info]: Creating new round with ID: 1608
+2026-01-20 23:12:55 [info]: Scheduling flying phase in 9994ms for round 1608
+2026-01-20 23:12:55 [info]: Successfully created new round with ID: 1641, Round ID: 1608
+2026-01-20 23:13:05 [info]: Starting flying phase for round 1608 targetCrash=1.34 duration=2680ms
+2026-01-20 23:13:06 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:13:16 [info]: Creating new round with ID: 1609
+2026-01-20 23:13:16 [info]: Scheduling flying phase in 9991ms for round 1609
+2026-01-20 23:13:16 [info]: Successfully created new round with ID: 1642, Round ID: 1609
+2026-01-20 23:13:26 [info]: Starting flying phase for round 1609 targetCrash=4.65 duration=9300ms
+2026-01-20 23:13:33 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:13:43 [info]: Creating new round with ID: 1610
+2026-01-20 23:13:43 [info]: Scheduling flying phase in 9970ms for round 1610
+2026-01-20 23:13:43 [info]: Successfully created new round with ID: 1643, Round ID: 1610
+2026-01-20 23:13:53 [info]: Starting flying phase for round 1610 targetCrash=4.05 duration=8100ms
+2026-01-20 23:13:59 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:14:09 [info]: Creating new round with ID: 1611
+2026-01-20 23:14:09 [info]: Scheduling flying phase in 9997ms for round 1611
+2026-01-20 23:14:09 [info]: Successfully created new round with ID: 1644, Round ID: 1611
+2026-01-20 23:14:19 [info]: Starting flying phase for round 1611 targetCrash=2.98 duration=5960ms
+2026-01-20 23:14:24 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:14:34 [info]: Creating new round with ID: 1612
+2026-01-20 23:14:34 [info]: Scheduling flying phase in 9997ms for round 1612
+2026-01-20 23:14:34 [info]: Successfully created new round with ID: 1645, Round ID: 1612
+2026-01-20 23:14:44 [info]: Starting flying phase for round 1612 targetCrash=1.08 duration=2160ms
+2026-01-20 23:14:45 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:14:55 [info]: Creating new round with ID: 1613
+2026-01-20 23:14:55 [info]: Scheduling flying phase in 9996ms for round 1613
+2026-01-20 23:14:55 [info]: Successfully created new round with ID: 1646, Round ID: 1613
+2026-01-20 23:15:05 [info]: Starting flying phase for round 1613 targetCrash=1.86 duration=3720ms
+2026-01-20 23:15:07 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:15:17 [info]: Creating new round with ID: 1614
+2026-01-20 23:15:17 [info]: Scheduling flying phase in 9996ms for round 1614
+2026-01-20 23:15:17 [info]: Successfully created new round with ID: 1647, Round ID: 1614
+2026-01-20 23:15:21 [info]: New WebSocket connection
+2026-01-20 23:15:21 [info]: ::1 - - [20/Jan/2026:22:15:21 +0000] "GET /api/history HTTP/1.1" 200 5377 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:15:21 [info]: ::1 - - [20/Jan/2026:22:15:21 +0000] "GET /api/rounds/current HTTP/1.1" 200 538 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:15:21 [info]: ::1 - - [20/Jan/2026:22:15:21 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:15:27 [info]: Starting flying phase for round 1614 targetCrash=1.68 duration=3360ms
+2026-01-20 23:15:30 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:15:40 [info]: Creating new round with ID: 1615
+2026-01-20 23:15:40 [info]: Scheduling flying phase in 9992ms for round 1615
+2026-01-20 23:15:40 [info]: Successfully created new round with ID: 1648, Round ID: 1615
+2026-01-20 23:15:50 [info]: Starting flying phase for round 1615 targetCrash=1.86 duration=3720ms
+2026-01-20 23:15:52 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:16:02 [info]: Creating new round with ID: 1616
+2026-01-20 23:16:02 [info]: Scheduling flying phase in 9992ms for round 1616
+2026-01-20 23:16:02 [info]: Successfully created new round with ID: 1649, Round ID: 1616
+2026-01-20 23:16:12 [info]: Starting flying phase for round 1616 targetCrash=1.68 duration=3360ms
+2026-01-20 23:16:15 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:16:25 [info]: Creating new round with ID: 1617
+2026-01-20 23:16:25 [info]: Scheduling flying phase in 9992ms for round 1617
+2026-01-20 23:16:25 [info]: Successfully created new round with ID: 1650, Round ID: 1617
+2026-01-20 23:16:35 [info]: Starting flying phase for round 1617 targetCrash=1.26 duration=2520ms
+2026-01-20 23:16:36 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:16:46 [info]: Creating new round with ID: 1618
+2026-01-20 23:16:46 [info]: Scheduling flying phase in 9995ms for round 1618
+2026-01-20 23:16:46 [info]: Successfully created new round with ID: 1651, Round ID: 1618
+2026-01-20 23:16:56 [info]: Starting flying phase for round 1618 targetCrash=10.44 duration=20000ms
+2026-01-20 23:17:10 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:17:20 [info]: Creating new round with ID: 1619
+2026-01-20 23:17:20 [info]: Scheduling flying phase in 9989ms for round 1619
+2026-01-20 23:17:20 [info]: Successfully created new round with ID: 1652, Round ID: 1619
+2026-01-20 23:17:30 [info]: Starting flying phase for round 1619 targetCrash=2.59 duration=5180ms
+2026-01-20 23:17:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:17:44 [info]: Creating new round with ID: 1620
+2026-01-20 23:17:44 [info]: Scheduling flying phase in 9991ms for round 1620
+2026-01-20 23:17:44 [info]: Successfully created new round with ID: 1653, Round ID: 1620
+2026-01-20 23:17:54 [info]: Starting flying phase for round 1620 targetCrash=1.83 duration=3660ms
+2026-01-20 23:17:57 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:18:07 [info]: Creating new round with ID: 1621
+2026-01-20 23:18:07 [info]: Scheduling flying phase in 9994ms for round 1621
+2026-01-20 23:18:07 [info]: Successfully created new round with ID: 1654, Round ID: 1621
+2026-01-20 23:18:17 [info]: Starting flying phase for round 1621 targetCrash=2.49 duration=4980ms
+2026-01-20 23:18:21 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:18:31 [info]: Creating new round with ID: 1622
+2026-01-20 23:18:31 [info]: Scheduling flying phase in 9992ms for round 1622
+2026-01-20 23:18:31 [info]: Successfully created new round with ID: 1655, Round ID: 1622
+2026-01-20 23:18:41 [info]: Starting flying phase for round 1622 targetCrash=1.55 duration=3100ms
+2026-01-20 23:18:43 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:18:53 [info]: Creating new round with ID: 1623
+2026-01-20 23:18:53 [info]: Scheduling flying phase in 9995ms for round 1623
+2026-01-20 23:18:53 [info]: Successfully created new round with ID: 1656, Round ID: 1623
+2026-01-20 23:19:03 [info]: Starting flying phase for round 1623 targetCrash=1.05 duration=2100ms
+2026-01-20 23:19:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:19:14 [info]: Creating new round with ID: 1624
+2026-01-20 23:19:14 [info]: Scheduling flying phase in 9997ms for round 1624
+2026-01-20 23:19:14 [info]: Successfully created new round with ID: 1657, Round ID: 1624
+2026-01-20 23:19:24 [info]: Starting flying phase for round 1624 targetCrash=7.51 duration=15020ms
+2026-01-20 23:19:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:19:44 [info]: Creating new round with ID: 1625
+2026-01-20 23:19:44 [info]: Scheduling flying phase in 9997ms for round 1625
+2026-01-20 23:19:44 [info]: Successfully created new round with ID: 1658, Round ID: 1625
+2026-01-20 23:19:54 [info]: Starting flying phase for round 1625 targetCrash=1.28 duration=2560ms
+2026-01-20 23:19:56 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:20:06 [info]: Creating new round with ID: 1626
+2026-01-20 23:20:06 [info]: Scheduling flying phase in 9985ms for round 1626
+2026-01-20 23:20:06 [info]: Successfully created new round with ID: 1659, Round ID: 1626
+2026-01-20 23:20:16 [info]: Starting flying phase for round 1626 targetCrash=1.08 duration=2160ms
+2026-01-20 23:20:16 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:20:26 [info]: Creating new round with ID: 1627
+2026-01-20 23:20:26 [info]: Scheduling flying phase in 9996ms for round 1627
+2026-01-20 23:20:26 [info]: Successfully created new round with ID: 1660, Round ID: 1627
+2026-01-20 23:20:36 [info]: Starting flying phase for round 1627 targetCrash=27.83 duration=20000ms
+2026-01-20 23:20:56 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:21:06 [info]: Creating new round with ID: 1628
+2026-01-20 23:21:06 [info]: Scheduling flying phase in 9990ms for round 1628
+2026-01-20 23:21:06 [info]: Successfully created new round with ID: 1661, Round ID: 1628
+2026-01-20 23:21:16 [info]: Starting flying phase for round 1628 targetCrash=1.11 duration=2220ms
+2026-01-20 23:21:17 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:21:27 [info]: Creating new round with ID: 1629
+2026-01-20 23:21:27 [info]: Scheduling flying phase in 9991ms for round 1629
+2026-01-20 23:21:27 [info]: Successfully created new round with ID: 1662, Round ID: 1629
+2026-01-20 23:21:37 [info]: Starting flying phase for round 1629 targetCrash=1.04 duration=2080ms
+2026-01-20 23:21:37 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:21:47 [info]: Creating new round with ID: 1630
+2026-01-20 23:21:47 [info]: Scheduling flying phase in 9997ms for round 1630
+2026-01-20 23:21:47 [info]: Successfully created new round with ID: 1663, Round ID: 1630
+2026-01-20 23:21:57 [info]: Starting flying phase for round 1630 targetCrash=2.26 duration=4520ms
+2026-01-20 23:22:01 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:22:11 [info]: Creating new round with ID: 1631
+2026-01-20 23:22:11 [info]: Scheduling flying phase in 9997ms for round 1631
+2026-01-20 23:22:11 [info]: Successfully created new round with ID: 1664, Round ID: 1631
+2026-01-20 23:22:21 [info]: Starting flying phase for round 1631 targetCrash=1.61 duration=3220ms
+2026-01-20 23:22:23 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:22:33 [info]: Creating new round with ID: 1632
+2026-01-20 23:22:33 [info]: Scheduling flying phase in 9997ms for round 1632
+2026-01-20 23:22:33 [info]: Successfully created new round with ID: 1665, Round ID: 1632
+2026-01-20 23:22:43 [info]: Starting flying phase for round 1632 targetCrash=1.09 duration=2180ms
+2026-01-20 23:22:44 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:22:54 [info]: Creating new round with ID: 1633
+2026-01-20 23:22:54 [info]: Scheduling flying phase in 9998ms for round 1633
+2026-01-20 23:22:54 [info]: Successfully created new round with ID: 1666, Round ID: 1633
+2026-01-20 23:23:04 [info]: Starting flying phase for round 1633 targetCrash=2.51 duration=5020ms
+2026-01-20 23:23:08 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:23:18 [info]: Creating new round with ID: 1634
+2026-01-20 23:23:18 [info]: Scheduling flying phase in 9994ms for round 1634
+2026-01-20 23:23:18 [info]: Successfully created new round with ID: 1667, Round ID: 1634
+2026-01-20 23:23:28 [info]: Starting flying phase for round 1634 targetCrash=1.21 duration=2420ms
+2026-01-20 23:23:29 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:23:39 [info]: Creating new round with ID: 1635
+2026-01-20 23:23:39 [info]: Scheduling flying phase in 9994ms for round 1635
+2026-01-20 23:23:39 [info]: Successfully created new round with ID: 1668, Round ID: 1635
+2026-01-20 23:23:49 [info]: Starting flying phase for round 1635 targetCrash=1.45 duration=2900ms
+2026-01-20 23:23:51 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:24:01 [info]: Creating new round with ID: 1636
+2026-01-20 23:24:01 [info]: Scheduling flying phase in 9992ms for round 1636
+2026-01-20 23:24:01 [info]: Successfully created new round with ID: 1669, Round ID: 1636
+2026-01-20 23:24:11 [info]: Starting flying phase for round 1636 targetCrash=2.04 duration=4080ms
+2026-01-20 23:24:15 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:24:15 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:24:25 [info]: Creating new round with ID: 1637
+2026-01-20 23:24:25 [info]: Scheduling flying phase in 9996ms for round 1637
+2026-01-20 23:24:25 [info]: Successfully created new round with ID: 1670, Round ID: 1637
+2026-01-20 23:24:25 [info]: Creating new round with ID: 1638
+2026-01-20 23:24:25 [info]: Scheduling flying phase in 9998ms for round 1638
+2026-01-20 23:24:25 [info]: Successfully created new round with ID: 1671, Round ID: 1638
+2026-01-20 23:24:35 [info]: Starting flying phase for round 1638 targetCrash=7.41 duration=14820ms
+2026-01-20 23:24:45 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:24:55 [info]: Creating new round with ID: 1639
+2026-01-20 23:24:55 [info]: Scheduling flying phase in 9965ms for round 1639
+2026-01-20 23:24:55 [info]: Successfully created new round with ID: 1672, Round ID: 1639
+2026-01-20 23:25:05 [info]: Starting flying phase for round 1639 targetCrash=1.04 duration=2080ms
+2026-01-20 23:25:06 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:25:16 [info]: Creating new round with ID: 1640
+2026-01-20 23:25:16 [info]: Scheduling flying phase in 9997ms for round 1640
+2026-01-20 23:25:16 [info]: Successfully created new round with ID: 1673, Round ID: 1640
+2026-01-20 23:25:26 [info]: Starting flying phase for round 1640 targetCrash=2.55 duration=5100ms
+2026-01-20 23:25:30 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:25:40 [info]: Creating new round with ID: 1641
+2026-01-20 23:25:40 [info]: Scheduling flying phase in 9994ms for round 1641
+2026-01-20 23:25:40 [info]: Successfully created new round with ID: 1674, Round ID: 1641
+2026-01-20 23:25:50 [info]: Starting flying phase for round 1641 targetCrash=6.59 duration=13180ms
+2026-01-20 23:26:00 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:26:10 [info]: Creating new round with ID: 1642
+2026-01-20 23:26:10 [info]: Scheduling flying phase in 9984ms for round 1642
+2026-01-20 23:26:10 [info]: Successfully created new round with ID: 1675, Round ID: 1642
+2026-01-20 23:26:20 [info]: Starting flying phase for round 1642 targetCrash=4.07 duration=8140.000000000001ms
+2026-01-20 23:26:26 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:26:36 [info]: Creating new round with ID: 1643
+2026-01-20 23:26:36 [info]: Scheduling flying phase in 9969ms for round 1643
+2026-01-20 23:26:36 [info]: Successfully created new round with ID: 1676, Round ID: 1643
+2026-01-20 23:26:46 [info]: Starting flying phase for round 1643 targetCrash=3.98 duration=7960ms
+2026-01-20 23:26:52 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:27:02 [info]: Creating new round with ID: 1644
+2026-01-20 23:27:02 [info]: Scheduling flying phase in 9993ms for round 1644
+2026-01-20 23:27:02 [info]: Successfully created new round with ID: 1677, Round ID: 1644
+2026-01-20 23:27:12 [info]: Starting flying phase for round 1644 targetCrash=1.73 duration=3460ms
+2026-01-20 23:27:15 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:27:25 [info]: Creating new round with ID: 1645
+2026-01-20 23:27:25 [info]: Scheduling flying phase in 9991ms for round 1645
+2026-01-20 23:27:25 [info]: Successfully created new round with ID: 1678, Round ID: 1645
+2026-01-20 23:27:35 [info]: Starting flying phase for round 1645 targetCrash=3.05 duration=6100ms
+2026-01-20 23:27:40 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:27:50 [info]: Creating new round with ID: 1646
+2026-01-20 23:27:50 [info]: Scheduling flying phase in 9997ms for round 1646
+2026-01-20 23:27:50 [info]: Successfully created new round with ID: 1679, Round ID: 1646
+2026-01-20 23:28:00 [info]: Starting flying phase for round 1646 targetCrash=1.39 duration=2780ms
+2026-01-20 23:28:01 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:28:11 [info]: Creating new round with ID: 1647
+2026-01-20 23:28:11 [info]: Scheduling flying phase in 9996ms for round 1647
+2026-01-20 23:28:11 [info]: Successfully created new round with ID: 1680, Round ID: 1647
+2026-01-20 23:28:21 [info]: Starting flying phase for round 1647 targetCrash=3.96 duration=7920ms
+2026-01-20 23:28:27 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:28:37 [info]: Creating new round with ID: 1648
+2026-01-20 23:28:37 [info]: Scheduling flying phase in 9995ms for round 1648
+2026-01-20 23:28:37 [info]: Successfully created new round with ID: 1681, Round ID: 1648
+2026-01-20 23:28:47 [info]: Starting flying phase for round 1648 targetCrash=1.53 duration=3060ms
+2026-01-20 23:28:49 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:28:59 [info]: Creating new round with ID: 1649
+2026-01-20 23:28:59 [info]: Scheduling flying phase in 9997ms for round 1649
+2026-01-20 23:28:59 [info]: Successfully created new round with ID: 1682, Round ID: 1649
+2026-01-20 23:29:09 [info]: Starting flying phase for round 1649 targetCrash=8.5 duration=17000ms
+2026-01-20 23:29:21 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:29:31 [info]: Creating new round with ID: 1650
+2026-01-20 23:29:31 [info]: Scheduling flying phase in 9992ms for round 1650
+2026-01-20 23:29:31 [info]: Successfully created new round with ID: 1683, Round ID: 1650
+2026-01-20 23:29:41 [info]: Starting flying phase for round 1650 targetCrash=1.75 duration=3500ms
+2026-01-20 23:29:43 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:29:53 [info]: Creating new round with ID: 1651
+2026-01-20 23:29:53 [info]: Scheduling flying phase in 9994ms for round 1651
+2026-01-20 23:29:53 [info]: Successfully created new round with ID: 1684, Round ID: 1651
+2026-01-20 23:30:03 [info]: Starting flying phase for round 1651 targetCrash=2.03 duration=4059.9999999999995ms
+2026-01-20 23:30:06 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:30:16 [info]: Creating new round with ID: 1652
+2026-01-20 23:30:16 [info]: Scheduling flying phase in 9996ms for round 1652
+2026-01-20 23:30:16 [info]: Successfully created new round with ID: 1685, Round ID: 1652
+2026-01-20 23:30:26 [info]: Starting flying phase for round 1652 targetCrash=6.02 duration=12040ms
+2026-01-20 23:30:35 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:30:45 [info]: Creating new round with ID: 1653
+2026-01-20 23:30:45 [info]: Scheduling flying phase in 9995ms for round 1653
+2026-01-20 23:30:45 [info]: Successfully created new round with ID: 1686, Round ID: 1653
+2026-01-20 23:30:55 [info]: Starting flying phase for round 1653 targetCrash=1.36 duration=2720ms
+2026-01-20 23:30:57 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:31:07 [info]: Creating new round with ID: 1654
+2026-01-20 23:31:07 [info]: Scheduling flying phase in 9993ms for round 1654
+2026-01-20 23:31:07 [info]: Successfully created new round with ID: 1687, Round ID: 1654
+2026-01-20 23:31:17 [info]: Starting flying phase for round 1654 targetCrash=1.68 duration=3360ms
+2026-01-20 23:31:19 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:31:29 [info]: Creating new round with ID: 1655
+2026-01-20 23:31:29 [info]: Scheduling flying phase in 9997ms for round 1655
+2026-01-20 23:31:29 [info]: Successfully created new round with ID: 1688, Round ID: 1655
+2026-01-20 23:31:39 [info]: Starting flying phase for round 1655 targetCrash=3.82 duration=7640ms
+2026-01-20 23:31:45 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:31:55 [info]: Creating new round with ID: 1656
+2026-01-20 23:31:55 [info]: Scheduling flying phase in 9996ms for round 1656
+2026-01-20 23:31:55 [info]: Successfully created new round with ID: 1689, Round ID: 1656
+2026-01-20 23:32:05 [info]: Starting flying phase for round 1656 targetCrash=3.53 duration=7060ms
+2026-01-20 23:32:10 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:32:20 [info]: Creating new round with ID: 1657
+2026-01-20 23:32:20 [info]: Scheduling flying phase in 9997ms for round 1657
+2026-01-20 23:32:20 [info]: Successfully created new round with ID: 1690, Round ID: 1657
+2026-01-20 23:32:30 [info]: Starting flying phase for round 1657 targetCrash=1.33 duration=2660ms
+2026-01-20 23:32:32 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:32:42 [info]: Creating new round with ID: 1658
+2026-01-20 23:32:42 [info]: Scheduling flying phase in 9988ms for round 1658
+2026-01-20 23:32:42 [info]: Successfully created new round with ID: 1691, Round ID: 1658
+2026-01-20 23:32:52 [info]: Starting flying phase for round 1658 targetCrash=2.19 duration=4380ms
+2026-01-20 23:32:55 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:33:05 [info]: Creating new round with ID: 1659
+2026-01-20 23:33:05 [info]: Scheduling flying phase in 9996ms for round 1659
+2026-01-20 23:33:05 [info]: Successfully created new round with ID: 1692, Round ID: 1659
+2026-01-20 23:33:15 [info]: Starting flying phase for round 1659 targetCrash=16.86 duration=20000ms
+2026-01-20 23:33:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:33:44 [info]: Creating new round with ID: 1660
+2026-01-20 23:33:44 [info]: Scheduling flying phase in 9978ms for round 1660
+2026-01-20 23:33:44 [info]: Successfully created new round with ID: 1693, Round ID: 1660
+2026-01-20 23:33:54 [info]: Starting flying phase for round 1660 targetCrash=1.13 duration=2260ms
+2026-01-20 23:33:55 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:34:05 [info]: Creating new round with ID: 1661
+2026-01-20 23:34:05 [info]: Scheduling flying phase in 9983ms for round 1661
+2026-01-20 23:34:05 [info]: Successfully created new round with ID: 1694, Round ID: 1661
+2026-01-20 23:34:15 [info]: Starting flying phase for round 1661 targetCrash=2.04 duration=4080ms
+2026-01-20 23:34:18 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:34:28 [info]: Creating new round with ID: 1662
+2026-01-20 23:34:28 [info]: Scheduling flying phase in 9998ms for round 1662
+2026-01-20 23:34:28 [info]: Successfully created new round with ID: 1695, Round ID: 1662
+2026-01-20 23:34:38 [info]: Starting flying phase for round 1662 targetCrash=1.01 duration=2020ms
+2026-01-20 23:34:38 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:34:49 [info]: Creating new round with ID: 1663
+2026-01-20 23:34:49 [info]: Scheduling flying phase in 9969ms for round 1663
+2026-01-20 23:34:49 [info]: Successfully created new round with ID: 1696, Round ID: 1663
+2026-01-20 23:34:59 [info]: Starting flying phase for round 1663 targetCrash=19.6 duration=20000ms
+2026-01-20 23:35:19 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:35:29 [info]: Creating new round with ID: 1664
+2026-01-20 23:35:29 [info]: Scheduling flying phase in 9992ms for round 1664
+2026-01-20 23:35:29 [info]: Successfully created new round with ID: 1697, Round ID: 1664
+2026-01-20 23:35:39 [info]: Starting flying phase for round 1664 targetCrash=9.53 duration=19060ms
+2026-01-20 23:35:52 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:36:02 [info]: Creating new round with ID: 1665
+2026-01-20 23:36:02 [info]: Scheduling flying phase in 9999ms for round 1665
+2026-01-20 23:36:02 [info]: Successfully created new round with ID: 1698, Round ID: 1665
+2026-01-20 23:36:12 [info]: Starting flying phase for round 1665 targetCrash=3.24 duration=6480ms
+2026-01-20 23:36:17 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:36:27 [info]: Creating new round with ID: 1666
+2026-01-20 23:36:27 [info]: Scheduling flying phase in 9328ms for round 1666
+2026-01-20 23:36:27 [info]: Successfully created new round with ID: 1699, Round ID: 1666
+2026-01-20 23:36:37 [info]: Starting flying phase for round 1666 targetCrash=1.42 duration=2840ms
+2026-01-20 23:36:38 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:36:48 [info]: Creating new round with ID: 1667
+2026-01-20 23:36:48 [info]: Scheduling flying phase in 9959ms for round 1667
+2026-01-20 23:36:48 [info]: Successfully created new round with ID: 1700, Round ID: 1667
+2026-01-20 23:36:58 [info]: Starting flying phase for round 1667 targetCrash=20.51 duration=20000ms
+2026-01-20 23:37:18 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:37:28 [info]: Creating new round with ID: 1668
+2026-01-20 23:37:28 [info]: Scheduling flying phase in 9989ms for round 1668
+2026-01-20 23:37:28 [info]: Successfully created new round with ID: 1701, Round ID: 1668
+2026-01-20 23:37:31 [info]: ::1 - - [20/Jan/2026:22:37:31 +0000] "GET /api/history HTTP/1.1" 200 5379 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:37:31 [info]: New WebSocket connection
+2026-01-20 23:37:31 [info]: ::1 - - [20/Jan/2026:22:37:31 +0000] "GET /api/rounds/current HTTP/1.1" 200 538 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:37:31 [info]: ::1 - - [20/Jan/2026:22:37:31 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:37:38 [info]: Starting flying phase for round 1668 targetCrash=2.61 duration=5220ms
+2026-01-20 23:37:42 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:37:52 [info]: Creating new round with ID: 1669
+2026-01-20 23:37:53 [info]: Scheduling flying phase in 9997ms for round 1669
+2026-01-20 23:37:53 [info]: Successfully created new round with ID: 1702, Round ID: 1669
+2026-01-20 23:38:03 [info]: Starting flying phase for round 1669 targetCrash=1.01 duration=2020ms
+2026-01-20 23:38:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:38:13 [info]: Creating new round with ID: 1670
+2026-01-20 23:38:13 [info]: Scheduling flying phase in 9997ms for round 1670
+2026-01-20 23:38:13 [info]: Successfully created new round with ID: 1703, Round ID: 1670
+2026-01-20 23:38:23 [info]: Starting flying phase for round 1670 targetCrash=1.93 duration=3860ms
+2026-01-20 23:38:26 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:38:36 [info]: Creating new round with ID: 1671
+2026-01-20 23:38:36 [info]: Scheduling flying phase in 9994ms for round 1671
+2026-01-20 23:38:36 [info]: Successfully created new round with ID: 1704, Round ID: 1671
+2026-01-20 23:38:46 [info]: Starting flying phase for round 1671 targetCrash=1.07 duration=2140ms
+2026-01-20 23:38:46 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:38:56 [info]: Creating new round with ID: 1672
+2026-01-20 23:38:56 [info]: Scheduling flying phase in 9973ms for round 1672
+2026-01-20 23:38:56 [info]: Successfully created new round with ID: 1705, Round ID: 1672
+2026-01-20 23:39:06 [info]: Starting flying phase for round 1672 targetCrash=1.19 duration=2380ms
+2026-01-20 23:39:07 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:39:17 [info]: Creating new round with ID: 1673
+2026-01-20 23:39:18 [info]: Scheduling flying phase in 8855ms for round 1673
+2026-01-20 23:39:18 [info]: Successfully created new round with ID: 1706, Round ID: 1673
+2026-01-20 23:39:27 [info]: Starting flying phase for round 1673 targetCrash=1.67 duration=3340ms
+2026-01-20 23:39:29 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:39:39 [info]: Creating new round with ID: 1674
+2026-01-20 23:39:39 [info]: Scheduling flying phase in 9994ms for round 1674
+2026-01-20 23:39:39 [info]: Successfully created new round with ID: 1707, Round ID: 1674
+2026-01-20 23:39:49 [info]: Starting flying phase for round 1674 targetCrash=1.34 duration=2680ms
+2026-01-20 23:39:51 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:40:01 [info]: Creating new round with ID: 1675
+2026-01-20 23:40:01 [info]: Scheduling flying phase in 9997ms for round 1675
+2026-01-20 23:40:01 [info]: Successfully created new round with ID: 1708, Round ID: 1675
+2026-01-20 23:40:11 [info]: Starting flying phase for round 1675 targetCrash=1.09 duration=2180ms
+2026-01-20 23:40:12 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:40:22 [info]: Creating new round with ID: 1676
+2026-01-20 23:40:22 [info]: Scheduling flying phase in 9993ms for round 1676
+2026-01-20 23:40:22 [info]: Successfully created new round with ID: 1709, Round ID: 1676
+2026-01-20 23:40:32 [info]: Starting flying phase for round 1676 targetCrash=2.35 duration=4700ms
+2026-01-20 23:40:35 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:40:45 [info]: Creating new round with ID: 1677
+2026-01-20 23:40:45 [info]: Scheduling flying phase in 9992ms for round 1677
+2026-01-20 23:40:45 [info]: Successfully created new round with ID: 1710, Round ID: 1677
+2026-01-20 23:40:55 [info]: Starting flying phase for round 1677 targetCrash=1.15 duration=2300ms
+2026-01-20 23:40:56 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:41:06 [info]: Creating new round with ID: 1678
+2026-01-20 23:41:06 [info]: Scheduling flying phase in 9997ms for round 1678
+2026-01-20 23:41:06 [info]: Successfully created new round with ID: 1711, Round ID: 1678
+2026-01-20 23:41:16 [info]: Starting flying phase for round 1678 targetCrash=3.75 duration=7500ms
+2026-01-20 23:41:22 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:41:32 [info]: Creating new round with ID: 1679
+2026-01-20 23:41:32 [info]: Scheduling flying phase in 9998ms for round 1679
+2026-01-20 23:41:32 [info]: Successfully created new round with ID: 1712, Round ID: 1679
+2026-01-20 23:41:42 [info]: Starting flying phase for round 1679 targetCrash=1.05 duration=2100ms
+2026-01-20 23:41:42 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:41:52 [info]: Creating new round with ID: 1680
+2026-01-20 23:41:52 [info]: Scheduling flying phase in 9997ms for round 1680
+2026-01-20 23:41:52 [info]: Successfully created new round with ID: 1713, Round ID: 1680
+2026-01-20 23:42:02 [info]: Starting flying phase for round 1680 targetCrash=2.67 duration=5340ms
+2026-01-20 23:42:07 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:42:17 [info]: Creating new round with ID: 1681
+2026-01-20 23:42:17 [info]: Scheduling flying phase in 9995ms for round 1681
+2026-01-20 23:42:17 [info]: Successfully created new round with ID: 1714, Round ID: 1681
+2026-01-20 23:42:27 [info]: Starting flying phase for round 1681 targetCrash=10.53 duration=20000ms
+2026-01-20 23:42:40 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:42:40 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:42:50 [info]: Creating new round with ID: 1682
+2026-01-20 23:42:50 [info]: Scheduling flying phase in 9997ms for round 1682
+2026-01-20 23:42:50 [info]: Successfully created new round with ID: 1715, Round ID: 1682
+2026-01-20 23:42:50 [info]: Creating new round with ID: 1683
+2026-01-20 23:42:50 [info]: Scheduling flying phase in 9998ms for round 1683
+2026-01-20 23:42:50 [info]: Successfully created new round with ID: 1716, Round ID: 1683
+2026-01-20 23:43:00 [info]: Starting flying phase for round 1683 targetCrash=1.3 duration=2600ms
+2026-01-20 23:43:02 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:43:12 [info]: Creating new round with ID: 1684
+2026-01-20 23:43:12 [info]: Scheduling flying phase in 9993ms for round 1684
+2026-01-20 23:43:12 [info]: Successfully created new round with ID: 1717, Round ID: 1684
+2026-01-20 23:43:22 [info]: Starting flying phase for round 1684 targetCrash=1.64 duration=3280ms
+2026-01-20 23:43:24 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:43:24 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:43:34 [info]: Creating new round with ID: 1685
+2026-01-20 23:43:34 [info]: Scheduling flying phase in 9996ms for round 1685
+2026-01-20 23:43:34 [info]: Successfully created new round with ID: 1718, Round ID: 1685
+2026-01-20 23:43:34 [info]: A new round was already created, returning existing round
+2026-01-20 23:43:44 [info]: Starting flying phase for round 1685 targetCrash=3.13 duration=6260ms
+2026-01-20 23:43:49 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:43:59 [info]: Creating new round with ID: 1686
+2026-01-20 23:44:00 [info]: Scheduling flying phase in 9778ms for round 1686
+2026-01-20 23:44:00 [info]: Successfully created new round with ID: 1719, Round ID: 1686
+2026-01-20 23:44:09 [info]: Starting flying phase for round 1686 targetCrash=3.84 duration=7680ms
+2026-01-20 23:44:15 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:44:25 [info]: Creating new round with ID: 1687
+2026-01-20 23:44:25 [info]: Scheduling flying phase in 9921ms for round 1687
+2026-01-20 23:44:25 [info]: Successfully created new round with ID: 1720, Round ID: 1687
+2026-01-20 23:44:35 [info]: Starting flying phase for round 1687 targetCrash=7.2 duration=14400ms
+2026-01-20 23:44:45 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:44:55 [info]: Creating new round with ID: 1688
+2026-01-20 23:44:55 [info]: Scheduling flying phase in 9993ms for round 1688
+2026-01-20 23:44:55 [info]: Successfully created new round with ID: 1721, Round ID: 1688
+2026-01-20 23:45:05 [info]: Starting flying phase for round 1688 targetCrash=12.37 duration=20000ms
+2026-01-20 23:45:20 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:45:30 [info]: Creating new round with ID: 1689
+2026-01-20 23:45:30 [info]: Scheduling flying phase in 9994ms for round 1689
+2026-01-20 23:45:30 [info]: Successfully created new round with ID: 1722, Round ID: 1689
+2026-01-20 23:45:40 [info]: Starting flying phase for round 1689 targetCrash=1.09 duration=2180ms
+2026-01-20 23:45:41 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:45:51 [info]: Creating new round with ID: 1690
+2026-01-20 23:45:51 [info]: Scheduling flying phase in 9997ms for round 1690
+2026-01-20 23:45:51 [info]: Successfully created new round with ID: 1723, Round ID: 1690
+2026-01-20 23:46:01 [info]: Starting flying phase for round 1690 targetCrash=1.07 duration=2140ms
+2026-01-20 23:46:01 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:46:11 [info]: Creating new round with ID: 1691
+2026-01-20 23:46:11 [info]: Scheduling flying phase in 9988ms for round 1691
+2026-01-20 23:46:11 [info]: Successfully created new round with ID: 1724, Round ID: 1691
+2026-01-20 23:46:21 [info]: Starting flying phase for round 1691 targetCrash=2.6 duration=5200ms
+2026-01-20 23:46:27 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:46:37 [info]: Creating new round with ID: 1692
+2026-01-20 23:46:37 [info]: Scheduling flying phase in 9996ms for round 1692
+2026-01-20 23:46:37 [info]: Successfully created new round with ID: 1725, Round ID: 1692
+2026-01-20 23:46:47 [info]: Starting flying phase for round 1692 targetCrash=1.5 duration=3000ms
+2026-01-20 23:46:49 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:46:59 [info]: Creating new round with ID: 1693
+2026-01-20 23:46:59 [info]: Scheduling flying phase in 9996ms for round 1693
+2026-01-20 23:46:59 [info]: Successfully created new round with ID: 1726, Round ID: 1693
+2026-01-20 23:47:09 [info]: Starting flying phase for round 1693 targetCrash=1.91 duration=3820ms
+2026-01-20 23:47:12 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:47:22 [info]: Creating new round with ID: 1694
+2026-01-20 23:47:22 [info]: Scheduling flying phase in 9991ms for round 1694
+2026-01-20 23:47:22 [info]: Successfully created new round with ID: 1727, Round ID: 1694
+2026-01-20 23:47:32 [info]: Starting flying phase for round 1694 targetCrash=2 duration=4000ms
+2026-01-20 23:47:35 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:47:45 [info]: Creating new round with ID: 1695
+2026-01-20 23:47:45 [info]: Scheduling flying phase in 9997ms for round 1695
+2026-01-20 23:47:45 [info]: Successfully created new round with ID: 1728, Round ID: 1695
+2026-01-20 23:47:55 [info]: Starting flying phase for round 1695 targetCrash=1.04 duration=2080ms
+2026-01-20 23:47:55 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:48:05 [info]: Creating new round with ID: 1696
+2026-01-20 23:48:05 [info]: Scheduling flying phase in 9996ms for round 1696
+2026-01-20 23:48:05 [info]: Successfully created new round with ID: 1729, Round ID: 1696
+2026-01-20 23:48:15 [info]: Starting flying phase for round 1696 targetCrash=2.47 duration=4940ms
+2026-01-20 23:48:20 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:48:30 [info]: Creating new round with ID: 1697
+2026-01-20 23:48:30 [info]: Scheduling flying phase in 9995ms for round 1697
+2026-01-20 23:48:30 [info]: Successfully created new round with ID: 1730, Round ID: 1697
+2026-01-20 23:48:40 [info]: Starting flying phase for round 1697 targetCrash=1.96 duration=3920ms
+2026-01-20 23:48:43 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:48:53 [info]: Creating new round with ID: 1698
+2026-01-20 23:48:53 [info]: Scheduling flying phase in 9919ms for round 1698
+2026-01-20 23:48:53 [info]: Successfully created new round with ID: 1731, Round ID: 1698
+2026-01-20 23:49:03 [info]: Starting flying phase for round 1698 targetCrash=1.08 duration=2160ms
+2026-01-20 23:49:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:49:13 [info]: Creating new round with ID: 1699
+2026-01-20 23:49:13 [info]: Scheduling flying phase in 9994ms for round 1699
+2026-01-20 23:49:13 [info]: Successfully created new round with ID: 1732, Round ID: 1699
+2026-01-20 23:49:23 [info]: Starting flying phase for round 1699 targetCrash=3.78 duration=7560ms
+2026-01-20 23:49:29 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:49:39 [info]: Creating new round with ID: 1700
+2026-01-20 23:49:39 [info]: Scheduling flying phase in 9913ms for round 1700
+2026-01-20 23:49:39 [info]: Successfully created new round with ID: 1733, Round ID: 1700
+2026-01-20 23:49:49 [info]: Starting flying phase for round 1700 targetCrash=1.35 duration=2700ms
+2026-01-20 23:49:51 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:50:01 [info]: Creating new round with ID: 1701
+2026-01-20 23:50:01 [info]: Scheduling flying phase in 9998ms for round 1701
+2026-01-20 23:50:01 [info]: Successfully created new round with ID: 1734, Round ID: 1701
+2026-01-20 23:50:11 [info]: Starting flying phase for round 1701 targetCrash=1.34 duration=2680ms
+2026-01-20 23:50:13 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:50:23 [info]: Creating new round with ID: 1702
+2026-01-20 23:50:23 [info]: Scheduling flying phase in 9928ms for round 1702
+2026-01-20 23:50:23 [info]: Successfully created new round with ID: 1735, Round ID: 1702
+2026-01-20 23:50:33 [info]: Starting flying phase for round 1702 targetCrash=2.56 duration=5120ms
+2026-01-20 23:50:37 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:50:40 [info]: ::1 - - [20/Jan/2026:22:50:40 +0000] "POST /api/rounds/1700/bets HTTP/1.1" 200 855 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:50:47 [info]: Creating new round with ID: 1703
+2026-01-20 23:50:47 [info]: Scheduling flying phase in 9996ms for round 1703
+2026-01-20 23:50:47 [info]: Successfully created new round with ID: 1736, Round ID: 1703
+2026-01-20 23:50:57 [info]: Starting flying phase for round 1703 targetCrash=27.33 duration=20000ms
+2026-01-20 23:51:17 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:51:27 [info]: Creating new round with ID: 1704
+2026-01-20 23:51:27 [info]: Scheduling flying phase in 9992ms for round 1704
+2026-01-20 23:51:27 [info]: Successfully created new round with ID: 1737, Round ID: 1704
+2026-01-20 23:51:37 [info]: Starting flying phase for round 1704 targetCrash=3.3 duration=6600ms
+2026-01-20 23:51:42 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:51:53 [info]: Creating new round with ID: 1705
+2026-01-20 23:51:53 [info]: Scheduling flying phase in 9992ms for round 1705
+2026-01-20 23:51:53 [info]: Successfully created new round with ID: 1738, Round ID: 1705
+2026-01-20 23:52:03 [info]: Starting flying phase for round 1705 targetCrash=1.62 duration=3240ms
+2026-01-20 23:52:05 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:52:15 [info]: Creating new round with ID: 1706
+2026-01-20 23:52:15 [info]: Scheduling flying phase in 9996ms for round 1706
+2026-01-20 23:52:15 [info]: Successfully created new round with ID: 1739, Round ID: 1706
+2026-01-20 23:52:25 [info]: Starting flying phase for round 1706 targetCrash=3.51 duration=7020ms
+2026-01-20 23:52:30 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:52:40 [info]: Creating new round with ID: 1707
+2026-01-20 23:52:40 [info]: Scheduling flying phase in 9993ms for round 1707
+2026-01-20 23:52:40 [info]: Successfully created new round with ID: 1740, Round ID: 1707
+2026-01-20 23:52:48 [info]: Database connected
+2026-01-20 23:52:48 [info]: Game engine initialized
+2026-01-20 23:52:48 [info]: Creating new round with ID: 1708
+2026-01-20 23:52:48 [info]: Scheduling flying phase in 19980ms for round 1708
+2026-01-20 23:52:48 [info]: Successfully created new round with ID: 1741, Round ID: 1708
+2026-01-20 23:52:48 [info]: Scheduling flying phase in 19976ms for round 1708
+2026-01-20 23:52:48 [info]: Server is running on http://localhost:3001
+2026-01-20 23:52:48 [info]: ChainService initializing
+2026-01-20 23:52:48 [info]: ChainService initialized
+2026-01-20 23:52:48 [info]: New WebSocket connection
+2026-01-20 23:53:08 [info]: Starting flying phase for round 1708 targetCrash=2.51 duration=5020ms
+2026-01-20 23:53:12 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:53:12 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:53:20 [info]: Database connected
+2026-01-20 23:53:20 [info]: Game engine initialized
+2026-01-20 23:53:20 [info]: Creating new round with ID: 1709
+2026-01-20 23:53:20 [info]: Scheduling flying phase in 19983ms for round 1709
+2026-01-20 23:53:20 [info]: Successfully created new round with ID: 1742, Round ID: 1709
+2026-01-20 23:53:20 [info]: ChainService initializing
+2026-01-20 23:53:20 [info]: ChainService initialized
+2026-01-20 23:53:20 [info]: Scheduling flying phase in 19932ms for round 1709
+2026-01-20 23:53:20 [info]: Server is running on http://localhost:3001
+2026-01-20 23:53:21 [info]: New WebSocket connection
+2026-01-20 23:53:28 [info]: Database connected
+2026-01-20 23:53:28 [info]: Game engine initialized
+2026-01-20 23:53:28 [info]: Creating new round with ID: 1710
+2026-01-20 23:53:28 [info]: Scheduling flying phase in 19983ms for round 1710
+2026-01-20 23:53:28 [info]: Successfully created new round with ID: 1743, Round ID: 1710
+2026-01-20 23:53:28 [info]: ChainService initializing
+2026-01-20 23:53:28 [info]: ChainService initialized
+2026-01-20 23:53:28 [info]: Scheduling flying phase in 19929ms for round 1710
+2026-01-20 23:53:28 [info]: Server is running on http://localhost:3001
+2026-01-20 23:53:28 [info]: New WebSocket connection
+2026-01-20 23:53:48 [info]: Starting flying phase for round 1710 targetCrash=12.4 duration=20000ms
+2026-01-20 23:54:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:54:08 [info]: Creating new round with ID: 1711
+2026-01-20 23:54:08 [info]: Scheduling flying phase in 19992ms for round 1711
+2026-01-20 23:54:08 [info]: Successfully created new round with ID: 1744, Round ID: 1711
+2026-01-20 23:54:35 [info]: Database connected
+2026-01-20 23:54:35 [info]: Game engine initialized
+2026-01-20 23:54:35 [info]: Creating new round with ID: 1712
+2026-01-20 23:54:35 [info]: ChainService initializing
+2026-01-20 23:54:35 [info]: ChainService initialized
+2026-01-20 23:54:35 [info]: Scheduling flying phase in 19933ms for round 1712
+2026-01-20 23:54:35 [info]: Successfully created new round with ID: 1745, Round ID: 1712
+2026-01-20 23:54:35 [info]: Scheduling flying phase in 19931ms for round 1712
+2026-01-20 23:54:35 [info]: Server is running on http://localhost:3001
+2026-01-20 23:54:36 [info]: New WebSocket connection
+2026-01-20 23:54:55 [info]: Starting flying phase for round 1712 targetCrash=1.96 duration=3920ms
+2026-01-20 23:54:58 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:55:03 [info]: Creating new round with ID: 1713
+2026-01-20 23:55:03 [info]: Scheduling flying phase in 19987ms for round 1713
+2026-01-20 23:55:03 [info]: Successfully created new round with ID: 1746, Round ID: 1713
+2026-01-20 23:55:23 [info]: Starting flying phase for round 1713 targetCrash=5.14 duration=10280ms
+2026-01-20 23:55:30 [info]: ::1 - - [20/Jan/2026:22:55:30 +0000] "GET /api/history HTTP/1.1" 200 5379 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:55:30 [info]: New WebSocket connection
+2026-01-20 23:55:30 [info]: ::1 - - [20/Jan/2026:22:55:30 +0000] "GET /api/rounds/current HTTP/1.1" 200 557 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:55:30 [info]: ::1 - - [20/Jan/2026:22:55:30 +0000] "GET /api/leaderboard HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-01-20 23:55:30 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:55:35 [info]: Creating new round with ID: 1714
+2026-01-20 23:55:35 [info]: Scheduling flying phase in 19983ms for round 1714
+2026-01-20 23:55:35 [info]: Successfully created new round with ID: 1747, Round ID: 1714
+2026-01-20 23:55:55 [info]: Starting flying phase for round 1714 targetCrash=12.91 duration=20000ms
+2026-01-20 23:56:11 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:56:16 [info]: Creating new round with ID: 1715
+2026-01-20 23:56:16 [info]: Scheduling flying phase in 19985ms for round 1715
+2026-01-20 23:56:16 [info]: Successfully created new round with ID: 1748, Round ID: 1715
+2026-01-20 23:56:36 [info]: Starting flying phase for round 1715 targetCrash=1.5 duration=3000ms
+2026-01-20 23:56:38 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:56:43 [info]: Creating new round with ID: 1716
+2026-01-20 23:56:43 [info]: Scheduling flying phase in 19996ms for round 1716
+2026-01-20 23:56:43 [info]: Successfully created new round with ID: 1749, Round ID: 1716
+2026-01-20 23:57:03 [info]: Starting flying phase for round 1716 targetCrash=1.23 duration=2460ms
+2026-01-20 23:57:04 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:57:09 [info]: Creating new round with ID: 1717
+2026-01-20 23:57:09 [info]: Scheduling flying phase in 19997ms for round 1717
+2026-01-20 23:57:09 [info]: Successfully created new round with ID: 1750, Round ID: 1717
+2026-01-20 23:57:29 [info]: Starting flying phase for round 1717 targetCrash=6.28 duration=12560ms
+2026-01-20 23:57:38 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:57:43 [info]: Creating new round with ID: 1718
+2026-01-20 23:57:43 [info]: Scheduling flying phase in 19989ms for round 1718
+2026-01-20 23:57:43 [info]: Successfully created new round with ID: 1751, Round ID: 1718
+2026-01-20 23:58:03 [info]: Starting flying phase for round 1718 targetCrash=1.91 duration=3820ms
+2026-01-20 23:58:06 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:58:11 [info]: Creating new round with ID: 1719
+2026-01-20 23:58:11 [info]: Scheduling flying phase in 19988ms for round 1719
+2026-01-20 23:58:11 [info]: Successfully created new round with ID: 1752, Round ID: 1719
+2026-01-20 23:58:31 [info]: Starting flying phase for round 1719 targetCrash=1.99 duration=3980ms
+2026-01-20 23:58:34 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:58:39 [info]: Creating new round with ID: 1720
+2026-01-20 23:58:39 [info]: Scheduling flying phase in 19993ms for round 1720
+2026-01-20 23:58:39 [info]: Successfully created new round with ID: 1753, Round ID: 1720
+2026-01-20 23:58:59 [info]: Starting flying phase for round 1720 targetCrash=16.48 duration=20000ms
+2026-01-20 23:59:17 [warn]: Cannot submit snapshot: no players in round
+2026-01-20 23:59:22 [info]: Creating new round with ID: 1721
+2026-01-20 23:59:22 [info]: Scheduling flying phase in 19998ms for round 1721
+2026-01-20 23:59:22 [info]: Successfully created new round with ID: 1754, Round ID: 1721
+2026-01-20 23:59:29 [info]: Database connected
+2026-01-20 23:59:29 [info]: Game engine initialized
+2026-01-20 23:59:29 [info]: Creating new round with ID: 1722
+2026-01-20 23:59:29 [info]: Scheduling flying phase in 19984ms for round 1722
+2026-01-20 23:59:29 [info]: Successfully created new round with ID: 1755, Round ID: 1722
+2026-01-20 23:59:29 [info]: ChainService initializing
+2026-01-20 23:59:30 [info]: ChainService initialized
+2026-01-20 23:59:30 [info]: Scheduling flying phase in 19929ms for round 1722
+2026-01-20 23:59:30 [info]: Server is running on http://localhost:3001
+2026-01-20 23:59:31 [info]: New WebSocket connection
+2026-01-20 23:59:34 [info]: Database connected
+2026-01-20 23:59:34 [info]: Game engine initialized
+2026-01-20 23:59:34 [info]: Creating new round with ID: 1723
+2026-01-20 23:59:34 [info]: Scheduling flying phase in 19978ms for round 1723
+2026-01-20 23:59:34 [info]: Successfully created new round with ID: 1756, Round ID: 1723
+2026-01-20 23:59:34 [info]: ChainService initializing
+2026-01-20 23:59:34 [info]: ChainService initialized
+2026-01-20 23:59:34 [info]: Scheduling flying phase in 19917ms for round 1723
+2026-01-20 23:59:34 [info]: Server is running on http://localhost:3001
+2026-01-20 23:59:34 [info]: New WebSocket connection
+2026-01-20 23:59:39 [info]: Database connected
+2026-01-20 23:59:39 [info]: Game engine initialized
+2026-01-20 23:59:39 [info]: Creating new round with ID: 1724
+2026-01-20 23:59:39 [info]: Scheduling flying phase in 19985ms for round 1724
+2026-01-20 23:59:39 [info]: Successfully created new round with ID: 1757, Round ID: 1724
+2026-01-20 23:59:39 [info]: ChainService initializing
+2026-01-20 23:59:39 [info]: ChainService initialized
+2026-01-20 23:59:39 [info]: Scheduling flying phase in 19926ms for round 1724
+2026-01-20 23:59:39 [info]: Server is running on http://localhost:3001
+2026-01-20 23:59:43 [info]: New WebSocket connection
+2026-01-20 23:59:50 [info]: Database connected
+2026-01-20 23:59:50 [info]: Game engine initialized
+2026-01-20 23:59:50 [info]: Creating new round with ID: 1725
+2026-01-20 23:59:50 [info]: Scheduling flying phase in 19984ms for round 1725
+2026-01-20 23:59:50 [info]: Successfully created new round with ID: 1758, Round ID: 1725
+2026-01-20 23:59:50 [info]: ChainService initializing
+2026-01-20 23:59:50 [info]: ChainService initialized
+2026-01-20 23:59:50 [info]: Scheduling flying phase in 19934ms for round 1725
+2026-01-20 23:59:50 [info]: Server is running on http://localhost:3001
+2026-01-20 23:59:51 [info]: New WebSocket connection
+2026-01-21 00:00:10 [info]: Starting flying phase for round 1725 targetCrash=12.91 duration=20000ms
+2026-01-21 00:00:25 [warn]: Cannot submit snapshot: no players in round
+2026-01-21 00:00:35 [info]: Creating new round with ID: 1726
+2026-01-21 00:00:35 [info]: Scheduling flying phase in 19990ms for round 1726
+2026-01-21 00:00:35 [info]: Successfully created new round with ID: 1759, Round ID: 1726
+2026-01-21 00:00:55 [info]: Starting flying phase for round 1726 targetCrash=4.64 duration=9280ms
+2026-01-21 00:01:03 [warn]: Cannot submit snapshot: no players in round
+2026-01-21 00:01:13 [info]: Creating new round with ID: 1727
+2026-01-21 00:01:13 [info]: Scheduling flying phase in 19997ms for round 1727
+2026-01-21 00:01:13 [info]: Successfully created new round with ID: 1760, Round ID: 1727
+2026-01-21 00:01:33 [info]: Starting flying phase for round 1727 targetCrash=10.88 duration=20000ms
+2026-01-21 00:01:46 [warn]: Cannot submit snapshot: no players in round

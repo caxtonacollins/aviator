@@ -33,6 +33,16 @@ contract FailingERC20 is IERC20 {
 }
 
 contract AviatorGameTest is Test {
+    // local matching event for expectEmit
+    event RoundSnapshot(
+        uint256 indexed roundId,
+        bytes32 snapshotHash,
+        bytes32 playersMerkleRoot,
+        uint256 totalBets,
+        uint256 totalPayouts,
+        uint32 numPlayers
+    );
+
     AviatorGame public aviator;
     ERC20Mock public usdc;
     address public constant PLAYER = address(1);
@@ -286,32 +296,102 @@ contract AviatorGameTest is Test {
         assertEq(players[0], PLAYER);
         assertEq(players[1], PLAYER2);
 
-        (
-            uint256 id,
-            uint256 crashMultiplier,
-            bytes32 serverSeedHash,
-            uint256 totalBets,
-            uint256 totalPayouts,
-            bool settled
-        ) = aviator.getRoundHistory(aviator.currentRoundId() - 1);
+        // Get round history but only check the ID as other values are not used in the test
+        (uint256 id, , , , , ) = aviator.getRoundHistory(aviator.currentRoundId() - 1);
         // getRoundHistory reads from rounds mapping for an old id; the initial round started at deploy increments to 1
         // We expect the previous round (id = 0) to be zero-values
         assertEq(id, 0);
 
         // The live currentRound struct reflects in-memory updates. Assert against the public currentRound getter.
+        ( , , , , , , uint256 totalBets, uint256 totalPayouts, bool settled) = aviator.currentRound();
+        assertEq(totalBets, BET_AMOUNT * 2);
+        assertEq(totalPayouts, 0);
+        assertEq(settled, false);
+    }
+
+    function test_SnapshotOnlyServerOperator() public {
+        uint256 rid = aviator.currentRoundId();
+        bytes32 playersMerkleRoot = keccak256(abi.encodePacked("leaf"));
+
+        (, , bytes32 seedHash, , , ) = aviator.getRoundHistory(rid);
+
+        bytes32 snapshotHash = keccak256(
+            abi.encodePacked(
+                rid,
+                seedHash,
+                uint256(0),
+                uint256(0),
+                playersMerkleRoot,
+                uint32(1)
+            )
+        );
+
+        vm.prank(PLAYER);
+        vm.expectRevert(
+            abi.encodeWithSelector(AviatorGame.Unauthorized.selector)
+        );
+        aviator.snapshotRound(rid, snapshotHash, playersMerkleRoot, 0, 0, 1);
+    }
+
+    function test_SnapshotStoresAndEmits() public {
+        // prepare a round: place bets and crash
+        vm.prank(PLAYER);
+        aviator.placeBet(BET_AMOUNT);
+        aviator.startFlying(keccak256(abi.encodePacked("s")));
+        aviator.crashRound(150, "s");
+        aviator.settleRound();
+
+        uint256 rid = aviator.currentRoundId() - 1; // snapshot the finished round
+        bytes32 playersMerkleRoot = keccak256(abi.encodePacked("p1", "p2"));
+        uint256 totalBets = 0; // use simple numbers for the test
+        uint256 totalPayouts = 0;
+        uint32 numPlayers = 2;
+
+        (, , bytes32 seedHash, , , ) = aviator.getRoundHistory(rid);
+
+        bytes32 snapshotHash = keccak256(
+            abi.encodePacked(
+                rid,
+                seedHash,
+                uint256(150),
+                totalBets,
+                totalPayouts,
+                playersMerkleRoot,
+                numPlayers
+            )
+        );
+
+        // calling as server operator (this test contract is owner and initial serverOperator)
+        vm.expectEmit(true, false, false, true);
+        emit AviatorGame.RoundSnapshot(
+            rid,
+            snapshotHash,
+            playersMerkleRoot,
+            totalBets,
+            totalPayouts,
+            numPlayers
+        );
+
+        aviator.snapshotRound(
+            rid,
+            snapshotHash,
+            playersMerkleRoot,
+            totalBets,
+            totalPayouts,
+            numPlayers
+        );
+
         (
-            uint256 idCr,
-            AviatorGame.GamePhase phaseCr,
-            uint256 startTimeCr,
-            uint256 flyStartTimeCr,
-            uint256 crashMultiplierCr,
-            bytes32 seedCr,
-            uint256 tbCr,
-            uint256 tpCr,
-            bool settledCr
-        ) = aviator.currentRound();
-        assertEq(tbCr, BET_AMOUNT * 2);
-        assertEq(tpCr, 0);
-        assertEq(settledCr, false);
+            bytes32 storedHash,
+            bytes32 storedMerkle,
+            uint256 storedBets,
+            uint256 storedPayouts,
+            uint32 storedNum
+        ) = aviator.roundSnapshots(rid);
+        assertEq(storedHash, snapshotHash);
+        assertEq(storedMerkle, playersMerkleRoot);
+        assertEq(storedBets, totalBets);
+        assertEq(storedPayouts, totalPayouts);
+        assertEq(storedNum, numPlayers);
     }
 }

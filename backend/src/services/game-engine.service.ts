@@ -22,9 +22,29 @@ export class GameEngine {
 
   leaderboardService = new LeaderboardService();
   historyService = new HistoryService();
+  chainService: import('./chain.service.ts').ChainService | null = null;
 
   constructor(io: Server) {
     this.io = io;
+
+    // try to dynamically import ChainService (non-blocking). If it fails, snapshots are disabled.
+    import('./chain.service.ts')
+      .then((mod) => {
+        try {
+          logger.info('ChainService initializing');
+          this.chainService = new mod.ChainService();
+          logger.info('ChainService initialized');
+        } catch (err: any) {
+          logger.warn('ChainService initialization failed', { error: err.message });
+          this.chainService = null;
+        }
+      })
+      .catch((err) => {
+        logger.warn('ChainService not initialized, snapshots disabled', {
+          error: err.message,
+        });
+        this.chainService = null;
+      });
 
     this.initializeEngine().catch((error) => {
       logger.error('Failed to initialize game engine', { error });
@@ -326,6 +346,20 @@ export class GameEngine {
       winnersCount: players.filter((p) => p.cashedOut).length,
     });
 
+    // Submit an on-chain snapshot asynchronously (if chain service configured)
+    if (this.chainService) {
+      try {
+        await this.executeWithRetry(() =>
+          this.chainService!.submitRoundSnapshot(
+            this.currentRound!,
+            players as PlayerBet[]
+          )
+        );
+      } catch (err: any) {
+        logger.error('Round snapshot submission failed', { error: err.message });
+      }
+    }
+
     // Broadcast updated history to all clients
     const latestHistory = await this.historyService.latest(28);
     this.io.emit('HISTORY_UPDATE', latestHistory);
@@ -333,7 +367,7 @@ export class GameEngine {
     this.broadcastGameState();
 
     // new round after 30s
-    setTimeout(() => this.startNewRound(), 30000);
+    setTimeout(() => this.startNewRound(), 10000);
   }
 
   async placeBet(address: string, amount: number, txHash?: string) {

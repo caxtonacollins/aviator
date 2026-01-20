@@ -197,7 +197,7 @@ export class GameEngine {
             roundId: nextId,
             phase: 'BETTING',
             startTime: Date.now(),
-            flyStartTime: Date.now() + 10000,
+            flyStartTime: Date.now() + 20000,
             crashMultiplier: null,
             currentMultiplier: 1.0,
             serverSeed,
@@ -366,7 +366,7 @@ export class GameEngine {
 
     this.broadcastGameState();
 
-    // new round after 30s
+    // new round after 10s
     setTimeout(() => this.startNewRound(), 10000);
   }
 

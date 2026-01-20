@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {
+    ReentrancyGuard
+} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -85,6 +87,26 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
     );
     event HouseBalanceUpdated(uint256 newBalance);
     event ServerOperatorUpdated(address indexed newOperator);
+
+    // Snapshot event and storage for on-chain attestation
+    event RoundSnapshot(
+        uint256 indexed roundId,
+        bytes32 snapshotHash,
+        bytes32 playersMerkleRoot,
+        uint256 totalBets,
+        uint256 totalPayouts,
+        uint32 numPlayers
+    );
+
+    struct RoundSnapshotData {
+        bytes32 snapshotHash;
+        bytes32 playersMerkleRoot;
+        uint256 totalBets;
+        uint256 totalPayouts;
+        uint32 numPlayers;
+    }
+
+    mapping(uint256 => RoundSnapshotData) public roundSnapshots;
 
     // ============ Errors ============
     error InvalidBetAmount();
@@ -193,34 +215,34 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
         emit RoundFlying(currentRoundId, block.timestamp);
     }
 
-function crashRound(
-    uint256 crashMultiplier,
-    string calldata serverSeed
-) external onlyServerOperator whenNotPaused {
-    if (currentRound.phase != GamePhase.FLYING) revert WrongGamePhase();
-    if (
-        crashMultiplier < MIN_MULTIPLIER || crashMultiplier > MAX_MULTIPLIER
-    ) {
-        revert InvalidCrashMultiplier();
+    function crashRound(
+        uint256 crashMultiplier,
+        string calldata serverSeed
+    ) external onlyServerOperator whenNotPaused {
+        if (currentRound.phase != GamePhase.FLYING) revert WrongGamePhase();
+        if (
+            crashMultiplier < MIN_MULTIPLIER || crashMultiplier > MAX_MULTIPLIER
+        ) {
+            revert InvalidCrashMultiplier();
+        }
+
+        bytes32 seedHash;
+        assembly {
+            // Get a free memory pointer
+            let ptr := mload(0x40)
+            // Copy the calldata string to memory
+            calldatacopy(ptr, serverSeed.offset, serverSeed.length)
+            // Hash the data directly
+            seedHash := keccak256(ptr, serverSeed.length)
+        }
+
+        if (seedHash != currentRound.serverSeedHash) revert InvalidServerSeed();
+
+        currentRound.phase = GamePhase.CRASHED;
+        currentRound.crashMultiplier = crashMultiplier;
+
+        emit RoundCrashed(currentRoundId, crashMultiplier);
     }
-
-    bytes32 seedHash;
-    assembly {
-        // Get a free memory pointer
-        let ptr := mload(0x40)
-        // Copy the calldata string to memory
-        calldatacopy(ptr, serverSeed.offset, serverSeed.length)
-        // Hash the data directly
-        seedHash := keccak256(ptr, serverSeed.length)
-    }
-    
-    if (seedHash != currentRound.serverSeedHash) revert InvalidServerSeed();
-
-    currentRound.phase = GamePhase.CRASHED;
-    currentRound.crashMultiplier = crashMultiplier;
-
-    emit RoundCrashed(currentRoundId, crashMultiplier);
-}
 
     function settleRound() external nonReentrant whenNotPaused {
         if (currentRound.phase != GamePhase.CRASHED) revert WrongGamePhase();
@@ -296,6 +318,22 @@ function crashRound(
         emit ServerOperatorUpdated(newOperator);
     }
 
+    function pause() external onlyOwner {
+        _pause();
+    }
+
+    function unpause() external onlyOwner {
+        _unpause();
+    }
+
+    function fundHouse(uint256 amount) external onlyOwner {
+        bool success = usdcToken.transferFrom(msg.sender, address(this), amount);
+        if (!success) revert TransferFailed();
+        
+        houseBalance += amount;
+        emit HouseBalanceUpdated(houseBalance);
+    }
+
     function withdrawHouseProfits(uint256 amount) external onlyOwner {
         require(amount <= houseBalance, "Insufficient balance");
         houseBalance -= amount;
@@ -304,14 +342,6 @@ function crashRound(
         if (!success) revert TransferFailed();
 
         emit HouseBalanceUpdated(houseBalance);
-    }
-
-    function pause() external onlyOwner {
-        _pause();
-    }
-
-    function unpause() external onlyOwner {
-        _unpause();
     }
 
     // ============ Internal Functions ============
@@ -337,5 +367,38 @@ function crashRound(
 
     function _onlyServerOperator() internal view {
         if (msg.sender != serverOperator) revert Unauthorized();
+    }
+
+    // ============ Snapshot Functions ============
+    /// @notice Submit a compact snapshot of a settled round for on-chain attestation
+    /// @dev The snapshotHash should be computed as keccak256(abi.encodePacked(roundId, serverSeedHash, crashMultiplier, totalBets, totalPayouts, playersMerkleRoot, numPlayers))
+    function snapshotRound(
+        uint256 roundId,
+        bytes32 snapshotHash,
+        bytes32 playersMerkleRoot,
+        uint256 totalBets,
+        uint256 totalPayouts,
+        uint32 numPlayers
+    ) external onlyServerOperator whenNotPaused {
+        Round memory r = rounds[roundId];
+        if (r.roundId == 0) revert RoundNotSettled();
+
+        // store snapshot and emit event
+        roundSnapshots[roundId] = RoundSnapshotData({
+            snapshotHash: snapshotHash,
+            playersMerkleRoot: playersMerkleRoot,
+            totalBets: totalBets,
+            totalPayouts: totalPayouts,
+            numPlayers: numPlayers
+        });
+
+        emit RoundSnapshot(
+            roundId,
+            snapshotHash,
+            playersMerkleRoot,
+            totalBets,
+            totalPayouts,
+            numPlayers
+        );
     }
 }

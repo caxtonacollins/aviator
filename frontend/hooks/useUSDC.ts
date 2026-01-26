@@ -4,6 +4,7 @@ import { parseUnits } from 'viem';
 import { useAccount } from 'wagmi';
 import { setOnchainKitConfig } from '@coinbase/onchainkit';
 import { APIError, getPortfolios } from '@coinbase/onchainkit/api';
+import { pay, getPaymentStatus } from '@base-org/account';
 import ERC20_ABI from '@/abis/usdc.json';
 
 interface TokenBalance {
@@ -34,6 +35,7 @@ export default function useUSDC() {
   const [balance, setBalance] = useState<number | null>(null);
   const usdcAddress = (process.env.NEXT_PUBLIC_USDC_ADDRESS || '') as `0x${string}`;
   const houseAddress = process.env.NEXT_PUBLIC_GAME_CONTRACT_ADDRESS as `0x${string}` | undefined;
+  const baseAddress = process.env.NEXT_PUBLIC_BASE_ADDRESS as `0x${string}` | undefined;
   const decimals = 6;
   setOnchainKitConfig({ apiKey: process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY || '' });
 
@@ -145,6 +147,28 @@ export default function useUSDC() {
     [walletClient, publicClient, usdcAddress, decimals, fetchBalance]
   );
 
+  const placeBet = useCallback(async (betAmount: string) => {
+    try {
+      const payment = await pay({
+        amount: betAmount,
+        to: `${houseAddress}`,
+        testnet: false
+      });
+
+      const { status } = await getPaymentStatus({
+        id: payment.id,
+        testnet: false
+      });
+
+      if (status === 'completed') {
+        // Process the bet
+        return { success: true, paymentId: payment.id };
+      }
+    } catch (error: any) {
+      console.error('Payment failed:', error.message);
+    }
+  }, []);
+
   return {
     walletBalance: balance,
     walletAddress: address,
@@ -155,5 +179,6 @@ export default function useUSDC() {
     houseAddress,
     transferUSDC,
     decimals,
+    placeBet,
   };
 }

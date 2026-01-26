@@ -237,3 +237,5 @@
 2026-01-20 16:21:48 [error]: Round snapshot submission failed
 2026-01-20 18:31:54 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
 2026-01-20 20:28:10 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-26 00:18:21 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions
+2026-01-26 10:34:43 [error]: Unhandled Rejection: could not serialize access due to read/write dependencies among transactions

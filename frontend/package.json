@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-org/account": "^2.5.1",
+    "@base-org/account-ui": "^1.0.1",
     "@coinbase/onchainkit": "latest",
     "@farcaster/auth-kit": "^0.8.1",
     "@farcaster/miniapp-sdk": "^0.2.1",

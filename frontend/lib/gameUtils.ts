@@ -107,6 +107,16 @@ export function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+export function amountInWei(amount: number): bigint {
+  // Convert the amount to a string to handle decimal places accurately
+  const [whole, fraction = ''] = amount.toString().split('.');
+  // Ensure we have exactly 6 decimal places
+  const paddedFraction = fraction.padEnd(6, '0').slice(0, 6);
+  const amountString = whole + paddedFraction;
+  return BigInt(amountString);
+}
+
+
 export default {
   calculateGameStats,
   findPlayerBet,
@@ -117,4 +127,5 @@ export default {
   getMultiplierColor,
   isValidBetAmount,
   delay,
+  amountInWei,
 };

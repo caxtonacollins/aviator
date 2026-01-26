@@ -9,10 +9,10 @@ contract AviatorScript is Script {
     function run() external {
         // Load the private key from the environment
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address usdcTokenAddress = vm.envAddress("USDC_TOKEN_ADDRESS");
+        address usdcTokenAddress = vm.envAddress("USDC_ADDRESS");
         
         // Ensure USDC token address is provided
-        require(usdcTokenAddress != address(0), "USDC_TOKEN_ADDRESS not set");
+        require(usdcTokenAddress != address(0), "USDC_ADDRESS not set");
 
         // Start broadcasting transactions
         vm.startBroadcast(deployerPrivateKey);

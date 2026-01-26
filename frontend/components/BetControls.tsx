@@ -4,11 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useGameContext } from "@/context/GameContext";
 import { useBetValidation } from "@/hooks/useBetValidation";
 import useUSDC from "@/hooks/useUSDC";
+import { BasePayButton } from '@base-org/account-ui/react';
 
 const BetControls: React.FC = () => {
-  const { roundData, placeBet, cashOut } = useGameContext();
-  const { walletBalance, walletAddress } = useUSDC();
-  const [betAmount, setBetAmount] = useState("1");
+  const { roundData, cashOut } = useGameContext();
+  const { walletBalance, walletAddress, refreshBalance, placeBet } = useUSDC();
+  const [betAmount, setBetAmount] = useState("0.1");
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -33,14 +34,16 @@ const BetControls: React.FC = () => {
     setTxHash(null);
     setError(null);
     try {
-      const res = await placeBet(walletAddress, parseFloat(betAmount));
+      const res = await placeBet(betAmount);
+      await refreshBalance();
       if (res?.success) {
-        setTxHash(res.txHash || null);
-        setBetAmount("1"); // Reset after successful bet
+        setTxHash(res.paymentId || null);
+        setBetAmount("0.1"); // Reset after successful bet
       } else {
-        setError(res?.error || "Failed to place bet");
+        setError("Failed to place bet");
       }
     } catch (err) {
+      setIsProcessing(false);
       console.error("Error placing bet:", err);
       setError((err as Error).message || "Failed to place bet");
     } finally {
@@ -139,6 +142,10 @@ const BetControls: React.FC = () => {
           >
             {isProcessing ? "Processing…" : `Place Bet (${betAmount} USDC)`}
           </button>
+          <BasePayButton
+            colorScheme="light"
+            onClick={handlePlaceBet}
+          />
 
           {txHash && (
             <div className="text-xs text-gray-400 bg-green-900/20 border border-green-500/30 rounded p-2">

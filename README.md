@@ -76,7 +76,7 @@ cp .env.example backend/.env
 ```env
 NEXT_PUBLIC_BASE_CHAIN_ID=0x2105
 NEXT_PUBLIC_USDC_ADDRESS=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
-NEXT_PUBLIC_HOUSE_ADDRESS=0x<contract>
+NEXT_PUBLIC_GAME_CONTRACT_ADDRESS=0x<contract>
 NEXT_PUBLIC_PAYMASTER_PROXY_URL=http://localhost:3001/paymaster
 NEXT_PUBLIC_WS_URL=ws://localhost:3001
 ```
@@ -156,5 +156,3 @@ Countdown     Pay out USDC       Next round
 MIT
 
 ---
-
-**Status:** Active Development | **Last Updated:** January 2026

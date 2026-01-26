@@ -1,15 +1,23 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import manager from "./gameSocketManager";
 import { RoundData, GameHistory, LeaderboardEntry } from "@/types/game";
-
+import { useWalletClient, usePublicClient } from 'wagmi';
+import GameABI from "@/abis/aviator.json";
 const DEFAULT_WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001";
-
 import useUSDC from "@/hooks/useUSDC";
+import { amountInWei } from "@/lib/gameUtils";
 
 export function useGame(options: { wsUrl?: string } = {}) {
   const wsUrl = options.wsUrl || DEFAULT_WS_URL;
-
-  const { transferUSDC, houseAddress } = useUSDC();
+  const { data: walletClient } = useWalletClient();
+  const publicClient = usePublicClient();
+  
+  const { 
+    transferUSDC, 
+    houseAddress, 
+    checkAllowance, 
+    approveUSDC 
+  } = useUSDC();
 
   const [roundData, setRoundData] = useState<RoundData | null>(null);
   const [gameHistory, setGameHistory] = useState<GameHistory[]>([]);
@@ -92,39 +100,98 @@ export function useGame(options: { wsUrl?: string } = {}) {
 
   const placeBet = useCallback(
     async (address: string, amount: number) => {
-      // Perform an on-chain USDC transfer first (transfer to house wallet), then persist bet with txHash
-      let txHash: string | undefined;
-      try {
-        if (!houseAddress)
-          throw new Error(
-            "House address not configured (NEXT_PUBLIC_HOUSE_ADDRESS)",
-          );
-        txHash = await transferUSDC(houseAddress, amount);
-      } catch (err) {
-        console.error("On-chain transfer failed", err);
-        return { success: false, error: (err as Error).message };
+      if (!walletClient?.account?.address) {
+        return { success: false, error: 'Wallet not connected' };
       }
 
-      // Notify socket (fast)
-      try {
-        manager.send({ type: "PLACE_BET", data: { address, amount, txHash } });
-      } catch (e) {
-        // ignore
+      if (!publicClient) {
+        return { success: false, error: 'Public client not available' };
       }
 
-      // make REST call to persist/fallback including txHash
+      // Get the game contract address from environment variables
+      const gameContractAddress = process.env.NEXT_PUBLIC_GAME_CONTRACT_ADDRESS;
+      if (!gameContractAddress) {
+        return { success: false, error: 'Game contract address not configured' };
+      }
+
       try {
-        if (roundData?.roundId) {
-          const api = await import("@/lib/api");
-          await api.placeBetRest(roundData.roundId, address, amount, txHash);
+        // Check current allowance
+        const currentAllowance = await checkAllowance(address, gameContractAddress);
+        
+        // If allowance is less than the bet amount, request approval
+        if (currentAllowance < amount) {
+          try {
+            const approvalTxHash = await approveUSDC(gameContractAddress, amount);
+            console.log('USDC approval transaction hash:', approvalTxHash);
+            
+            // Wait for the approval transaction to be mined
+            if (publicClient) {
+              await publicClient.waitForTransactionReceipt({
+                hash: approvalTxHash as `0x${string}`
+              });
+            }
+          } catch (err) {
+            console.error('USDC approval failed:', err);
+            return { success: false, error: 'Failed to approve USDC transfer' };
+          }
         }
-      } catch (e) {
-        console.warn("REST place bet failed", e);
-      }
 
-      return { success: true, txHash };
+        // Now call the placeBet function on the smart contract
+        const amountInWeii = amountInWei(amount);
+        const { request } = await publicClient.simulateContract({
+          address: gameContractAddress as `0x${string}`,
+          abi: GameABI,
+          functionName: 'placeBet',
+          args: [amountInWeii],
+          account: walletClient.account.address,
+        });
+
+        console.log('placeBet request:', request);
+
+        const txHash = await walletClient.writeContract(request);
+        
+        // Wait for the transaction to be mined
+        if (publicClient) {
+          await publicClient.waitForTransactionReceipt({
+            hash: txHash
+          });
+        }
+
+        // Notify socket (fast)
+        try {
+          manager.send({ type: "PLACE_BET", data: { address, amount, txHash } });
+        } catch (e) {
+          console.warn("WebSocket notification failed:", e);
+        }
+
+        // Make REST call to persist/fallback including txHash
+        try {
+          if (roundData?.roundId) {
+            const api = await import("@/lib/api");
+            await api.placeBetRest(roundData.roundId, address, amount, txHash);
+          }
+        } catch (e) {
+          console.warn("REST place bet failed", e);
+        }
+
+        return { success: true, txHash };
+      } catch (err) {
+        console.error("Error placing bet:", err);
+        return { 
+          success: false, 
+          error: 'Failed to place bet' 
+        };
+      }
     },
-    [roundData, transferUSDC, houseAddress],
+    [
+      roundData, 
+      transferUSDC, 
+      houseAddress, 
+      walletClient, 
+      publicClient, 
+      checkAllowance, 
+      approveUSDC
+    ],
   );
 
   const cashOut = useCallback(async (betId: number) => {
@@ -194,7 +261,7 @@ export function useRoundCountdown(roundData: RoundData | null) {
 
     if (roundData.phase === "CRASHED") {
       // 30s countdown after crash
-      let timeLeft = 30;
+      let timeLeft = 10;
       setCountdown(timeLeft);
       interval = setInterval(() => {
         timeLeft--;

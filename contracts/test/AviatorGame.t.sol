@@ -5,6 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {AviatorGame} from "../src/AviatorGame.sol";
 import {ERC20Mock} from "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 // Simple ERC20 that always returns false for transfer/transferFrom to simulate failures
 contract FailingERC20 is IERC20 {
@@ -54,7 +55,11 @@ contract AviatorGameTest is Test {
         usdc = new ERC20Mock();
 
         // Deploy AviatorGame with mock USDC address
-        aviator = new AviatorGame(address(usdc));
+        // Deploy AviatorGame implementation and proxy
+        AviatorGame impl = new AviatorGame();
+        bytes memory initData = abi.encodeCall(AviatorGame.initialize, (address(usdc), address(this)));
+        ERC1967Proxy proxy = new ERC1967Proxy(address(impl), initData);
+        aviator = AviatorGame(address(proxy));
 
         // Mint USDC to test players
         usdc.mint(PLAYER, 1000e6);
@@ -273,9 +278,12 @@ contract AviatorGameTest is Test {
     }
 
     function test_TransferFailuresRevert() public {
-        // Deploy failing token and new Aviator with it
+        // Deploy failing token and new Aviator Proxy with it
         FailingERC20 failToken = new FailingERC20();
-        AviatorGame bad = new AviatorGame(address(failToken));
+        AviatorGame badImpl = new AviatorGame();
+        bytes memory badInit = abi.encodeCall(AviatorGame.initialize, (address(failToken), address(this)));
+        ERC1967Proxy badProxy = new ERC1967Proxy(address(badImpl), badInit);
+        AviatorGame bad = AviatorGame(address(badProxy));
 
         // Attempt to place bet should revert because transferFrom returns false
         vm.prank(PLAYER);

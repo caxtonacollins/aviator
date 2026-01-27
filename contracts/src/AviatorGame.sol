@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import {
-    ReentrancyGuard
-} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
+contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, OwnableUpgradeable, PausableUpgradeable {
     // ============ State Variables ============
 
     // Token Configuration
@@ -129,12 +129,23 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
     }
 
     // ============ Constructor ============
-    constructor(address _usdcToken) Ownable(msg.sender) {
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
+    function initialize(address _usdcToken, address initialOwner) public initializer {
+        __Ownable_init(initialOwner);
+        __Pausable_init();
+
+
         require(_usdcToken != address(0), "Invalid USDC token address");
         usdcToken = IERC20(_usdcToken);
-        serverOperator = msg.sender;
+        serverOperator = initialOwner;
         _startNewRound();
     }
+    
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     // ============ Core Game Functions ============
     // ============ Modified Core Game Functions for Backend Relay ============

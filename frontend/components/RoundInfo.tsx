@@ -68,7 +68,7 @@ const RoundInfo: React.FC = () => {
                 timeRemaining <= 3 ? "bg-orange-500" : "bg-green-500"
               }`}
               style={{
-                width: `${(timeRemaining / (roundData.phase === "CRASHED" ? 30 : 10)) * 100}%`,
+                width: `${(timeRemaining / (roundData.phase === "CRASHED" ? 5 : 30)) * 100}%`,
               }}
             />
           </div>

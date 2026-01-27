@@ -137,6 +137,46 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
     }
 
     // ============ Core Game Functions ============
+    // ============ Modified Core Game Functions for Backend Relay ============
+    function placeBetFor(
+        address player,
+        uint256 betAmount
+    ) external nonReentrant whenNotPaused onlyServerOperator {
+        if (currentRound.phase != GamePhase.BETTING) revert WrongGamePhase();
+        if (betAmount < MIN_BET || betAmount > MAX_BET)
+            revert InvalidBetAmount();
+        if (roundBets[currentRoundId][player].amount > 0)
+            revert BetAlreadyPlaced();
+
+        // Transfer USDC from player to contract
+        // Note: The player must have approved the contract to spend this amount
+        bool success = usdcToken.transferFrom(
+            player,
+            address(this),
+            betAmount
+        );
+        if (!success) revert TransferFailed();
+
+        // Record bet
+        roundBets[currentRoundId][player] = Bet({
+            amount: betAmount,
+            cashoutMultiplier: 0,
+            settled: false
+        });
+
+        roundPlayers[currentRoundId].push(player);
+        currentRound.totalBets += betAmount;
+
+        emit BetPlaced(currentRoundId, player, betAmount);
+
+        // Auto-start countdown if first bet
+        if (roundPlayers[currentRoundId].length == 1) {
+            currentRound.startTime = block.timestamp;
+        }
+    }
+
+    // Kept original placeBet for direct interaction if needed, or deprecate it.
+    // Keeping it for now as a fallback or for tests that don't use the backend relayer.
     function placeBet(uint256 betAmount) external nonReentrant whenNotPaused {
         if (currentRound.phase != GamePhase.BETTING) revert WrongGamePhase();
         if (betAmount < MIN_BET || betAmount > MAX_BET)
@@ -168,6 +208,40 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
         if (roundPlayers[currentRoundId].length == 1) {
             currentRound.startTime = block.timestamp;
         }
+    }
+
+    function cashOutFor(
+        address player,
+        uint256 multiplier
+    ) external nonReentrant whenNotPaused onlyServerOperator {
+        if (currentRound.phase != GamePhase.FLYING) revert WrongGamePhase();
+
+        Bet storage bet = roundBets[currentRoundId][player];
+        if (bet.amount == 0) revert NoBetPlaced();
+        if (bet.cashoutMultiplier > 0) revert AlreadyCashedOut();
+        if (multiplier < MIN_MULTIPLIER) revert InvalidMultiplier();
+
+        // Calculate payout
+        uint256 payout = (bet.amount * multiplier) / 100;
+        if (payout > houseBalance) revert InsufficientHouseBalance();
+
+        // Record cashout
+        bet.cashoutMultiplier = multiplier;
+        bet.settled = true;
+        currentRound.totalPayouts += payout;
+        houseBalance -= payout;
+
+        // Transfer winnings in USDC to the player
+        bool success = usdcToken.transfer(player, payout);
+        if (!success) revert TransferFailed();
+
+        emit CashOut(
+            currentRoundId,
+            player,
+            bet.amount,
+            multiplier,
+            payout
+        );
     }
 
     function cashOut(uint256 multiplier) external nonReentrant whenNotPaused {

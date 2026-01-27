@@ -151,7 +151,7 @@ export default function useUSDC() {
     try {
       const payment = await pay({
         amount: betAmount,
-        to: `${houseAddress}`,
+        to: `${baseAddress}`,
         testnet: false
       });
 

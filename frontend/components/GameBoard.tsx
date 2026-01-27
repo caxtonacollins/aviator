@@ -45,7 +45,9 @@ const GameBoard: React.FC = () => {
       </div>
 
       {roundData &&
-        (roundData.phase === "FLYING" || roundData.phase === "CRASHED") && (
+        (roundData.phase === "FLYING" ||
+          roundData.phase === "CRASHED" ||
+          roundData.phase === "BETTING") && (
           <div
             className="absolute pointer-events-none"
             style={{
@@ -54,8 +56,29 @@ const GameBoard: React.FC = () => {
               transform: `translate(-50%, -50%) rotate(${plane.angle}deg)`,
               opacity: plane.opacity,
               willChange: "transform, opacity, left, top",
+              zIndex: 20,
             }}
           >
+          {/* TRAIL - Only show during BETTING (Dive & Hover) */}
+          {roundData.phase === "BETTING" && (
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2"
+              style={{
+                width: "100px",
+                height: "200vh", // Extend way down
+                background:
+                  "linear-gradient(to bottom, rgba(74, 222, 128, 0.6), transparent 80%)",
+                filter: "blur(4px)",
+                transformOrigin: "top center",
+                // Check if diving or hovering to adjust trail width/intensity?
+                // Simple cone for now:
+                clipPath: "polygon(40% 0, 60% 0, 100% 100%, 0% 100%)",
+                pointerEvents: "none",
+                zIndex: -1,
+              }}
+            />
+          )}
+
             <div style={{ width: "clamp(40px, 12vw, 96px)", height: "auto" }}>
               <Image
                 src="/logo.png"

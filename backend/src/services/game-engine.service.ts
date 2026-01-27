@@ -373,13 +373,25 @@ export class GameEngine {
   async placeBet(address: string, amount: number, txHash?: string) {
     if (!this.currentRound || this.currentRound.phase !== 'BETTING')
       throw new Error('Betting closed');
+
+    // Relay to chain if no txHash provided (meaning it's a backend-mediated bet)
+    let finalTxHash = txHash || null;
+    if (!finalTxHash && this.chainService) {
+      try {
+        finalTxHash = await this.chainService.placeBetFor(address, amount);
+      } catch (err) {
+        logger.error('Failed to relay bet to chain', { error: (err as Error).message });
+        throw new Error('Failed to place bet on chain: ' + (err as Error).message);
+      }
+    }
+
     const bet = this.betRepo.create({
       address,
       amount,
       cashedOut: false,
       cashoutMultiplier: null,
       payout: null,
-      txHash: txHash || null,
+      txHash: finalTxHash,
       timestamp: Date.now(),
       round: this.currentRound,
     });
@@ -410,6 +422,23 @@ export class GameEngine {
     bet.cashedOut = true;
     bet.cashoutMultiplier = this.currentRound.currentMultiplier;
     bet.payout = Number(bet.amount) * Number(bet.cashoutMultiplier || 1);
+
+    // Relay cashout to chain
+    if (this.chainService) {
+      try {
+        // optimistically assume it works or handle error?
+        // If chain fails, we should probably fail the cashout?
+        // But the game is fast-paced.
+        // Let's await it to ensure user gets funds.
+        await this.chainService.cashOutFor(bet.address, Number(bet.cashoutMultiplier));
+      } catch (err) {
+        logger.error('Failed to relay cashout to chain', { error: (err as Error).message });
+        // If we fail to cash out on chain, we must NOT mark it as cashed out in DB?
+        // Or mark it but flag for retry?
+        // For now, throw and fail the cashout (user clicks again).
+        throw new Error('Failed to cash out on chain: ' + (err as Error).message);
+      }
+    }
     await this.betRepo.save(bet);
 
     this.currentRound.totalPayouts =
@@ -431,26 +460,24 @@ export class GameEngine {
 
   async broadcastGameState() {
     try {
-      // Fetch the current round with player relations to ensure we have the latest data
       if (this.currentRound) {
-        const roundWithPlayers = await this.roundRepo.findOne({
-          where: { id: this.currentRound.id },
-          relations: ['players'],
+        // 1. Get the latest players (bets) from the DB to ensure we show all bets/cashouts
+        const players = await this.betRepo.find({
+          where: { round: { id: this.currentRound.id } },
         });
-        if (roundWithPlayers) {
-          // Convert to plain object to ensure proper serialization for Socket.IO
-          const roundData = {
-            ...roundWithPlayers,
-            players: roundWithPlayers.players || [],
-          };
-          this.io.emit('GAME_STATE_UPDATE', roundData);
-        } else {
-          this.io.emit('GAME_STATE_UPDATE', this.currentRound);
-        }
+
+        // 2. Construct the payload using in-memory state for high-frequency data (phase, multiplier, etc.)
+        //    and DB data for the players list.
+        const roundData = {
+          ...this.currentRound, // Use in-memory state (authoritative for phase/multiplier)
+          players: players || [], // Use DB state (authoritative for bets)
+        };
+
+        this.io.emit('GAME_STATE_UPDATE', roundData);
       }
     } catch (error) {
       logger.error('Failed to broadcast game state', { error });
-      // Fallback: broadcast current round without relations if query fails
+      // Fallback: broadcast current round without updated players if query fails
       this.io.emit('GAME_STATE_UPDATE', this.currentRound);
     }
   }

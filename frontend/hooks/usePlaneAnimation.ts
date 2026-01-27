@@ -37,15 +37,52 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
       return;
     }
 
-    // When betting, show initial off-left / low position
+    // BEDTTING PHASE: Dive & Hover Animation
     if (roundData.phase === "BETTING") {
-      stop();
-      setPosition({ x: 10, y: 80 });
-      setAngle(0);
-      setOpacity(1);
-      crashRef.current = {};
-      prevRef.current = { x: 10, y: 80, ts: Date.now() };
-      return;
+      if (!crashRef.current.start) {
+        crashRef.current.start = Date.now();
+      }
+
+      const animateBetting = () => {
+        const now = Date.now();
+        const elapsed = now - (crashRef.current.start || now);
+
+        let tx = 50; // Center X
+        let ty = 0;
+        let ta = 0;
+
+        // 1. Dive (0s - 1s)
+        if (elapsed < 1000) {
+          const t = elapsed / 1000;
+          // Ease in-out
+          const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          ty = -10 + ease * 100; // Start slightly off-screen (-10) to bottom (90)
+          ta = 90; // Pointing down
+        }
+        // 2. Ascent to Hover (1s - 2.5s)
+        else if (elapsed < 2500) {
+          const t = (elapsed - 1000) / 1500;
+          // Ease out
+          const ease = 1 - Math.pow(1 - t, 3);
+          ty = 90 - ease * 70; // From 90 up to 20
+          ta = -15 * (1 - t); // Slight tilt up
+        }
+        // 3. Hover (2.5s+)
+        else {
+          const t = (elapsed - 2500) / 1000;
+          ty = 20 + Math.sin(t * 2) * 3; // Bobbing around 20
+          ta = Math.sin(t * 2) * 5; // Slight rocking
+        }
+
+        setPosition({ x: tx, y: ty });
+        setAngle(ta);
+        setOpacity(1);
+
+        rafRef.current = requestAnimationFrame(animateBetting);
+      };
+
+      rafRef.current = requestAnimationFrame(animateBetting);
+      return () => stop();
     }
 
     // If flying, run RAF-based prediction (client-side authoritative prediction)

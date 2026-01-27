@@ -9,7 +9,7 @@ import { BasePayButton } from '@base-org/account-ui/react';
 const BetControls: React.FC = () => {
   const { roundData, cashOut } = useGameContext();
   const { walletBalance, walletAddress, refreshBalance, placeBet } = useUSDC();
-  const [betAmount, setBetAmount] = useState("0.1");
+  const [betAmount, setBetAmount] = useState("0.01");
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -38,7 +38,7 @@ const BetControls: React.FC = () => {
       await refreshBalance();
       if (res?.success) {
         setTxHash(res.paymentId || null);
-        setBetAmount("0.1"); // Reset after successful bet
+        setBetAmount("0.01"); // Reset after successful bet
       } else {
         setError("Failed to place bet");
       }

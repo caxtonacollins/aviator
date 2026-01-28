@@ -1,5 +1,5 @@
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "http://localhost:3001/api";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
 
 export async function fetchCurrentRound() {
   const res = await fetch(`${API_BASE}/rounds/current`);
@@ -12,10 +12,8 @@ export async function placeBetRest(
   roundId: number,
   address: string,
   amount: number,
-  txHash?: string
 ) {
   const body: any = { address, amount };
-  if (txHash) body.txHash = txHash;
   const res = await fetch(`${API_BASE}/rounds/${roundId}/bets`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

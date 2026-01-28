@@ -74,9 +74,9 @@ export class GameEngine {
 
       socket.on(
         'PLACE_BET',
-        async (data: { address: string; amount: number; txHash?: string }) => {
+        async (data: { address: string; amount: number }) => {
           try {
-            await this.placeBet(data.address, data.amount, data.txHash);
+            await this.placeBet(data.address, data.amount);
             socket.emit('BET_PLACED', { success: true });
             await this.broadcastGameState();
           } catch (err) {
@@ -370,15 +370,15 @@ export class GameEngine {
     setTimeout(() => this.startNewRound(), 10000);
   }
 
-  async placeBet(address: string, amount: number, txHash?: string) {
+  async placeBet(address: string, amount: number) {
     if (!this.currentRound || this.currentRound.phase !== 'BETTING')
       throw new Error('Betting closed');
 
     // Relay to chain if no txHash provided (meaning it's a backend-mediated bet)
-    let finalTxHash = txHash || null;
+    let finalTxHash = null;
     if (!finalTxHash && this.chainService) {
       try {
-        finalTxHash = await this.chainService.placeBetFor(address, amount);
+        finalTxHash = await this.chainService.placeBetFor(this.currentRound.roundId, address, amount);
       } catch (err) {
         logger.error('Failed to relay bet to chain', { error: (err as Error).message });
         throw new Error('Failed to place bet on chain: ' + (err as Error).message);
@@ -430,7 +430,7 @@ export class GameEngine {
         // If chain fails, we should probably fail the cashout?
         // But the game is fast-paced.
         // Let's await it to ensure user gets funds.
-        await this.chainService.cashOutFor(bet.address, Number(bet.cashoutMultiplier));
+        await this.chainService.cashOutFor(this.currentRound.roundId, bet.address, Number(bet.payout), Number(bet.cashoutMultiplier));
       } catch (err) {
         logger.error('Failed to relay cashout to chain', { error: (err as Error).message });
         // If we fail to cash out on chain, we must NOT mark it as cashed out in DB?

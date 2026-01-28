@@ -3,8 +3,7 @@ import { useWalletClient, usePublicClient } from 'wagmi';
 import { parseUnits } from 'viem';
 import { useAccount } from 'wagmi';
 import { setOnchainKitConfig } from '@coinbase/onchainkit';
-import { APIError, getPortfolios } from '@coinbase/onchainkit/api';
-import { pay, getPaymentStatus } from '@base-org/account';
+import { getPortfolios } from '@coinbase/onchainkit/api';
 import ERC20_ABI from '@/abis/usdc.json';
 
 interface TokenBalance {
@@ -41,13 +40,16 @@ export default function useUSDC() {
 
 
   // Approve USDC spending for a specific contract
-  const approveUSDC = useCallback(async (spender: string, amount: number) => {
+  const approveUSDC = useCallback(async (spender: string, amount: number | bigint) => {
+    console.log('Approving USDC for', spender, amount);
     if (!walletClient?.account?.address || !publicClient) {
       throw new Error('Wallet not connected');
     }
 
     try {
-      const amountInWei = parseUnits(amount.toString(), decimals);
+      const amountInWei = typeof amount === 'bigint'
+        ? amount
+        : parseUnits(amount.toString(), decimals);
 
       const { request } = await publicClient.simulateContract({
         address: usdcAddress,
@@ -147,27 +149,6 @@ export default function useUSDC() {
     [walletClient, publicClient, usdcAddress, decimals, fetchBalance]
   );
 
-  const placeBet = useCallback(async (betAmount: string) => {
-    try {
-      const payment = await pay({
-        amount: betAmount,
-        to: `${baseAddress}`,
-        testnet: false
-      });
-
-      const { status } = await getPaymentStatus({
-        id: payment.id,
-        testnet: false
-      });
-
-      if (status === 'completed') {
-        // Process the bet
-        return { success: true, paymentId: payment.id };
-      }
-    } catch (error: any) {
-      console.error('Payment failed:', error.message);
-    }
-  }, []);
 
   return {
     walletBalance: balance,
@@ -179,6 +160,5 @@ export default function useUSDC() {
     houseAddress,
     transferUSDC,
     decimals,
-    placeBet,
   };
 }

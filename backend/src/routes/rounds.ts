@@ -19,8 +19,8 @@ export const createRoundsRouter = (gameEngine: GameEngine) => {
     try {
       // We ignore roundId param validation vs current round for simplicity, 
       // or we can check if roundId matches current.
-      const { address, amount, txHash } = req.body;
-      const saved = await gameEngine.placeBet(address, amount, txHash);
+      const { address, amount } = req.body;
+      const saved = await gameEngine.placeBet(address, amount);
       res.json({ success: true, bet: saved });
     } catch (err) {
       res.status(500).json({ success: false, error: (err as Error).message });

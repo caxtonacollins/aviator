@@ -33,8 +33,25 @@ contract FailingERC20 is IERC20 {
     }
 }
 
+contract RejectETH {
+    receive() external payable {
+        revert("No ETH");
+    }
+}
+
 contract AviatorGameTest is Test {
     // local matching event for expectEmit
+    event BetPlaced(
+        uint256 indexed roundId,
+        address indexed player,
+        uint256 amount
+    );
+    event CashOut(
+        uint256 indexed roundId,
+        address indexed player,
+        uint256 payout,
+        uint256 multiplier
+    );
     event RoundSnapshot(
         uint256 indexed roundId,
         bytes32 snapshotHash,
@@ -43,6 +60,9 @@ contract AviatorGameTest is Test {
         uint256 totalPayouts,
         uint32 numPlayers
     );
+    
+    // Allow test contract to receive ETH
+    receive() external payable {}
 
     AviatorGame public aviator;
     ERC20Mock public usdc;
@@ -54,182 +74,89 @@ contract AviatorGameTest is Test {
         // Deploy mock USDC token
         usdc = new ERC20Mock();
 
-        // Deploy AviatorGame with mock USDC address
         // Deploy AviatorGame implementation and proxy
         AviatorGame impl = new AviatorGame();
         bytes memory initData = abi.encodeCall(AviatorGame.initialize, (address(usdc), address(this)));
         ERC1967Proxy proxy = new ERC1967Proxy(address(impl), initData);
-        aviator = AviatorGame(address(proxy));
+        aviator = AviatorGame(payable(address(proxy)));
 
-        // Mint USDC to test players
+        // Mint USDC to test players and the test contract itself (for funding house)
         usdc.mint(PLAYER, 1000e6);
         usdc.mint(PLAYER2, 1000e6);
+        usdc.mint(address(this), 10000e6);
 
         // Approve aviator to spend players' USDC
         vm.prank(PLAYER);
         usdc.approve(address(aviator), type(uint256).max);
         vm.prank(PLAYER2);
         usdc.approve(address(aviator), type(uint256).max);
+        
+        // Approve aviator to spend test contract's USDC
+        usdc.approve(address(aviator), type(uint256).max);
     }
 
     function test_PlaceBet() public {
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
+        // We act as server operator (this contract is owner and initial operator)
+        uint256 roundId = 123;
+        
+        vm.expectEmit(true, true, false, true);
+        emit BetPlaced(roundId, PLAYER, BET_AMOUNT);
 
-        (uint256 amount, uint256 cashoutMultiplier, bool settled) = aviator
-            .getPlayerBet(aviator.currentRoundId(), PLAYER);
-        assertEq(amount, BET_AMOUNT);
-        assertEq(cashoutMultiplier, 0);
-        assertEq(settled, false);
+        aviator.placeBetFor(roundId, PLAYER, BET_AMOUNT);
+
+        assertEq(aviator.houseBalance(), BET_AMOUNT);
+        assertEq(usdc.balanceOf(PLAYER), 1000e6 - BET_AMOUNT);
+        assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT);
     }
 
     function test_CannotPlaceLowOrHighBet() public {
-        vm.prank(PLAYER);
+        uint256 roundId = 1;
+        
         vm.expectRevert(
             abi.encodeWithSelector(AviatorGame.InvalidBetAmount.selector)
         );
-        aviator.placeBet(1);
+        aviator.placeBetFor(roundId, PLAYER, 1);
 
-        vm.prank(PLAYER);
         vm.expectRevert(
             abi.encodeWithSelector(AviatorGame.InvalidBetAmount.selector)
         );
-        aviator.placeBet(1e9 * 1e6); // > MAX_BET
-    }
-
-    function test_CannotPlaceTwice() public {
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-
-        vm.prank(PLAYER);
-        vm.expectRevert(
-            abi.encodeWithSelector(AviatorGame.BetAlreadyPlaced.selector)
-        );
-        aviator.placeBet(BET_AMOUNT);
-    }
-
-    function test_StartFlyingOnlyServerOperator() public {
-        vm.prank(PLAYER);
-        vm.expectRevert(
-            abi.encodeWithSelector(AviatorGame.Unauthorized.selector)
-        );
-        aviator.startFlying(keccak256(abi.encodePacked("seed")));
-    }
-
-    function test_StartFlyingInvalidSeed() public {
-        // onlyServerOperator is this test contract (owner); sending zero hash should revert
-        vm.expectRevert(
-            abi.encodeWithSelector(AviatorGame.InvalidServerSeed.selector)
-        );
-        aviator.startFlying(bytes32(0));
-    }
-
-    function test_CrashRoundInvalidMultiplierOrSeed() public {
-        // Place bet to move round forward
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-
-        // start flying with seed
-        bytes32 seedHash = keccak256(abi.encodePacked("secret"));
-        aviator.startFlying(seedHash);
-
-        // invalid multiplier
-        vm.expectRevert(
-            abi.encodeWithSelector(AviatorGame.InvalidCrashMultiplier.selector)
-        );
-        aviator.crashRound(50, "secret"); // less than MIN_MULTIPLIER (101)
-
-        // wrong seed
-        vm.expectRevert(
-            abi.encodeWithSelector(AviatorGame.InvalidServerSeed.selector)
-        );
-        aviator.crashRound(200, "wrong");
-    }
-
-    function test_CrashSettleRoundAndHouseBalance() public {
-        // Round 1: PLAYER loses
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-
-        bytes32 seedHash1 = keccak256(abi.encodePacked("s1"));
-        aviator.startFlying(seedHash1);
-        aviator.crashRound(150, "s1"); // 1.5x crash
-        aviator.settleRound();
-
-        assertEq(aviator.houseBalance(), BET_AMOUNT);
-
-        // Round 2: PLAYER2 loses
-        vm.prank(PLAYER2);
-        aviator.placeBet(BET_AMOUNT);
-        bytes32 seedHash2 = keccak256(abi.encodePacked("s2"));
-        aviator.startFlying(seedHash2);
-        aviator.crashRound(120, "s2");
-        aviator.settleRound();
-
-        assertEq(aviator.houseBalance(), BET_AMOUNT * 2);
+        aviator.placeBetFor(roundId, PLAYER, 1e9 * 1e6); // > MAX_BET
     }
 
     function test_CashOutInsufficientHouseBalance() public {
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-
-        bytes32 seedHash = keccak256(abi.encodePacked("seedA"));
-        aviator.startFlying(seedHash);
-
-        vm.prank(PLAYER);
+        uint256 roundId = 123;
+        // No bets placed, house balance 0
+        
         vm.expectRevert(
             abi.encodeWithSelector(
                 AviatorGame.InsufficientHouseBalance.selector
             )
         );
-        aviator.cashOut(200); // 2x -> needs 2e6 but houseBalance==0
+        aviator.cashOutFor(roundId, PLAYER, 2e6, 200); // Need 2 USDC but have 0
     }
 
     function test_CashOutSuccessFlow() public {
-        // Build house balance via two losing rounds
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-        aviator.startFlying(keccak256(abi.encodePacked("r1")));
-        aviator.crashRound(150, "r1");
-        aviator.settleRound();
-
-        vm.prank(PLAYER2);
-        aviator.placeBet(BET_AMOUNT);
-        aviator.startFlying(keccak256(abi.encodePacked("r2")));
-        aviator.crashRound(150, "r2");
-        aviator.settleRound();
-
+        uint256 roundId = 123;
+        
+        // 1. Place bet to fund house
+        aviator.placeBetFor(roundId, PLAYER, BET_AMOUNT);
+        assertEq(aviator.houseBalance(), BET_AMOUNT);
+        
+        // 2. Cash out (simulate win 2x)
+        uint256 payout = BET_AMOUNT * 2;
+        // Use fundHouse to top up for the win since house only has 1 bet
+        aviator.fundHouse(BET_AMOUNT); 
         assertEq(aviator.houseBalance(), BET_AMOUNT * 2);
 
-        // New round: PLAYER bets and cashes out 2x
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-        bytes32 seed = keccak256(abi.encodePacked("r3"));
-        aviator.startFlying(seed);
+        vm.expectEmit(true, true, false, true);
+        emit CashOut(roundId, PLAYER, payout, 200);
 
-        // PLAYER cashes out at 2x
-        vm.prank(PLAYER);
-        aviator.cashOut(200);
+        aviator.cashOutFor(roundId, PLAYER, payout, 200);
 
-        // payout = BET_AMOUNT * 2
+        // House balance should decrease
         assertEq(aviator.houseBalance(), 0);
-        // final balance should equal initial (they lost earlier round then cashed out to net zero change)
-        assertEq(usdc.balanceOf(PLAYER), 1000e6);
-    }
-
-    function test_SettleAfterCrashOnlyAndCannotSettleTwice() public {
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-
-        aviator.startFlying(keccak256(abi.encodePacked("s")));
-        aviator.crashRound(150, "s");
-
-        aviator.settleRound();
-
-        vm.expectRevert(
-            abi.encodeWithSelector(AviatorGame.WrongGamePhase.selector)
-        );
-        aviator.settleRound(); // new round is in BETTING phase so WrongGamePhase
+        // Player should have original balance + winnings (net +1 bet amount)
+        assertEq(usdc.balanceOf(PLAYER), 1000e6 + BET_AMOUNT);
     }
 
     function test_AdminSetServerOperatorAndWithdraw() public {
@@ -237,7 +164,7 @@ contract AviatorGameTest is Test {
         address newOp = address(0xBEEF);
 
         // Non-owner cannot set server operator
-        vm.prank(PLAYER);
+        vm.prank(PLAYER);   
         vm.expectRevert();
         aviator.setServerOperator(newOp);
 
@@ -245,15 +172,9 @@ contract AviatorGameTest is Test {
         aviator.setServerOperator(newOp);
         assertEq(aviator.serverOperator(), newOp);
 
-        // Build house balance: use the new operator to run the round
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-        vm.prank(newOp);
-        aviator.startFlying(keccak256(abi.encodePacked("s4")));
-        vm.prank(newOp);
-        aviator.crashRound(150, "s4");
-        aviator.settleRound();
-
+        // Fund house
+        aviator.fundHouse(BET_AMOUNT);
+        
         // Withdraw profits
         uint256 before = usdc.balanceOf(address(this));
         aviator.withdrawHouseProfits(BET_AMOUNT);
@@ -264,17 +185,12 @@ contract AviatorGameTest is Test {
     function test_PausePreventsActions() public {
         aviator.pause();
 
-        vm.prank(PLAYER);
         vm.expectRevert();
-        aviator.placeBet(BET_AMOUNT);
-
-        vm.expectRevert();
-        aviator.startFlying(keccak256(abi.encodePacked("s")));
+        aviator.placeBetFor(1, PLAYER, BET_AMOUNT);
 
         aviator.unpause();
         // after unpause should work
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
+        aviator.placeBetFor(1, PLAYER, BET_AMOUNT);
     }
 
     function test_TransferFailuresRevert() public {
@@ -283,56 +199,21 @@ contract AviatorGameTest is Test {
         AviatorGame badImpl = new AviatorGame();
         bytes memory badInit = abi.encodeCall(AviatorGame.initialize, (address(failToken), address(this)));
         ERC1967Proxy badProxy = new ERC1967Proxy(address(badImpl), badInit);
-        AviatorGame bad = AviatorGame(address(badProxy));
+        AviatorGame bad = AviatorGame(payable(address(badProxy)));
 
         // Attempt to place bet should revert because transferFrom returns false
-        vm.prank(PLAYER);
+        // Need to be owner/operator to call placeBetFor, which we are (this contract)
+        
         vm.expectRevert(
             abi.encodeWithSelector(AviatorGame.TransferFailed.selector)
         );
-        bad.placeBet(BET_AMOUNT);
-    }
-
-    function test_GetRoundPlayersAndHistory() public {
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-        vm.prank(PLAYER2);
-        aviator.placeBet(BET_AMOUNT);
-
-        address[] memory players = aviator.getRoundPlayers();
-        assertEq(players.length, 2);
-        assertEq(players[0], PLAYER);
-        assertEq(players[1], PLAYER2);
-
-        // Get round history but only check the ID as other values are not used in the test
-        (uint256 id, , , , , ) = aviator.getRoundHistory(aviator.currentRoundId() - 1);
-        // getRoundHistory reads from rounds mapping for an old id; the initial round started at deploy increments to 1
-        // We expect the previous round (id = 0) to be zero-values
-        assertEq(id, 0);
-
-        // The live currentRound struct reflects in-memory updates. Assert against the public currentRound getter.
-        ( , , , , , , uint256 totalBets, uint256 totalPayouts, bool settled) = aviator.currentRound();
-        assertEq(totalBets, BET_AMOUNT * 2);
-        assertEq(totalPayouts, 0);
-        assertEq(settled, false);
+        bad.placeBetFor(1, PLAYER, BET_AMOUNT);
     }
 
     function test_SnapshotOnlyServerOperator() public {
-        uint256 rid = aviator.currentRoundId();
+        uint256 rid = 1;
         bytes32 playersMerkleRoot = keccak256(abi.encodePacked("leaf"));
-
-        (, , bytes32 seedHash, , , ) = aviator.getRoundHistory(rid);
-
-        bytes32 snapshotHash = keccak256(
-            abi.encodePacked(
-                rid,
-                seedHash,
-                uint256(0),
-                uint256(0),
-                playersMerkleRoot,
-                uint32(1)
-            )
-        );
+        bytes32 snapshotHash = keccak256("hash");
 
         vm.prank(PLAYER);
         vm.expectRevert(
@@ -342,32 +223,12 @@ contract AviatorGameTest is Test {
     }
 
     function test_SnapshotStoresAndEmits() public {
-        // prepare a round: place bets and crash
-        vm.prank(PLAYER);
-        aviator.placeBet(BET_AMOUNT);
-        aviator.startFlying(keccak256(abi.encodePacked("s")));
-        aviator.crashRound(150, "s");
-        aviator.settleRound();
-
-        uint256 rid = aviator.currentRoundId() - 1; // snapshot the finished round
+        uint256 rid = 10;
         bytes32 playersMerkleRoot = keccak256(abi.encodePacked("p1", "p2"));
-        uint256 totalBets = 0; // use simple numbers for the test
-        uint256 totalPayouts = 0;
+        uint96 totalBets = 100; 
+        uint96 totalPayouts = 50;
         uint32 numPlayers = 2;
-
-        (, , bytes32 seedHash, , , ) = aviator.getRoundHistory(rid);
-
-        bytes32 snapshotHash = keccak256(
-            abi.encodePacked(
-                rid,
-                seedHash,
-                uint256(150),
-                totalBets,
-                totalPayouts,
-                playersMerkleRoot,
-                numPlayers
-            )
-        );
+        bytes32 snapshotHash = keccak256("snapshot");
 
         // calling as server operator (this test contract is owner and initial serverOperator)
         vm.expectEmit(true, false, false, true);
@@ -389,11 +250,12 @@ contract AviatorGameTest is Test {
             numPlayers
         );
 
+
         (
             bytes32 storedHash,
             bytes32 storedMerkle,
-            uint256 storedBets,
-            uint256 storedPayouts,
+            uint96 storedBets,
+            uint96 storedPayouts,
             uint32 storedNum
         ) = aviator.roundSnapshots(rid);
         assertEq(storedHash, snapshotHash);
@@ -401,5 +263,106 @@ contract AviatorGameTest is Test {
         assertEq(storedBets, totalBets);
         assertEq(storedPayouts, totalPayouts);
         assertEq(storedNum, numPlayers);
+    }
+
+    function test_ReceiveETH() public {
+        vm.deal(PLAYER, 1 ether);
+        vm.prank(PLAYER);
+        (bool success, ) = address(aviator).call{value: 0.5 ether}("");
+        require(success, "Send failed");
+        assertEq(address(aviator).balance, 0.5 ether);
+    }
+
+    function test_WithdrawETH() public {
+        vm.deal(address(aviator), 1 ether);
+        uint256 preBalance = address(this).balance;
+        
+        aviator.withdrawETH(payable(address(this)), 0.4 ether);
+        
+        assertEq(address(aviator).balance, 0.6 ether);
+        assertEq(address(this).balance, preBalance + 0.4 ether);
+    }
+
+    function test_WithdrawETHFailures() public {
+        // 1. Insufficient balance
+        vm.expectRevert(AviatorGame.InsufficientBalance.selector);
+        aviator.withdrawETH(payable(address(this)), 1 ether); // Balance 0
+
+        // 2. Transfer fail (mocking logic requires a contract that rejects ETH? 
+        //    Calls to EOA always succeed unless out of gas. 
+        //    Calls to contract fail if no receive/fallback or revert.)
+        
+        // Fund aviator first
+        vm.deal(address(aviator), 1 ether);
+        
+        // Create a contract that reverts on receive
+        RejectETH rejector = new RejectETH();
+        
+        vm.expectRevert(AviatorGame.ETHTransferFailed.selector);
+        aviator.withdrawETH(payable(address(rejector)), 0.5 ether);
+    }
+
+    // ============ New Comprehensive Tests ============
+
+    function test_MultiplePlayersBetting() public {
+        uint256 roundId = 999;
+        uint256 bet1 = 100e6;
+        uint256 bet2 = 200e6;
+
+        // Player 1 places bet
+        aviator.placeBetFor(roundId, PLAYER, bet1);
+        
+        // Player 2 places bet
+        aviator.placeBetFor(roundId, PLAYER2, bet2);
+
+        // House balance should reflect both
+        assertEq(aviator.houseBalance(), bet1 + bet2);
+        
+        // Balances updated
+        assertEq(usdc.balanceOf(PLAYER), 1000e6 - bet1);
+        assertEq(usdc.balanceOf(PLAYER2), 1000e6 - bet2);
+    }
+
+    function test_InitializationProtection() public {
+        vm.expectRevert(); // Initializable: contract is already initialized
+        aviator.initialize(address(usdc), PLAYER);
+    }
+
+    function test_OnlyOwnerCanFundHouse() public {
+        vm.prank(PLAYER); // Not owner
+        vm.expectRevert();
+        aviator.fundHouse(BET_AMOUNT);
+    }
+    
+    function test_OnlyOwnerCanPauseUnpause() public {
+        vm.prank(PLAYER);
+        vm.expectRevert();
+        aviator.pause();
+
+        vm.prank(PLAYER);
+        vm.expectRevert();
+        aviator.unpause();
+    }
+
+    function test_OnlyServerOperatorCanCallGameFunctions() public {
+        uint256 roundId = 1;
+        
+        // Try to place bet as non-operator (e.g. Player trying to cheat and place bet directly?)
+        // Wait, placeBetFor is `onlyServerOperator`.
+        // The Player calls `placeBetFor`? No, the BACKEND calls `placeBetFor`.
+        // If a user calls it directly, they revert `Unauthorized`.
+        
+        vm.prank(PLAYER);
+        vm.expectRevert(
+            abi.encodeWithSelector(AviatorGame.Unauthorized.selector)
+        );
+        aviator.placeBetFor(roundId, PLAYER, BET_AMOUNT);
+
+        // Try to cash out as non-operator
+        vm.prank(PLAYER);
+        vm.expectRevert(
+            abi.encodeWithSelector(AviatorGame.Unauthorized.selector)
+        );
+        aviator.cashOutFor(roundId, PLAYER, BET_AMOUNT, 200);
     }
 }

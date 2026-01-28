@@ -18,8 +18,6 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
     
     // Server operator (trusted for game operations)
     address public serverOperator;
-    // House balance for payouts (in USDC)
-    uint256 public houseBalance;
 
     // Snapshot storage
     struct RoundSnapshotData {
@@ -45,7 +43,6 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         uint256 multiplier
     );
     
-    event HouseBalanceUpdated(uint256 newBalance);
     event ServerOperatorUpdated(address indexed newOperator);
 
     // Snapshot event
@@ -121,11 +118,8 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         // Note: The player must have approved the contract to spend this amount
         bool success = usdcToken.transferFrom(player, address(this), amount);
         if (!success) revert TransferFailed();
-
-        houseBalance += amount;
         
         emit BetPlaced(roundId, player, amount);
-        emit HouseBalanceUpdated(houseBalance);
     }
 
     /**
@@ -138,16 +132,13 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         uint256 payout,
         uint256 multiplier
     ) external nonReentrant whenNotPaused onlyServerOperator {
-        if (payout > houseBalance) revert InsufficientHouseBalance();
-
-        houseBalance -= payout;
+        if (usdcToken.balanceOf(address(this)) < payout) revert InsufficientHouseBalance();
 
         // Transfer winnings in USDC to the player
         bool success = usdcToken.transfer(player, payout);
         if (!success) revert TransferFailed();
 
         emit CashOut(roundId, player, payout, multiplier);
-        emit HouseBalanceUpdated(houseBalance);
     }
 
     // ============ Admin Functions ============
@@ -168,19 +159,13 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
     function fundHouse(uint256 amount) external onlyOwner {
         bool success = usdcToken.transferFrom(msg.sender, address(this), amount);
         if (!success) revert TransferFailed();
-        
-        houseBalance += amount;
-        emit HouseBalanceUpdated(houseBalance);
     }
 
     function withdrawHouseProfits(uint256 amount) external onlyOwner {
-        if (amount > houseBalance) revert InsufficientBalance();
-        houseBalance -= amount;
+        if (amount > usdcToken.balanceOf(address(this))) revert InsufficientBalance();
 
         bool success = usdcToken.transfer(owner(), amount);
         if (!success) revert TransferFailed();
-
-        emit HouseBalanceUpdated(houseBalance);
     }
 
     // ============ Snapshot Functions ============

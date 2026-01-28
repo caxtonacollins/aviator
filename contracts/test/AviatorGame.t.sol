@@ -104,7 +104,7 @@ contract AviatorGameTest is Test {
 
         aviator.placeBetFor(roundId, PLAYER, BET_AMOUNT);
 
-        assertEq(aviator.houseBalance(), BET_AMOUNT);
+        assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT);
         assertEq(usdc.balanceOf(PLAYER), 1000e6 - BET_AMOUNT);
         assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT);
     }
@@ -140,13 +140,13 @@ contract AviatorGameTest is Test {
         
         // 1. Place bet to fund house
         aviator.placeBetFor(roundId, PLAYER, BET_AMOUNT);
-        assertEq(aviator.houseBalance(), BET_AMOUNT);
+        assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT);
         
         // 2. Cash out (simulate win 2x)
         uint256 payout = BET_AMOUNT * 2;
         // Use fundHouse to top up for the win since house only has 1 bet
         aviator.fundHouse(BET_AMOUNT); 
-        assertEq(aviator.houseBalance(), BET_AMOUNT * 2);
+        assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT * 2);
 
         vm.expectEmit(true, true, false, true);
         emit CashOut(roundId, PLAYER, payout, 200);
@@ -154,7 +154,7 @@ contract AviatorGameTest is Test {
         aviator.cashOutFor(roundId, PLAYER, payout, 200);
 
         // House balance should decrease
-        assertEq(aviator.houseBalance(), 0);
+        assertEq(usdc.balanceOf(address(aviator)), 0);
         // Player should have original balance + winnings (net +1 bet amount)
         assertEq(usdc.balanceOf(PLAYER), 1000e6 + BET_AMOUNT);
     }
@@ -179,7 +179,7 @@ contract AviatorGameTest is Test {
         uint256 before = usdc.balanceOf(address(this));
         aviator.withdrawHouseProfits(BET_AMOUNT);
         assertEq(usdc.balanceOf(address(this)), before + BET_AMOUNT);
-        assertEq(aviator.houseBalance(), 0);
+        assertEq(usdc.balanceOf(address(aviator)), 0);
     }
 
     function test_PausePreventsActions() public {
@@ -316,7 +316,7 @@ contract AviatorGameTest is Test {
         aviator.placeBetFor(roundId, PLAYER2, bet2);
 
         // House balance should reflect both
-        assertEq(aviator.houseBalance(), bet1 + bet2);
+        assertEq(usdc.balanceOf(address(aviator)), bet1 + bet2);
         
         // Balances updated
         assertEq(usdc.balanceOf(PLAYER), 1000e6 - bet1);

@@ -6,6 +6,8 @@ import GameABI from "@/abis/aviator.json";
 const DEFAULT_WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001";
 import useUSDC from "@/hooks/useUSDC";
 import { amountInWei } from "@/lib/gameUtils";
+import { maxUint256 } from "viem";
+import * as api from "@/lib/api";
 
 export function useGame(options: { wsUrl?: string } = {}) {
   const wsUrl = options.wsUrl || DEFAULT_WS_URL;
@@ -108,23 +110,19 @@ export function useGame(options: { wsUrl?: string } = {}) {
         return { success: false, error: 'Public client not available' };
       }
 
-      // Get the game contract address from environment variables
       const gameContractAddress = process.env.NEXT_PUBLIC_GAME_CONTRACT_ADDRESS;
       if (!gameContractAddress) {
         return { success: false, error: 'Game contract address not configured' };
       }
 
       try {
-        // Check current allowance
         const currentAllowance = await checkAllowance(address, gameContractAddress);
         
-        // If allowance is less than the bet amount, request approval
         if (currentAllowance < amount) {
           try {
-            const approvalTxHash = await approveUSDC(gameContractAddress, amount);
+            const approvalTxHash = await approveUSDC(gameContractAddress, maxUint256);
             console.log('USDC approval transaction hash:', approvalTxHash);
             
-            // Wait for the approval transaction to be mined
             if (publicClient) {
               await publicClient.waitForTransactionReceipt({
                 hash: approvalTxHash as `0x${string}`
@@ -136,12 +134,10 @@ export function useGame(options: { wsUrl?: string } = {}) {
           }
         }
 
-        // Call the backend to place the bet (Backend will relay to chain)
         if (!roundData?.roundId) {
           return { success: false, error: 'No active round' };
         }
 
-        const api = await import("@/lib/api");
         const res = await api.placeBetRest(roundData.roundId, address, amount);
 
         if (res.success && res.bet) {

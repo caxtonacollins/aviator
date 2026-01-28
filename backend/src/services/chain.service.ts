@@ -103,58 +103,35 @@ export class ChainService {
       throw err;
     }
   }
-  async placeBetFor(player: string, amount: number) {
+  async placeBetFor(roundId: number, player: string, amount: number) {
     try {
       // Amount is in USDC (6 decimals)
-      // Check if amount is integer or float? Assuming integration handles scaling if needed.
-      // But contract expects integer, let's assume input is already scaled or we scale it here.
-      // Looking at frontend logic: amountInWei(amount) suggests input is human readable.
-      // But game engine passes number. Let's look at Game Engine usage.
-      // The game engine currently uses `amountInWei` logic or similar? 
-      // Actually `GameEngine.placeBet` receives `amount: number`. 
-      // If we look at existing `game-utils.ts` or usage, typically amount is 6 decimals for USDC.
-      // Let's assume input is raw human amount and we need to scale? 
-      // OR input is already scaled. 
-      // In `GameEngine.placeBet`, it adds `bet.amount` to `totalBets`.
-      // Let's check `placeBet` usage in frontend. 
-      // Frontend `useGame` calls contract with `amountInWei(amount)`.
-      // So Frontend sends Human readable amount to `placeBet` REST? No.
-      // Wait, let's check frontend `placeBet`.
-      // Frontend `placeBet` (socket) sends `amount`.
-      // `amountInWei` is used for contract call.
-      // So `amount` passed to socket `PLACE_BET` is usually human readable?
-      // Let's verify `amountInWei` logic. It probably multiplies by 1e6.
-
       const betAmount = BigInt(Math.round(amount * 1e6));
+      console.log('Placing bet on chain', { roundId, player, amount, betAmount: betAmount.toString() });
 
-      logger.info('Placing bet on chain', { player, amount, betAmount: betAmount.toString() });
+      logger.info('Placing bet on chain', { roundId, player, amount, betAmount: betAmount.toString() });
 
-      const tx = await this.contract.placeBetFor(player, betAmount);
+      const tx = await this.contract.placeBetFor(BigInt(roundId), player, betAmount);
       logger.info('Place bet tx submitted', { txHash: tx.hash });
-      // We don't wait for it here to keep it fast? 
-      // Actually we should wait if we want to guarantee it landed, but 
-      // for "snappy" UI we might optimize. 
-      // The implementation plan said: "Return txHash".
 
       return tx.hash;
     } catch (err) {
+      console.error('error', err);
       logger.error('Failed to place bet on chain', { error: (err as Error).message });
       throw err;
     }
   }
 
-  async cashOutFor(player: string, multiplier: number) {
+  async cashOutFor(roundId: number, player: string, payout: number, multiplier: number) {
     try {
       // Multiplier is scaled by 100 (e.g. 1.05x -> 105)
-      // Contract expects scaled integer.
-      // The engine implementation of mult is probably float (1.05).
-      // Let's ensure we scale correctly.
-
       const scaledMultiplier = BigInt(Math.round(multiplier * 100));
+      // Payout is in USDC (6 decimals)
+      const payoutAmount = BigInt(Math.round(payout * 1e6));
 
-      logger.info('Cashing out on chain', { player, multiplier, scaledMultiplier: scaledMultiplier.toString() });
+      logger.info('Cashing out on chain', { roundId, player, payout, multiplier, scaledMultiplier: scaledMultiplier.toString() });
 
-      const tx = await this.contract.cashOutFor(player, scaledMultiplier);
+      const tx = await this.contract.cashOutFor(BigInt(roundId), player, payoutAmount, scaledMultiplier);
       logger.info('Cashout tx submitted', { txHash: tx.hash });
 
       return tx.hash;

@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useGameContext } from "@/context/GameContext";
 import { useBetValidation } from "@/hooks/useBetValidation";
 import useUSDC from "@/hooks/useUSDC";
-import { BasePayButton } from '@base-org/account-ui/react';
+// import { placeBetRest } from "@/lib/api"; // Removed direct import
 
 const BetControls: React.FC = () => {
-  const { roundData, cashOut } = useGameContext();
-  const { walletBalance, walletAddress, refreshBalance, placeBet } = useUSDC();
-  const [betAmount, setBetAmount] = useState("0.01");
+  const { roundData, cashOut, placeBet } = useGameContext();
+  const { walletBalance, walletAddress, refreshBalance } = useUSDC();
+  const [betAmount, setBetAmount] = useState("0.10");
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -34,13 +34,13 @@ const BetControls: React.FC = () => {
     setTxHash(null);
     setError(null);
     try {
-      const res = await placeBet(betAmount);
+      const res = await placeBet(walletAddress, parseFloat(betAmount));
       await refreshBalance();
       if (res?.success) {
-        setTxHash(res.paymentId || null);
-        setBetAmount("0.01"); // Reset after successful bet
+        setTxHash(res.txHash || null);
+        setBetAmount("0.10");
       } else {
-        setError("Failed to place bet");
+        setError(res.error || "Failed to place bet");
       }
     } catch (err) {
       setIsProcessing(false);
@@ -108,8 +108,8 @@ const BetControls: React.FC = () => {
               type="number"
               value={betAmount}
               onChange={(e) => setBetAmount(e.target.value)}
-              step="0.01"
-              min="0.01"
+              step="0.10"
+              min="0.10"
               max={walletBalance!.toString()}
               className="w-full bg-purple-900/30 border border-purple-500/30 rounded-lg px-4 py-3 text-white text-lg font-medium focus:outline-none focus:border-purple-400"
             />
@@ -142,10 +142,6 @@ const BetControls: React.FC = () => {
           >
             {isProcessing ? "Processing…" : `Place Bet (${betAmount} USDC)`}
           </button>
-          <BasePayButton
-            colorScheme="light"
-            onClick={handlePlaceBet}
-          />
 
           {txHash && (
             <div className="text-xs text-gray-400 bg-green-900/20 border border-green-500/30 rounded p-2">

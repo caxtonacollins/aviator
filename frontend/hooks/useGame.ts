@@ -138,6 +138,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
           return { success: false, error: 'No active round' };
         }
 
+        console.log("placing bet", roundData.roundId, address, amount);
         const res = await api.placeBetRest(roundData.roundId, address, amount);
 
         if (res.success && res.bet) {
@@ -246,7 +247,7 @@ export function useRoundCountdown(roundData: RoundData | null) {
     } else if (roundData.phase === "BETTING") {
       const flyAt = roundData.flyStartTime
         ? Number(roundData.flyStartTime)
-        : Date.now() + 30000;
+        : Date.now() + 60000;
       const update = () => {
         const secsLeft = Math.max(0, Math.ceil((flyAt - Date.now()) / 1000));
         setCountdown(secsLeft);

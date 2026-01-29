@@ -197,7 +197,7 @@ export class GameEngine {
             roundId: nextId,
             phase: 'BETTING',
             startTime: Date.now(),
-            flyStartTime: Date.now() + 20000,
+            flyStartTime: Date.now() + 60000,
             crashMultiplier: null,
             currentMultiplier: 1.0,
             serverSeed,
@@ -373,6 +373,10 @@ export class GameEngine {
   async placeBet(address: string, amount: number) {
     if (!this.currentRound || this.currentRound.phase !== 'BETTING')
       throw new Error('Betting closed');
+
+    if (amount < 0.1 || amount > 1000) {
+      throw new Error('Invalid bet amount: must be between 0.1 and 1000 USDC');
+    }
 
     // Relay to chain if no txHash provided (meaning it's a backend-mediated bet)
     let finalTxHash = null;

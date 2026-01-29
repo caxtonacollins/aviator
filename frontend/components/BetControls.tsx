@@ -73,6 +73,14 @@ const BetControls: React.FC = () => {
     roundData?.phase === "BETTING" &&
     !myBet;
 
+  // Debug log for checking cashout visibility
+  // console.log("Render BetControls:", {
+  //   phase: roundData?.phase,
+  //   hasMyBet: !!myBet,
+  //   cashedOut: myBet?.cashedOut,
+  //   wallet: walletAddress
+  // });
+
   return (
     <div className="bg-black/50 backdrop-blur-sm border-t border-purple-500/30 p-4 space-y-3">
       {myBet && (

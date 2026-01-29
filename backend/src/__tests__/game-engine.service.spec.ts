@@ -1,0 +1,641 @@
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { GameEngine } from '../services/game-engine.service.ts';
+import { AppDataSource } from '../config/database.ts';
+import { Round } from '../entities/round.entity.ts';
+import { PlayerBet } from '../entities/player-bet.entity.ts';
+
+// Mock dependencies
+vi.mock('../config/database.ts', () => ({
+  AppDataSource: {
+    isInitialized: false,
+    initialize: vi.fn(),
+    getRepository: vi.fn(),
+    createQueryRunner: vi.fn(),
+  },
+}));
+
+vi.mock('../services/game-utils.ts', () => ({
+  generateServerSeed: vi.fn(() => 'test-seed-123'),
+  hashServerSeed: vi.fn(() => '0xhash123'),
+  generateCrashMultiplier: vi.fn(() => 2.5),
+  calculateCurrentMultiplier: vi.fn((elapsed) => 1.0 + elapsed / 1000),
+  calculatePlanePosition: vi.fn((elapsed) => ({ x: 10 + elapsed / 100, y: 80 })),
+}));
+
+vi.mock('../services/leaderboard.service.ts', () => ({
+  LeaderboardService: vi.fn(() => ({
+    updateFromBet: vi.fn(),
+  })),
+}));
+
+vi.mock('../services/history.service.ts', () => ({
+  HistoryService: vi.fn(() => ({
+    record: vi.fn(),
+    latest: vi.fn(() => []),
+  })),
+}));
+
+vi.mock('../services/chain.service.ts', () => ({
+  ChainService: vi.fn(() => ({
+    submitRoundSnapshot: vi.fn(),
+    placeBetFor: vi.fn(() => '0xtxhash'),
+    cashOutFor: vi.fn(() => '0xcashouttx'),
+  })),
+}));
+
+vi.mock('@/utils/logger.ts', () => ({
+  logger: {
+    info: vi.fn(),
+    warn: vi.fn(),
+    error: vi.fn(),
+  },
+}));
+
+describe('GameEngine', () => {
+  let gameEngine: GameEngine;
+  let mockIo: any;
+  let mockRoundRepo: any;
+  let mockBetRepo: any;
+  let mockQueryRunner: any;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.useFakeTimers();
+
+    // Mock Socket.IO
+    mockIo = {
+      on: vi.fn(),
+      emit: vi.fn(),
+    };
+
+    // Mock repositories
+    mockRoundRepo = {
+      create: vi.fn(),
+      save: vi.fn(),
+      findOne: vi.fn(),
+      find: vi.fn(),
+    };
+
+    mockBetRepo = {
+      create: vi.fn(),
+      save: vi.fn(),
+      findOne: vi.fn(),
+      find: vi.fn(),
+    };
+
+    // Mock query runner
+    mockQueryRunner = {
+      connect: vi.fn(),
+      startTransaction: vi.fn(),
+      commitTransaction: vi.fn(),
+      rollbackTransaction: vi.fn(),
+      release: vi.fn(),
+      manager: {
+        findOne: vi.fn(),
+        save: vi.fn(),
+      },
+    };
+
+    vi.mocked(AppDataSource.getRepository).mockImplementation((entity: any) => {
+      if (entity === Round || entity?.name === 'Round') {
+        return mockRoundRepo;
+      }
+      return mockBetRepo;
+    });
+
+    vi.mocked(AppDataSource.createQueryRunner).mockReturnValue(mockQueryRunner);
+    vi.mocked(AppDataSource.initialize).mockResolvedValue(AppDataSource);
+
+    // Make AppDataSource initialized
+    (AppDataSource as any).isInitialized = true;
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  describe('constructor', () => {
+    it('should initialize with Socket.IO server', () => {
+      gameEngine = new GameEngine(mockIo);
+
+      expect(gameEngine).toBeDefined();
+      expect(mockIo.on).toHaveBeenCalledWith('connection', expect.any(Function));
+    });
+
+    it('should setup socket event listeners', () => {
+      const mockSocket = {
+        on: vi.fn(),
+        emit: vi.fn(),
+      };
+
+      mockIo.on.mockImplementation((event: string, handler: Function) => {
+        if (event === 'connection') {
+          handler(mockSocket);
+        }
+      });
+
+      gameEngine = new GameEngine(mockIo);
+
+      expect(mockSocket.on).toHaveBeenCalledWith('PLACE_BET', expect.any(Function));
+      expect(mockSocket.on).toHaveBeenCalledWith('CASH_OUT', expect.any(Function));
+    });
+  });
+
+  describe('startNewRound', () => {
+    beforeEach(async () => {
+      // Prevent infinite init loops
+      mockRoundRepo.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+      
+      gameEngine = new GameEngine(mockIo);
+      // Wait for constructor's async initialization
+      await new Promise(resolve => setTimeout(resolve, 50));
+      vi.clearAllMocks();
+    });
+
+    it('should generate server seed and hash', async () => {
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockRoundRepo.create.mockImplementation((data: any) => data);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+
+      await gameEngine.startNewRound();
+
+      expect(mockRoundRepo.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          serverSeed: 'test-seed-123',
+          serverSeedHash: '0xhash123',
+        })
+      );
+    });
+
+    it('should create round with id 1 when no previous rounds', async () => {
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockRoundRepo.create.mockImplementation((data: any) => data);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+
+      await gameEngine.startNewRound();
+
+      expect(mockRoundRepo.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          roundId: 1,
+        })
+      );
+    });
+
+    it('should increment roundId from last round', async () => {
+      const lastRound = { id: 5, roundId: 10 };
+      mockQueryRunner.manager.findOne.mockResolvedValue(lastRound);
+      mockRoundRepo.create.mockImplementation((data: any) => data);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 6, roundId: 11 });
+
+      await gameEngine.startNewRound();
+
+      expect(mockRoundRepo.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          roundId: 11,
+        })
+      );
+    });
+
+    it('should set phase to BETTING', async () => {
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockRoundRepo.create.mockImplementation((data: any) => data);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+
+      await gameEngine.startNewRound();
+
+      expect(mockRoundRepo.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          phase: 'BETTING',
+        })
+      );
+    });
+
+    it('should use transaction with SERIALIZABLE isolation', async () => {
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockRoundRepo.create.mockImplementation((data: any) => data);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+
+      await gameEngine.startNewRound();
+
+      expect(mockQueryRunner.startTransaction).toHaveBeenCalledWith('SERIALIZABLE');
+      expect(mockQueryRunner.commitTransaction).toHaveBeenCalled();
+      expect(mockQueryRunner.release).toHaveBeenCalled();
+    });
+
+    it('should rollback on error', async () => {
+      const error = new Error('Database error');
+      mockQueryRunner.manager.findOne.mockRejectedValue(error);
+
+      await expect(gameEngine.startNewRound()).rejects.toThrow('Database error');
+
+      expect(mockQueryRunner.rollbackTransaction).toHaveBeenCalled();
+      expect(mockQueryRunner.release).toHaveBeenCalled();
+    });
+  });
+
+  describe('placeBet', () => {
+    beforeEach(async () => {
+      mockRoundRepo.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+      
+      gameEngine = new GameEngine(mockIo);
+      await new Promise(resolve => setTimeout(resolve, 50));
+      
+      (gameEngine as any).currentRound = {
+        id: 1,
+        roundId: 1,
+        phase: 'BETTING',
+        totalBets: 100,
+      };
+    });
+
+    it('should create bet in current round', async () => {
+      const betData = { id: 1, address: '0x111', amount: 50 };
+      mockBetRepo.create.mockReturnValue(betData);
+      mockBetRepo.save.mockResolvedValue(betData);
+      mockRoundRepo.save.mockResolvedValue({});
+
+      await gameEngine.placeBet('0x111', 50);
+
+      expect(mockBetRepo.create).toHaveBeenCalledWith(
+        expect.objectContaining({
+          address: '0x111',
+          amount: 50,
+          cashedOut: false,
+        })
+      );
+      expect(mockBetRepo.save).toHaveBeenCalled();
+    });
+
+    it('should throw error when no active round', async () => {
+      (gameEngine as any).currentRound = null;
+
+      await expect(gameEngine.placeBet('0x111', 50)).rejects.toThrow('Betting closed');
+    });
+
+    it('should throw error during flying phase', async () => {
+      (gameEngine as any).currentRound.phase = 'FLYING';
+
+      await expect(gameEngine.placeBet('0x111', 50)).rejects.toThrow('Betting closed');
+    });
+
+    it('should validate bet amount (minimum)', async () => {
+      await expect(gameEngine.placeBet('0x111', 0.05)).rejects.toThrow(
+        'Invalid bet amount'
+      );
+    });
+
+    it('should validate bet amount (maximum)', async () => {
+      await expect(gameEngine.placeBet('0x111', 1001)).rejects.toThrow(
+        'Invalid bet amount'
+      );
+    });
+
+    it('should update round totalBets', async () => {
+      const betData = { id: 1, address: '0x111', amount: 50 };
+      mockBetRepo.create.mockReturnValue(betData);
+      mockBetRepo.save.mockResolvedValue(betData);
+      mockRoundRepo.save.mockResolvedValue({});
+
+      await gameEngine.placeBet('0x111', 50);
+
+      expect(mockRoundRepo.save).toHaveBeenCalledWith(
+        expect.objectContaining({
+          totalBets: 150, // 100 + 50
+        })
+      );
+    });
+
+    it('should update leaderboard', async () => {
+      const betData = { id: 1, address: '0x111', amount: 50 };
+      mockBetRepo.create.mockReturnValue(betData);
+      mockBetRepo.save.mockResolvedValue(betData);
+      mockRoundRepo.save.mockResolvedValue({});
+
+      await gameEngine.placeBet('0x111', 50);
+
+      expect(gameEngine.leaderboardService.updateFromBet).toHaveBeenCalledWith({
+        address: '0x111',
+        amount: 50,
+        cashedOut: false,
+      });
+    });
+  });
+
+  describe('cashOutById', () => {
+    beforeEach(async () => {
+      mockRoundRepo.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+      
+      gameEngine = new GameEngine(mockIo);
+      await new Promise(resolve => setTimeout(resolve, 50));
+      
+      (gameEngine as any).currentRound = {
+        id: 1,
+        roundId: 1,
+        phase: 'FLYING',
+        currentMultiplier: 2.5,
+        totalPayouts: 0,
+      };
+    });
+
+    it('should update bet with cashout data', async () => {
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: false,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+      mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
+      mockRoundRepo.save.mockResolvedValue({});
+
+      const result = await gameEngine.cashOutById(1);
+
+      expect(result.cashedOut).toBe(true);
+      expect(result.cashoutMultiplier).toBe(2.5);
+    });
+
+    it('should calculate payout correctly', async () => {
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: false,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+      mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
+      mockRoundRepo.save.mockResolvedValue({});
+
+      const result = await gameEngine.cashOutById(1);
+
+      expect(result.payout).toBe(250); // 100 * 2.5
+    });
+
+    it('should throw error when bet not found', async () => {
+      mockBetRepo.findOne.mockResolvedValue(null);
+
+      await expect(gameEngine.cashOutById(999)).rejects.toThrow('Bet not found');
+    });
+
+    it('should throw error for already cashed out bets', async () => {
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: true,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+
+      await expect(gameEngine.cashOutById(1)).rejects.toThrow('Already cashed out');
+    });
+
+    it('should throw error when not in flying phase', async () => {
+      (gameEngine as any).currentRound.phase = 'BETTING';
+
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: false,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+
+      await expect(gameEngine.cashOutById(1)).rejects.toThrow('Cannot cash out now');
+    });
+
+    it('should update round totalPayouts', async () => {
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: false,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+      mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
+      mockRoundRepo.save.mockResolvedValue({});
+
+      await gameEngine.cashOutById(1);
+
+      expect(mockRoundRepo.save).toHaveBeenCalledWith(
+        expect.objectContaining({
+          totalPayouts: 250, // 0 + 250
+        })
+      );
+    });
+
+    it('should update leaderboard with cashout data', async () => {
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: false,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+      mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
+      mockRoundRepo.save.mockResolvedValue({});
+
+      await gameEngine.cashOutById(1);
+
+      expect(gameEngine.leaderboardService.updateFromBet).toHaveBeenCalledWith({
+        address: '0x111',
+        amount: 100,
+        cashedOut: true,
+        payout: 250,
+        cashoutMultiplier: 2.5,
+      });
+    });
+  });
+
+  describe('broadcastGameState', () => {
+    beforeEach(async () => {
+      mockRoundRepo.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+      
+      gameEngine = new GameEngine(mockIo);
+      await new Promise(resolve => setTimeout(resolve, 50));
+    });
+
+    it('should emit game state via Socket.IO', async () => {
+      (gameEngine as any).currentRound = {
+        id: 1,
+        roundId: 1,
+        phase: 'BETTING',
+      };
+
+      const mockPlayers = [
+        { id: 1, address: '0x111', amount: 100 },
+        { id: 2, address: '0x222', amount: 200 },
+      ];
+
+      mockBetRepo.find.mockResolvedValue(mockPlayers);
+
+      await gameEngine.broadcastGameState();
+
+      // The implementation spreads currentRound, so check players separately
+      const emittedData = (mockIo.emit as any).mock.calls[0][1];
+      expect(mockIo.emit).toHaveBeenCalledWith('GAME_STATE_UPDATE', expect.anything());
+      expect(emittedData.players).toEqual(mockPlayers);
+    });
+
+    it('should include active bets from database', async () => {
+      (gameEngine as any).currentRound = {
+        id: 1,
+        roundId: 1,
+      };
+
+      const mockPlayers = [{ id: 1, address: '0x111' }];
+      mockBetRepo.find.mockResolvedValue(mockPlayers);
+
+      await gameEngine.broadcastGameState();
+
+      expect(mockBetRepo.find).toHaveBeenCalledWith({
+        where: { round: { id: 1 } },
+      });
+    });
+
+    it('should handle missing current round gracefully', async () => {
+     (gameEngine as any).currentRound = null;
+
+      await gameEngine.broadcastGameState();
+
+      // Should not crash
+      expect(mockIo.emit).not.toHaveBeenCalled();
+    });
+
+    it('should fallback on database query error', async () => {
+      (gameEngine as any).currentRound = {
+        id: 1,
+        roundId: 1,
+      };
+
+      mockBetRepo.find.mockRejectedValue(new Error('DB error'));
+
+      await gameEngine.broadcastGameState();
+
+      // Should still emit with current round data (fallback emits the round itself)
+      expect(mockIo.emit).toHaveBeenCalledWith('GAME_STATE_UPDATE', expect.objectContaining({
+        id: 1,
+        roundId: 1,
+      }));
+    });
+  });
+
+  describe('crashRound', () => {
+    beforeEach(async () => {
+      mockRoundRepo.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.findOne.mockResolvedValue(null);
+      mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
+      
+      gameEngine = new GameEngine(mockIo);
+      await new Promise(resolve => setTimeout(resolve, 50));
+      
+      (gameEngine as any).currentRound = {
+        id: 1,
+        roundId: 1,
+        phase: 'FLYING',
+        totalBets: 300,
+        totalPayouts: 250,
+      };
+    });
+
+    it('should set phase to CRASHED', async () => {
+      mockBetRepo.find.mockResolvedValue([]);
+      mockRoundRepo.save.mockResolvedValue({});
+      mockIo.emit = vi.fn();
+
+      await gameEngine.crashRound(2.5);
+
+      expect(mockRoundRepo.save).toHaveBeenCalledWith(
+        expect.objectContaining({
+          phase: 'CRASHED',
+          crashMultiplier: 2.5,
+        })
+      );
+    });
+
+    it('should handle losing bets (non-cashed)', async () => {
+      const players = [
+        { id: 1, address: '0x111', amount: 100, cashedOut: false },
+        { id: 2, address: '0x222', amount: 100, cashedOut: true, payout: 250 },
+      ];
+
+      mockBetRepo.find.mockResolvedValue(players);
+      mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
+      mockRoundRepo.save.mockResolvedValue({});
+      mockIo.emit = vi.fn();
+
+      await gameEngine.crashRound(2.5);
+
+      // Losing bet should have payout = 0
+      expect(mockBetRepo.save).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          payout: 0,
+        })
+      );
+    });
+
+    it('should record in history', async () => {
+      mockBetRepo.find.mockResolvedValue([]);
+      mockRoundRepo.save.mockResolvedValue({});
+      mockIo.emit = vi.fn();
+
+      await gameEngine.crashRound(2.5);
+
+      expect(gameEngine.historyService.record).toHaveBeenCalledWith(
+        expect.objectContaining({
+          roundId: 1,
+          crashMultiplier: 2.5,
+          totalBets: 300,
+          totalPayouts: 250,
+        })
+      );
+    });
+
+    it('should emit history update', async () => {
+      mockBetRepo.find.mockResolvedValue([]);
+      mockRoundRepo.save.mockResolvedValue({});
+      const mockHistory = [{ roundId: 1, crashMultiplier: 2.5 }];
+      vi.mocked(gameEngine.historyService.latest).mockResolvedValue(mockHistory as any);
+
+      await gameEngine.crashRound(2.5);
+
+      expect(mockIo.emit).toHaveBeenCalledWith('HISTORY_UPDATE', mockHistory);
+    });
+
+    it('should schedule next round after 10 seconds', async () => {
+      mockBetRepo.find.mockResolvedValue([]);
+      mockRoundRepo.save.mockResolvedValue({});
+      mockIo.emit = vi.fn();
+
+      const startNewRoundSpy = vi.spyOn(gameEngine, 'startNewRound').mockResolvedValue({} as any);
+
+      await gameEngine.crashRound(2.5);
+
+      expect(startNewRoundSpy).not.toHaveBeenCalled();
+
+      // Fast forward 10 seconds
+      vi.advanceTimersByTime(10000);
+
+      expect(startNewRoundSpy).toHaveBeenCalled();
+    });
+  });
+});

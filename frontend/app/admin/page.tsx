@@ -49,24 +49,24 @@ export default function AdminDashboard() {
   const [ethWithdrawAddress, setEthWithdrawAddress] = useState('');
   const [ethWithdrawAmount, setEthWithdrawAmount] = useState('');
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  const [error, setError] = useState('');
+
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
   useEffect(() => {
     const storedSecret = localStorage.getItem('adminSecret');
     if (storedSecret) {
       setAdminSecret(storedSecret);
-      setIsAuthenticated(true);
-      fetchContractStatus(storedSecret);
+      verifyAndLogin(storedSecret);
     }
   }, []);
 
-  const addTransaction = (tx: Omit<Transaction, 'timestamp'>) => {
-    setTransactions(prev => [{ ...tx, timestamp: Date.now() }, ...prev].slice(0, 10));
-  };
-
-  const fetchContractStatus = async (secret: string) => {
+  const verifyAndLogin = async (secret: string) => {
+    setIsLoading(true);
+    setError('');
     try {
-      const response = await fetch(`${API_URL}/api/admin/contract/status`, {
+      console.log("secret", secret);
+      const response = await fetch(`${API_URL}/admin/contract/status`, {
         headers: {
           'Authorization': `Bearer ${secret}`,
           'Content-Type': 'application/json'
@@ -76,6 +76,45 @@ export default function AdminDashboard() {
       if (response.ok) {
         const data = await response.json();
         setContractStatus(data);
+        setIsAuthenticated(true);
+        localStorage.setItem('adminSecret', secret);
+      } else {
+        if (response.status === 401) {
+          setError('Invalid admin credentials');
+          localStorage.removeItem('adminSecret');
+        } else {
+          setError('Failed to verify credentials');
+        }
+        setIsAuthenticated(false);
+      }
+    } catch (err) {
+      console.error('Login verification failed:', err);
+      setError('Connection error - backend may be offline');
+      setIsAuthenticated(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addTransaction = (tx: Omit<Transaction, 'timestamp'>) => {
+    setTransactions(prev => [{ ...tx, timestamp: Date.now() }, ...prev].slice(0, 10));
+  };
+
+  const fetchContractStatus = async (secret: string) => {
+    try {
+      const response = await fetch(`${API_URL}/admin/contract/status`, {
+        headers: {
+          'Authorization': `Bearer ${secret}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setContractStatus(data);
+      } else if (response.status === 401) {
+        // If we get 401 during normal operation, logout
+        handleLogout();
       }
     } catch (error) {
       console.error('Failed to fetch contract status:', error);
@@ -84,9 +123,7 @@ export default function AdminDashboard() {
 
   const handleLogin = () => {
     if (adminSecret) {
-      localStorage.setItem('adminSecret', adminSecret);
-      setIsAuthenticated(true);
-      fetchContractStatus(adminSecret);
+      verifyAndLogin(adminSecret);
     }
   };
 
@@ -95,6 +132,7 @@ export default function AdminDashboard() {
     setAdminSecret('');
     setIsAuthenticated(false);
     setContractStatus(null);
+    setError('');
   };
 
   const makeRequest = async (endpoint: string, method: string = 'GET', body?: any) => {
@@ -112,6 +150,7 @@ export default function AdminDashboard() {
         options.body = JSON.stringify(body);
       }
 
+      console.log("options", options);
       const response = await fetch(`${API_URL}${endpoint}`, options);
       const data = await response.json();
 
@@ -125,6 +164,10 @@ export default function AdminDashboard() {
         await fetchContractStatus(adminSecret);
         return data;
       } else {
+        if (response.status === 401) {
+          handleLogout();
+          throw new Error('Session expired - please login again');
+        }
         throw new Error(data.error || 'Operation failed');
       }
     } catch (error) {
@@ -141,33 +184,33 @@ export default function AdminDashboard() {
 
   const handleWithdraw = async () => {
     if (!withdrawAmount) return;
-    await makeRequest('/api/admin/house/withdraw', 'POST', { amount: parseFloat(withdrawAmount) });
+    await makeRequest('/admin/house/withdraw', 'POST', { amount: parseFloat(withdrawAmount) });
     setWithdrawAmount('');
   };
 
   const handleFund = async () => {
     if (!fundAmount) return;
-    await makeRequest('/api/admin/house/fund', 'POST', { amount: parseFloat(fundAmount) });
+    await makeRequest('/admin/house/fund', 'POST', { amount: parseFloat(fundAmount) });
     setFundAmount('');
   };
 
   const handlePause = async () => {
-    await makeRequest('/api/admin/contract/pause', 'POST');
+    await makeRequest('/admin/contract/pause', 'POST');
   };
 
   const handleUnpause = async () => {
-    await makeRequest('/api/admin/contract/unpause', 'POST');
+    await makeRequest('/admin/contract/unpause', 'POST');
   };
 
   const handleSetOperator = async () => {
     if (!newOperator) return;
-    await makeRequest('/api/admin/contract/operator', 'POST', { address: newOperator });
+    await makeRequest('/admin/contract/operator', 'POST', { address: newOperator });
     setNewOperator('');
   };
 
   const handleWithdrawETH = async () => {
     if (!ethWithdrawAddress || !ethWithdrawAmount) return;
-    await makeRequest('/api/admin/eth/withdraw', 'POST', { 
+    await makeRequest('/admin/eth/withdraw', 'POST', { 
       to: ethWithdrawAddress, 
       amount: parseFloat(ethWithdrawAmount) 
     });
@@ -188,19 +231,31 @@ export default function AdminDashboard() {
           </div>
           
           <div className="space-y-4">
+            {error && (
+              <div className="p-3 bg-red-500/20 border border-red-500/50 rounded-lg flex items-center gap-2 text-red-400 text-sm">
+                <AlertCircle className="w-4 h-4" />
+                {error}
+              </div>
+            )}
             <input
               type="password"
               placeholder="Admin Secret"
               value={adminSecret}
               onChange={(e) => setAdminSecret(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+              onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+              disabled={isLoading}
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
             />
             <button
               onClick={handleLogin}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:cursor-not-allowed"
             >
-              Access Dashboard
+              {isLoading ? (
+                <><Loader2 className="w-5 h-5 animate-spin" /> Verifying...</>
+              ) : (
+                <>Access Dashboard</>
+              )}
             </button>
           </div>
         </div>

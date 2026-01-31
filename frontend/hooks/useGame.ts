@@ -170,8 +170,9 @@ export function useGame(options: { wsUrl?: string } = {}) {
 
   const cashOut = useCallback(async (betId: number) => {
     try {
-      const api = await import("@/lib/api");
+      console.log("cashout", betId);
       const res = await api.cashOutRest(betId);
+      console.log("cashout result", res);
       if (res.success) {
           return { success: true };
       } else {

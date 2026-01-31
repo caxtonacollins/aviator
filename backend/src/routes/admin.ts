@@ -40,7 +40,7 @@ router.get('/house/balance', verifyAdmin, async (req: Request, res: Response) =>
     logger.error('Failed to get house balance', { error: (err as Error).message });
     res.status(500).json({ 
       success: false, 
-      error: (err as Error).message 
+      error: "failed to get house balance"
     });
   }
 });

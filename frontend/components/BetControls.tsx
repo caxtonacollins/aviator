@@ -75,9 +75,13 @@ const BetControls: React.FC = () => {
   // Debug log for checking cashout visibility
   // console.log("Render BetControls:", {
   //   phase: roundData?.phase,
+  //   roundData: roundData,
   //   hasMyBet: !!myBet,
   //   cashedOut: myBet?.cashedOut,
-  //   wallet: walletAddress
+  //   wallet: walletAddress,
+  //   myBet: myBet,
+  //   isConnected: isConnected,
+  //   canPlaceBet: canPlaceBet,
   // });
 
   return (
@@ -97,7 +101,7 @@ const BetControls: React.FC = () => {
           {roundData?.phase === "FLYING" && !myBet.cashedOut && (
             <button
               onClick={handleCashOut}
-              className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-bold transition-colors"
+              className="w-full bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-bold transition-colors"
             >
               CASH OUT
             </button>

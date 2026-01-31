@@ -169,7 +169,11 @@ export class ChainService {
         ['function balanceOf(address) view returns (uint256)'],
         this.provider
       );
-      const balance = await usdcContract.balanceOf(await this.contract.getAddress());
+
+      const contractAddress = await this.contract.getAddress();
+      console.log("contractAddress", contractAddress);
+      const balance = await usdcContract.balanceOf(contractAddress);
+      console.log("balance", balance);
 
       // Convert from USDC decimals (6) to human readable
       const balanceInUsdc = Number(balance) / 1e6;

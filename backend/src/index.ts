@@ -16,6 +16,7 @@ import { logger } from './utils/logger.ts';
 import { createRoundsRouter } from './routes/rounds.ts';
 import leaderboardRouter from './routes/leaderboard.ts';
 import historyRouter from './routes/history.ts';
+import adminRouter from './routes/admin.ts';
 import { AppDataSource } from '@/config/database.ts';
 
 config();
@@ -57,6 +58,7 @@ const gameEngine = new GameEngine(io);
 app.use('/api/rounds', createRoundsRouter(gameEngine));
 app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/history', historyRouter);
+app.use('/api/admin', adminRouter);
 
 io.on('connection', (socket) => {
   logger.info('New WebSocket connection');

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useGameContext } from "@/context/GameContext";
 import { useBetValidation } from "@/hooks/useBetValidation";
 import useUSDC from "@/hooks/useUSDC";
-// import { placeBetRest } from "@/lib/api"; // Removed direct import
 
 const BetControls: React.FC = () => {
   const { roundData, cashOut, placeBet } = useGameContext();
@@ -87,11 +86,11 @@ const BetControls: React.FC = () => {
         <div className="bg-purple-900/30 border border-purple-500/30 rounded-lg p-3 flex items-center justify-between">
           <div>
             <div className="text-sm text-gray-400">
-              Your Bet: {myBet.amount?.toFixed(2) || "0.00"} USDC
+              Your Bet: {myBet.amount || "0.00"} USDC
             </div>
             {myBet.cashedOut && myBet.payout && (
               <div className="text-green-400 font-medium">
-                Cashed Out at {myBet.cashoutMultiplier?.toFixed(2)}x
+                Cashed Out at {myBet.cashoutMultiplier}x
               </div>
             )}
           </div>

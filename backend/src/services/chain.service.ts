@@ -140,4 +140,166 @@ export class ChainService {
       throw err;
     }
   }
+
+  async withdrawHouseProfits(amount: number) {
+    try {
+      // Amount is in USDC (6 decimals)
+      const withdrawAmount = BigInt(Math.round(amount * 1e6));
+
+      logger.info('Withdrawing house profits', { amount, withdrawAmount: withdrawAmount.toString() });
+
+      const tx = await this.contract.withdrawHouseProfits(withdrawAmount);
+      logger.info('Withdrawal tx submitted', { txHash: tx.hash });
+
+      await tx.wait();
+      logger.info('Withdrawal tx confirmed', { txHash: tx.hash });
+
+      return tx.hash;
+    } catch (err) {
+      logger.error('Failed to withdraw house profits', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async getHouseBalance() {
+    try {
+      const usdcToken = await this.contract.usdcToken();
+      const usdcContract = new ethers.Contract(
+        usdcToken,
+        ['function balanceOf(address) view returns (uint256)'],
+        this.provider
+      );
+      const balance = await usdcContract.balanceOf(await this.contract.getAddress());
+
+      // Convert from USDC decimals (6) to human readable
+      const balanceInUsdc = Number(balance) / 1e6;
+
+      logger.info('House balance retrieved', { balance: balanceInUsdc });
+
+      return balanceInUsdc;
+    } catch (err) {
+      logger.error('Failed to get house balance', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async getContractStatus() {
+    try {
+      const [owner, serverOperator, isPaused, contractAddress, ethBalance] = await Promise.all([
+        this.contract.owner(),
+        this.contract.serverOperator(),
+        this.contract.paused(),
+        this.contract.getAddress(),
+        this.provider.getBalance(await this.contract.getAddress())
+      ]);
+
+      const usdcToken = await this.contract.usdcToken();
+      const usdcBalance = await this.getHouseBalance();
+
+      return {
+        owner,
+        serverOperator,
+        isPaused,
+        contractAddress,
+        ethBalance: Number(ethBalance) / 1e18,
+        usdcBalance,
+        usdcToken
+      };
+    } catch (err) {
+      logger.error('Failed to get contract status', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async pauseContract() {
+    try {
+      logger.info('Pausing contract');
+      const tx = await this.contract.pause();
+      await tx.wait();
+      logger.info('Contract paused', { txHash: tx.hash });
+      return tx.hash;
+    } catch (err) {
+      logger.error('Failed to pause contract', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async unpauseContract() {
+    try {
+      logger.info('Unpausing contract');
+      const tx = await this.contract.unpause();
+      await tx.wait();
+      logger.info('Contract unpaused', { txHash: tx.hash });
+      return tx.hash;
+    } catch (err) {
+      logger.error('Failed to unpause contract', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async setServerOperator(newOperator: string) {
+    try {
+      logger.info('Setting server operator', { newOperator });
+      const tx = await this.contract.setServerOperator(newOperator);
+      await tx.wait();
+      logger.info('Server operator updated', { txHash: tx.hash, newOperator });
+      return tx.hash;
+    } catch (err) {
+      logger.error('Failed to set server operator', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async fundHouse(amount: number) {
+    try {
+      const fundAmount = BigInt(Math.round(amount * 1e6));
+      logger.info('Funding house', { amount, fundAmount: fundAmount.toString() });
+
+      // First approve USDC transfer
+      const usdcToken = await this.contract.usdcToken();
+      const usdcContract = new ethers.Contract(
+        usdcToken,
+        [
+          'function approve(address spender, uint256 amount) returns (bool)',
+          'function allowance(address owner, address spender) view returns (uint256)'
+        ],
+        this.signer
+      );
+
+      const currentAllowance = await usdcContract.allowance(
+        this.signer.address,
+        await this.contract.getAddress()
+      );
+
+      if (currentAllowance < fundAmount) {
+        logger.info('Approving USDC transfer');
+        const approveTx = await usdcContract.approve(await this.contract.getAddress(), fundAmount);
+        await approveTx.wait();
+        logger.info('USDC approved', { txHash: approveTx.hash });
+      }
+
+      const tx = await this.contract.fundHouse(fundAmount);
+      await tx.wait();
+      logger.info('House funded', { txHash: tx.hash });
+      return tx.hash;
+    } catch (err) {
+      logger.error('Failed to fund house', { error: (err as Error).message });
+      throw err;
+    }
+  }
+
+  async withdrawETH(to: string, amount: number) {
+    try {
+      const withdrawAmount = BigInt(Math.round(amount * 1e18));
+      logger.info('Withdrawing ETH', { to, amount, withdrawAmount: withdrawAmount.toString() });
+
+      const tx = await this.contract.withdrawETH(to, withdrawAmount);
+      await tx.wait();
+      logger.info('ETH withdrawn', { txHash: tx.hash });
+      return tx.hash;
+    } catch (err) {
+      logger.error('Failed to withdraw ETH', { error: (err as Error).message });
+      throw err;
+    }
+  }
 }

@@ -22,7 +22,7 @@ import { logger } from '../utils/logger.ts';
       totalBets: 0,
       totalPayouts: 0,
       settled: false,
-      planePosition: { x: 10, y: 80 },
+      planePosition: { x: 50, y: 0 },
     });
 
     await roundRepo.save(r);

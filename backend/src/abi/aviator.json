@@ -1,44 +1,16 @@
 [
     {
         "type": "constructor",
-        "inputs": [
-            {
-                "name": "_usdcToken",
-                "type": "address",
-                "internalType": "address"
-            }
-        ],
+        "inputs": [],
         "stateMutability": "nonpayable"
     },
     {
-        "type": "function",
-        "name": "BETTING_DURATION",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "stateMutability": "view"
+        "type": "receive",
+        "stateMutability": "payable"
     },
     {
         "type": "function",
         "name": "MAX_BET",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "MAX_MULTIPLIER",
         "inputs": [],
         "outputs": [
             {
@@ -64,21 +36,36 @@
     },
     {
         "type": "function",
-        "name": "MIN_MULTIPLIER",
+        "name": "UPGRADE_INTERFACE_VERSION",
         "inputs": [],
         "outputs": [
             {
                 "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "string",
+                "internalType": "string"
             }
         ],
         "stateMutability": "view"
     },
     {
         "type": "function",
-        "name": "cashOut",
+        "name": "cashOutFor",
         "inputs": [
+            {
+                "name": "roundId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "player",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "payout",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
             {
                 "name": "multiplier",
                 "type": "uint256",
@@ -87,90 +74,6 @@
         ],
         "outputs": [],
         "stateMutability": "nonpayable"
-    },
-    {
-        "type": "function",
-        "name": "crashRound",
-        "inputs": [
-            {
-                "name": "crashMultiplier",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "serverSeed",
-                "type": "string",
-                "internalType": "string"
-            }
-        ],
-        "outputs": [],
-        "stateMutability": "nonpayable"
-    },
-    {
-        "type": "function",
-        "name": "currentRound",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "phase",
-                "type": "uint8",
-                "internalType": "enum AviatorGame.GamePhase"
-            },
-            {
-                "name": "startTime",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "flyStartTime",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "crashMultiplier",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "serverSeedHash",
-                "type": "bytes32",
-                "internalType": "bytes32"
-            },
-            {
-                "name": "totalBets",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "totalPayouts",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "settled",
-                "type": "bool",
-                "internalType": "bool"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "currentRoundId",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "stateMutability": "view"
     },
     {
         "type": "function",
@@ -187,107 +90,21 @@
     },
     {
         "type": "function",
-        "name": "getPlayerBet",
+        "name": "initialize",
         "inputs": [
             {
-                "name": "roundId",
-                "type": "uint256",
-                "internalType": "uint256"
+                "name": "_usdcToken",
+                "type": "address",
+                "internalType": "address"
             },
             {
-                "name": "player",
+                "name": "initialOwner",
                 "type": "address",
                 "internalType": "address"
             }
         ],
-        "outputs": [
-            {
-                "name": "amount",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "cashoutMultiplier",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "settled",
-                "type": "bool",
-                "internalType": "bool"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "getRoundHistory",
-        "inputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "outputs": [
-            {
-                "name": "id",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "crashMultiplier",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "serverSeedHash",
-                "type": "bytes32",
-                "internalType": "bytes32"
-            },
-            {
-                "name": "totalBets",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "totalPayouts",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "settled",
-                "type": "bool",
-                "internalType": "bool"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "getRoundPlayers",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "address[]",
-                "internalType": "address[]"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "houseBalance",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "stateMutability": "view"
+        "outputs": [],
+        "stateMutability": "nonpayable"
     },
     {
         "type": "function",
@@ -324,16 +141,39 @@
     },
     {
         "type": "function",
-        "name": "placeBet",
+        "name": "placeBetFor",
         "inputs": [
             {
-                "name": "betAmount",
+                "name": "roundId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
+            {
+                "name": "player",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "amount",
                 "type": "uint256",
                 "internalType": "uint256"
             }
         ],
         "outputs": [],
         "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "proxiableUUID",
+        "inputs": [],
+        "outputs": [
+            {
+                "name": "",
+                "type": "bytes32",
+                "internalType": "bytes32"
+            }
+        ],
+        "stateMutability": "view"
     },
     {
         "type": "function",
@@ -341,64 +181,6 @@
         "inputs": [],
         "outputs": [],
         "stateMutability": "nonpayable"
-    },
-    {
-        "type": "function",
-        "name": "roundBets",
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "",
-                "type": "address",
-                "internalType": "address"
-            }
-        ],
-        "outputs": [
-            {
-                "name": "amount",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "cashoutMultiplier",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "settled",
-                "type": "bool",
-                "internalType": "bool"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "roundPlayers",
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "outputs": [
-            {
-                "name": "",
-                "type": "address",
-                "internalType": "address"
-            }
-        ],
-        "stateMutability": "view"
     },
     {
         "type": "function",
@@ -423,77 +205,18 @@
             },
             {
                 "name": "totalBets",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint96",
+                "internalType": "uint96"
             },
             {
                 "name": "totalPayouts",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint96",
+                "internalType": "uint96"
             },
             {
                 "name": "numPlayers",
                 "type": "uint32",
                 "internalType": "uint32"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "rounds",
-        "inputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "outputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "phase",
-                "type": "uint8",
-                "internalType": "enum AviatorGame.GamePhase"
-            },
-            {
-                "name": "startTime",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "flyStartTime",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "crashMultiplier",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "serverSeedHash",
-                "type": "bytes32",
-                "internalType": "bytes32"
-            },
-            {
-                "name": "totalBets",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "totalPayouts",
-                "type": "uint256",
-                "internalType": "uint256"
-            },
-            {
-                "name": "settled",
-                "type": "bool",
-                "internalType": "bool"
             }
         ],
         "stateMutability": "view"
@@ -526,13 +249,6 @@
     },
     {
         "type": "function",
-        "name": "settleRound",
-        "inputs": [],
-        "outputs": [],
-        "stateMutability": "nonpayable"
-    },
-    {
-        "type": "function",
         "name": "snapshotRound",
         "inputs": [
             {
@@ -552,31 +268,18 @@
             },
             {
                 "name": "totalBets",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint96",
+                "internalType": "uint96"
             },
             {
                 "name": "totalPayouts",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "uint96",
+                "internalType": "uint96"
             },
             {
                 "name": "numPlayers",
                 "type": "uint32",
                 "internalType": "uint32"
-            }
-        ],
-        "outputs": [],
-        "stateMutability": "nonpayable"
-    },
-    {
-        "type": "function",
-        "name": "startFlying",
-        "inputs": [
-            {
-                "name": "serverSeedHash",
-                "type": "bytes32",
-                "internalType": "bytes32"
             }
         ],
         "outputs": [],
@@ -604,6 +307,24 @@
     },
     {
         "type": "function",
+        "name": "upgradeToAndCall",
+        "inputs": [
+            {
+                "name": "newImplementation",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "data",
+                "type": "bytes",
+                "internalType": "bytes"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "payable"
+    },
+    {
+        "type": "function",
         "name": "usdcToken",
         "inputs": [],
         "outputs": [
@@ -614,6 +335,24 @@
             }
         ],
         "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "withdrawETH",
+        "inputs": [
+            {
+                "name": "to",
+                "type": "address",
+                "internalType": "address payable"
+            },
+            {
+                "name": "amount",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
     },
     {
         "type": "function",
@@ -670,7 +409,7 @@
                 "internalType": "address"
             },
             {
-                "name": "amount",
+                "name": "payout",
                 "type": "uint256",
                 "indexed": false,
                 "internalType": "uint256"
@@ -680,25 +419,19 @@
                 "type": "uint256",
                 "indexed": false,
                 "internalType": "uint256"
-            },
-            {
-                "name": "payout",
-                "type": "uint256",
-                "indexed": false,
-                "internalType": "uint256"
             }
         ],
         "anonymous": false
     },
     {
         "type": "event",
-        "name": "HouseBalanceUpdated",
+        "name": "Initialized",
         "inputs": [
             {
-                "name": "newBalance",
-                "type": "uint256",
+                "name": "version",
+                "type": "uint64",
                 "indexed": false,
-                "internalType": "uint256"
+                "internalType": "uint64"
             }
         ],
         "anonymous": false
@@ -731,69 +464,6 @@
                 "type": "address",
                 "indexed": false,
                 "internalType": "address"
-            }
-        ],
-        "anonymous": false
-    },
-    {
-        "type": "event",
-        "name": "RoundCrashed",
-        "inputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "indexed": true,
-                "internalType": "uint256"
-            },
-            {
-                "name": "crashMultiplier",
-                "type": "uint256",
-                "indexed": false,
-                "internalType": "uint256"
-            }
-        ],
-        "anonymous": false
-    },
-    {
-        "type": "event",
-        "name": "RoundFlying",
-        "inputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "indexed": true,
-                "internalType": "uint256"
-            },
-            {
-                "name": "flyStartTime",
-                "type": "uint256",
-                "indexed": false,
-                "internalType": "uint256"
-            }
-        ],
-        "anonymous": false
-    },
-    {
-        "type": "event",
-        "name": "RoundSettled",
-        "inputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "indexed": true,
-                "internalType": "uint256"
-            },
-            {
-                "name": "totalBets",
-                "type": "uint256",
-                "indexed": false,
-                "internalType": "uint256"
-            },
-            {
-                "name": "totalPayouts",
-                "type": "uint256",
-                "indexed": false,
-                "internalType": "uint256"
             }
         ],
         "anonymous": false
@@ -843,31 +513,6 @@
     },
     {
         "type": "event",
-        "name": "RoundStarted",
-        "inputs": [
-            {
-                "name": "roundId",
-                "type": "uint256",
-                "indexed": true,
-                "internalType": "uint256"
-            },
-            {
-                "name": "startTime",
-                "type": "uint256",
-                "indexed": false,
-                "internalType": "uint256"
-            },
-            {
-                "name": "serverSeedHash",
-                "type": "bytes32",
-                "indexed": false,
-                "internalType": "bytes32"
-            }
-        ],
-        "anonymous": false
-    },
-    {
-        "type": "event",
         "name": "ServerOperatorUpdated",
         "inputs": [
             {
@@ -893,13 +538,48 @@
         "anonymous": false
     },
     {
+        "type": "event",
+        "name": "Upgraded",
+        "inputs": [
+            {
+                "name": "implementation",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            }
+        ],
+        "anonymous": false
+    },
+    {
         "type": "error",
-        "name": "AlreadyCashedOut",
+        "name": "AddressEmptyCode",
+        "inputs": [
+            {
+                "name": "target",
+                "type": "address",
+                "internalType": "address"
+            }
+        ]
+    },
+    {
+        "type": "error",
+        "name": "ERC1967InvalidImplementation",
+        "inputs": [
+            {
+                "name": "implementation",
+                "type": "address",
+                "internalType": "address"
+            }
+        ]
+    },
+    {
+        "type": "error",
+        "name": "ERC1967NonPayable",
         "inputs": []
     },
     {
         "type": "error",
-        "name": "BetAlreadyPlaced",
+        "name": "ETHTransferFailed",
         "inputs": []
     },
     {
@@ -914,7 +594,22 @@
     },
     {
         "type": "error",
+        "name": "FailedCall",
+        "inputs": []
+    },
+    {
+        "type": "error",
+        "name": "InsufficientBalance",
+        "inputs": []
+    },
+    {
+        "type": "error",
         "name": "InsufficientHouseBalance",
+        "inputs": []
+    },
+    {
+        "type": "error",
+        "name": "InvalidAddress",
         "inputs": []
     },
     {
@@ -924,22 +619,17 @@
     },
     {
         "type": "error",
-        "name": "InvalidCrashMultiplier",
+        "name": "InvalidInitialization",
         "inputs": []
     },
     {
         "type": "error",
-        "name": "InvalidMultiplier",
+        "name": "InvalidTokenAddress",
         "inputs": []
     },
     {
         "type": "error",
-        "name": "InvalidServerSeed",
-        "inputs": []
-    },
-    {
-        "type": "error",
-        "name": "NoBetPlaced",
+        "name": "NotInitializing",
         "inputs": []
     },
     {
@@ -971,22 +661,28 @@
     },
     {
         "type": "error",
-        "name": "RoundNotSettled",
-        "inputs": []
-    },
-    {
-        "type": "error",
         "name": "TransferFailed",
         "inputs": []
     },
     {
         "type": "error",
-        "name": "Unauthorized",
+        "name": "UUPSUnauthorizedCallContext",
         "inputs": []
     },
     {
         "type": "error",
-        "name": "WrongGamePhase",
+        "name": "UUPSUnsupportedProxiableUUID",
+        "inputs": [
+            {
+                "name": "slot",
+                "type": "bytes32",
+                "internalType": "bytes32"
+            }
+        ]
+    },
+    {
+        "type": "error",
+        "name": "Unauthorized",
         "inputs": []
     }
 ]

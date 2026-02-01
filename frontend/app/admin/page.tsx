@@ -220,11 +220,11 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-4">
         <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 max-w-md w-full shadow-2xl">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-500/20 rounded-full mb-4">
-              <Settings className="w-8 h-8 text-purple-400" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+              <Settings className="w-8 h-8 text-green-400" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">Admin Access</h1>
             <p className="text-slate-400">Enter your admin secret to continue</p>
@@ -244,12 +244,12 @@ export default function AdminDashboard() {
               onChange={(e) => setAdminSecret(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
               disabled={isLoading}
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-all disabled:opacity-50"
             />
             <button
               onClick={handleLogin}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <><Loader2 className="w-5 h-5 animate-spin" /> Verifying...</>
@@ -264,7 +264,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-4 md:p-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl">
@@ -321,7 +321,7 @@ export default function AdminDashboard() {
           title="Operator"
           value={contractStatus?.serverOperator.slice(0, 6) + '...' + contractStatus?.serverOperator.slice(-4) || 'N/A'}
           subtitle="Server Operator"
-          color="purple"
+          color="green"
         />
       </div>
 
@@ -505,7 +505,7 @@ export default function AdminDashboard() {
             <ActionCard
               title="Withdraw ETH"
               description="Withdraw ETH from the contract (for gas or accidentally sent ETH)"
-              icon={<Wallet className="w-6 h-6 text-purple-400" />}
+              icon={<Wallet className="w-6 h-6 text-cyan-400" />}
             >
               <div className="space-y-4">
                 <div>
@@ -517,7 +517,7 @@ export default function AdminDashboard() {
                     placeholder="0x..."
                     value={ethWithdrawAddress}
                     onChange={(e) => setEthWithdrawAddress(e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 font-mono text-sm"
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 font-mono text-sm"
                   />
                 </div>
                 <div>
@@ -530,7 +530,7 @@ export default function AdminDashboard() {
                     value={ethWithdrawAmount}
                     onChange={(e) => setEthWithdrawAmount(e.target.value)}
                     step="0.0001"
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20"
                   />
                   <p className="text-xs text-slate-500 mt-1">
                     Available: {contractStatus?.ethBalance.toFixed(4)} ETH
@@ -539,7 +539,7 @@ export default function AdminDashboard() {
                 <button
                   onClick={handleWithdrawETH}
                   disabled={isLoading || !ethWithdrawAddress || !ethWithdrawAmount}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isLoading ? (
                     <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
@@ -577,12 +577,18 @@ export default function AdminDashboard() {
 
 // Helper Components
 
-function StatCard({ icon, title, value, subtitle, color }: any) {
-  const colorClasses = {
+function StatCard({ icon, title, value, subtitle, color }: {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  subtitle: string;
+  color: 'green' | 'blue' | 'red' | 'purple';
+}) {
+  const colorClasses: Record<'green' | 'blue' | 'red' | 'purple', string> = {
     green: 'from-green-500/20 to-emerald-500/20 border-green-500/30',
     blue: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30',
     red: 'from-red-500/20 to-orange-500/20 border-red-500/30',
-    purple: 'from-purple-500/20 to-pink-500/20 border-purple-500/30'
+    purple: 'from-green-500/20 to-emerald-500/20 border-green-500/30'
   };
 
   return (
@@ -605,7 +611,7 @@ function TabButton({ active, onClick, children }: any) {
       onClick={onClick}
       className={`px-6 py-3 rounded-xl font-medium transition-all ${
         active
-          ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+        ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg'
           : 'text-slate-400 hover:text-white hover:bg-slate-800'
       }`}
     >
@@ -720,7 +726,7 @@ function TransactionItem({ transaction }: { transaction: Transaction }) {
               href={`https://basescan.org/tx/${transaction.txHash}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-purple-400 hover:text-purple-300 text-xs flex items-center gap-1 mt-1"
+              className="text-green-400 hover:text-green-300 text-xs flex items-center gap-1 mt-1"
             >
               View TX <ExternalLink className="w-3 h-3" />
             </a>

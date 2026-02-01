@@ -21,7 +21,7 @@ const Leaderboard: React.FC = () => {
                 {entry.address.slice(0, 6)}...{entry.address.slice(-4)}
               </div>
             </div>
-            <div className="text-green-400">+{entry.totalWon.toFixed(4)}</div>
+            <div className="text-green-400">+{entry.totalWon}</div>
           </div>
         ))}
       </div>

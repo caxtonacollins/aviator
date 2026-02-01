@@ -9,7 +9,7 @@ const StatsPanel: React.FC = () => {
   const stats = useGameStats(gameHistory);
 
   return (
-    <div className="bg-black/50 backdrop-blur-sm border-b border-purple-500/30 p-4">
+    <div className="bg-black/50 backdrop-blur-sm border-b border-green-500/30 p-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <div>
           <h3 className="font-bold mb-2 text-sm text-gray-400">
@@ -18,7 +18,7 @@ const StatsPanel: React.FC = () => {
           <div className="space-y-1 text-xs">
             <div className="flex justify-between">
               <span>Average:</span>
-              <span className="text-purple-400">
+              <span className="text-green-400">
                 {stats.averageCrash.toFixed(2)}x
               </span>
             </div>

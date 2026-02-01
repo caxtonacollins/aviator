@@ -8,17 +8,21 @@ export function calculatePlanePosition(elapsedMs: number): {
   y: number;
 } {
   const progress = Math.min(elapsedMs / 10000, 1);
-  const x = 10 + progress * 70;
-  const y = 80 - Math.sin(progress * Math.PI * 0.8) * 50;
+  // Fixed horizontal center position
+  const x = 50;
+  // Vertical movement: y=0 at bottom, y=100 at top
+  // Start at 0 (bottom) and move to 100 (top)
+  const eased = 1 - Math.pow(1 - progress, 2); // ease-out quad
+  const y = eased * 100;
   return { x, y };
 }
 
 export default function usePlaneAnimation(roundData: RoundData | null) {
-  const [position, setPosition] = useState({ x: 10, y: 80 });
+  const [position, setPosition] = useState({ x: 50, y: 0 });
   const [angle, setAngle] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const rafRef = useRef<number | null>(null);
-  const prevRef = useRef<PlaneState>({ x: 10, y: 80, ts: Date.now() });
+  const prevRef = useRef<PlaneState>({ x: 50, y: 0, ts: Date.now() });
   const crashRef = useRef<{ start?: number }>({});
 
   useEffect(() => {
@@ -31,7 +35,7 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
 
     if (!roundData) {
       stop();
-      setPosition({ x: 10, y: 80 });
+      setPosition({ x: 50, y: 0 });
       setAngle(0);
       setOpacity(1);
       return;

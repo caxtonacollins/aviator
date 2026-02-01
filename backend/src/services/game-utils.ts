@@ -33,7 +33,11 @@ export function calculateCurrentMultiplier(elapsedMs: number): number {
 
 export function calculatePlanePosition(elapsedMs: number): { x: number; y: number } {
   const progress = Math.min(elapsedMs / 10000, 1);
-  const x = 10 + progress * 70;
-  const y = 80 - Math.sin(progress * Math.PI * 0.8) * 50;
+  // Fixed horizontal center position
+  const x = 50;
+  // Vertical movement: y=0 at bottom, y=100 at top
+  // Start at 0 (bottom) and move to 100 (top)
+  const eased = 1 - Math.pow(1 - progress, 2); // ease-out quad
+  const y = eased * 100;
   return { x, y };
 }

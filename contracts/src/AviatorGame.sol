@@ -1,94 +1,51 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import {
-    ReentrancyGuard
-} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
+contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, OwnableUpgradeable, PausableUpgradeable {
     // ============ State Variables ============
 
     // Token Configuration
     IERC20 public usdcToken;
-    uint256 public constant MIN_BET = 1e5; // 0.1 USDC (6 decimals)
+    uint256 public constant MIN_BET = 1e5; // 0.04 USDC (6 decimals)
     uint256 public constant MAX_BET = 1000e6; // 1,000 USDC
-    uint256 public constant MIN_MULTIPLIER = 101; // 1.01x (scaled by 100)
-    uint256 public constant MAX_MULTIPLIER = 10000; // 100x (scaled by 100)
-    uint256 public constant BETTING_DURATION = 10 seconds;
-
-    // Game State
-    enum GamePhase {
-        BETTING,
-        FLYING,
-        CRASHED
-    }
-    struct Round {
-        uint256 roundId;
-        GamePhase phase;
-        uint256 startTime;
-        uint256 flyStartTime;
-        uint256 crashMultiplier; // Scaled by 100 (e.g., 150 = 1.5x)
-        bytes32 serverSeedHash; // Hash of server seed for provability
-        uint256 totalBets;
-        uint256 totalPayouts;
-        bool settled;
-    }
-    struct Bet {
-        uint256 amount;
-        uint256 cashoutMultiplier; // 0 if not cashed out
-        bool settled;
-    }
-    struct PlayerStats {
-        uint256 totalWagered;
-        uint256 totalWon;
-        uint256 gamesPlayed;
-        uint256 biggestWin;
-    }
-
-    // Current round
-    uint256 public currentRoundId;
-    Round public currentRound;
-    mapping(uint256 => Round) public rounds;
-    // Bets tracking
-    mapping(uint256 => mapping(address => Bet)) public roundBets; // roundId => player => bet
-    mapping(uint256 => address[]) public roundPlayers; // roundId => players array
-    // Server operator (trusted for crash point generation)
+    
+    // Server operator (trusted for game operations)
     address public serverOperator;
-    // House balance for payouts (in USDC)
-    uint256 public houseBalance;
+
+    // Snapshot storage
+    struct RoundSnapshotData {
+        bytes32 snapshotHash;
+        bytes32 playersMerkleRoot;
+        uint96 totalBets;
+        uint96 totalPayouts;
+        uint32 numPlayers;
+    }
+    mapping(uint256 => RoundSnapshotData) public roundSnapshots;
 
     // ============ Events ============
-    event RoundStarted(
-        uint256 indexed roundId,
-        uint256 startTime,
-        bytes32 serverSeedHash
-    );
     event BetPlaced(
         uint256 indexed roundId,
         address indexed player,
         uint256 amount
     );
+    
     event CashOut(
         uint256 indexed roundId,
         address indexed player,
-        uint256 amount,
-        uint256 multiplier,
-        uint256 payout
+        uint256 payout,
+        uint256 multiplier
     );
-    event RoundFlying(uint256 indexed roundId, uint256 flyStartTime);
-    event RoundCrashed(uint256 indexed roundId, uint256 crashMultiplier);
-    event RoundSettled(
-        uint256 indexed roundId,
-        uint256 totalBets,
-        uint256 totalPayouts
-    );
-    event HouseBalanceUpdated(uint256 newBalance);
+    
     event ServerOperatorUpdated(address indexed newOperator);
 
-    // Snapshot event and storage for on-chain attestation
+    // Snapshot event
     event RoundSnapshot(
         uint256 indexed roundId,
         bytes32 snapshotHash,
@@ -98,222 +55,95 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
         uint32 numPlayers
     );
 
-    struct RoundSnapshotData {
-        bytes32 snapshotHash;
-        bytes32 playersMerkleRoot;
-        uint256 totalBets;
-        uint256 totalPayouts;
-        uint32 numPlayers;
-    }
-
-    mapping(uint256 => RoundSnapshotData) public roundSnapshots;
-
     // ============ Errors ============
     error InvalidBetAmount();
-    error WrongGamePhase();
-    error BetAlreadyPlaced();
-    error NoBetPlaced();
-    error AlreadyCashedOut();
     error InsufficientHouseBalance();
-    error RoundNotSettled();
-    error InvalidMultiplier();
     error Unauthorized();
-    error InvalidCrashMultiplier();
-    error InvalidServerSeed();
     error TransferFailed();
+    error InvalidTokenAddress();
+    error InvalidAddress();
+    error InsufficientBalance();
+    error ETHTransferFailed();
 
     // ============ Modifiers ============
     modifier onlyServerOperator() {
-        _onlyServerOperator();
+        if (msg.sender != serverOperator) revert Unauthorized();
         _;
     }
 
     // ============ Constructor ============
-    constructor(address _usdcToken) Ownable(msg.sender) {
-        require(_usdcToken != address(0), "Invalid USDC token address");
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
+    function initialize(address _usdcToken, address initialOwner) public initializer {
+        __Ownable_init(initialOwner);
+        __Pausable_init();
+
+        if (_usdcToken == address(0)) revert InvalidTokenAddress();
         usdcToken = IERC20(_usdcToken);
-        serverOperator = msg.sender;
-        _startNewRound();
+        serverOperator = initialOwner;
+    }
+    
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
+    
+    /// @notice Allows the contract to receive ETH
+    receive() external payable {}
+
+    /// @notice Withdraw ETH sent to this contract (e.g. for gas or accidentally sent)
+    /// @param to Recipient address
+    /// @param amount Amount of ETH to withdraw
+    function withdrawETH(address payable to, uint256 amount) external onlyOwner {
+        if (address(this).balance < amount) revert InsufficientBalance();
+        (bool success, ) = to.call{value: amount}("");
+        if (!success) revert ETHTransferFailed();
     }
 
     // ============ Core Game Functions ============
-    function placeBet(uint256 betAmount) external nonReentrant whenNotPaused {
-        if (currentRound.phase != GamePhase.BETTING) revert WrongGamePhase();
-        if (betAmount < MIN_BET || betAmount > MAX_BET)
+
+    /**
+     * @notice Place a bet on behalf of a player for a specific round.
+     * @dev Transfers tokens from player to contract. Backend tracks state.
+     */
+    function placeBetFor(
+        uint256 roundId,
+        address player,
+        uint256 amount
+    ) external nonReentrant whenNotPaused onlyServerOperator {
+        if (amount < MIN_BET || amount > MAX_BET)
             revert InvalidBetAmount();
-        if (roundBets[currentRoundId][msg.sender].amount > 0)
-            revert BetAlreadyPlaced();
 
         // Transfer USDC from player to contract
-        bool success = usdcToken.transferFrom(
-            msg.sender,
-            address(this),
-            betAmount
-        );
+        // Note: The player must have approved the contract to spend this amount
+        bool success = usdcToken.transferFrom(player, address(this), amount);
         if (!success) revert TransferFailed();
-
-        // Record bet
-        roundBets[currentRoundId][msg.sender] = Bet({
-            amount: betAmount,
-            cashoutMultiplier: 0,
-            settled: false
-        });
-
-        roundPlayers[currentRoundId].push(msg.sender);
-        currentRound.totalBets += betAmount;
-
-        emit BetPlaced(currentRoundId, msg.sender, betAmount);
-
-        // Auto-start countdown if first bet
-        if (roundPlayers[currentRoundId].length == 1) {
-            currentRound.startTime = block.timestamp;
-        }
+        
+        emit BetPlaced(roundId, player, amount);
     }
 
-    function cashOut(uint256 multiplier) external nonReentrant whenNotPaused {
-        if (currentRound.phase != GamePhase.FLYING) revert WrongGamePhase();
-
-        Bet storage bet = roundBets[currentRoundId][msg.sender];
-        if (bet.amount == 0) revert NoBetPlaced();
-        if (bet.cashoutMultiplier > 0) revert AlreadyCashedOut();
-        if (multiplier < MIN_MULTIPLIER) revert InvalidMultiplier();
-
-        // Calculate payout
-        uint256 payout = (bet.amount * multiplier) / 100;
-        if (payout > houseBalance) revert InsufficientHouseBalance();
-
-        // Record cashout
-        bet.cashoutMultiplier = multiplier;
-        bet.settled = true;
-        currentRound.totalPayouts += payout;
-        houseBalance -= payout;
-
-        // Transfer winnings in USDC
-        bool success = usdcToken.transfer(msg.sender, payout);
-        if (!success) revert TransferFailed();
-
-        emit CashOut(
-            currentRoundId,
-            msg.sender,
-            bet.amount,
-            multiplier,
-            payout
-        );
-    }
-
-    function startFlying(
-        bytes32 serverSeedHash
-    ) external onlyServerOperator whenNotPaused {
-        if (currentRound.phase != GamePhase.BETTING) revert WrongGamePhase();
-        if (serverSeedHash == bytes32(0)) revert InvalidServerSeed();
-
-        // Transition to flying
-        currentRound.phase = GamePhase.FLYING;
-        currentRound.flyStartTime = block.timestamp;
-        currentRound.serverSeedHash = serverSeedHash;
-
-        emit RoundFlying(currentRoundId, block.timestamp);
-    }
-
-    function crashRound(
-        uint256 crashMultiplier,
-        string calldata serverSeed
-    ) external onlyServerOperator whenNotPaused {
-        if (currentRound.phase != GamePhase.FLYING) revert WrongGamePhase();
-        if (
-            crashMultiplier < MIN_MULTIPLIER || crashMultiplier > MAX_MULTIPLIER
-        ) {
-            revert InvalidCrashMultiplier();
-        }
-
-        bytes32 seedHash;
-        assembly {
-            // Get a free memory pointer
-            let ptr := mload(0x40)
-            // Copy the calldata string to memory
-            calldatacopy(ptr, serverSeed.offset, serverSeed.length)
-            // Hash the data directly
-            seedHash := keccak256(ptr, serverSeed.length)
-        }
-
-        if (seedHash != currentRound.serverSeedHash) revert InvalidServerSeed();
-
-        currentRound.phase = GamePhase.CRASHED;
-        currentRound.crashMultiplier = crashMultiplier;
-
-        emit RoundCrashed(currentRoundId, crashMultiplier);
-    }
-
-    function settleRound() external nonReentrant whenNotPaused {
-        if (currentRound.phase != GamePhase.CRASHED) revert WrongGamePhase();
-        if (currentRound.settled) revert RoundNotSettled();
-
-        currentRound.settled = true;
-        address[] memory players = roundPlayers[currentRoundId];
-
-        // Settle all unsettled bets (they lost)
-        for (uint256 i = 0; i < players.length; i++) {
-            Bet storage bet = roundBets[currentRoundId][players[i]];
-            if (!bet.settled) {
-                bet.settled = true;
-                houseBalance += bet.amount;
-            }
-        }
-
-        emit RoundSettled(
-            currentRoundId,
-            currentRound.totalBets,
-            currentRound.totalPayouts
-        );
-
-        // Start new round
-        _startNewRound();
-    }
-
-    function getPlayerBet(
+    /**
+     * @notice Process a cashout (payout) for a player.
+     * @dev Transfers tokens from contract to player.
+     */
+    function cashOutFor(
         uint256 roundId,
-        address player
-    )
-        external
-        view
-        returns (uint256 amount, uint256 cashoutMultiplier, bool settled)
-    {
-        Bet memory bet = roundBets[roundId][player];
-        return (bet.amount, bet.cashoutMultiplier, bet.settled);
-    }
+        address player,
+        uint256 payout,
+        uint256 multiplier
+    ) external nonReentrant whenNotPaused onlyServerOperator {
+        if (usdcToken.balanceOf(address(this)) < payout) revert InsufficientHouseBalance();
 
-    function getRoundPlayers() external view returns (address[] memory) {
-        return roundPlayers[currentRoundId];
-    }
+        // Transfer winnings in USDC to the player
+        bool success = usdcToken.transfer(player, payout);
+        if (!success) revert TransferFailed();
 
-    function getRoundHistory(
-        uint256 roundId
-    )
-        external
-        view
-        returns (
-            uint256 id,
-            uint256 crashMultiplier,
-            bytes32 serverSeedHash,
-            uint256 totalBets,
-            uint256 totalPayouts,
-            bool settled
-        )
-    {
-        Round memory round = rounds[roundId];
-        return (
-            round.roundId,
-            round.crashMultiplier,
-            round.serverSeedHash,
-            round.totalBets,
-            round.totalPayouts,
-            round.settled
-        );
+        emit CashOut(roundId, player, payout, multiplier);
     }
 
     // ============ Admin Functions ============
     function setServerOperator(address newOperator) external onlyOwner {
-        require(newOperator != address(0), "Invalid address");
+        if (newOperator == address(0)) revert InvalidAddress();
         serverOperator = newOperator;
         emit ServerOperatorUpdated(newOperator);
     }
@@ -329,61 +159,28 @@ contract AviatorGame is ReentrancyGuard, Ownable, Pausable {
     function fundHouse(uint256 amount) external onlyOwner {
         bool success = usdcToken.transferFrom(msg.sender, address(this), amount);
         if (!success) revert TransferFailed();
-        
-        houseBalance += amount;
-        emit HouseBalanceUpdated(houseBalance);
     }
 
     function withdrawHouseProfits(uint256 amount) external onlyOwner {
-        require(amount <= houseBalance, "Insufficient balance");
-        houseBalance -= amount;
+        if (amount > usdcToken.balanceOf(address(this))) revert InsufficientBalance();
 
         bool success = usdcToken.transfer(owner(), amount);
         if (!success) revert TransferFailed();
-
-        emit HouseBalanceUpdated(houseBalance);
-    }
-
-    // ============ Internal Functions ============
-    function _startNewRound() internal {
-        currentRoundId++;
-
-        currentRound = Round({
-            roundId: currentRoundId,
-            phase: GamePhase.BETTING,
-            startTime: 0,
-            flyStartTime: 0,
-            crashMultiplier: 0,
-            serverSeedHash: bytes32(0),
-            totalBets: 0,
-            totalPayouts: 0,
-            settled: false
-        });
-
-        rounds[currentRoundId] = currentRound;
-
-        emit RoundStarted(currentRoundId, block.timestamp, bytes32(0));
-    }
-
-    function _onlyServerOperator() internal view {
-        if (msg.sender != serverOperator) revert Unauthorized();
     }
 
     // ============ Snapshot Functions ============
     /// @notice Submit a compact snapshot of a settled round for on-chain attestation
-    /// @dev The snapshotHash should be computed as keccak256(abi.encodePacked(roundId, serverSeedHash, crashMultiplier, totalBets, totalPayouts, playersMerkleRoot, numPlayers))
+    /// @param totalBets downcast to uint96 to save gas
+    /// @param totalPayouts downcast to uint96 to save gas
     function snapshotRound(
         uint256 roundId,
         bytes32 snapshotHash,
         bytes32 playersMerkleRoot,
-        uint256 totalBets,
-        uint256 totalPayouts,
+        uint96 totalBets,
+        uint96 totalPayouts,
         uint32 numPlayers
     ) external onlyServerOperator whenNotPaused {
-        Round memory r = rounds[roundId];
-        if (r.roundId == 0) revert RoundNotSettled();
-
-        // store snapshot and emit event
+        // Store snapshot and emit event
         roundSnapshots[roundId] = RoundSnapshotData({
             snapshotHash: snapshotHash,
             playersMerkleRoot: playersMerkleRoot,

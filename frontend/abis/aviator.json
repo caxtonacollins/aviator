@@ -988,5 +988,41 @@
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
+    },
+    {
+        "type": "function",
+        "name": "placeBetFor",
+        "inputs": [
+            {
+                "name": "player",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "betAmount",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
+        "name": "cashOutFor",
+        "inputs": [
+            {
+                "name": "player",
+                "type": "address",
+                "internalType": "address"
+            },
+            {
+                "name": "multiplier",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
     }
 ]

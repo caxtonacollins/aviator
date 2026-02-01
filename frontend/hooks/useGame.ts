@@ -6,6 +6,8 @@ import GameABI from "@/abis/aviator.json";
 const DEFAULT_WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001";
 import useUSDC from "@/hooks/useUSDC";
 import { amountInWei } from "@/lib/gameUtils";
+import { maxUint256 } from "viem";
+import * as api from "@/lib/api";
 
 export function useGame(options: { wsUrl?: string } = {}) {
   const wsUrl = options.wsUrl || DEFAULT_WS_URL;
@@ -108,23 +110,19 @@ export function useGame(options: { wsUrl?: string } = {}) {
         return { success: false, error: 'Public client not available' };
       }
 
-      // Get the game contract address from environment variables
       const gameContractAddress = process.env.NEXT_PUBLIC_GAME_CONTRACT_ADDRESS;
       if (!gameContractAddress) {
         return { success: false, error: 'Game contract address not configured' };
       }
 
       try {
-        // Check current allowance
         const currentAllowance = await checkAllowance(address, gameContractAddress);
         
-        // If allowance is less than the bet amount, request approval
         if (currentAllowance < amount) {
           try {
-            const approvalTxHash = await approveUSDC(gameContractAddress, amount);
+            const approvalTxHash = await approveUSDC(gameContractAddress, maxUint256);
             console.log('USDC approval transaction hash:', approvalTxHash);
             
-            // Wait for the approval transaction to be mined
             if (publicClient) {
               await publicClient.waitForTransactionReceipt({
                 hash: approvalTxHash as `0x${string}`
@@ -136,45 +134,21 @@ export function useGame(options: { wsUrl?: string } = {}) {
           }
         }
 
-        // Now call the placeBet function on the smart contract
-        const amountInWeii = amountInWei(amount);
-        const { request } = await publicClient.simulateContract({
-          address: gameContractAddress as `0x${string}`,
-          abi: GameABI,
-          functionName: 'placeBet',
-          args: [amountInWeii],
-          account: walletClient.account.address,
-        });
-
-        console.log('placeBet request:', request);
-
-        const txHash = await walletClient.writeContract(request);
-        
-        // Wait for the transaction to be mined
-        if (publicClient) {
-          await publicClient.waitForTransactionReceipt({
-            hash: txHash
-          });
+        if (!roundData?.roundId) {
+          return { success: false, error: 'No active round' };
         }
 
-        // Notify socket (fast)
-        try {
-          manager.send({ type: "PLACE_BET", data: { address, amount, txHash } });
-        } catch (e) {
-          console.warn("WebSocket notification failed:", e);
+        console.log("placing bet", roundData.roundId, address, amount);
+        const res = await api.placeBetRest(roundData.roundId, address, amount);
+
+        if (res.success && res.bet) {
+          // Notify socket (optimistic) or wait for server push
+          // manager.send({ type: "PLACE_BET", data: { address, amount, txHash: res.bet.txHash } });
+          return { success: true, txHash: res.bet.txHash };
+        } else {
+          return { success: false, error: res.error || 'Failed to place bet' };
         }
 
-        // Make REST call to persist/fallback including txHash
-        try {
-          if (roundData?.roundId) {
-            const api = await import("@/lib/api");
-            await api.placeBetRest(roundData.roundId, address, amount, txHash);
-          }
-        } catch (e) {
-          console.warn("REST place bet failed", e);
-        }
-
-        return { success: true, txHash };
       } catch (err) {
         console.error("Error placing bet:", err);
         return { 
@@ -196,16 +170,17 @@ export function useGame(options: { wsUrl?: string } = {}) {
 
   const cashOut = useCallback(async (betId: number) => {
     try {
-      manager.send({ type: "CASH_OUT", data: { betId } });
-    } catch (e) {
-      // ignore
-    }
-
-    try {
-      const api = await import("@/lib/api");
-      await api.cashOutRest(betId);
+      console.log("cashout", betId);
+      const res = await api.cashOutRest(betId);
+      console.log("cashout result", res);
+      if (res.success) {
+          return { success: true };
+      } else {
+          return { success: false, error: res.error };
+      }
     } catch (e) {
       console.warn("REST cashout failed", e);
+      return { success: false, error: 'Cashout failed' };
     }
   }, []);
 
@@ -260,8 +235,7 @@ export function useRoundCountdown(roundData: RoundData | null) {
     }
 
     if (roundData.phase === "CRASHED") {
-      // 30s countdown after crash
-      let timeLeft = 10;
+      let timeLeft = 5;
       setCountdown(timeLeft);
       interval = setInterval(() => {
         timeLeft--;
@@ -272,10 +246,9 @@ export function useRoundCountdown(roundData: RoundData | null) {
         }
       }, 1000);
     } else if (roundData.phase === "BETTING") {
-      // Use scheduled flyStartTime if provided, otherwise default to 10s
       const flyAt = roundData.flyStartTime
         ? Number(roundData.flyStartTime)
-        : Date.now() + 10000;
+        : Date.now() + 60000;
       const update = () => {
         const secsLeft = Math.max(0, Math.ceil((flyAt - Date.now()) / 1000));
         setCountdown(secsLeft);

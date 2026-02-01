@@ -13,9 +13,10 @@ import cors from 'cors';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.ts';
 import { GameEngine } from './services/game-engine.service.ts';
 import { logger } from './utils/logger.ts';
-import roundsRouter from './routes/rounds.ts';
+import { createRoundsRouter } from './routes/rounds.ts';
 import leaderboardRouter from './routes/leaderboard.ts';
 import historyRouter from './routes/history.ts';
+import adminRouter from './routes/admin.ts';
 import { AppDataSource } from '@/config/database.ts';
 
 config();
@@ -48,13 +49,16 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok' });
 });
 
-app.use('/api/rounds', roundsRouter);
+// GameEngine setup
+const server = createServer(app);
+const io = new Server(server);
+const gameEngine = new GameEngine(io);
+
+// Routes with dependency injection
+app.use('/api/rounds', createRoundsRouter(gameEngine));
 app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/history', historyRouter);
-
-const server = createServer(app);
-
-const io = new Server(server);
+app.use('/api/admin', adminRouter);
 
 io.on('connection', (socket) => {
   logger.info('New WebSocket connection');
@@ -76,8 +80,9 @@ io.on('connection', (socket) => {
     await AppDataSource.initialize();
     logger.info('Database connected');
     // Start game engine
-    const engine = new GameEngine(io);
-    await engine.start();
+    logger.info('Database connected');
+    // Start game engine
+    await gameEngine.start();
     server.listen(port, () => {
       logger.info(`Server is running on http://localhost:${port}`);
     });

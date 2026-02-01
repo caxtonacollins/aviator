@@ -20,12 +20,15 @@ export function calculatePlanePosition(elapsedMs: number): {
 export default function usePlaneAnimation(roundData: RoundData | null) {
   const [position, setPosition] = useState({ x: 50, y: 0 });
   const [angle, setAngle] = useState(0);
+  const [angleX, setAngleX] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const rafRef = useRef<number | null>(null);
   const prevRef = useRef<PlaneState>({ x: 50, y: 0, ts: Date.now() });
   const crashRef = useRef<{ start?: number }>({});
 
   useEffect(() => {
+    console.log("round data from usePlaneAnimation", roundData);
+
     const stop = () => {
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
@@ -36,7 +39,8 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
     if (!roundData) {
       stop();
       setPosition({ x: 50, y: 0 });
-      setAngle(0);
+      setAngle(-80);
+      setAngleX(0);
       setOpacity(1);
       return;
     }
@@ -53,33 +57,36 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
 
         let tx = 50; // Center X
         let ty = 0;
-        let ta = 0;
+        let ta = -80;
+        let tax = 0;
 
         // 1. Dive (0s - 1s)
         if (elapsed < 1000) {
           const t = elapsed / 1000;
-          // Ease in-out
           const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-          ty = -10 + ease * 100; // Start slightly off-screen (-10) to bottom (90)
-          ta = 90; // Pointing down
+          ty = -10 + ease * 100;
+          // Tilt forward during dive
+          tax = -20 + ease * 20; // -20 to 0 degrees
         }
         // 2. Ascent to Hover (1s - 2.5s)
         else if (elapsed < 2500) {
           const t = (elapsed - 1000) / 1500;
-          // Ease out
           const ease = 1 - Math.pow(1 - t, 3);
-          ty = 90 - ease * 70; // From 90 up to 20
-          ta = -15 * (1 - t); // Slight tilt up
+          ty = 90 - ease * 70;
+          // Tilt backward during ascent
+          tax = -15 * (1 - ease); // 0 to -15 degrees (tilting up)
         }
         // 3. Hover (2.5s+)
         else {
           const t = (elapsed - 2500) / 1000;
-          ty = 20 + Math.sin(t * 2) * 3; // Bobbing around 20
-          ta = Math.sin(t * 2) * 5; // Slight rocking
+          ty = 20 + Math.sin(t * 2) * 3;
+          // Gentle oscillation during hover
+          tax = Math.sin(t * 2) * 5; // -5 to +5 degrees
         }
 
         setPosition({ x: tx, y: ty });
         setAngle(ta);
+        setAngleX(tax);
         setOpacity(1);
 
         rafRef.current = requestAnimationFrame(animateBetting);
@@ -108,6 +115,13 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
         const rawAngle = Math.atan2(dy, dx) * (180 / Math.PI);
         const clamped = Math.max(-30, Math.min(30, rawAngle));
 
+        // X-axis rotation based on vertical velocity (dy/dt)
+        // Positive dy (going up) = tilt forward (negative angleX)
+        // Negative dy (going down) = tilt backward (positive angleX)
+        const verticalVelocity = dy / dt * 1000; // pixels per second
+        const rawAngleX = -verticalVelocity * 0.5; // Scale factor for tilt intensity
+        const clampedX = Math.max(-25, Math.min(15, rawAngleX)); // Clamp to prevent extreme tilts
+
         // smooth towards predicted to avoid jumps (lerp)
         const smoothFactor = 0.16; // tuned for mobile-first smoothness
         const nx =
@@ -119,11 +133,18 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
           : clamped;
         const na = nang + (clamped - nang) * 0.12;
 
+        const nangX = prevRef.current
+          ? (prevRef.current as any)["angleX"] || 0
+          : clampedX;
+        const nax = nangX + (clampedX - nangX) * 0.12;
+
         prevRef.current = { x: nx, y: ny, ts: now } as any;
         (prevRef.current as any).angle = na;
+        (prevRef.current as any).angleX = nax;
 
         setPosition({ x: nx, y: ny });
         setAngle(na);
+        setAngleX(nax);
         setOpacity(1);
 
         rafRef.current = requestAnimationFrame(animate);
@@ -151,10 +172,13 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
         // fall down and rotate
         const y = startPos.y + t * (120 - startPos.y); // move past bottom
         const ang = startAngle + t * 90; // rotate to 90deg
+        const angX = t * 45; // Tilt forward as it falls
+
         const op = 1 - t;
 
         setPosition({ x: startPos.x, y });
         setAngle(ang);
+        setAngleX(angX);
         setOpacity(op);
 
         if (t < 1) {
@@ -185,5 +209,5 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
     }
   }, [roundData?.planePosition?.x, roundData?.planePosition?.y]);
 
-  return { position, angle, opacity };
+  return { position, angle, angleX, opacity };
 }

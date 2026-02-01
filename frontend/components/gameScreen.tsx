@@ -17,8 +17,6 @@ const GameScreen = () => {
           <div className="flex-1 relative">
             {/* <StatsPanel /> */}
             <RoundInfo />
-          </div>
-          <div className="flex-1 relative">
             <GameBoard />
           </div>
         </ErrorBoundary>

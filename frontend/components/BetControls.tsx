@@ -85,9 +85,9 @@ const BetControls: React.FC = () => {
   // });
 
   return (
-    <div className="bg-black/50 backdrop-blur-sm border-t border-purple-500/30 p-4 space-y-3">
+    <div className="bg-black/50 backdrop-blur-sm border-t border-green-500/30 p-4 space-y-3">
       {myBet && (
-        <div className="bg-purple-900/30 border border-purple-500/30 rounded-lg p-3 flex items-center justify-between">
+        <div className="bg-green-900/30 border border-green-500/30 rounded-lg p-3 flex items-center justify-between">
           <div>
             <div className="text-sm text-gray-400">
               Your Bet: {myBet.amount || "0.00"} USDC
@@ -113,7 +113,7 @@ const BetControls: React.FC = () => {
         <div className="space-y-3">
           <div>
             <label className="text-sm text-gray-400 mb-1 block">
-              Bet Amount (USDC)
+              Balance: {walletBalance?.toFixed(2) || "0.00"} (USDC)
             </label>
             <input
               type="number"
@@ -122,7 +122,7 @@ const BetControls: React.FC = () => {
               step="0.10"
               min="0.10"
               max={walletBalance!.toString()}
-              className="w-full bg-purple-900/30 border border-purple-500/30 rounded-lg px-4 py-3 text-white text-lg font-medium focus:outline-none focus:border-purple-400"
+              className="w-full bg-slate-800/50 border border-green-500/30 rounded-lg px-4 py-3 text-white text-lg font-medium focus:outline-none focus:border-green-400"
             />
             {!betValidation.isValid && (
               <div className="text-red-400 text-xs mt-1">
@@ -139,7 +139,7 @@ const BetControls: React.FC = () => {
               <button
                 key={amount}
                 onClick={() => setBetAmount(amount)}
-                className="flex-1 bg-purple-700/30 hover:bg-purple-600/40 rounded-lg py-2 text-sm font-medium transition-colors"
+                className="flex-1 bg-green-700/30 hover:bg-green-600/40 rounded-lg py-2 text-sm font-medium transition-colors"
               >
                 {amount}
               </button>
@@ -149,7 +149,7 @@ const BetControls: React.FC = () => {
           <button
             onClick={handlePlaceBet}
             disabled={!betValidation.isValid || isProcessing}
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-600 py-4 rounded-lg font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-gray-600 disabled:to-gray-600 py-4 rounded-lg font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isProcessing ? "Processing…" : `Place Bet (${betAmount} USDC)`}
           </button>
@@ -183,11 +183,11 @@ const BetControls: React.FC = () => {
       )}
 
       {!isConnected && (
-        <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4 text-center">
-          <div className="text-blue-400 font-extrabold mb-3">
+        <div className="bg-green-600/20 border border-green-500/30 rounded-lg p-4 text-center">
+          <div className="text-green-400 font-extrabold mb-3">
             🔗 Connect wallet to play
           </div>
-          <p className="text-sm text-blue-300 mb-3">
+          <p className="text-sm text-green-300 mb-3">
             Connect your wallet to start placing bets and playing
           </p>
           {/* Wallet connection UI can be added here */}

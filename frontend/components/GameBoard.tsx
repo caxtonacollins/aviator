@@ -13,7 +13,48 @@ const GameBoard: React.FC = () => {
   const plane = usePlaneAnimation(roundData);
 
   return (
-    <div className="flex-1 relative overflow-hidden flex items-center justify-center">
+    <div className="h-full">
+      {/* Animated Radar Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Radar grid */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(74, 222, 128, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(74, 222, 128, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+            animation: 'gridPulse 4s ease-in-out infinite'
+          }} />
+        </div>
+
+        {/* Radar sweep effect - constrained to viewport */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(800px,100vw)] h-[min(800px,100vh)] opacity-10">
+          <div className="absolute inset-0 rounded-full border border-green-500/30" />
+          <div className="absolute inset-0 rounded-full" style={{
+            background: 'conic-gradient(from 0deg, transparent 0deg, rgba(74, 222, 128, 0.3) 90deg, transparent 90deg)',
+            animation: 'radarSweep 4s linear infinite'
+          }} />
+        </div>
+
+        {/* Concentric circles - responsive sizing */}
+        {[
+          { size: 'min(200px, 30vw)', delay: 0 },
+          { size: 'min(400px, 60vw)', delay: 1 },
+          { size: 'min(600px, 90vw)', delay: 2 }
+        ].map((circle, i) => (
+          <div
+            key={i}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-green-500/10"
+            style={{
+              width: circle.size,
+              height: circle.size,
+              animation: `pulse ${3 + circle.delay}s ease-in-out infinite`
+            }}
+          />
+        ))}
+      </div>
+
       <div className="text-center z-10">
         <div className="flex flex-col items-center">
           <div
@@ -52,33 +93,13 @@ const GameBoard: React.FC = () => {
             className="absolute pointer-events-none"
             style={{
               left: `${plane.position.x}%`,
-              top: `${plane.position.y}%`,
-              transform: `translate(-50%, -50%) rotate(${plane.angle}deg)`,
+              bottom: `${plane.position.y}%`,
+              transform: `translate(-50%, 50%) rotate(${plane.angle}deg)`,
               opacity: plane.opacity,
-              willChange: "transform, opacity, left, top",
+              willChange: "transform, opacity, left, bottom",
               zIndex: 20,
             }}
           >
-          {/* TRAIL - Only show during BETTING (Dive & Hover) */}
-          {roundData.phase === "BETTING" && (
-            <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2"
-              style={{
-                width: "100px",
-                height: "200vh", // Extend way down
-                background:
-                  "linear-gradient(to bottom, rgba(74, 222, 128, 0.6), transparent 80%)",
-                filter: "blur(4px)",
-                transformOrigin: "top center",
-                // Check if diving or hovering to adjust trail width/intensity?
-                // Simple cone for now:
-                clipPath: "polygon(40% 0, 60% 0, 100% 100%, 0% 100%)",
-                pointerEvents: "none",
-                zIndex: -1,
-              }}
-            />
-          )}
-
             <div style={{ width: "clamp(40px, 12vw, 96px)", height: "auto" }}>
               <Image
                 src="/logo.png"

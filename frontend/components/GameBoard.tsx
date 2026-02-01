@@ -67,7 +67,7 @@ const GameBoard: React.FC = () => {
                     ? "text-orange-400"
                     : displayMultiplier >= 1.5
                       ? "text-yellow-400"
-                      : "text-green-400"
+                    : "text-green-400"
               } transition-colors duration-300 text-6xl sm:text-7xl md:text-8xl lg:text-9xl`}
           >
             {roundData?.phase === "CRASHED" && roundData.crashMultiplier
@@ -94,23 +94,19 @@ const GameBoard: React.FC = () => {
             style={{
               left: `${plane.position.x}%`,
               bottom: `${plane.position.y}%`,
-              transform: `translate(-50%, 50%) 
-              rotateZ(${plane.angle}deg) 
-              rotateX(${plane.angleX}deg)`,
+              transform: `translate(-50%, 50%) rotate(${plane.angle}deg)`,
               opacity: plane.opacity,
               willChange: "transform, opacity, left, bottom",
               zIndex: 20,
-              transformStyle: "preserve-3d",
-              perspective: "1000px",
             }}
           >
             <div style={{ width: "clamp(40px, 12vw, 96px)", height: "auto" }}>
               <Image
-                src="/logo.png"
+              src="/plane.png"
                 alt="Flying plane"
                 width={64}
                 height={64}
-                style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", zIndex: 200 }}
               />
             </div>
           </div>

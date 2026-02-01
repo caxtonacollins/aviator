@@ -14,8 +14,8 @@ const GameBoard: React.FC = () => {
 
   return (
     <div className="">
-      {/* Animated Radar Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Animated Radar Background - Full viewport coverage */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {/* Radar grid */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{

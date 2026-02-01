@@ -8,7 +8,7 @@ const HistoryBar: React.FC = () => {
   const { gameHistory } = useGameContext();
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm px-4 py-2 overflow-x-auto">
+    <div className="bg-black/20 backdrop-blur-sm px-4 py-2 overflow-x-auto">
       <div className="flex gap-2">
         {gameHistory.map((game: GameHistory, idx: any) => (
           <div

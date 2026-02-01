@@ -13,7 +13,7 @@ const GameBoard: React.FC = () => {
   const plane = usePlaneAnimation(roundData);
 
   return (
-    <div className="h-full">
+    <div className="">
       {/* Animated Radar Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Radar grid */}
@@ -94,7 +94,8 @@ const GameBoard: React.FC = () => {
             style={{
               left: `${plane.position.x}%`,
               bottom: `${plane.position.y}%`,
-              transform: `translate(-50%, 50%) rotate(${plane.angle}deg)`,
+              transform: `translate(-50%, 50%) 
+              rotate(${plane.angle}deg)`,
               opacity: plane.opacity,
               willChange: "transform, opacity, left, bottom",
               zIndex: 20,

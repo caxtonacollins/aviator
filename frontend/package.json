@@ -16,7 +16,7 @@
     "@farcaster/miniapp-sdk": "^0.2.1",
     "@tanstack/react-query": "^5.81.5",
     "lucide-react": "^0.563.0",
-    "next": "15.3.8",
+    "next": "16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "socket.io-client": "^4.8.3",

@@ -13,9 +13,9 @@ export async function GET() {
     // const URL = process.env.NEXT_PUBLIC_URL as string;
     return Response.json({
         accountAssociation: {
-            header: "eyJmaWQiOjIwNzY0ODgsInR5cGUiOiJhdXRoIiwia2V5IjoiMHgxNzE0QTVhRDYzYjRhMkNiOTI0M0UyODZEOEY4OTk2Q0EwMGJEODQ1In0",
+            header: "eyJmaWQiOjIwOTE3MjQsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhGYmJiNGFBOEI1NTE4YjU3Qzc2Njg3Mzk0NkU0NjE3ZkU1QzI4Q0ExIn0",
             payload: "eyJkb21haW4iOiJhdmlhdG9yLXNhbmQudmVyY2VsLmFwcCJ9",
-            signature: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFVyq55xA4qePGHE09R0gbtgHXklEpE2e_4bkTaqxFuazfnF6eKegL_cXwjgnO1FckBrfAa3Agz4L47kq0MsyMZHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            signature: "54pQf0+CTjSG+6HRBTtk9M+NLI8nndN7AluSJLjnYct32pI2JMXGPsgoCFu5cBknIwa+SLbPw82PjZYeWNKWkBw="
         },
         miniapp: {
             version: "1",

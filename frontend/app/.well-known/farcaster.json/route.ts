@@ -39,6 +39,7 @@ export async function GET() {
             ogTitle: "Aviator",
             ogDescription: "Aviator - Multiply your fund with fun",
             ogImageUrl: "https://aviator-sand.vercel.app/aviator.png",
+            castShareUrl: "https://aviator-sand.vercel.app/plane.png",
             noindex: true,
         },
     });

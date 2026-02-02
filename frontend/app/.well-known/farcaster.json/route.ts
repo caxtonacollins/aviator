@@ -22,6 +22,8 @@ export async function GET() {
             name: "Aviator",
             homeUrl: "https://aviator-sand.vercel.app",
             iconUrl: "https://aviator-sand.vercel.app/logo.png",
+            imageUrl: "https://aviator-sand.vercel.app/plane.png",
+            buttonTitle: "Play",
             splashImageUrl: "https://aviator-sand.vercel.app/Aviator-Logo.png",
             splashBackgroundColor: "#000000",
             webhookUrl: "https://aviator-sand.vercel.app/api/webhook",

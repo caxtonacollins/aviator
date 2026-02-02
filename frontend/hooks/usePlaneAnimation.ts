@@ -22,10 +22,12 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
   const [angle, setAngle] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const rafRef = useRef<number | null>(null);
-  const prevRef = useRef<PlaneState>({ x: 50, y: 0, ts: Date.now() });
+  const prevYRef = useRef<number>(0);
   const crashRef = useRef<{ start?: number }>({});
 
   useEffect(() => {
+    console.log("round data from usePlaneAnimation", roundData);
+
     const stop = () => {
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
@@ -38,10 +40,10 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
       setPosition({ x: 50, y: 0 });
       setAngle(0);
       setOpacity(1);
+      prevYRef.current = 0;
       return;
     }
 
-    // BEDTTING PHASE: Dive & Hover Animation
     if (roundData.phase === "BETTING") {
       if (!crashRef.current.start) {
         crashRef.current.start = Date.now();
@@ -51,32 +53,11 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
         const now = Date.now();
         const elapsed = now - (crashRef.current.start || now);
 
-        let tx = 50; // Center X
-        let ty = 0;
-        let ta = 0;
+        const tx = 50; 
+        const t = (elapsed / 1000);
+        const ty = 2 + Math.sin(t * 1.5) * 2; 
 
-        // 1. Dive (0s - 1s)
-        if (elapsed < 1000) {
-          const t = elapsed / 1000;
-          // Ease in-out
-          const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-          ty = -10 + ease * 100; // Start slightly off-screen (-10) to bottom (90)
-          ta = 90; // Pointing down
-        }
-        // 2. Ascent to Hover (1s - 2.5s)
-        else if (elapsed < 2500) {
-          const t = (elapsed - 1000) / 1500;
-          // Ease out
-          const ease = 1 - Math.pow(1 - t, 3);
-          ty = 90 - ease * 70; // From 90 up to 20
-          ta = -15 * (1 - t); // Slight tilt up
-        }
-        // 3. Hover (2.5s+)
-        else {
-          const t = (elapsed - 2500) / 1000;
-          ty = 20 + Math.sin(t * 2) * 3; // Bobbing around 20
-          ta = Math.sin(t * 2) * 5; // Slight rocking
-        }
+        const ta = Math.sin(t * 1.5) * 5; 
 
         setPosition({ x: tx, y: ty });
         setAngle(ta);
@@ -89,41 +70,45 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
       return () => stop();
     }
 
-    // If flying, run RAF-based prediction (client-side authoritative prediction)
     if (roundData.phase === "FLYING") {
       crashRef.current = {};
       const flyStart = Number(roundData.flyStartTime || Date.now());
+      prevYRef.current = 0; 
 
       const animate = () => {
         const now = Date.now();
         const elapsed = Math.max(0, now - flyStart);
         const predicted = calculatePlanePosition(elapsed);
 
-        // compute small derivative for angle
-        const dt = Math.max(1, now - prevRef.current.ts);
-        const dx = predicted.x - prevRef.current.x;
-        const dy = predicted.y - prevRef.current.y;
+        // Calculate rotation based on vertical movement direction
+        // dy > 0 = moving up → plane points up (negative angle)
+        // dy < 0 = moving down → plane points down (positive angle)
+        const dy = predicted.y - prevYRef.current;
 
-        // angle in degrees, clamp to avoid extreme tilts
-        const rawAngle = Math.atan2(dy, dx) * (180 / Math.PI);
-        const clamped = Math.max(-30, Math.min(30, rawAngle));
+        // Base angle: 0 degrees (pointing straight up for this plane image)
+        // Add tilt based on rate of climb  
+        // Faster climb = more upward tilt, slower = slight forward tilt
+        let targetAngle = 0;
+        if (dy > 0) {
+          // Moving up - tilt slightly back for realism based on speed
+          const climbSpeed = Math.min(dy * 2, 15); // Max 15 degree tilt
+          targetAngle = 0 - climbSpeed; // -60 to 0 degrees (more upward when climbing fast)
+        } else if (dy < 0) {
+          // Moving down (shouldn't happen in flying phase, but handle it)
+          targetAngle = 0 + 10; // Tilt forward slightly if descending
+        }
 
-        // smooth towards predicted to avoid jumps (lerp)
-        const smoothFactor = 0.16; // tuned for mobile-first smoothness
-        const nx =
-          prevRef.current.x + (predicted.x - prevRef.current.x) * smoothFactor;
-        const ny =
-          prevRef.current.y + (predicted.y - prevRef.current.y) * smoothFactor;
-        const nang = prevRef.current
-          ? prevRef.current["angle"] || 0
-          : clamped;
-        const na = nang + (clamped - nang) * 0.12;
+        const currentAngle = angle;
+        const smoothedAngle = currentAngle + (targetAngle - currentAngle) * 0.15;
 
-        prevRef.current = { x: nx, y: ny, ts: now } as any;
-        (prevRef.current as any).angle = na;
+        const smoothFactor = 0.2;
+        const nx = 50; 
+        const ny = predicted.y;
+
+        prevYRef.current = ny;
 
         setPosition({ x: nx, y: ny });
-        setAngle(na);
+        setAngle(smoothedAngle);
         setOpacity(1);
 
         rafRef.current = requestAnimationFrame(animate);
@@ -133,24 +118,30 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
       return () => stop();
     }
 
-    // If crashed, run an exit/fall animation
+    // CRASHED PHASE: Fall and spin animation
     if (roundData.phase === "CRASHED") {
       stop();
       const crashStart = Date.now();
       crashRef.current.start = crashStart;
 
-      const startPos = roundData.planePosition || { x: 70, y: 40 };
-      const startAngle = angle; // whatever current
+      const startPos = roundData.planePosition || position;
+      const startAngle = angle;
 
-      const duration = 800; // ms
+      const duration = 1000; // ms
 
       const tick = () => {
         const now = Date.now();
         const t = Math.min(1, (now - crashStart) / duration);
 
-        // fall down and rotate
-        const y = startPos.y + t * (120 - startPos.y); // move past bottom
-        const ang = startAngle + t * 90; // rotate to 90deg
+        // Exponential fall down (accelerating)
+        const fallProgress = t * t; // Quadratic easing
+        const y = startPos.y - fallProgress * (startPos.y + 20); // Fall below screen
+
+        // Rotate plane to point downward and spin
+        // From current angle to 135 degrees (pointing down-right) + extra spin
+        const ang = startAngle + (135 - startAngle) * t + (t * 180); // Spin 180 degrees extra
+
+        // Fade out
         const op = 1 - t;
 
         setPosition({ x: startPos.x, y });
@@ -168,22 +159,6 @@ export default function usePlaneAnimation(roundData: RoundData | null) {
 
     return undefined;
   }, [roundData]);
-
-  // If server reports an authoritative planePosition that differs noticeably, nudge local prediction
-  useEffect(() => {
-    if (!roundData || !roundData.planePosition) return;
-    const sv = roundData.planePosition;
-    const cur = prevRef.current;
-    const dx = sv.x - cur.x;
-    const dy = sv.y - cur.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist > 6) {
-      // nudge towards server value lightly to avoid jumps
-      prevRef.current.x = cur.x + dx * 0.2;
-      prevRef.current.y = cur.y + dy * 0.2;
-      setPosition({ x: prevRef.current.x, y: prevRef.current.y });
-    }
-  }, [roundData?.planePosition?.x, roundData?.planePosition?.y]);
 
   return { position, angle, opacity };
 }

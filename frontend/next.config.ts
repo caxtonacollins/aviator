@@ -1,13 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    // Temporarily ignore ESLint errors during build so visual changes can be tested quickly.
-    ignoreDuringBuilds: true,
-  },
-  webpack: (config) => {
-    config.externals.push("pino-pretty", "lokijs", "encoding");
-    return config;
+  // Enable React Fast Refresh for instant HMR
+  reactStrictMode: true,
+
+  // Enable Turbopack (default in Next.js 16) - provides better HMR than webpack
+  turbopack: {
+  // Empty config to acknowledge we're using Turbopack
+  // Turbopack has superior HMR out of the box
   },
 };
 

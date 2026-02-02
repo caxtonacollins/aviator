@@ -13,9 +13,9 @@ const GameBoard: React.FC = () => {
   const plane = usePlaneAnimation(roundData);
 
   return (
-    <div className="h-full">
-      {/* Animated Radar Background */}
-      <div className="absolute inset-0 overflow-hidden">
+    <div className="">
+      {/* Animated Radar Background - Full viewport coverage */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {/* Radar grid */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
@@ -55,10 +55,10 @@ const GameBoard: React.FC = () => {
         ))}
       </div>
 
-      <div className="text-center z-10">
+      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
         <div className="flex flex-col items-center">
           <div
-            className={`text-7xl font-bold mb-1 ${
+            className={`font-bold mb-1 tabular-nums tracking-tighter ${
               roundData?.phase === "CRASHED"
                 ? "text-red-500"
                 : displayMultiplier >= 5
@@ -67,18 +67,18 @@ const GameBoard: React.FC = () => {
                     ? "text-orange-400"
                     : displayMultiplier >= 1.5
                       ? "text-yellow-400"
-                      : "text-green-400"
-            } transition-colors duration-300`}
+                    : "text-green-400"
+              } transition-colors duration-300 text-6xl sm:text-7xl md:text-8xl lg:text-9xl`}
           >
             {roundData?.phase === "CRASHED" && roundData.crashMultiplier
               ? Number(roundData.crashMultiplier).toFixed(2)
               : typeof displayMultiplier === "number"
                 ? Number(displayMultiplier).toFixed(2)
                 : "1.00"}
-            x
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl align-top ml-1">x</span>
           </div>
           {roundData?.phase === "CRASHED" && (
-            <div className="text-2xl font-bold text-red-400 animate-pulse">
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-red-400 animate-pulse">
               CRASHED
             </div>
           )}
@@ -102,11 +102,11 @@ const GameBoard: React.FC = () => {
           >
             <div style={{ width: "clamp(40px, 12vw, 96px)", height: "auto" }}>
               <Image
-                src="/logo.png"
+              src="/plane.png"
                 alt="Flying plane"
                 width={64}
                 height={64}
-                style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", zIndex: 200 }}
               />
             </div>
           </div>

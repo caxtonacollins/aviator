@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 old
+
+# backend logs
+backend/logs/
+*.log

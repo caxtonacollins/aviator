@@ -7,10 +7,8 @@ import { WagmiProvider, http, createConfig } from "wagmi";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 import "@coinbase/onchainkit/styles.css";
 
-// Create a QueryClient instance for react-query
 const queryClient = new QueryClient();
 
-// Configure wagmi with multiple wallet connectors
 const wagmiConfig = createConfig({
   chains: [base],
   connectors: [

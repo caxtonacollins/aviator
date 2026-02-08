@@ -23,9 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 
-  // Add Farcaster-specific metadata
-  // This will be used when accessed through Farcaster, 
-  // but won't break standard browser access
   return {
     ...baseMetadata,
     other: {

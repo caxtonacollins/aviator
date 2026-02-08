@@ -99,6 +99,10 @@ export default function useUSDC() {
       }
       const portfolioData = response as unknown as PortfolioResponse;
 
+      if (!portfolioData.portfolios || !portfolioData.portfolios[0]) {
+        return 0;
+      }
+
       const usdcToken = portfolioData.portfolios[0]?.tokenBalances?.find(
         (token) => token.symbol === 'USDC' && token.chainId === 8453
       );

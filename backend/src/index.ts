@@ -51,6 +51,10 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'ok' });
 });
 
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).json({ message: 'Aviator Backend API is running' });
+});
+
 // GameEngine setup
 const server = createServer(app);
 const io = new Server(server);

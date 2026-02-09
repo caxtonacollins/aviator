@@ -27,6 +27,10 @@ export const AppDataSource = new DataSource({
   migrations: [path.join(__dirname, '..', 'migrations', '*.{ts,js}')],
   subscribers: [path.join(__dirname, '..', 'subscribers', '**/*.{ts,js}')],
   ssl: process.env.DB_HOST?.includes('neon.tech') ? {
-    rejectUnauthorized: true,
+    rejectUnauthorized: false,
   } : false,
+  extra: {
+    max: 10,
+    connectionTimeoutMillis: 10000,
+  },
 });

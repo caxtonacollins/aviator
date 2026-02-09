@@ -26,9 +26,11 @@ const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://aviator.farcast.app' 
-    : 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'https://aviator.farcast.app',
+    'https://aviator-sand.vercel.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

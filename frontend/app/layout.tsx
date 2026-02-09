@@ -14,9 +14,17 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  return {
+  // Base metadata for all contexts
+  const baseMetadata: Metadata = {
     title: 'Aviator',
-    description: 'Aviator - The first DeFi app on Farcaster',
+    description: 'Aviator - Multiply your fund with fun. Play the crash game on Base.',
+    icons: {
+      icon: '/logo.png',
+    },
+  };
+
+  return {
+    ...baseMetadata,
     other: {
       'base:app_id': '6963ca59b8395f034ac224a2',
       'fc:miniapp': JSON.stringify({

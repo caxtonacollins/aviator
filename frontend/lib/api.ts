@@ -1,8 +1,8 @@
 const API_BASE =
-  `${process.env.NEXT_PUBLIC_API_URL}/api` || "http://localhost:3001/api";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export async function fetchCurrentRound() {
-  const res = await fetch(`${API_BASE}/rounds/current`);
+  const res = await fetch(`${API_BASE}/api/rounds/current`);
   if (!res.ok) throw new Error("Failed to fetch current round");
   const j = await res.json();
   return j.round;
@@ -14,7 +14,7 @@ export async function placeBetRest(
   amount: number,
 ) {
   const body: any = { address, amount };
-  const res = await fetch(`${API_BASE}/rounds/${roundId}/bets`, {
+  const res = await fetch(`${API_BASE}/api/rounds/${roundId}/bets`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -24,7 +24,7 @@ export async function placeBetRest(
 }
 
 export async function cashOutRest(betId: number, multiplier?: number) {
-  const res = await fetch(`${API_BASE}/rounds/bets/${betId}/cashout`, {
+  const res = await fetch(`${API_BASE}/api/rounds/bets/${betId}/cashout`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ multiplier }),
@@ -34,7 +34,7 @@ export async function cashOutRest(betId: number, multiplier?: number) {
 }
 
 export async function fetchLeaderboard() {
-  const res = await fetch(`${API_BASE}/leaderboard`);
+  const res = await fetch(`${API_BASE}/api/leaderboard`);
   if (!res.ok) throw new Error("Failed to fetch leaderboard");
   const j = await res.json();
   return j.leaderboard || [];

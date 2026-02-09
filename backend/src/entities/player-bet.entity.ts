@@ -5,7 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from 'typeorm';
-import { Round } from './round.entity.ts';
+import { Round } from './round.entity.js';
 
 @Entity({ name: 'player_bets' })
 export class PlayerBet {
@@ -34,7 +34,7 @@ export class PlayerBet {
   timestamp!: number;
 
   @ManyToOne(() => Round, (round) => round.players, { onDelete: 'CASCADE' })
-  round!: Round;
+  round!: any;
 
   @CreateDateColumn()
   createdAt!: Date;

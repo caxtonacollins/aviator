@@ -1,4 +1,4 @@
-import { AppError } from '../utils/errors.ts';
+import { AppError } from '../utils/errors.js';
 import type {
   Request,
   Response,

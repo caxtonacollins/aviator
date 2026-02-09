@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { GameEngine } from '../services/game-engine.service.ts';
-import { RoundService } from '../services/round.service.ts'; // Still needed for GET current?
+import { GameEngine } from '../services/game-engine.service.js';
+import { RoundService } from '../services/round.service.js'; // Still needed for GET current?
 
 export const createRoundsRouter = (gameEngine: GameEngine) => {
   const router = Router();

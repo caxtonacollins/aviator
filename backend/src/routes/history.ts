@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { HistoryService } from '../services/history.service.ts';
+import { HistoryService } from '../services/history.service.js';
 
 const router = Router();
 const service = new HistoryService();

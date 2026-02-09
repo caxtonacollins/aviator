@@ -10,14 +10,14 @@ import { config } from 'dotenv';
 import { Server } from 'socket.io';
 import morgan from 'morgan';
 import cors from 'cors';
-import { notFoundHandler, errorHandler } from './middleware/errorHandler.ts';
-import { GameEngine } from './services/game-engine.service.ts';
-import { logger } from './utils/logger.ts';
-import { createRoundsRouter } from './routes/rounds.ts';
-import leaderboardRouter from './routes/leaderboard.ts';
-import historyRouter from './routes/history.ts';
-import adminRouter from './routes/admin.ts';
-import { AppDataSource } from '@/config/database.ts';
+import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
+import { GameEngine } from './services/game-engine.service.js';
+import { logger } from './utils/logger.js';
+import { createRoundsRouter } from './routes/rounds.js';
+import leaderboardRouter from './routes/leaderboard.js';
+import historyRouter from './routes/history.js';
+import adminRouter from './routes/admin.js';
+import { AppDataSource } from './config/database.js';
 
 config();
 

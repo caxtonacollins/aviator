@@ -1,7 +1,7 @@
 import 'reflect-metadata';
-import { AppDataSource } from '../config/database.ts';
-import { Round } from '../entities/round.entity.ts';
-import { logger } from '../utils/logger.ts';
+import { AppDataSource } from '../config/database.js';
+import { Round } from '../entities/round.entity.js';
+import { logger } from '../utils/logger.js';
 
 (async () => {
   try {

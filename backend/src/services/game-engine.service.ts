@@ -1,17 +1,17 @@
 import { Server } from 'socket.io';
-import { Round } from '../entities/round.entity.ts';
-import { PlayerBet } from '../entities/player-bet.entity.ts';
-import { AppDataSource } from '../config/database.ts';
+import { Round } from '../entities/round.entity.js';
+import { PlayerBet } from '../entities/player-bet.entity.js';
+import { AppDataSource } from '../config/database.js';
 import {
   generateCrashMultiplier,
   calculateCurrentMultiplier,
   calculatePlanePosition,
   generateServerSeed,
   hashServerSeed,
-} from './game-utils.ts';
-import { LeaderboardService } from './leaderboard.service.ts';
-import { HistoryService } from './history.service.ts';
-import { logger } from '@/utils/logger.ts';
+} from './game-utils.js';
+import { LeaderboardService } from './leaderboard.service.js';
+import { HistoryService } from './history.service.js';
+import { logger } from '../utils/logger.js';
 
 export class GameEngine {
   private isRunning = false;
@@ -22,13 +22,13 @@ export class GameEngine {
 
   leaderboardService = new LeaderboardService();
   historyService = new HistoryService();
-  chainService: import('./chain.service.ts').ChainService | null = null;
+  chainService: import('./chain.service.js').ChainService | null = null;
 
   constructor(io: Server) {
     this.io = io;
 
     // try to dynamically import ChainService (non-blocking). If it fails, snapshots are disabled.
-    import('./chain.service.ts')
+    import('./chain.service.js')
       .then((mod) => {
         try {
           logger.info('ChainService initializing');

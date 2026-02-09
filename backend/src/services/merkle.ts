@@ -1,5 +1,5 @@
 import { concat, toUtf8Bytes, keccak256, ZeroHash } from 'ethers';
-import type { PlayerBet } from '../entities/player-bet.entity.ts';
+import type { PlayerBet } from '../entities/player-bet.entity.js';
 
 // Creates a deterministic leaf for a player bet
 export function makeLeaf(p: PlayerBet): string {

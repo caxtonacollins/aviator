@@ -1,5 +1,5 @@
-import { AppDataSource } from '../config/database.ts';
-import { LeaderboardEntry } from '../entities/leaderboard.entity.ts';
+import { AppDataSource } from '../config/database.js';
+import { LeaderboardEntry } from '../entities/leaderboard.entity.js';
 import { Repository } from 'typeorm';
 
 export class LeaderboardService {

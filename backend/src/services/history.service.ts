@@ -1,5 +1,5 @@
-import { AppDataSource } from '../config/database.ts';
-import { GameHistory } from '../entities/game-history.entity.ts';
+import { AppDataSource } from '../config/database.js';
+import { GameHistory } from '../entities/game-history.entity.js';
 import { Repository } from 'typeorm';
 
 export class HistoryService {

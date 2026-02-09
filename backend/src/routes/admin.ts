@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { ChainService } from '../services/chain.service.ts';
-import { logger } from '@/utils/logger.ts';
+import { ChainService } from '../services/chain.service.js';
+import { logger } from '../utils/logger.js';
 
 const router = Router();
 const chainService = new ChainService();

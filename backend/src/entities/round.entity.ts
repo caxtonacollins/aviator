@@ -6,7 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { PlayerBet } from './player-bet.entity.ts';
+import { PlayerBet } from './player-bet.entity.js';
 
 export type GamePhase = 'BETTING' | 'FLYING' | 'CRASHED';
 

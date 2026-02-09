@@ -1,6 +1,6 @@
-import { AppDataSource } from '../config/database.ts';
-import { Round } from '../entities/round.entity.ts';
-import { PlayerBet } from '../entities/player-bet.entity.ts';
+import { AppDataSource } from '../config/database.js';
+import { Round } from '../entities/round.entity.js';
+import { PlayerBet } from '../entities/player-bet.entity.js';
 import { Repository } from 'typeorm';
 
 export class RoundService {

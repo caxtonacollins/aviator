@@ -1,11 +1,11 @@
 import { ethers, type InterfaceAbi } from 'ethers';
-import { computePlayersMerkleRoot } from './merkle.ts';
+import { computePlayersMerkleRoot } from './merkle.js';
 import aviatorAbi from '../abi/aviator.json' with { type: 'json' };
 
 const aviatorAbiTyped = aviatorAbi as unknown as InterfaceAbi;
-import type { Round } from '../entities/round.entity.ts';
-import type { PlayerBet } from '../entities/player-bet.entity.ts';
-import { logger } from '@/utils/logger.ts';
+import type { Round } from '../entities/round.entity.js';
+import type { PlayerBet } from '../entities/player-bet.entity.js';
+import { logger } from '../utils/logger.js';
 
 export class ChainService {
   provider: ethers.JsonRpcProvider;

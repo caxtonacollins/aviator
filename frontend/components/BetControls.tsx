@@ -64,7 +64,21 @@ const BetControls: React.FC = () => {
     cashOut(myBet.id);
   };
 
-  const isConnected = !!walletAddress;
+  /* 
+   * Hydration fix: 
+   * The wallet connection state (walletAddress) is only available on the client.
+   * During SSR, walletAddress is undefined, so the server renders the "Connect Wallet" state.
+   * On the client, if the wallet is already connected, it might render the betting UI immediately.
+   * This mismatch causes hydration errors.
+   * We use a `mounted` state to ensure we only render client-specific UI after the component has mounted.
+   */
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isConnected = mounted && !!walletAddress;
   const canPlaceBet =
     isConnected &&
     walletBalance &&

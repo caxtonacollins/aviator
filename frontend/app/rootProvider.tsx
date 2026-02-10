@@ -3,20 +3,23 @@ import { ReactNode } from "react";
 import { base } from "wagmi/chains";
 import { OnchainKitProvider } from "@coinbase/onchainkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider, http, createConfig } from "wagmi";
+import { WagmiProvider, http, createConfig, type CreateConnectorFn } from "wagmi";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 import "@coinbase/onchainkit/styles.css";
 
 const queryClient = new QueryClient();
 
-const wagmiConfig = createConfig({
-  chains: [base],
-  connectors: [
-    injected({ target: "metaMask" }),
-    coinbaseWallet({
-      appName: "Aviator",
-      preference: "all", // Support both smart wallet and EOA
-    }),
+const connectors: CreateConnectorFn[] = [
+  injected({ target: "metaMask" }),
+  coinbaseWallet({
+    appName: "Aviator",
+    preference: "all", // Support both smart wallet and EOA
+  }),
+];
+
+// Only add WalletConnect on the client side to avoid indexedDB errors during SSR/Build
+if (typeof window !== 'undefined') {
+  connectors.push(
     walletConnect({
       projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "YOUR_PROJECT_ID",
       metadata: {
@@ -26,8 +29,14 @@ const wagmiConfig = createConfig({
         icons: ["https://aviator-sand.vercel.app/logo.png"],
       },
       showQrModal: true,
-    }),
-  ],
+    })
+  );
+}
+
+const wagmiConfig = createConfig({
+  ssr: true,
+  chains: [base],
+  connectors,
   transports: {
     [base.id]: http(),
   },

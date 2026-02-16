@@ -55,6 +55,10 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         uint32 numPlayers
     );
 
+    event HouseFunded(address indexed sender, uint256 amount);
+    event HouseWithdrawn(address indexed recipient, uint256 amount);
+
+
     // ============ Errors ============
     error InvalidBetAmount();
     error InsufficientHouseBalance();
@@ -159,6 +163,7 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
     function fundHouse(uint256 amount) external onlyOwner {
         bool success = usdcToken.transferFrom(msg.sender, address(this), amount);
         if (!success) revert TransferFailed();
+         emit HouseFunded(msg.sender, amount); 
     }
 
     function withdrawHouseProfits(uint256 amount) external onlyOwner {
@@ -166,6 +171,7 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
 
         bool success = usdcToken.transfer(owner(), amount);
         if (!success) revert TransferFailed();
+        emit HouseWithdrawn(owner(), amount);
     }
 
     // ============ Snapshot Functions ============

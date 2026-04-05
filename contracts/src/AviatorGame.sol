@@ -1,21 +1,37 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
+import {
+    ReentrancyGuard
+} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {
+    OwnableUpgradeable
+} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {
+    PausableUpgradeable
+} from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {
+    Initializable
+} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {
+    UUPSUpgradeable
+} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, OwnableUpgradeable, PausableUpgradeable {
+contract AviatorGame is
+    Initializable,
+    UUPSUpgradeable,
+    ReentrancyGuard,
+    OwnableUpgradeable,
+    PausableUpgradeable
+{
     // ============ State Variables ============
 
     // Token Configuration
     IERC20 public usdcToken;
     uint256 public constant MIN_BET = 1e5; // 0.04 USDC (6 decimals)
     uint256 public constant MAX_BET = 1000e6; // 1,000 USDC
-    
+
     // Server operator (trusted for game operations)
     address public serverOperator;
 
@@ -35,14 +51,14 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         address indexed player,
         uint256 amount
     );
-    
+
     event CashOut(
         uint256 indexed roundId,
         address indexed player,
         uint256 payout,
         uint256 multiplier
     );
-    
+
     event ServerOperatorUpdated(address indexed newOperator);
 
     // Snapshot event
@@ -67,8 +83,12 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
 
     // ============ Modifiers ============
     modifier onlyServerOperator() {
-        if (msg.sender != serverOperator) revert Unauthorized();
+        _onlyServerOperator();
         _;
+    }
+
+    function _onlyServerOperator() internal view {
+        if (msg.sender != serverOperator) revert Unauthorized();
     }
 
     // ============ Constructor ============
@@ -77,7 +97,10 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         _disableInitializers();
     }
 
-    function initialize(address _usdcToken, address initialOwner) public initializer {
+    function initialize(
+        address _usdcToken,
+        address initialOwner
+    ) public initializer {
         __Ownable_init(initialOwner);
         __Pausable_init();
 
@@ -85,16 +108,21 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         usdcToken = IERC20(_usdcToken);
         serverOperator = initialOwner;
     }
-    
-    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
-    
+
+    function _authorizeUpgrade(
+        address newImplementation
+    ) internal override onlyOwner {}
+
     /// @notice Allows the contract to receive ETH
     receive() external payable {}
 
     /// @notice Withdraw ETH sent to this contract (e.g. for gas or accidentally sent)
     /// @param to Recipient address
     /// @param amount Amount of ETH to withdraw
-    function withdrawETH(address payable to, uint256 amount) external onlyOwner {
+    function withdrawEth(
+        address payable to,
+        uint256 amount
+    ) external onlyOwner {
         if (address(this).balance < amount) revert InsufficientBalance();
         (bool success, ) = to.call{value: amount}("");
         if (!success) revert ETHTransferFailed();
@@ -111,14 +139,13 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         address player,
         uint256 amount
     ) external nonReentrant whenNotPaused onlyServerOperator {
-        if (amount < MIN_BET || amount > MAX_BET)
-            revert InvalidBetAmount();
+        if (amount < MIN_BET || amount > MAX_BET) revert InvalidBetAmount();
 
         // Transfer USDC from player to contract
         // Note: The player must have approved the contract to spend this amount
         bool success = usdcToken.transferFrom(player, address(this), amount);
         if (!success) revert TransferFailed();
-        
+
         emit BetPlaced(roundId, player, amount);
     }
 
@@ -132,7 +159,8 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
         uint256 payout,
         uint256 multiplier
     ) external nonReentrant whenNotPaused onlyServerOperator {
-        if (usdcToken.balanceOf(address(this)) < payout) revert InsufficientHouseBalance();
+        if (usdcToken.balanceOf(address(this)) < payout)
+            revert InsufficientHouseBalance();
 
         // Transfer winnings in USDC to the player
         bool success = usdcToken.transfer(player, payout);
@@ -157,12 +185,17 @@ contract AviatorGame is Initializable, UUPSUpgradeable, ReentrancyGuard, Ownable
     }
 
     function fundHouse(uint256 amount) external onlyOwner {
-        bool success = usdcToken.transferFrom(msg.sender, address(this), amount);
+        bool success = usdcToken.transferFrom(
+            msg.sender,
+            address(this),
+            amount
+        );
         if (!success) revert TransferFailed();
     }
 
     function withdrawHouseProfits(uint256 amount) external onlyOwner {
-        if (amount > usdcToken.balanceOf(address(this))) revert InsufficientBalance();
+        if (amount > usdcToken.balanceOf(address(this)))
+            revert InsufficientBalance();
 
         bool success = usdcToken.transfer(owner(), amount);
         if (!success) revert TransferFailed();

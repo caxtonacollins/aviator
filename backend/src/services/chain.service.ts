@@ -1,6 +1,7 @@
 import { ethers, type InterfaceAbi } from 'ethers';
 import { computePlayersMerkleRoot } from './merkle.js';
 import aviatorAbi from '../abi/aviator.json' with { type: 'json' };
+import { getActiveChainConfig } from '../config/chains.js';
 
 const aviatorAbiTyped = aviatorAbi as unknown as InterfaceAbi;
 import type { Round } from '../entities/round.entity.js';
@@ -13,13 +14,19 @@ export class ChainService {
   contract: ethers.Contract;
 
   constructor() {
-    const rpc = process.env.BACKEND_RPC_URL;
+    const chainConfig = getActiveChainConfig();
     const key = process.env.BACKEND_PRIVATE_KEY;
-    const addr = process.env.AVIATOR_CONTRACT_ADDRESS;
-    if (!rpc || !key || !addr)
-      throw new Error(
-        'ChainService missing env vars: BACKEND_RPC_URL,BACKEND_PRIVATE_KEY,AVIATOR_CONTRACT_ADDRESS'
-      );
+
+    if (!key)
+      throw new Error('ChainService missing env var: BACKEND_PRIVATE_KEY');
+
+    const rpc = chainConfig.rpcUrl;
+    const addr = chainConfig.contractAddress;
+
+    logger.info(`ChainService connecting to ${chainConfig.label} (chainId=${chainConfig.chainId})`, {
+      rpc,
+      contractAddress: addr,
+    });
 
     this.provider = new ethers.JsonRpcProvider(rpc);
     this.signer = new ethers.Wallet(key, this.provider);

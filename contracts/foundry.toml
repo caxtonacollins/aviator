@@ -7,16 +7,18 @@ libs = ["lib"]
 
 remappings = [
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
-    "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/"
-]  
+    "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+]
 
 [rpc_endpoints]
 base = "https://mainnet.base.org"
 base_sepolia = "https://sepolia.base.org"
+celo = "https://forno.celo.org"
 
 [etherscan]
 base_sepolia = { key = "${BASESCAN_API_KEY}", url = "https://api-sepolia.basescan.org/api" }
 base = { key = "${BASESCAN_API_KEY}", url = "https://api.basescan.org/api" }
+celo = { key = "${ETHERSCAN_API_KEY}", url = "https://celoscan.io/api" }
 
 #forge script script/AviatorGame.s.sol:AviatorGameScript \
 #  --rpc-url $RPC_URL \

@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Source_Code_Pro } from "next/font/google";
+import {
+  Inter,
+  Source_Code_Pro,
+  Orbitron,
+  Courier_Prime,
+} from "next/font/google";
 import { RootProvider } from "./rootProvider";
 import "./globals.css";
 
@@ -11,6 +16,18 @@ const inter = Inter({
 const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
   subsets: ["latin"],
+});
+
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+});
+
+const courierPrime = Courier_Prime({
+  variable: "--font-courier-prime",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -55,7 +72,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${sourceCodePro.variable}`}>
+      <body
+        className={`${inter.variable} ${sourceCodePro.variable} ${orbitron.variable} ${courierPrime.variable}`}
+      >
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

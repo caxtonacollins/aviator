@@ -7,6 +7,7 @@ import BetControls from "@/components/BetControls";
 import RoundInfo from "@/components/RoundInfo";
 import HistoryBar from "@/components/HistoryBar";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import ChainWarning from "@/components/ChainWarning";
 
 const GameScreen = () => {
   return (
@@ -15,6 +16,9 @@ const GameScreen = () => {
         <Nav />
         <ErrorBoundary>
           <div className="flex-1 relative">
+            <div className="px-4 pt-4">
+              <ChainWarning />
+            </div>
             {/* <StatsPanel /> */}
             <RoundInfo />
             <GameBoard />

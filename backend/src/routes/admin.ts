@@ -6,21 +6,21 @@ const router = Router();
 const chainService = new ChainService();
 
 // Middleware to verify admin authorization (you should implement proper auth)
-const verifyAdmin = (req: Request, res: Response, next: Function) => {
+const verifyAdmin = (req: Request, res: Response, next: () => void) => {
   const authHeader = req.headers.authorization;
   const adminSecret = process.env.ADMIN_SECRET;
 
   if (!adminSecret) {
-    return res.status(500).json({ 
-      success: false, 
-      error: 'Admin authentication not configured' 
+    return res.status(500).json({
+      success: false,
+      error: 'Admin authentication not configured'
     });
   }
 
   if (!authHeader || authHeader !== `Bearer ${adminSecret}`) {
-    return res.status(401).json({ 
-      success: false, 
-      error: 'Unauthorized - Invalid admin credentials' 
+    return res.status(401).json({
+      success: false,
+      error: 'Unauthorized - Invalid admin credentials'
     });
   }
 
@@ -31,15 +31,15 @@ const verifyAdmin = (req: Request, res: Response, next: Function) => {
 router.get('/house/balance', verifyAdmin, async (req: Request, res: Response) => {
   try {
     const balance = await chainService.getHouseBalance();
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       balance,
       balanceFormatted: `${balance.toFixed(2)} USDC`
     });
   } catch (err) {
     logger.error('Failed to get house balance', { error: (err as Error).message });
-    res.status(500).json({ 
-      success: false, 
+    res.status(500).json({
+      success: false,
       error: "failed to get house balance"
     });
   }
@@ -51,9 +51,9 @@ router.post('/house/withdraw', verifyAdmin, async (req: Request, res: Response) 
     const { amount } = req.body;
 
     if (!amount || typeof amount !== 'number' || amount <= 0) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Invalid amount - must be a positive number' 
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid amount - must be a positive number'
       });
     }
 
@@ -61,25 +61,25 @@ router.post('/house/withdraw', verifyAdmin, async (req: Request, res: Response) 
     const currentBalance = await chainService.getHouseBalance();
 
     if (amount > currentBalance) {
-      return res.status(400).json({ 
-        success: false, 
-        error: `Insufficient balance. Current balance: ${currentBalance} USDC, Requested: ${amount} USDC` 
+      return res.status(400).json({
+        success: false,
+        error: `Insufficient balance. Current balance: ${currentBalance} USDC, Requested: ${amount} USDC`
       });
     }
 
     const txHash = await chainService.withdrawHouseProfits(amount);
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       txHash,
       amount,
       message: `Successfully withdrew ${amount} USDC to owner wallet`
     });
   } catch (err) {
     logger.error('Failed to withdraw house profits', { error: (err as Error).message });
-    res.status(500).json({ 
-      success: false, 
-      error: (err as Error).message 
+    res.status(500).json({
+      success: false,
+      error: (err as Error).message
     });
   }
 });
@@ -99,8 +99,8 @@ router.get('/contract/status', verifyAdmin, async (req: Request, res: Response) 
 router.post('/contract/pause', verifyAdmin, async (req: Request, res: Response) => {
   try {
     const txHash = await chainService.pauseContract();
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       txHash,
       message: 'Contract paused successfully'
     });
@@ -114,8 +114,8 @@ router.post('/contract/pause', verifyAdmin, async (req: Request, res: Response) 
 router.post('/contract/unpause', verifyAdmin, async (req: Request, res: Response) => {
   try {
     const txHash = await chainService.unpauseContract();
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       txHash,
       message: 'Contract unpaused successfully'
     });
@@ -131,15 +131,15 @@ router.post('/contract/operator', verifyAdmin, async (req: Request, res: Respons
     const { address } = req.body;
 
     if (!address || typeof address !== 'string' || !address.match(/^0x[a-fA-F0-9]{40}$/)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Invalid address format' 
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid address format'
       });
     }
 
     const txHash = await chainService.setServerOperator(address);
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       txHash,
       address,
       message: `Server operator updated to ${address}`
@@ -156,15 +156,15 @@ router.post('/house/fund', verifyAdmin, async (req: Request, res: Response) => {
     const { amount } = req.body;
 
     if (!amount || typeof amount !== 'number' || amount <= 0) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Invalid amount - must be a positive number' 
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid amount - must be a positive number'
       });
     }
 
     const txHash = await chainService.fundHouse(amount);
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       txHash,
       amount,
       message: `Successfully funded house with ${amount} USDC`
@@ -181,22 +181,22 @@ router.post('/eth/withdraw', verifyAdmin, async (req: Request, res: Response) =>
     const { to, amount } = req.body;
 
     if (!to || typeof to !== 'string' || !to.match(/^0x[a-fA-F0-9]{40}$/)) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Invalid recipient address' 
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid recipient address'
       });
     }
 
     if (!amount || typeof amount !== 'number' || amount <= 0) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Invalid amount - must be a positive number' 
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid amount - must be a positive number'
       });
     }
 
     const txHash = await chainService.withdrawETH(to, amount);
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       txHash,
       to,
       amount,

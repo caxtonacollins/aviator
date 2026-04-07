@@ -4,14 +4,14 @@ async function inspect() {
   try {
     await AppDataSource.initialize();
     const queryRunner = AppDataSource.createQueryRunner();
-    
+
     // List tables
     const tables = await queryRunner.query(`
       SELECT table_name 
       FROM information_schema.tables 
       WHERE table_schema = 'public'
-    `);
-    console.log('Tables:', tables.map((t: any) => t.table_name));
+    `) as Array<{ table_name: string }>;
+    console.log('Tables:', tables.map((t) => t.table_name));
 
     // Check migrations table columns
     const columns = await queryRunner.query(`
@@ -20,7 +20,7 @@ async function inspect() {
       WHERE table_name = 'migrations'
     `);
     console.log('Migrations columns:', columns);
-    
+
     await AppDataSource.destroy();
   } catch (err) {
     console.error(err);

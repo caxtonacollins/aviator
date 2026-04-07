@@ -19,6 +19,7 @@ export class GameEngine {
   private currentRound: Round | null = null;
   private flyingInterval: NodeJS.Timeout | null = null;
   private bettingTimeout: NodeJS.Timeout | null = null;
+  private readonly BETTING_DURATION_MS = Number(process.env.BETTING_DURATION_MS) || 15000;
 
   leaderboardService = new LeaderboardService();
   historyService = new HistoryService();
@@ -197,7 +198,7 @@ export class GameEngine {
             roundId: nextId,
             phase: 'BETTING',
             startTime: Date.now(),
-            flyStartTime: Date.now() + 60000,
+            flyStartTime: Date.now() + this.BETTING_DURATION_MS,
             crashMultiplier: null,
             currentMultiplier: 1.0,
             serverSeed,
@@ -255,15 +256,30 @@ export class GameEngine {
         : 10000;
 
     logger.info(
-      `Scheduling flying phase in ${remainingMs}ms for round ${this.currentRound?.roundId}`
+      `Scheduling flying phase in ${remainingMs}ms for round ${this.currentRound?.roundId}`,
+      {
+        flyStartTime: this.currentRound?.flyStartTime,
+        now,
+        remainingMs,
+        bettingDuration: this.BETTING_DURATION_MS
+      }
     );
 
     this.bettingTimeout = setTimeout(() => this.startFlyingPhase(), remainingMs);
   }
 
   async startFlyingPhase() {
+    logger.info('startFlyingPhase called', {
+      roundId: this.currentRound?.roundId,
+      phase: this.currentRound?.phase,
+      hasCurrentRound: !!this.currentRound
+    });
+
     if (!this.currentRound || this.currentRound.phase !== 'BETTING') {
-      logger.info('startFlyingPhase aborted: no current betting round');
+      logger.warn('startFlyingPhase aborted: no current betting round', {
+        hasRound: !!this.currentRound,
+        phase: this.currentRound?.phase
+      });
       return;
     }
 

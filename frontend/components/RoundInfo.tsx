@@ -67,7 +67,17 @@ const RoundInfo: React.FC = () => {
                 className={`h-full rounded-full transition-all ${timeRemaining <= 3 ? "bg-orange-500" : "bg-green-500"
                   }`}
                 style={{
-                  width: `${Math.min((timeRemaining / (roundData.phase === "CRASHED" ? 5 : 30)) * 100, 100)}%`,
+                  width: `${Math.min(
+                    (timeRemaining /
+                      (roundData.phase === "CRASHED"
+                        ? 5
+                        : roundData.flyStartTime && roundData.startTime
+                          ? Math.ceil((Number(roundData.flyStartTime) - Number(roundData.startTime)) / 1000)
+                          : 30
+                      )
+                    ) * 100,
+                    100
+                  )}%`,
                 }}
               />
             </div>

@@ -5,7 +5,9 @@ import {Test} from "forge-std/Test.sol";
 import {AviatorGame} from "../src/AviatorGame.sol";
 import {ERC20Mock} from "@openzeppelin/contracts/mocks/token/ERC20Mock.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
+import {
+    ERC1967Proxy
+} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 // Simple ERC20 that always returns false for transfer/transferFrom to simulate failures
 contract FailingERC20 is IERC20 {
@@ -60,7 +62,7 @@ contract AviatorGameTest is Test {
         uint256 totalPayouts,
         uint32 numPlayers
     );
-    
+
     // Allow test contract to receive ETH
     receive() external payable {}
 
@@ -76,7 +78,10 @@ contract AviatorGameTest is Test {
 
         // Deploy AviatorGame implementation and proxy
         AviatorGame impl = new AviatorGame();
-        bytes memory initData = abi.encodeCall(AviatorGame.initialize, (address(usdc), address(this)));
+        bytes memory initData = abi.encodeCall(
+            AviatorGame.initialize,
+            (address(usdc), address(this))
+        );
         ERC1967Proxy proxy = new ERC1967Proxy(address(impl), initData);
         aviator = AviatorGame(payable(address(proxy)));
 
@@ -90,7 +95,7 @@ contract AviatorGameTest is Test {
         usdc.approve(address(aviator), type(uint256).max);
         vm.prank(PLAYER2);
         usdc.approve(address(aviator), type(uint256).max);
-        
+
         // Approve aviator to spend test contract's USDC
         usdc.approve(address(aviator), type(uint256).max);
     }
@@ -98,7 +103,7 @@ contract AviatorGameTest is Test {
     function test_PlaceBet() public {
         // We act as server operator (this contract is owner and initial operator)
         uint256 roundId = 123;
-        
+
         vm.expectEmit(true, true, false, true);
         emit BetPlaced(roundId, PLAYER, BET_AMOUNT);
 
@@ -111,7 +116,7 @@ contract AviatorGameTest is Test {
 
     function test_CannotPlaceLowOrHighBet() public {
         uint256 roundId = 1;
-        
+
         vm.expectRevert(
             abi.encodeWithSelector(AviatorGame.InvalidBetAmount.selector)
         );
@@ -126,7 +131,7 @@ contract AviatorGameTest is Test {
     function test_CashOutInsufficientHouseBalance() public {
         uint256 roundId = 123;
         // No bets placed, house balance 0
-        
+
         vm.expectRevert(
             abi.encodeWithSelector(
                 AviatorGame.InsufficientHouseBalance.selector
@@ -137,15 +142,15 @@ contract AviatorGameTest is Test {
 
     function test_CashOutSuccessFlow() public {
         uint256 roundId = 123;
-        
+
         // 1. Place bet to fund house
         aviator.placeBetFor(roundId, PLAYER, BET_AMOUNT);
         assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT);
-        
+
         // 2. Cash out (simulate win 2x)
         uint256 payout = BET_AMOUNT * 2;
         // Use fundHouse to top up for the win since house only has 1 bet
-        aviator.fundHouse(BET_AMOUNT); 
+        aviator.fundHouse(BET_AMOUNT);
         assertEq(usdc.balanceOf(address(aviator)), BET_AMOUNT * 2);
 
         vm.expectEmit(true, true, false, true);
@@ -164,7 +169,7 @@ contract AviatorGameTest is Test {
         address newOp = address(0xBEEF);
 
         // Non-owner cannot set server operator
-        vm.prank(PLAYER);   
+        vm.prank(PLAYER);
         vm.expectRevert();
         aviator.setServerOperator(newOp);
 
@@ -174,7 +179,7 @@ contract AviatorGameTest is Test {
 
         // Fund house
         aviator.fundHouse(BET_AMOUNT);
-        
+
         // Withdraw profits
         uint256 before = usdc.balanceOf(address(this));
         aviator.withdrawHouseProfits(BET_AMOUNT);
@@ -197,13 +202,16 @@ contract AviatorGameTest is Test {
         // Deploy failing token and new Aviator Proxy with it
         FailingERC20 failToken = new FailingERC20();
         AviatorGame badImpl = new AviatorGame();
-        bytes memory badInit = abi.encodeCall(AviatorGame.initialize, (address(failToken), address(this)));
+        bytes memory badInit = abi.encodeCall(
+            AviatorGame.initialize,
+            (address(failToken), address(this))
+        );
         ERC1967Proxy badProxy = new ERC1967Proxy(address(badImpl), badInit);
         AviatorGame bad = AviatorGame(payable(address(badProxy)));
 
         // Attempt to place bet should revert because transferFrom returns false
         // Need to be owner/operator to call placeBetFor, which we are (this contract)
-        
+
         vm.expectRevert(
             abi.encodeWithSelector(AviatorGame.TransferFailed.selector)
         );
@@ -225,7 +233,7 @@ contract AviatorGameTest is Test {
     function test_SnapshotStoresAndEmits() public {
         uint256 rid = 10;
         bytes32 playersMerkleRoot = keccak256(abi.encodePacked("p1", "p2"));
-        uint96 totalBets = 100; 
+        uint96 totalBets = 100;
         uint96 totalPayouts = 50;
         uint32 numPlayers = 2;
         bytes32 snapshotHash = keccak256("snapshot");
@@ -249,7 +257,6 @@ contract AviatorGameTest is Test {
             totalPayouts,
             numPlayers
         );
-
 
         (
             bytes32 storedHash,
@@ -276,9 +283,9 @@ contract AviatorGameTest is Test {
     function test_WithdrawETH() public {
         vm.deal(address(aviator), 1 ether);
         uint256 preBalance = address(this).balance;
-        
-        aviator.withdrawETH(payable(address(this)), 0.4 ether);
-        
+
+        aviator.withdrawEth(payable(address(this)), 0.4 ether);
+
         assertEq(address(aviator).balance, 0.6 ether);
         assertEq(address(this).balance, preBalance + 0.4 ether);
     }
@@ -286,20 +293,20 @@ contract AviatorGameTest is Test {
     function test_WithdrawETHFailures() public {
         // 1. Insufficient balance
         vm.expectRevert(AviatorGame.InsufficientBalance.selector);
-        aviator.withdrawETH(payable(address(this)), 1 ether); // Balance 0
+        aviator.withdrawEth(payable(address(this)), 1 ether); // Balance 0
 
-        // 2. Transfer fail (mocking logic requires a contract that rejects ETH? 
-        //    Calls to EOA always succeed unless out of gas. 
+        // 2. Transfer fail (mocking logic requires a contract that rejects ETH?
+        //    Calls to EOA always succeed unless out of gas.
         //    Calls to contract fail if no receive/fallback or revert.)
-        
+
         // Fund aviator first
         vm.deal(address(aviator), 1 ether);
-        
+
         // Create a contract that reverts on receive
         RejectETH rejector = new RejectETH();
-        
+
         vm.expectRevert(AviatorGame.ETHTransferFailed.selector);
-        aviator.withdrawETH(payable(address(rejector)), 0.5 ether);
+        aviator.withdrawEth(payable(address(rejector)), 0.5 ether);
     }
 
     // ============ New Comprehensive Tests ============
@@ -311,13 +318,13 @@ contract AviatorGameTest is Test {
 
         // Player 1 places bet
         aviator.placeBetFor(roundId, PLAYER, bet1);
-        
+
         // Player 2 places bet
         aviator.placeBetFor(roundId, PLAYER2, bet2);
 
         // House balance should reflect both
         assertEq(usdc.balanceOf(address(aviator)), bet1 + bet2);
-        
+
         // Balances updated
         assertEq(usdc.balanceOf(PLAYER), 1000e6 - bet1);
         assertEq(usdc.balanceOf(PLAYER2), 1000e6 - bet2);
@@ -333,7 +340,7 @@ contract AviatorGameTest is Test {
         vm.expectRevert();
         aviator.fundHouse(BET_AMOUNT);
     }
-    
+
     function test_OnlyOwnerCanPauseUnpause() public {
         vm.prank(PLAYER);
         vm.expectRevert();
@@ -346,12 +353,12 @@ contract AviatorGameTest is Test {
 
     function test_OnlyServerOperatorCanCallGameFunctions() public {
         uint256 roundId = 1;
-        
+
         // Try to place bet as non-operator (e.g. Player trying to cheat and place bet directly?)
         // Wait, placeBetFor is `onlyServerOperator`.
         // The Player calls `placeBetFor`? No, the BACKEND calls `placeBetFor`.
         // If a user calls it directly, they revert `Unauthorized`.
-        
+
         vm.prank(PLAYER);
         vm.expectRevert(
             abi.encodeWithSelector(AviatorGame.Unauthorized.selector)

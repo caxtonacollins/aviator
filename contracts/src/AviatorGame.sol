@@ -31,7 +31,8 @@ contract AviatorGame is
     IERC20 public usdcToken;
     uint256 public constant MIN_BET = 1e5; // 0.04 USDC (6 decimals)
     uint256 public constant MAX_BET = 1000e6; // 1,000 USDC
-
+    uint256 public constant MAX_PAYOUT = 5000e6; // 5,000 USDC max per cashout
+    
     // Server operator (trusted for game operations)
     address public serverOperator;
 
@@ -70,6 +71,10 @@ contract AviatorGame is
         uint256 totalPayouts,
         uint32 numPlayers
     );
+
+    event HouseFunded(address indexed sender, uint256 amount);
+    event HouseWithdrawn(address indexed recipient, uint256 amount);
+
 
     // ============ Errors ============
     error InvalidBetAmount();
@@ -159,8 +164,8 @@ contract AviatorGame is
         uint256 payout,
         uint256 multiplier
     ) external nonReentrant whenNotPaused onlyServerOperator {
-        if (usdcToken.balanceOf(address(this)) < payout)
-            revert InsufficientHouseBalance();
+        if (payout > MAX_PAYOUT) revert InsufficientHouseBalance();
+        if (usdcToken.balanceOf(address(this)) < payout) revert InsufficientHouseBalance();
 
         // Transfer winnings in USDC to the player
         bool success = usdcToken.transfer(player, payout);
@@ -191,6 +196,7 @@ contract AviatorGame is
             amount
         );
         if (!success) revert TransferFailed();
+         emit HouseFunded(msg.sender, amount); 
     }
 
     function withdrawHouseProfits(uint256 amount) external onlyOwner {
@@ -199,6 +205,7 @@ contract AviatorGame is
 
         bool success = usdcToken.transfer(owner(), amount);
         if (!success) revert TransferFailed();
+        emit HouseWithdrawn(owner(), amount);
     }
 
     // ============ Snapshot Functions ============

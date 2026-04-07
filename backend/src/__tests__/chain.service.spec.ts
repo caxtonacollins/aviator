@@ -48,10 +48,11 @@ describe('ChainService', () => {
     originalEnv = { ...process.env };
 
     // Set required env vars
-    process.env.BACKEND_RPC_URL = 'https://test-rpc.example.com';
+    process.env.ACTIVE_CHAIN = 'base';
+    process.env.BASE_RPC_URL = 'https://test-rpc.example.com';
     process.env.BACKEND_PRIVATE_KEY =
       '0x1111111111111111111111111111111111111111111111111111111111111111';
-    process.env.AVIATOR_CONTRACT_ADDRESS = '0x2222222222222222222222222222222222222222';
+    process.env.BASE_AVIATOR_CONTRACT_ADDRESS = '0x2222222222222222222222222222222222222222';
 
     // Setup mock provider
     mockProvider = {
@@ -102,22 +103,22 @@ describe('ChainService', () => {
       expect(service.contract).toBe(mockContract);
     });
 
-    it('should throw error if BACKEND_RPC_URL is missing', () => {
-      delete process.env.BACKEND_RPC_URL;
-
-      expect(() => new ChainService()).toThrow(/missing env vars/);
-    });
-
     it('should throw error if BACKEND_PRIVATE_KEY is missing', () => {
       delete process.env.BACKEND_PRIVATE_KEY;
 
-      expect(() => new ChainService()).toThrow(/missing env vars/);
+      expect(() => new ChainService()).toThrow(/BACKEND_PRIVATE_KEY/);
     });
 
-    it('should throw error if AVIATOR_CONTRACT_ADDRESS is missing', () => {
-      delete process.env.AVIATOR_CONTRACT_ADDRESS;
+    it('should throw error if BASE_AVIATOR_CONTRACT_ADDRESS is missing', () => {
+      delete process.env.BASE_AVIATOR_CONTRACT_ADDRESS;
 
-      expect(() => new ChainService()).toThrow(/missing env vars/);
+      expect(() => new ChainService()).toThrow(/BASE_AVIATOR_CONTRACT_ADDRESS/);
+    });
+
+    it('should throw error if ACTIVE_CHAIN is unknown', () => {
+      process.env.ACTIVE_CHAIN = 'unknown_chain';
+
+      expect(() => new ChainService()).toThrow(/Unknown ACTIVE_CHAIN/);
     });
   });
 

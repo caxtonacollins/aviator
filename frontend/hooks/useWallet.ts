@@ -1,21 +1,23 @@
 import { useMemo } from "react";
-import { useAccount, useConnect, useDisconnect, useBalance } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useBalance, useChainId } from "wagmi";
+import { getChainConfig } from "@/lib/chains";
 
 /**
  * Wallet hook backed by wagmi. OnchainKitProvider in `app/rootProvider.tsx` provides connectors and context.
- * Returns both ETH balance and USDC balance (if NEXT_PUBLIC_USDC_ADDRESS is set).
+ * Returns both ETH balance and USDC balance, resolved from the active chain.
  */
 export function useWallet() {
   const { address, isConnected } = useAccount();
-  const { connectors, connectAsync} = useConnect();
+  const { connectors, connectAsync } = useConnect();
   const { disconnectAsync } = useDisconnect();
+  const chainId = useChainId();
 
   const ethBalance = useBalance({ address });
 
-  const usdcAddress = process.env.NEXT_PUBLIC_USDC_ADDRESS || undefined;
+  const { usdcAddress } = getChainConfig(chainId);
   const usdcBalance = useBalance({
-    address,  
-    token: usdcAddress as `0x${string}` | undefined,
+    address,
+    token: usdcAddress,
   });
 
   const balance = useMemo(() => {

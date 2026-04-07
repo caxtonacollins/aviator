@@ -13,12 +13,12 @@ export function useGame(options: { wsUrl?: string } = {}) {
   const wsUrl = options.wsUrl || DEFAULT_WS_URL;
   const { data: walletClient } = useWalletClient();
   const publicClient = usePublicClient();
-  
-  const { 
-    transferUSDC, 
-    houseAddress, 
-    checkAllowance, 
-    approveUSDC 
+
+  const {
+    transferUSDC,
+    houseAddress,
+    checkAllowance,
+    approveUSDC
   } = useUSDC();
 
   const [roundData, setRoundData] = useState<RoundData | null>(null);
@@ -29,7 +29,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
 
   const fetchInitialHistory = useCallback(async () => {
     try {
-      
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/history`);
       if (response.ok) {
         const data = await response.json();
@@ -110,19 +110,19 @@ export function useGame(options: { wsUrl?: string } = {}) {
         return { success: false, error: 'Public client not available' };
       }
 
-      const gameContractAddress = process.env.NEXT_PUBLIC_GAME_CONTRACT_ADDRESS;
+      const gameContractAddress = houseAddress;
       if (!gameContractAddress) {
-        return { success: false, error: 'Game contract address not configured' };
+        return { success: false, error: 'Game contract address not configured for this chain' };
       }
 
       try {
         const currentAllowance = await checkAllowance(address, gameContractAddress);
-        
+
         if (currentAllowance < amount) {
           try {
             const approvalTxHash = await approveUSDC(gameContractAddress, maxUint256);
             console.log('USDC approval transaction hash:', approvalTxHash);
-            
+
             if (publicClient) {
               await publicClient.waitForTransactionReceipt({
                 hash: approvalTxHash as `0x${string}`
@@ -151,19 +151,19 @@ export function useGame(options: { wsUrl?: string } = {}) {
 
       } catch (err) {
         console.error("Error placing bet:", err);
-        return { 
-          success: false, 
-          error: 'Failed to place bet' 
+        return {
+          success: false,
+          error: 'Failed to place bet'
         };
       }
     },
     [
-      roundData, 
-      transferUSDC, 
-      houseAddress, 
-      walletClient, 
-      publicClient, 
-      checkAllowance, 
+      roundData,
+      transferUSDC,
+      houseAddress,
+      walletClient,
+      publicClient,
+      checkAllowance,
       approveUSDC
     ],
   );
@@ -174,9 +174,9 @@ export function useGame(options: { wsUrl?: string } = {}) {
       const res = await api.cashOutRest(betId);
       console.log("cashout result", res);
       if (res.success) {
-          return { success: true };
+        return { success: true };
       } else {
-          return { success: false, error: res.error };
+        return { success: false, error: res.error };
       }
     } catch (e) {
       console.warn("REST cashout failed", e);

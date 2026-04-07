@@ -64,8 +64,8 @@ const BetControls: React.FC = () => {
     cashOut(myBet.id);
   };
 
-  /* 
-   * Hydration fix: 
+  /*
+   * Hydration fix:
    * The wallet connection state (walletAddress) is only available on the client.
    * During SSR, walletAddress is undefined, so the server renders the "Connect Wallet" state.
    * On the client, if the wallet is already connected, it might render the betting UI immediately.
@@ -186,7 +186,7 @@ const BetControls: React.FC = () => {
 
       {isConnected && !canPlaceBet && roundData?.phase === "BETTING" && (
         <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4 text-center">
-          <div className="text-yellow-400 font-medium">
+          <div className="text-yellow-400 font-medium font-orbitron uppercase tracking-wide">
             {walletBalance === 0
               ? "Insufficient USDC balance"
               : myBet

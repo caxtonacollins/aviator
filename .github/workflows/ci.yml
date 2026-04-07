@@ -9,9 +9,6 @@ on:
 jobs:
   backend:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['20', '22']
     defaults:
       run:
         working-directory: ./backend
@@ -22,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -57,9 +54,6 @@ jobs:
 
   frontend:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['20', '22']
     defaults:
       run:
         working-directory: ./frontend
@@ -70,7 +64,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2

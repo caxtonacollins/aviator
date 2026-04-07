@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useGameContext } from "@/context/GameContext";
 import { useBetValidation } from "@/hooks/useBetValidation";
 import useUSDC from "@/hooks/useUSDC";
+import useChainInfo from "@/hooks/useChainInfo";
 
 const BetControls: React.FC = () => {
   const { roundData, cashOut, placeBet } = useGameContext();
   const { walletBalance, walletAddress, refreshBalance } = useUSDC();
+  const { chainLabel, explorerUrl } = useChainInfo();
   const [betAmount, setBetAmount] = useState("0.10");
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
@@ -64,8 +66,8 @@ const BetControls: React.FC = () => {
     cashOut(myBet.id);
   };
 
-  /* 
-   * Hydration fix: 
+  /*
+   * Hydration fix:
    * The wallet connection state (walletAddress) is only available on the client.
    * During SSR, walletAddress is undefined, so the server renders the "Connect Wallet" state.
    * On the client, if the wallet is already connected, it might render the betting UI immediately.
@@ -100,6 +102,10 @@ const BetControls: React.FC = () => {
 
   return (
     <div className="bg-black/50 backdrop-blur-sm border-t border-green-500/30 p-4 space-y-3">
+      <div className="flex items-center justify-between text-xs text-gray-400 mb-2 font-courier">
+        <span>Playing on {chainLabel}</span>
+        <span>USDC Balance: {walletBalance?.toFixed(2) || "0.00"}</span>
+      </div>
       {myBet && (
         <div className="bg-green-900/30 border border-green-500/30 rounded-lg p-3 flex items-center justify-between">
           <div>
@@ -126,7 +132,7 @@ const BetControls: React.FC = () => {
       {canPlaceBet && (
         <div className="space-y-3">
           <div>
-            <label className="text-sm text-gray-400 mb-1 block">
+            <label className="text-sm text-gray-400 mb-1 block font-courier">
               Balance: {walletBalance?.toFixed(2) || "0.00"} (USDC)
             </label>
             <input
@@ -136,14 +142,14 @@ const BetControls: React.FC = () => {
               step="0.10"
               min="0.10"
               max={walletBalance!.toString()}
-              className="w-full bg-slate-800/50 border border-green-500/30 rounded-lg px-4 py-3 text-white text-lg font-medium focus:outline-none focus:border-green-400"
+              className="w-full bg-slate-800/50 border border-green-500/30 rounded-lg px-4 py-3 text-white text-lg font-medium focus:outline-none focus:border-green-400 font-courier"
             />
             {!betValidation.isValid && (
               <div className="text-red-400 text-xs mt-1">
                 {betValidation.error}
               </div>
             )}
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-xs text-gray-500 mt-1 font-courier">
               Balance: {walletBalance?.toFixed(2) || "0.00"} USDC
             </div>
           </div>
@@ -153,7 +159,7 @@ const BetControls: React.FC = () => {
               <button
                 key={amount}
                 onClick={() => setBetAmount(amount)}
-                className="flex-1 bg-green-700/30 hover:bg-green-600/40 rounded-lg py-2 text-sm font-medium transition-colors"
+                className="flex-1 bg-green-700/30 hover:bg-green-600/40 rounded-lg py-2 text-sm font-medium transition-colors font-courier"
               >
                 {amount}
               </button>
@@ -163,18 +169,18 @@ const BetControls: React.FC = () => {
           <button
             onClick={handlePlaceBet}
             disabled={!betValidation.isValid || isProcessing}
-            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-gray-600 disabled:to-gray-600 py-4 rounded-lg font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-gray-600 disabled:to-gray-600 py-4 rounded-lg font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-orbitron uppercase tracking-wide"
           >
             {isProcessing ? "Processing…" : `Place Bet (${betAmount} USDC)`}
           </button>
 
           {txHash && (
             <div className="text-xs text-gray-400 bg-green-900/20 border border-green-500/30 rounded p-2">
-              ✓ Transaction:{" "}
+              ✓ Transaction on {chainLabel}:{" "}
               <a
                 target="_blank"
                 rel="noreferrer"
-                href={`https://basescan.org/tx/${txHash}`}
+                href={`${explorerUrl}/tx/${txHash}`}
                 className="underline hover:text-green-400"
               >
                 {txHash.slice(0, 10)}...{txHash.slice(-8)}
@@ -198,10 +204,10 @@ const BetControls: React.FC = () => {
 
       {!isConnected && (
         <div className="bg-green-600/20 border border-green-500/30 rounded-lg p-4 text-center">
-          <div className="text-green-400 font-extrabold mb-3">
+          <div className="text-green-400 font-extrabold mb-3 font-orbitron uppercase tracking-widest text-lg">
             🔗 Connect wallet to play
           </div>
-          <p className="text-sm text-green-300 mb-3">
+          <p className="text-sm text-green-300 mb-3 font-courier">
             Connect your wallet to start placing bets and playing
           </p>
           {/* Wallet connection UI can be added here */}

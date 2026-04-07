@@ -13,12 +13,12 @@ const HistoryBar: React.FC = () => {
         {gameHistory.map((game: GameHistory, idx: any) => (
           <div
             key={idx}
-            className={`px-3 py-1 rounded text-sm font-medium whitespace-nowrap ${
+            className={`px-3 py-1 rounded text-sm font-medium whitespace-nowrap font-courier ${
               game.crashMultiplier >= 2
                 ? "bg-green-600/30 text-green-300"
                 : game.crashMultiplier >= 1.5
-                ? "bg-yellow-600/30 text-yellow-300"
-                : "bg-red-600/30 text-red-300"
+                  ? "bg-yellow-600/30 text-yellow-300"
+                  : "bg-red-600/30 text-red-300"
             }`}
           >
             {Number(game.crashMultiplier).toFixed(2)}x

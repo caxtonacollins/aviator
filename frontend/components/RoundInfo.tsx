@@ -7,7 +7,7 @@ import { useRoundCountdown } from "@/hooks/useGame";
 const RoundInfo: React.FC = () => {
   const { roundData } = useGameContext();
   const countdown = useRoundCountdown(roundData);
-  
+
   // Use the countdown for BETTING and CRASHED phases
   const timeRemaining =
     roundData?.phase === "BETTING" || roundData?.phase === "CRASHED"
@@ -43,40 +43,49 @@ const RoundInfo: React.FC = () => {
 
   return (
     <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-black/30 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-green-500/10 shadow-lg max-w-[45vw] sm:max-w-[200px] z-30 transition-opacity hover:bg-black/50">
-      <div className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight">
+      <div className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight font-orbitron">
         Round #{roundData?.roundId || 0}
       </div>
-      <div className={`text-xs sm:text-sm font-bold ${getPhaseColor()} mb-1 leading-tight`}>
+      <div
+        className={`text-xs sm:text-sm font-bold ${getPhaseColor()} mb-1 leading-tight font-orbitron uppercase tracking-wider`}
+      >
         {getPhaseText()}
       </div>
 
       {(roundData?.phase === "BETTING" || roundData?.phase === "CRASHED") && (
         <div className="mb-1">
-          <div className="text-[10px] sm:text-xs text-gray-400 mb-0.5">
+          <div className="text-[10px] sm:text-xs text-gray-400 mb-0.5 font-orbitron">
             {roundData.phase === "BETTING" ? "Betting in:" : "Next round:"}
           </div>
           <div className="flex items-center gap-1">
             <div
-              className={`text-xs sm:text-sm font-bold font-mono ${timeRemaining <= 3 ? "text-orange-400 animate-pulse" : "text-green-400"
-                }`}
+              className={`text-xs sm:text-sm font-bold font-courier ${
+                timeRemaining <= 3
+                  ? "text-orange-400 animate-pulse"
+                  : "text-green-400"
+              }`}
             >
               {timeRemaining}s
             </div>
             <div className="flex-1 bg-gray-700/30 rounded-full h-1 min-w-[30px] overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all ${timeRemaining <= 3 ? "bg-orange-500" : "bg-green-500"
-                  }`}
+                className={`h-full rounded-full transition-all ${
+                  timeRemaining <= 3 ? "bg-orange-500" : "bg-green-500"
+                }`}
                 style={{
                   width: `${Math.min(
                     (timeRemaining /
                       (roundData.phase === "CRASHED"
                         ? 5
                         : roundData.flyStartTime && roundData.startTime
-                          ? Math.ceil((Number(roundData.flyStartTime) - Number(roundData.startTime)) / 1000)
-                          : 30
-                      )
-                    ) * 100,
-                    100
+                          ? Math.ceil(
+                              (Number(roundData.flyStartTime) -
+                                Number(roundData.startTime)) /
+                                1000,
+                            )
+                          : 30)) *
+                      100,
+                    100,
                   )}%`,
                 }}
               />
@@ -85,10 +94,13 @@ const RoundInfo: React.FC = () => {
         </div>
       )}
 
-      <div className="text-[10px] sm:text-xs text-gray-500 space-y-0.5 leading-tight">
+      <div className="text-[10px] sm:text-xs text-gray-500 space-y-0.5 leading-tight font-courier">
         <div>Players: {roundData?.players?.length || 0}</div>
         <div className="truncate">
-          Bets: <span className="font-mono">{roundData?.totalBets ? roundData.totalBets : "0.00"}</span>
+          Bets:{" "}
+          <span className="font-mono">
+            {roundData?.totalBets ? roundData.totalBets : "0.00"}
+          </span>
         </div>
       </div>
     </div>

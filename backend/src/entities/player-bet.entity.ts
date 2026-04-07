@@ -34,7 +34,7 @@ export class PlayerBet {
   timestamp!: number;
 
   @ManyToOne(() => Round, (round) => round.players, { onDelete: 'CASCADE' })
-  round!: any;
+  round!: Round;
 
   @CreateDateColumn()
   createdAt!: Date;

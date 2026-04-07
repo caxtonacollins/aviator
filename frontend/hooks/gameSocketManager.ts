@@ -1,7 +1,15 @@
 import { io, Socket } from "socket.io-client";
 
 // Lightweight singleton Socket.IO manager to survive HMR and share one socket across hooks/components
-export type MessageHandler = (message: any) => void;
+export type MessageHandler = (message: Record<string, unknown>) => void;
+
+interface GameMessage {
+  type: string;
+  data?: unknown;
+  reason?: string;
+  error?: string;
+  message?: string;
+}
 
 class GameSocketManager {
   private socket: Socket | null = null;
@@ -25,32 +33,32 @@ class GameSocketManager {
       this.broadcast({ type: "_CLOSE", reason });
     });
 
-    this.socket.on("connect_error", (err: any) => {
-      this.broadcast({ type: "_ERROR", error: err.message || err });
+    this.socket.on("connect_error", (err: Error & { message?: string }) => {
+      this.broadcast({ type: "_ERROR", error: err.message || String(err) });
     });
 
     // Proxy common game events
-    this.socket.on("GAME_STATE_UPDATE", (data: any) =>
+    this.socket.on("GAME_STATE_UPDATE", (data: unknown) =>
       this.broadcast({ type: "GAME_STATE_UPDATE", data })
     );
-    this.socket.on("HISTORY_UPDATE", (data: any) =>
+    this.socket.on("HISTORY_UPDATE", (data: unknown) =>
       this.broadcast({ type: "HISTORY_UPDATE", data })
     );
-    this.socket.on("LEADERBOARD_UPDATE", (data: any) =>
+    this.socket.on("LEADERBOARD_UPDATE", (data: unknown) =>
       this.broadcast({ type: "LEADERBOARD_UPDATE", data })
     );
-    this.socket.on("BET_PLACED", (data: any) =>
+    this.socket.on("BET_PLACED", (data: unknown) =>
       this.broadcast({ type: "BET_PLACED", data })
     );
-    this.socket.on("CASH_OUT_SUCCESS", (data: any) =>
+    this.socket.on("CASH_OUT_SUCCESS", (data: unknown) =>
       this.broadcast({ type: "CASH_OUT_SUCCESS", data })
     );
-    this.socket.on("ERROR", (data: any) =>
+    this.socket.on("ERROR", (data: Record<string, unknown> | undefined) =>
       this.broadcast({ type: "ERROR", message: data?.message })
     );
   }
 
-  send(message: any) {
+  send(message: GameMessage) {
     if (!this.socket) {
       this.connect(
         this.url || process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001"
@@ -69,7 +77,7 @@ class GameSocketManager {
     return () => this.subscribers.delete(handler);
   }
 
-  private broadcast(message: any) {
+  private broadcast(message: Record<string, unknown>) {
     this.subscribers.forEach((s) => s(message));
   }
 
@@ -82,7 +90,7 @@ class GameSocketManager {
   }
 }
 
-const globalRef = globalThis as any;
+const globalRef = globalThis as Record<string, unknown>;
 if (!globalRef.__GAME_SOCKET_MANAGER__) {
   globalRef.__GAME_SOCKET_MANAGER__ = new GameSocketManager();
 }

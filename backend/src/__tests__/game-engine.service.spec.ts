@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { GameEngine } from '../services/game-engine.service.ts';
 import { AppDataSource } from '../config/database.ts';
 import { Round } from '../entities/round.entity.ts';
-import { PlayerBet } from '../entities/player-bet.entity.ts';
 
 // Mock dependencies
 vi.mock('../config/database.ts', () => ({
@@ -60,7 +59,6 @@ describe('GameEngine', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.useFakeTimers();
 
     // Mock Socket.IO
     mockIo = {
@@ -85,11 +83,11 @@ describe('GameEngine', () => {
 
     // Mock query runner
     mockQueryRunner = {
-      connect: vi.fn(),
-      startTransaction: vi.fn(),
-      commitTransaction: vi.fn(),
-      rollbackTransaction: vi.fn(),
-      release: vi.fn(),
+      connect: vi.fn().mockResolvedValue(undefined),
+      startTransaction: vi.fn().mockResolvedValue(undefined),
+      commitTransaction: vi.fn().mockResolvedValue(undefined),
+      rollbackTransaction: vi.fn().mockResolvedValue(undefined),
+      release: vi.fn().mockResolvedValue(undefined),
       manager: {
         findOne: vi.fn(),
         save: vi.fn(),
@@ -108,21 +106,28 @@ describe('GameEngine', () => {
 
     // Make AppDataSource initialized
     (AppDataSource as any).isInitialized = true;
+
+    // Mock the query runner to prevent hanging on initialization
+    mockQueryRunner.manager.findOne.mockResolvedValue(null);
+    mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    vi.clearAllTimers();
   });
 
   describe('constructor', () => {
-    it('should initialize with Socket.IO server', () => {
+    it('should initialize with Socket.IO server', async () => {
       gameEngine = new GameEngine(mockIo);
+
+      // Wait for async initialization to complete
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
 
       expect(gameEngine).toBeDefined();
       expect(mockIo.on).toHaveBeenCalledWith('connection', expect.any(Function));
     });
 
-    it('should setup socket event listeners', () => {
+    it('should setup socket event listeners', async () => {
       const mockSocket = {
         on: vi.fn(),
         emit: vi.fn(),
@@ -136,6 +141,9 @@ describe('GameEngine', () => {
 
       gameEngine = new GameEngine(mockIo);
 
+      // Wait for async initialization
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
+
       expect(mockSocket.on).toHaveBeenCalledWith('PLACE_BET', expect.any(Function));
       expect(mockSocket.on).toHaveBeenCalledWith('CASH_OUT', expect.any(Function));
     });
@@ -147,10 +155,10 @@ describe('GameEngine', () => {
       mockRoundRepo.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
-      
+
       gameEngine = new GameEngine(mockIo);
       // Wait for constructor's async initialization
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
       vi.clearAllMocks();
     });
 
@@ -227,6 +235,8 @@ describe('GameEngine', () => {
     it('should rollback on error', async () => {
       const error = new Error('Database error');
       mockQueryRunner.manager.findOne.mockRejectedValue(error);
+      // Ensure release returns a resolved promise even on error path
+      mockQueryRunner.release.mockResolvedValue(undefined);
 
       await expect(gameEngine.startNewRound()).rejects.toThrow('Database error');
 
@@ -240,10 +250,10 @@ describe('GameEngine', () => {
       mockRoundRepo.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
-      
+
       gameEngine = new GameEngine(mockIo);
-      await new Promise(resolve => setTimeout(resolve, 50));
-      
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
+
       (gameEngine as any).currentRound = {
         id: 1,
         roundId: 1,
@@ -330,10 +340,10 @@ describe('GameEngine', () => {
       mockRoundRepo.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
-      
+
       gameEngine = new GameEngine(mockIo);
-      await new Promise(resolve => setTimeout(resolve, 50));
-      
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
+
       (gameEngine as any).currentRound = {
         id: 1,
         roundId: 1,
@@ -468,9 +478,9 @@ describe('GameEngine', () => {
       mockRoundRepo.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
-      
+
       gameEngine = new GameEngine(mockIo);
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
     });
 
     it('should emit game state via Socket.IO', async () => {
@@ -512,7 +522,7 @@ describe('GameEngine', () => {
     });
 
     it('should handle missing current round gracefully', async () => {
-     (gameEngine as any).currentRound = null;
+      (gameEngine as any).currentRound = null;
 
       await gameEngine.broadcastGameState();
 
@@ -540,13 +550,14 @@ describe('GameEngine', () => {
 
   describe('crashRound', () => {
     beforeEach(async () => {
+      vi.useFakeTimers();
       mockRoundRepo.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.findOne.mockResolvedValue(null);
       mockQueryRunner.manager.save.mockResolvedValue({ id: 1, roundId: 1 });
-      
+
       gameEngine = new GameEngine(mockIo);
-      await new Promise(resolve => setTimeout(resolve, 50));
-      
+      await vi.waitUntil(() => (gameEngine as any).isRunning === true, { timeout: 1000 });
+
       (gameEngine as any).currentRound = {
         id: 1,
         roundId: 1,
@@ -554,6 +565,10 @@ describe('GameEngine', () => {
         totalBets: 300,
         totalPayouts: 250,
       };
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
     });
 
     it('should set phase to CRASHED', async () => {
@@ -633,7 +648,7 @@ describe('GameEngine', () => {
       expect(startNewRoundSpy).not.toHaveBeenCalled();
 
       // Fast forward 10 seconds
-      vi.advanceTimersByTime(10000);
+      await vi.advanceTimersByTimeAsync(10000);
 
       expect(startNewRoundSpy).toHaveBeenCalled();
     });

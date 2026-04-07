@@ -35,8 +35,9 @@ export class GameEngine {
           logger.info('ChainService initializing');
           this.chainService = new mod.ChainService();
           logger.info('ChainService initialized');
-        } catch (err: any) {
-          logger.warn('ChainService initialization failed', { error: err.message });
+        } catch (error: unknown) {
+          const err = error as Error & { code?: string };
+          logger.warn('ChainService initialization failed', { error: (err as Error).message });
           this.chainService = null;
         }
       })
@@ -62,9 +63,9 @@ export class GameEngine {
           });
           const roundData = round
             ? {
-                ...round,
-                players: round.players || [],
-              }
+              ...round,
+              players: round.players || [],
+            }
             : this.currentRound;
           socket.emit('GAME_STATE_UPDATE', roundData);
         } catch (error) {
@@ -144,7 +145,8 @@ export class GameEngine {
   ): Promise<T> {
     try {
       return await operation();
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as Error & { code?: string };
       if (attempt >= maxRetries) {
         logger.error('Max retries reached, giving up', { attempt, maxRetries, error });
         throw error;
@@ -157,7 +159,7 @@ export class GameEngine {
       );
 
       logger.warn(`Operation failed, retrying (${attempt}/${maxRetries})`, {
-        error: error.message,
+        error: err.message,
         nextRetryIn: `${delayMs}ms`,
       });
 
@@ -220,15 +222,16 @@ export class GameEngine {
             `Successfully created new round with ID: ${round.id}, Round ID: ${round.roundId}`
           );
           return round;
-        } catch (error: any) {
+        } catch (error: unknown) {
           await queryRunner.rollbackTransaction().catch((rollbackError) => {
             logger.error('Failed to rollback transaction', { error: rollbackError });
           });
 
+          const err = error as Error & { code?: string };
           if (
-            error.code === '23505' ||
-            error.message.includes('duplicate key') ||
-            error.code === '40001' /* serialization_failure */
+            err.code === '23505' ||
+            err.message.includes('duplicate key') ||
+            err.code === '40001' /* serialization_failure */
           ) {
             throw error; // Will be caught by executeWithRetry
           }
@@ -371,8 +374,8 @@ export class GameEngine {
             players as PlayerBet[]
           )
         );
-      } catch (err: any) {
-        logger.error('Round snapshot submission failed', { error: err.message });
+      } catch (err: unknown) {
+        logger.error('Round snapshot submission failed', { error: (err as Error).message });
       }
     }
 

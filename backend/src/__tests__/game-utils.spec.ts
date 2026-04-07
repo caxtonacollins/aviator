@@ -85,7 +85,7 @@ describe('game-utils', () => {
       const mult1 = calculateCurrentMultiplier(1000); // 1 second
       const mult2 = calculateCurrentMultiplier(2000); // 2 seconds
       const mult3 = calculateCurrentMultiplier(5000); // 5 seconds
-      
+
       expect(mult2).toBeGreaterThan(mult1);
       expect(mult3).toBeGreaterThan(mult2);
     });
@@ -111,23 +111,26 @@ describe('game-utils', () => {
       expect(typeof pos.y).toBe('number');
     });
 
-    it('should start near x=10 at time 0', () => {
+    it('should have fixed x position at 50', () => {
       const pos = calculatePlanePosition(0);
-      expect(pos.x).toBeCloseTo(10, 1);
+      expect(pos.x).toBe(50);
     });
 
-    it('should move x position from left to right', () => {
+    it('should maintain x position at 50 throughout animation', () => {
       const pos1 = calculatePlanePosition(0);
       const pos2 = calculatePlanePosition(5000);
       const pos3 = calculatePlanePosition(10000);
-      
-      expect(pos2.x).toBeGreaterThan(pos1.x);
-      expect(pos3.x).toBeGreaterThan(pos2.x);
+
+      expect(pos1.x).toBe(50);
+      expect(pos2.x).toBe(50);
+      expect(pos3.x).toBe(50);
     });
 
-    it('should end near x=80 at max time (10 seconds)', () => {
-      const pos = calculatePlanePosition(10000);
-      expect(pos.x).toBeCloseTo(80, 1);
+    it('should start at y=0 and end at y=100 at 10 seconds', () => {
+      const pos0 = calculatePlanePosition(0);
+      const pos10s = calculatePlanePosition(10000);
+      expect(pos0.y).toBe(0);
+      expect(pos10s.y).toBe(100);
     });
 
     it('should keep y position within valid bounds', () => {
@@ -138,14 +141,13 @@ describe('game-utils', () => {
       }
     });
 
-    it('should create a curved trajectory (y changes)', () => {
+    it('should increase y position over time', () => {
       const pos1 = calculatePlanePosition(0);
       const pos2 = calculatePlanePosition(2500);
       const pos3 = calculatePlanePosition(5000);
-      
-      // Y should change due to sine wave
-      const allSameY = pos1.y === pos2.y && pos2.y === pos3.y;
-      expect(allSameY).toBe(false);
+
+      expect(pos2.y).toBeGreaterThan(pos1.y);
+      expect(pos3.y).toBeGreaterThan(pos2.y);
     });
   });
 });

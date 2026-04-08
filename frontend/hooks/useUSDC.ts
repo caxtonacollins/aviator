@@ -13,7 +13,6 @@ export default function useUSDC() {
 
   const [balance, setBalance] = useState<number | null>(null);
 
-  // Resolve addresses from the active chain — no hardcoded values
   const chainConfig = getChainConfig(chainId);
   const usdcAddress = chainConfig.usdcAddress;
   const houseAddress = chainConfig.gameContractAddress;
@@ -79,6 +78,12 @@ export default function useUSDC() {
 
   useEffect(() => {
     fetchBalance().then((b) => setBalance(b));
+
+    const interval = setInterval(() => {
+      fetchBalance().then((b) => setBalance(b));
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [fetchBalance]);
 
   const transferUSDC = useCallback(

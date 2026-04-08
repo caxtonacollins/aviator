@@ -4,12 +4,21 @@ import React from "react";
 import { useChainId } from "wagmi";
 import { AlertCircle } from "lucide-react";
 import { CHAIN_CONFIGS } from "@/lib/chains";
+import { useEffect, useState } from "react";
 
 /**
  * Displays a warning if the user is on an unsupported chain
  */
 const ChainWarning: React.FC = () => {
   const chainId = useChainId();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   const isSupported = chainId in CHAIN_CONFIGS;
 
   if (isSupported) return null;

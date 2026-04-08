@@ -23,7 +23,13 @@ class GameSocketManager {
 
     if (this.socket && this.socket.connected) return;
 
-    this.socket = io(url, { transports: ["websocket"], reconnection: true });
+    this.socket = io(url, {
+      transports: ["websocket", "polling"],
+      reconnection: true,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      reconnectionAttempts: 5
+    });
 
     this.socket.on("connect", () => {
       this.broadcast({ type: "_OPEN" });

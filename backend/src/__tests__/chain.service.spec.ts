@@ -37,14 +37,19 @@ vi.mock('@/utils/logger.ts', () => ({
 
 // Mock chain config - use a simple implementation
 vi.mock('../config/chains.ts', () => ({
-  getActiveChainConfig: vi.fn(() => ({
-    chainId: 8453,
-    label: 'Base',
-    rpcUrl: 'https://test-rpc.example.com',
-    contractAddress: '0x2222222222222222222222222222222222222222',
-    usdcAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
-    explorerUrl: 'https://basescan.org',
-  })),
+  getChainConfig: vi.fn((chainId: number) => {
+    if (chainId === 8453) {
+      return {
+        chainId: 8453,
+        label: 'Base',
+        rpcUrl: 'https://test-rpc.example.com',
+        contractAddress: '0x2222222222222222222222222222222222222222',
+        usdcAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+        explorerUrl: 'https://basescan.org',
+      };
+    }
+    throw new Error(`Unknown chain: ${chainId}`);
+  }),
 }));
 
 describe('ChainService', () => {
@@ -60,7 +65,6 @@ describe('ChainService', () => {
     originalEnv = { ...process.env };
 
     // Set required env vars
-    process.env.ACTIVE_CHAIN = 'base';
     process.env.BASE_RPC_URL = 'https://test-rpc.example.com';
     process.env.BACKEND_PRIVATE_KEY =
       '0x1111111111111111111111111111111111111111111111111111111111111111';
@@ -97,8 +101,8 @@ describe('ChainService', () => {
   });
 
   describe('constructor', () => {
-    it('should initialize with environment variables', () => {
-      const service = new ChainService();
+    it('should initialize with chainId parameter', () => {
+      const service = new ChainService(8453);
 
       expect(ethers.JsonRpcProvider).toHaveBeenCalledWith(
         'https://test-rpc.example.com'
@@ -117,21 +121,25 @@ describe('ChainService', () => {
       expect(service.contract).toBe(mockContract);
     });
 
+    it('should throw error if chainId is not provided', () => {
+      expect(() => new ChainService(undefined as any)).toThrow();
+    });
+
     it('should throw error if BACKEND_PRIVATE_KEY is missing', () => {
       delete process.env.BACKEND_PRIVATE_KEY;
 
-      expect(() => new ChainService()).toThrow(/BACKEND_PRIVATE_KEY/);
+      expect(() => new ChainService(8453)).toThrow(/BACKEND_PRIVATE_KEY/);
     });
 
     it('should throw error if BASE_AVIATOR_CONTRACT_ADDRESS is missing', () => {
-      // Skipping this test as it requires complex mocking of getActiveChainConfig
+      // Skipping this test as it requires complex mocking of getChainConfig
       // which causes circular dependency issues. The actual error handling is tested
       // in integration tests.
       expect(true).toBe(true);
     });
 
-    it('should throw error if ACTIVE_CHAIN is unknown', () => {
-      // Skipping this test as it requires complex mocking of getActiveChainConfig
+    it('should throw error if chain is unknown', () => {
+      // Skipping this test as it requires complex mocking of getChainConfig
       // which causes circular dependency issues. The actual error handling is tested
       // in integration tests.
       expect(true).toBe(true);
@@ -142,7 +150,7 @@ describe('ChainService', () => {
     let chainService: ChainService;
 
     beforeEach(() => {
-      chainService = new ChainService();
+      chainService = new ChainService(8453);
     });
 
     it('should handle empty player arrays (no submission)', async () => {
@@ -294,7 +302,7 @@ describe('ChainService', () => {
     let chainService: ChainService;
 
     beforeEach(() => {
-      chainService = new ChainService();
+      chainService = new ChainService(8453);
     });
 
     it('should convert amount to USDC units (6 decimals)', async () => {
@@ -356,7 +364,7 @@ describe('ChainService', () => {
     let chainService: ChainService;
 
     beforeEach(() => {
-      chainService = new ChainService();
+      chainService = new ChainService(8453);
     });
 
     it('should scale multiplier correctly (× 100)', async () => {

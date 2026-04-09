@@ -14,8 +14,8 @@ export class ChainService {
   contract: ethers.Contract;
   chainId: number;
 
-  constructor(chainId?: number) {
-    const chainConfig = chainId ? getChainConfig(chainId) : getActiveChainConfig();
+  constructor(chainId: number) {
+    const chainConfig = getChainConfig(chainId);
     this.chainId = chainConfig.chainId;
     const key = process.env.BACKEND_PRIVATE_KEY;
 

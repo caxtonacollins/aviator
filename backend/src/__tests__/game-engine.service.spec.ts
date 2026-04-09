@@ -262,13 +262,19 @@ describe('GameEngine', () => {
       };
     });
 
+    it('should throw error when chainId is not provided', async () => {
+      await expect(gameEngine.placeBet('0x111', 50, undefined as any)).rejects.toThrow(
+        'chainId is required'
+      );
+    });
+
     it('should create bet in current round', async () => {
       const betData = { id: 1, address: '0x111', amount: 50 };
       mockBetRepo.create.mockReturnValue(betData);
       mockBetRepo.save.mockResolvedValue(betData);
       mockRoundRepo.save.mockResolvedValue({});
 
-      await gameEngine.placeBet('0x111', 50);
+      await gameEngine.placeBet('0x111', 50, 8453);
 
       expect(mockBetRepo.create).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -283,23 +289,23 @@ describe('GameEngine', () => {
     it('should throw error when no active round', async () => {
       (gameEngine as any).currentRound = null;
 
-      await expect(gameEngine.placeBet('0x111', 50)).rejects.toThrow('Betting closed');
+      await expect(gameEngine.placeBet('0x111', 50, 8453)).rejects.toThrow('Betting closed');
     });
 
     it('should throw error during flying phase', async () => {
       (gameEngine as any).currentRound.phase = 'FLYING';
 
-      await expect(gameEngine.placeBet('0x111', 50)).rejects.toThrow('Betting closed');
+      await expect(gameEngine.placeBet('0x111', 50, 8453)).rejects.toThrow('Betting closed');
     });
 
     it('should validate bet amount (minimum)', async () => {
-      await expect(gameEngine.placeBet('0x111', 0.05)).rejects.toThrow(
+      await expect(gameEngine.placeBet('0x111', 0.05, 8453)).rejects.toThrow(
         'Invalid bet amount'
       );
     });
 
     it('should validate bet amount (maximum)', async () => {
-      await expect(gameEngine.placeBet('0x111', 1001)).rejects.toThrow(
+      await expect(gameEngine.placeBet('0x111', 1001, 8453)).rejects.toThrow(
         'Invalid bet amount'
       );
     });
@@ -310,7 +316,7 @@ describe('GameEngine', () => {
       mockBetRepo.save.mockResolvedValue(betData);
       mockRoundRepo.save.mockResolvedValue({});
 
-      await gameEngine.placeBet('0x111', 50);
+      await gameEngine.placeBet('0x111', 50, 8453);
 
       expect(mockRoundRepo.save).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -325,7 +331,7 @@ describe('GameEngine', () => {
       mockBetRepo.save.mockResolvedValue(betData);
       mockRoundRepo.save.mockResolvedValue({});
 
-      await gameEngine.placeBet('0x111', 50);
+      await gameEngine.placeBet('0x111', 50, 8453);
 
       expect(gameEngine.leaderboardService.updateFromBet).toHaveBeenCalledWith({
         address: '0x111',
@@ -353,6 +359,22 @@ describe('GameEngine', () => {
       };
     });
 
+    it('should throw error when chainId is not provided', async () => {
+      const bet = {
+        id: 1,
+        address: '0x111',
+        amount: 100,
+        cashedOut: false,
+        round: { id: 1 },
+      };
+
+      mockBetRepo.findOne.mockResolvedValue(bet);
+
+      await expect(gameEngine.cashOutById(1, undefined as any)).rejects.toThrow(
+        'chainId is required'
+      );
+    });
+
     it('should update bet with cashout data', async () => {
       const bet = {
         id: 1,
@@ -366,7 +388,7 @@ describe('GameEngine', () => {
       mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
       mockRoundRepo.save.mockResolvedValue({});
 
-      const result = await gameEngine.cashOutById(1);
+      const result = await gameEngine.cashOutById(1, 8453);
 
       expect(result.cashedOut).toBe(true);
       expect(result.cashoutMultiplier).toBe(2.5);
@@ -385,7 +407,7 @@ describe('GameEngine', () => {
       mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
       mockRoundRepo.save.mockResolvedValue({});
 
-      const result = await gameEngine.cashOutById(1);
+      const result = await gameEngine.cashOutById(1, 8453);
 
       expect(result.payout).toBe(250); // 100 * 2.5
     });
@@ -393,7 +415,7 @@ describe('GameEngine', () => {
     it('should throw error when bet not found', async () => {
       mockBetRepo.findOne.mockResolvedValue(null);
 
-      await expect(gameEngine.cashOutById(999)).rejects.toThrow('Bet not found');
+      await expect(gameEngine.cashOutById(999, 8453)).rejects.toThrow('Bet not found');
     });
 
     it('should throw error for already cashed out bets', async () => {
@@ -407,7 +429,7 @@ describe('GameEngine', () => {
 
       mockBetRepo.findOne.mockResolvedValue(bet);
 
-      await expect(gameEngine.cashOutById(1)).rejects.toThrow('Already cashed out');
+      await expect(gameEngine.cashOutById(1, 8453)).rejects.toThrow('Already cashed out');
     });
 
     it('should throw error when not in flying phase', async () => {
@@ -423,7 +445,7 @@ describe('GameEngine', () => {
 
       mockBetRepo.findOne.mockResolvedValue(bet);
 
-      await expect(gameEngine.cashOutById(1)).rejects.toThrow('Cannot cash out now');
+      await expect(gameEngine.cashOutById(1, 8453)).rejects.toThrow('Cannot cash out now');
     });
 
     it('should update round totalPayouts', async () => {
@@ -439,7 +461,7 @@ describe('GameEngine', () => {
       mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
       mockRoundRepo.save.mockResolvedValue({});
 
-      await gameEngine.cashOutById(1);
+      await gameEngine.cashOutById(1, 8453);
 
       expect(mockRoundRepo.save).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -461,7 +483,7 @@ describe('GameEngine', () => {
       mockBetRepo.save.mockImplementation((b: any) => Promise.resolve(b));
       mockRoundRepo.save.mockResolvedValue({});
 
-      await gameEngine.cashOutById(1);
+      await gameEngine.cashOutById(1, 8453);
 
       expect(gameEngine.leaderboardService.updateFromBet).toHaveBeenCalledWith({
         address: '0x111',

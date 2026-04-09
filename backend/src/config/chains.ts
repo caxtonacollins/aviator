@@ -37,24 +37,17 @@ const CHAIN_REGISTRY: Record<string, BackendChainConfig> = {
 };
 
 /**
- * Returns the chain config for the active chain, determined by ACTIVE_CHAIN env var.
- * Defaults to "base" to preserve existing behaviour.
+ * Returns the chain config for a given chainId.
+ * If no chainId is provided, throws an error (chainId must be provided by frontend).
  */
-export function getActiveChainConfig(): BackendChainConfig {
-    const key = (process.env.ACTIVE_CHAIN || "base").toLowerCase();
-    const config = CHAIN_REGISTRY[key];
-    if (!config) {
+export function getActiveChainConfig(chainId?: number | string): BackendChainConfig {
+    if (!chainId) {
         throw new Error(
-            `Unknown ACTIVE_CHAIN="${key}". Supported values: ${Object.keys(CHAIN_REGISTRY).join(", ")}`
+            'chainId is required. The backend now uses the chain connected in the frontend. ' +
+            'Pass chainId in your request body or socket event.'
         );
     }
-    if (!config.contractAddress) {
-        throw new Error(
-            `Contract address not set for chain "${key}". ` +
-            `Set ${key.toUpperCase()}_AVIATOR_CONTRACT_ADDRESS in your .env`
-        );
-    }
-    return config;
+    return getChainConfig(chainId);
 }
 
 /**

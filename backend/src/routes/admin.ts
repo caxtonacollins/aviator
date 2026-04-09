@@ -30,7 +30,8 @@ const verifyAdmin = (req: Request, res: Response, next: () => void) => {
 // Helper to get chain service for a specific chain
 const getChainServiceForRequest = (req: Request): ChainService => {
   const chainId = req.body?.chainId || req.query?.chainId;
-  return new ChainService(chainId ? Number(chainId) : undefined);
+  const numChainId = chainId ? Number(chainId) : 8453; // Default to Base mainnet
+  return new ChainService(numChainId);
 };
 
 // GET /api/admin/house/balance - Get current house balance

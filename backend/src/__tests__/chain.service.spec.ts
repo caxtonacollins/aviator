@@ -81,6 +81,8 @@ describe('ChainService', () => {
       snapshotRound: vi.fn(),
       placeBetFor: vi.fn(),
       cashOutFor: vi.fn(),
+      getAddress: vi.fn().mockResolvedValue('0x2222222222222222222222222222222222222222'),
+      serverOperator: vi.fn().mockResolvedValue('0x3333333333333333333333333333333333333333'),
     };
 
     // Mock ethers constructors

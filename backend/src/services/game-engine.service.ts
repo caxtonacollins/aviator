@@ -56,9 +56,9 @@ export class GameEngine {
 
       socket.on(
         'PLACE_BET',
-        async (data: { address: string; amount: number }) => {
+        async (data: { address: string; amount: number; chainId: number }) => {
           try {
-            await this.placeBet(data.address, data.amount);
+            await this.placeBet(data.address, data.amount, data.chainId);
             socket.emit('BET_PLACED', { success: true });
             await this.broadcastGameState();
           } catch (err) {
@@ -67,9 +67,9 @@ export class GameEngine {
         }
       );
 
-      socket.on('CASH_OUT', async (data: { betId: number }) => {
+      socket.on('CASH_OUT', async (data: { betId: number; chainId: number }) => {
         try {
-          await this.cashOutById(data.betId);
+          await this.cashOutById(data.betId, data.chainId);
           socket.emit('CASH_OUT_SUCCESS', { success: true });
           await this.broadcastGameState();
         } catch (err) {

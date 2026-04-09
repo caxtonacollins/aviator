@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { PlayerBet } from './player-bet.entity.js';
 
 export type GamePhase = 'BETTING' | 'FLYING' | 'CRASHED';
 
@@ -51,8 +50,8 @@ export class Round {
   @Column({ type: 'jsonb', nullable: true })
   planePosition!: { x: number; y: number } | null;
 
-  @OneToMany(() => PlayerBet, (bet: PlayerBet) => bet.round, { cascade: true })
-  players!: PlayerBet[];
+  @OneToMany('PlayerBet', 'round', { cascade: true })
+  players!: any[];
 
   @CreateDateColumn()
   createdAt!: Date;

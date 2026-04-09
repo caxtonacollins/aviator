@@ -42,7 +42,7 @@ const RoundInfo: React.FC = () => {
   };
 
   return (
-    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-black/30 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-green-500/10 shadow-lg max-w-[45vw] sm:max-w-[200px] z-30 transition-opacity hover:bg-black/50">
+    <div className="absolute -top-10 left-2 sm:top-3 sm:right-3 sm:left-auto sm:-top-0 bg-black/30 backdrop-blur-md px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-green-500/10 shadow-lg max-w-[45vw] sm:max-w-[200px] z-30 transition-opacity hover:bg-black/50">
       <div className="text-[10px] sm:text-xs text-gray-400 font-medium leading-tight font-orbitron">
         Round #{roundData?.roundId || 0}
       </div>

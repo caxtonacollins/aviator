@@ -1,20 +1,22 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { 
-  Wallet, 
-  TrendingUp, 
-  TrendingDown, 
-  Pause, 
-  Play, 
-  Settings, 
+import { useState, useEffect } from "react";
+import { useChainId } from "wagmi";
+import {
+  Wallet,
+  TrendingUp,
+  TrendingDown,
+  Pause,
+  Play,
+  Settings,
   DollarSign,
   AlertCircle,
   CheckCircle,
   Loader2,
   ExternalLink,
-  RefreshCw
-} from 'lucide-react';
+  RefreshCw,
+} from "lucide-react";
+import * as api from "@/lib/api";
 
 interface ContractStatus {
   owner: string;
@@ -24,37 +26,46 @@ interface ContractStatus {
   ethBalance: number;
   usdcBalance: number;
   usdcToken: string;
+  chain: string;
+  chainId: number;
 }
 
 interface Transaction {
   type: string;
-  status: 'pending' | 'success' | 'error';
+  status: "pending" | "success" | "error";
   message: string;
   txHash?: string;
   timestamp: number;
+  chain?: string;
 }
 
 export default function AdminDashboard() {
-  const [adminSecret, setAdminSecret] = useState('');
+  const chainId = useChainId();
+  const [adminSecret, setAdminSecret] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [contractStatus, setContractStatus] = useState<ContractStatus | null>(null);
+  const [contractStatus, setContractStatus] = useState<ContractStatus | null>(
+    null,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [activeTab, setActiveTab] = useState<'overview' | 'house' | 'contract' | 'advanced'>('overview');
+  const [activeTab, setActiveTab] = useState<
+    "overview" | "house" | "contract" | "advanced"
+  >("overview");
 
   // Form states
-  const [withdrawAmount, setWithdrawAmount] = useState('');
-  const [fundAmount, setFundAmount] = useState('');
-  const [newOperator, setNewOperator] = useState('');
-  const [ethWithdrawAddress, setEthWithdrawAddress] = useState('');
-  const [ethWithdrawAmount, setEthWithdrawAmount] = useState('');
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [fundAmount, setFundAmount] = useState("");
+  const [newOperator, setNewOperator] = useState("");
+  const [ethWithdrawAddress, setEthWithdrawAddress] = useState("");
+  const [ethWithdrawAmount, setEthWithdrawAmount] = useState("");
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+  const API_URL =
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
 
   useEffect(() => {
-    const storedSecret = localStorage.getItem('adminSecret');
+    const storedSecret = localStorage.getItem("adminSecret");
     if (storedSecret) {
       setAdminSecret(storedSecret);
       verifyAndLogin(storedSecret);
@@ -63,61 +74,43 @@ export default function AdminDashboard() {
 
   const verifyAndLogin = async (secret: string) => {
     setIsLoading(true);
-    setError('');
+    setError("");
     try {
       console.log("secret", secret);
-      const response = await fetch(`${API_URL}/admin/contract/status`, {
-        headers: {
-          'Authorization': `Bearer ${secret}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setContractStatus(data);
-        setIsAuthenticated(true);
-        localStorage.setItem('adminSecret', secret);
-      } else {
-        if (response.status === 401) {
-          setError('Invalid admin credentials');
-          localStorage.removeItem('adminSecret');
-        } else {
-          setError('Failed to verify credentials');
-        }
-        setIsAuthenticated(false);
-      }
+      const data = await api.adminFetchContractStatus(secret, chainId);
+      setContractStatus(data);
+      setIsAuthenticated(true);
+      localStorage.setItem("adminSecret", secret);
     } catch (err) {
-      console.error('Login verification failed:', err);
-      setError('Connection error - backend may be offline');
+      console.error("Login verification failed:", err);
+      const errorMsg = (err as Error).message;
+      if (errorMsg.includes("401") || errorMsg.includes("Unauthorized")) {
+        setError("Invalid admin credentials");
+        localStorage.removeItem("adminSecret");
+      } else {
+        setError("Connection error - backend may be offline");
+      }
       setIsAuthenticated(false);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const addTransaction = (tx: Omit<Transaction, 'timestamp'>) => {
-    setTransactions(prev => [{ ...tx, timestamp: Date.now() }, ...prev].slice(0, 10));
+  const addTransaction = (tx: Omit<Transaction, "timestamp">) => {
+    setTransactions((prev) =>
+      [{ ...tx, timestamp: Date.now() }, ...prev].slice(0, 10),
+    );
   };
 
   const fetchContractStatus = async (secret: string) => {
     try {
-      const response = await fetch(`${API_URL}/admin/contract/status`, {
-        headers: {
-          'Authorization': `Bearer ${secret}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setContractStatus(data);
-      } else if (response.status === 401) {
-        // If we get 401 during normal operation, logout
+      const data = await api.adminFetchContractStatus(secret, chainId);
+      setContractStatus(data);
+    } catch (error) {
+      console.error("Failed to fetch contract status:", error);
+      if ((error as Error).message.includes("401")) {
         handleLogout();
       }
-    } catch (error) {
-      console.error('Failed to fetch contract status:', error);
     }
   };
 
@@ -128,54 +121,40 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('adminSecret');
-    setAdminSecret('');
+    localStorage.removeItem("adminSecret");
+    setAdminSecret("");
     setIsAuthenticated(false);
     setContractStatus(null);
-    setError('');
+    setError("");
   };
 
-  const makeRequest = async (endpoint: string, method: string = 'GET', body?: any) => {
+  const makeRequest = async (
+    fn: (...args: any[]) => Promise<any>,
+    ...args: any[]
+  ) => {
     setIsLoading(true);
     try {
-      const options: RequestInit = {
-        method,
-        headers: {
-          'Authorization': `Bearer ${adminSecret}`,
-          'Content-Type': 'application/json'
-        }
-      };
+      const data = await fn(...args, chainId);
 
-      if (body) {
-        options.body = JSON.stringify(body);
-      }
-
-      console.log("options", options);
-      const response = await fetch(`${API_URL}${endpoint}`, options);
-      const data = await response.json();
-
-      if (response.ok) {
-        addTransaction({
-          type: endpoint.split('/').pop() || 'action',
-          status: 'success',
-          message: data.message || 'Operation completed successfully',
-          txHash: data.txHash
-        });
-        await fetchContractStatus(adminSecret);
-        return data;
-      } else {
-        if (response.status === 401) {
-          handleLogout();
-          throw new Error('Session expired - please login again');
-        }
-        throw new Error(data.error || 'Operation failed');
-      }
+      addTransaction({
+        type: "action",
+        status: "success",
+        message: data.message || "Operation completed successfully",
+        txHash: data.txHash,
+        chain: data.chain,
+      });
+      await fetchContractStatus(adminSecret);
+      return data;
     } catch (error) {
       addTransaction({
-        type: 'error',
-        status: 'error',
-        message: (error as Error).message
+        type: "error",
+        status: "error",
+        message: (error as Error).message,
+        chain: contractStatus?.chain,
       });
+      if ((error as Error).message.includes("Session expired")) {
+        handleLogout();
+      }
       throw error;
     } finally {
       setIsLoading(false);
@@ -184,38 +163,44 @@ export default function AdminDashboard() {
 
   const handleWithdraw = async () => {
     if (!withdrawAmount) return;
-    await makeRequest('/admin/house/withdraw', 'POST', { amount: parseFloat(withdrawAmount) });
-    setWithdrawAmount('');
+    await makeRequest(
+      api.adminWithdrawHouse,
+      adminSecret,
+      parseFloat(withdrawAmount),
+    );
+    setWithdrawAmount("");
   };
 
   const handleFund = async () => {
     if (!fundAmount) return;
-    await makeRequest('/admin/house/fund', 'POST', { amount: parseFloat(fundAmount) });
-    setFundAmount('');
+    await makeRequest(api.adminFundHouse, adminSecret, parseFloat(fundAmount));
+    setFundAmount("");
   };
 
   const handlePause = async () => {
-    await makeRequest('/admin/contract/pause', 'POST');
+    await makeRequest(api.adminPauseContract, adminSecret);
   };
 
   const handleUnpause = async () => {
-    await makeRequest('/admin/contract/unpause', 'POST');
+    await makeRequest(api.adminUnpauseContract, adminSecret);
   };
 
   const handleSetOperator = async () => {
     if (!newOperator) return;
-    await makeRequest('/admin/contract/operator', 'POST', { address: newOperator });
-    setNewOperator('');
+    await makeRequest(api.adminSetOperator, adminSecret, newOperator);
+    setNewOperator("");
   };
 
   const handleWithdrawETH = async () => {
     if (!ethWithdrawAddress || !ethWithdrawAmount) return;
-    await makeRequest('/admin/eth/withdraw', 'POST', { 
-      to: ethWithdrawAddress, 
-      amount: parseFloat(ethWithdrawAmount) 
-    });
-    setEthWithdrawAddress('');
-    setEthWithdrawAmount('');
+    await makeRequest(
+      api.adminWithdrawETH,
+      adminSecret,
+      ethWithdrawAddress,
+      parseFloat(ethWithdrawAmount),
+    );
+    setEthWithdrawAddress("");
+    setEthWithdrawAmount("");
   };
 
   if (!isAuthenticated) {
@@ -227,9 +212,11 @@ export default function AdminDashboard() {
               <Settings className="w-8 h-8 text-green-400" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">Admin Access</h1>
-            <p className="text-slate-400">Enter your admin secret to continue</p>
+            <p className="text-slate-400">
+              Enter your admin secret to continue
+            </p>
           </div>
-          
+
           <div className="space-y-4">
             {error && (
               <div className="p-3 bg-red-500/20 border border-red-500/50 rounded-lg flex items-center gap-2 text-red-400 text-sm">
@@ -242,7 +229,7 @@ export default function AdminDashboard() {
               placeholder="Admin Secret"
               value={adminSecret}
               onChange={(e) => setAdminSecret(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
               disabled={isLoading}
               className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-all disabled:opacity-50"
             />
@@ -252,7 +239,9 @@ export default function AdminDashboard() {
               className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:cursor-not-allowed"
             >
               {isLoading ? (
-                <><Loader2 className="w-5 h-5 animate-spin" /> Verifying...</>
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" /> Verifying...
+                </>
               ) : (
                 <>Access Dashboard</>
               )}
@@ -270,7 +259,9 @@ export default function AdminDashboard() {
         <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
+              <h1 className="text-3xl font-bold text-white mb-2">
+                Admin Dashboard
+              </h1>
               <p className="text-slate-400">Manage your Aviator contract</p>
             </div>
             <div className="flex gap-3">
@@ -279,9 +270,15 @@ export default function AdminDashboard() {
                 disabled={isLoading}
                 className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-all"
               >
-                <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+                <RefreshCw
+                  className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`}
+                />
                 Refresh
               </button>
+              <div className="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm font-medium">
+                {contractStatus?.chain || "Chain"} (ID:{" "}
+                {contractStatus?.chainId || chainId})
+              </div>
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all"
@@ -298,28 +295,40 @@ export default function AdminDashboard() {
         <StatCard
           icon={<DollarSign className="w-6 h-6" />}
           title="USDC Balance"
-          value={`${contractStatus?.usdcBalance.toFixed(2) || '0.00'}`}
+          value={`${contractStatus?.usdcBalance.toFixed(2) || "0.00"}`}
           subtitle="USDC"
           color="green"
         />
         <StatCard
           icon={<Wallet className="w-6 h-6" />}
           title="ETH Balance"
-          value={`${contractStatus?.ethBalance.toFixed(4) || '0.0000'}`}
+          value={`${contractStatus?.ethBalance.toFixed(4) || "0.0000"}`}
           subtitle="ETH"
           color="blue"
         />
         <StatCard
-          icon={contractStatus?.isPaused ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+          icon={
+            contractStatus?.isPaused ? (
+              <Pause className="w-6 h-6" />
+            ) : (
+              <Play className="w-6 h-6" />
+            )
+          }
           title="Contract Status"
-          value={contractStatus?.isPaused ? 'Paused' : 'Active'}
-          subtitle={contractStatus?.isPaused ? 'Game is paused' : 'Game is running'}
-          color={contractStatus?.isPaused ? 'red' : 'green'}
+          value={contractStatus?.isPaused ? "Paused" : "Active"}
+          subtitle={
+            contractStatus?.isPaused ? "Game is paused" : "Game is running"
+          }
+          color={contractStatus?.isPaused ? "red" : "green"}
         />
         <StatCard
           icon={<Settings className="w-6 h-6" />}
           title="Operator"
-          value={contractStatus?.serverOperator.slice(0, 6) + '...' + contractStatus?.serverOperator.slice(-4) || 'N/A'}
+          value={
+            contractStatus?.serverOperator.slice(0, 6) +
+              "..." +
+              contractStatus?.serverOperator.slice(-4) || "N/A"
+          }
           subtitle="Server Operator"
           color="green"
         />
@@ -328,16 +337,28 @@ export default function AdminDashboard() {
       {/* Tabs */}
       <div className="max-w-7xl mx-auto mb-6">
         <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-2 inline-flex gap-2">
-          <TabButton active={activeTab === 'overview'} onClick={() => setActiveTab('overview')}>
+          <TabButton
+            active={activeTab === "overview"}
+            onClick={() => setActiveTab("overview")}
+          >
             Overview
           </TabButton>
-          <TabButton active={activeTab === 'house'} onClick={() => setActiveTab('house')}>
+          <TabButton
+            active={activeTab === "house"}
+            onClick={() => setActiveTab("house")}
+          >
             House Management
           </TabButton>
-          <TabButton active={activeTab === 'contract'} onClick={() => setActiveTab('contract')}>
+          <TabButton
+            active={activeTab === "contract"}
+            onClick={() => setActiveTab("contract")}
+          >
             Contract Control
           </TabButton>
-          <TabButton active={activeTab === 'advanced'} onClick={() => setActiveTab('advanced')}>
+          <TabButton
+            active={activeTab === "advanced"}
+            onClick={() => setActiveTab("advanced")}
+          >
             Advanced
           </TabButton>
         </div>
@@ -347,11 +368,11 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Main Actions */}
         <div className="lg:col-span-2 space-y-6">
-          {activeTab === 'overview' && (
+          {activeTab === "overview" && (
             <OverviewTab contractStatus={contractStatus} />
           )}
 
-          {activeTab === 'house' && (
+          {activeTab === "house" && (
             <>
               <ActionCard
                 title="Withdraw House Profits"
@@ -380,7 +401,10 @@ export default function AdminDashboard() {
                     className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
-                      <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />{" "}
+                        Processing...
+                      </>
                     ) : (
                       <>Withdraw to Owner</>
                     )}
@@ -412,7 +436,10 @@ export default function AdminDashboard() {
                     className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
-                      <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />{" "}
+                        Processing...
+                      </>
                     ) : (
                       <>Fund House</>
                     )}
@@ -422,12 +449,18 @@ export default function AdminDashboard() {
             </>
           )}
 
-          {activeTab === 'contract' && (
+          {activeTab === "contract" && (
             <>
               <ActionCard
                 title="Pause/Unpause Contract"
                 description="Emergency control to pause or resume the contract"
-                icon={contractStatus?.isPaused ? <Play className="w-6 h-6 text-green-400" /> : <Pause className="w-6 h-6 text-orange-400" />}
+                icon={
+                  contractStatus?.isPaused ? (
+                    <Play className="w-6 h-6 text-green-400" />
+                  ) : (
+                    <Pause className="w-6 h-6 text-orange-400" />
+                  )
+                }
               >
                 <div className="flex gap-3">
                   <button
@@ -452,12 +485,16 @@ export default function AdminDashboard() {
                     {contractStatus?.isPaused ? (
                       <>
                         <AlertCircle className="w-4 h-4 text-orange-400" />
-                        <span className="text-orange-400">Contract is currently paused</span>
+                        <span className="text-orange-400">
+                          Contract is currently paused
+                        </span>
                       </>
                     ) : (
                       <>
                         <CheckCircle className="w-4 h-4 text-green-400" />
-                        <span className="text-green-400">Contract is active</span>
+                        <span className="text-green-400">
+                          Contract is active
+                        </span>
                       </>
                     )}
                   </div>
@@ -491,7 +528,10 @@ export default function AdminDashboard() {
                     className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isLoading ? (
-                      <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />{" "}
+                        Processing...
+                      </>
                     ) : (
                       <>Update Operator</>
                     )}
@@ -501,7 +541,7 @@ export default function AdminDashboard() {
             </>
           )}
 
-          {activeTab === 'advanced' && (
+          {activeTab === "advanced" && (
             <ActionCard
               title="Withdraw ETH"
               description="Withdraw ETH from the contract (for gas or accidentally sent ETH)"
@@ -538,11 +578,15 @@ export default function AdminDashboard() {
                 </div>
                 <button
                   onClick={handleWithdrawETH}
-                  disabled={isLoading || !ethWithdrawAddress || !ethWithdrawAmount}
+                  disabled={
+                    isLoading || !ethWithdrawAddress || !ethWithdrawAmount
+                  }
                   className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold py-3 rounded-lg transition-all disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isLoading ? (
-                    <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" /> Processing...
+                    </>
                   ) : (
                     <>Withdraw ETH</>
                   )}
@@ -555,7 +599,9 @@ export default function AdminDashboard() {
         {/* Right Column - Transaction History */}
         <div className="lg:col-span-1">
           <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl sticky top-8">
-            <h3 className="text-xl font-bold text-white mb-4">Recent Activity</h3>
+            <h3 className="text-xl font-bold text-white mb-4">
+              Recent Activity
+            </h3>
             <div className="space-y-3 max-h-[600px] overflow-y-auto">
               {transactions.length === 0 ? (
                 <div className="text-center py-8 text-slate-500">
@@ -577,26 +623,32 @@ export default function AdminDashboard() {
 
 // Helper Components
 
-function StatCard({ icon, title, value, subtitle, color }: {
+function StatCard({
+  icon,
+  title,
+  value,
+  subtitle,
+  color,
+}: {
   icon: React.ReactNode;
   title: string;
   value: string;
   subtitle: string;
-  color: 'green' | 'blue' | 'red' | 'purple';
+  color: "green" | "blue" | "red" | "purple";
 }) {
-  const colorClasses: Record<'green' | 'blue' | 'red' | 'purple', string> = {
-    green: 'from-green-500/20 to-emerald-500/20 border-green-500/30',
-    blue: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30',
-    red: 'from-red-500/20 to-orange-500/20 border-red-500/30',
-    purple: 'from-green-500/20 to-emerald-500/20 border-green-500/30'
+  const colorClasses: Record<"green" | "blue" | "red" | "purple", string> = {
+    green: "from-green-500/20 to-emerald-500/20 border-green-500/30",
+    blue: "from-blue-500/20 to-cyan-500/20 border-blue-500/30",
+    red: "from-red-500/20 to-orange-500/20 border-red-500/30",
+    purple: "from-green-500/20 to-emerald-500/20 border-green-500/30",
   };
 
   return (
-    <div className={`bg-gradient-to-br ${colorClasses[color]} backdrop-blur-xl border rounded-2xl p-6 shadow-xl`}>
+    <div
+      className={`bg-gradient-to-br ${colorClasses[color]} backdrop-blur-xl border rounded-2xl p-6 shadow-xl`}
+    >
       <div className="flex items-start justify-between mb-4">
-        <div className="p-3 bg-slate-900/50 rounded-lg">
-          {icon}
-        </div>
+        <div className="p-3 bg-slate-900/50 rounded-lg">{icon}</div>
       </div>
       <h3 className="text-slate-400 text-sm font-medium mb-1">{title}</h3>
       <p className="text-3xl font-bold text-white mb-1">{value}</p>
@@ -611,8 +663,8 @@ function TabButton({ active, onClick, children }: any) {
       onClick={onClick}
       className={`px-6 py-3 rounded-xl font-medium transition-all ${
         active
-        ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg'
-          : 'text-slate-400 hover:text-white hover:bg-slate-800'
+          ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg"
+          : "text-slate-400 hover:text-white hover:bg-slate-800"
       }`}
     >
       {children}
@@ -624,9 +676,7 @@ function ActionCard({ title, description, icon, children }: any) {
   return (
     <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl">
       <div className="flex items-start gap-4 mb-6">
-        <div className="p-3 bg-slate-800/50 rounded-lg">
-          {icon}
-        </div>
+        <div className="p-3 bg-slate-800/50 rounded-lg">{icon}</div>
         <div>
           <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
           <p className="text-slate-400 text-sm">{description}</p>
@@ -637,38 +687,74 @@ function ActionCard({ title, description, icon, children }: any) {
   );
 }
 
-function OverviewTab({ contractStatus }: { contractStatus: ContractStatus | null }) {
+function OverviewTab({
+  contractStatus,
+}: {
+  contractStatus: ContractStatus | null;
+}) {
   return (
     <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl">
-      <h3 className="text-xl font-bold text-white mb-6">Contract Information</h3>
+      <h3 className="text-xl font-bold text-white mb-6">
+        Contract Information
+      </h3>
       <div className="space-y-4">
-        <InfoRow label="Contract Address" value={contractStatus?.contractAddress || 'N/A'} copyable />
-        <InfoRow label="Owner Address" value={contractStatus?.owner || 'N/A'} copyable />
-        <InfoRow label="Server Operator" value={contractStatus?.serverOperator || 'N/A'} copyable />
-        <InfoRow label="USDC Token" value={contractStatus?.usdcToken || 'N/A'} copyable />
-        <InfoRow 
-          label="Status" 
+        <InfoRow
+          label="Contract Address"
+          value={contractStatus?.contractAddress || "N/A"}
+          copyable
+        />
+        <InfoRow
+          label="Owner Address"
+          value={contractStatus?.owner || "N/A"}
+          copyable
+        />
+        <InfoRow
+          label="Server Operator"
+          value={contractStatus?.serverOperator || "N/A"}
+          copyable
+        />
+        <InfoRow
+          label="USDC Token"
+          value={contractStatus?.usdcToken || "N/A"}
+          copyable
+        />
+        <InfoRow
+          label="Status"
           value={
-            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
-              contractStatus?.isPaused 
-                ? 'bg-red-500/20 text-red-400 border border-red-500/30' 
-                : 'bg-green-500/20 text-green-400 border border-green-500/30'
-            }`}>
-              {contractStatus?.isPaused ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              {contractStatus?.isPaused ? 'Paused' : 'Active'}
+            <span
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
+                contractStatus?.isPaused
+                  ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                  : "bg-green-500/20 text-green-400 border border-green-500/30"
+              }`}
+            >
+              {contractStatus?.isPaused ? (
+                <Pause className="w-4 h-4" />
+              ) : (
+                <Play className="w-4 h-4" />
+              )}
+              {contractStatus?.isPaused ? "Paused" : "Active"}
             </span>
-          } 
+          }
         />
       </div>
     </div>
   );
 }
 
-function InfoRow({ label, value, copyable }: { label: string; value: any; copyable?: boolean }) {
+function InfoRow({
+  label,
+  value,
+  copyable,
+}: {
+  label: string;
+  value: any;
+  copyable?: boolean;
+}) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       navigator.clipboard.writeText(value);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -679,8 +765,10 @@ function InfoRow({ label, value, copyable }: { label: string; value: any; copyab
     <div className="flex items-center justify-between p-3 bg-slate-800/30 rounded-lg">
       <span className="text-slate-400 text-sm font-medium">{label}</span>
       <div className="flex items-center gap-2">
-        {typeof value === 'string' ? (
-          <span className="text-white text-sm font-mono">{value.slice(0, 10)}...{value.slice(-8)}</span>
+        {typeof value === "string" ? (
+          <span className="text-white text-sm font-mono">
+            {value.slice(0, 10)}...{value.slice(-8)}
+          </span>
         ) : (
           value
         )}
@@ -703,14 +791,27 @@ function InfoRow({ label, value, copyable }: { label: string; value: any; copyab
 
 function TransactionItem({ transaction }: { transaction: Transaction }) {
   const statusConfig = {
-    pending: { color: 'text-yellow-400', bg: 'bg-yellow-500/20', icon: <Loader2 className="w-4 h-4 animate-spin" /> },
-    success: { color: 'text-green-400', bg: 'bg-green-500/20', icon: <CheckCircle className="w-4 h-4" /> },
-    error: { color: 'text-red-400', bg: 'bg-red-500/20', icon: <AlertCircle className="w-4 h-4" /> }
+    pending: {
+      color: "text-yellow-400",
+      bg: "bg-yellow-500/20",
+      icon: <Loader2 className="w-4 h-4 animate-spin" />,
+    },
+    success: {
+      color: "text-green-400",
+      bg: "bg-green-500/20",
+      icon: <CheckCircle className="w-4 h-4" />,
+    },
+    error: {
+      color: "text-red-400",
+      bg: "bg-red-500/20",
+      icon: <AlertCircle className="w-4 h-4" />,
+    },
   };
 
   const config = statusConfig[transaction.status];
   const timeAgo = Math.floor((Date.now() - transaction.timestamp) / 1000);
-  const timeStr = timeAgo < 60 ? 'Just now' : `${Math.floor(timeAgo / 60)}m ago`;
+  const timeStr =
+    timeAgo < 60 ? "Just now" : `${Math.floor(timeAgo / 60)}m ago`;
 
   return (
     <div className="p-3 bg-slate-800/30 border border-slate-700/50 rounded-lg">
@@ -719,8 +820,17 @@ function TransactionItem({ transaction }: { transaction: Transaction }) {
           {config.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-medium truncate">{transaction.message}</p>
-          <p className="text-slate-500 text-xs mt-1">{timeStr}</p>
+          <p className="text-white text-sm font-medium truncate">
+            {transaction.message}
+          </p>
+          <div className="flex items-center gap-2 mt-1">
+            <p className="text-slate-500 text-xs">{timeStr}</p>
+            {transaction.chain && (
+              <span className="text-slate-500 text-xs px-2 py-0.5 bg-slate-700/50 rounded">
+                {transaction.chain}
+              </span>
+            )}
+          </div>
           {transaction.txHash && (
             <a
               href={`https://basescan.org/tx/${transaction.txHash}`}

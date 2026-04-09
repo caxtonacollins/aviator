@@ -60,7 +60,7 @@ const Nav = () => {
               alt="Plane"
               width={48}
               height={48}
-              className="w-12 h-12"
+              className="w-12 h-12 hidden sm:block"
             />
             {isMobile() ? null : (
               <span className="font-bold text-xl text-red-800 font-orbitron uppercase tracking-wider">
@@ -86,7 +86,7 @@ const Nav = () => {
             alt="Plane"
             width={48}
             height={48}
-            className="w-12 h-12"
+            className="w-12 h-12 hidden sm:block"
           />
           {isMobile() ? null : (
             <span className="font-bold text-xl text-red-800 font-orbitron uppercase tracking-wider">

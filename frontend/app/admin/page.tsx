@@ -39,10 +39,16 @@ interface Transaction {
   chain?: string;
 }
 
+const SUPPORTED_CHAINS = [
+  { id: 8453, label: "Base", color: "from-blue-600 to-blue-700" },
+  { id: 42220, label: "Celo", color: "from-green-600 to-emerald-700" },
+];
+
 export default function AdminDashboard() {
   const chainId = useChainId();
   const [adminSecret, setAdminSecret] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [selectedChain, setSelectedChain] = useState<number>(8453); // Default to Base
   const [contractStatus, setContractStatus] = useState<ContractStatus | null>(
     null,
   );
@@ -61,11 +67,12 @@ export default function AdminDashboard() {
 
   const [error, setError] = useState("");
 
-  const API_URL =
-    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
-
   useEffect(() => {
     const storedSecret = localStorage.getItem("adminSecret");
+    const storedChain = localStorage.getItem("adminSelectedChain");
+    if (storedChain) {
+      setSelectedChain(Number(storedChain));
+    }
     if (storedSecret) {
       setAdminSecret(storedSecret);
       verifyAndLogin(storedSecret);
@@ -77,10 +84,11 @@ export default function AdminDashboard() {
     setError("");
     try {
       console.log("secret", secret);
-      const data = await api.adminFetchContractStatus(secret, chainId);
+      const data = await api.adminFetchContractStatus(secret, selectedChain);
       setContractStatus(data);
       setIsAuthenticated(true);
       localStorage.setItem("adminSecret", secret);
+      localStorage.setItem("adminSelectedChain", selectedChain.toString());
     } catch (err) {
       console.error("Login verification failed:", err);
       const errorMsg = (err as Error).message;
@@ -104,7 +112,7 @@ export default function AdminDashboard() {
 
   const fetchContractStatus = async (secret: string) => {
     try {
-      const data = await api.adminFetchContractStatus(secret, chainId);
+      const data = await api.adminFetchContractStatus(secret, selectedChain);
       setContractStatus(data);
     } catch (error) {
       console.error("Failed to fetch contract status:", error);
@@ -134,7 +142,7 @@ export default function AdminDashboard() {
   ) => {
     setIsLoading(true);
     try {
-      const data = await fn(...args, chainId);
+      const data = await fn(...args, selectedChain);
 
       addTransaction({
         type: "action",
@@ -264,7 +272,41 @@ export default function AdminDashboard() {
               </h1>
               <p className="text-slate-400">Manage your Aviator contract</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+              {/* Chain Switcher */}
+              <div className="flex gap-2 bg-slate-800/50 p-1 rounded-lg border border-slate-700">
+                {SUPPORTED_CHAINS.map((chain) => (
+                  <button
+                    key={chain.id}
+                    onClick={() => {
+                      setSelectedChain(chain.id);
+                      localStorage.setItem(
+                        "adminSelectedChain",
+                        chain.id.toString(),
+                      );
+                      // Clear all form fields
+                      setWithdrawAmount("");
+                      setFundAmount("");
+                      setNewOperator("");
+                      setEthWithdrawAddress("");
+                      setEthWithdrawAmount("");
+                      // Reset to overview tab
+                      setActiveTab("overview");
+                      // Fetch fresh data for new chain
+                      fetchContractStatus(adminSecret);
+                    }}
+                    disabled={isLoading}
+                    className={`px-4 py-2 rounded-md font-medium transition-all text-sm ${
+                      selectedChain === chain.id
+                        ? `bg-gradient-to-r ${chain.color} text-white shadow-lg`
+                        : "text-slate-400 hover:text-white hover:bg-slate-700"
+                    } disabled:opacity-50`}
+                  >
+                    {chain.label}
+                  </button>
+                ))}
+              </div>
+
               <button
                 onClick={() => fetchContractStatus(adminSecret)}
                 disabled={isLoading}
@@ -275,10 +317,6 @@ export default function AdminDashboard() {
                 />
                 Refresh
               </button>
-              <div className="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm font-medium">
-                {contractStatus?.chain || "Chain"} (ID:{" "}
-                {contractStatus?.chainId || chainId})
-              </div>
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all"

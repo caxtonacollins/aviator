@@ -1,7 +1,7 @@
 import { ethers, type InterfaceAbi } from 'ethers';
 import { computePlayersMerkleRoot } from './merkle.js';
 import aviatorAbi from '../abi/aviator.json' with { type: 'json' };
-import { getActiveChainConfig, getChainConfig } from '../config/chains.js';
+import { getChainConfig } from '../config/chains.js';
 
 const aviatorAbiTyped = aviatorAbi as unknown as InterfaceAbi;
 import type { Round } from '../entities/round.entity.js';

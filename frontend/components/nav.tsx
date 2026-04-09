@@ -16,7 +16,7 @@ import {
 import { useAccount } from "wagmi";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useGameContext } from "@/context/GameContext";
 import ChainSwitcher from "@/components/ChainSwitcher";
@@ -29,9 +29,14 @@ const isMobile = () => {
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { roundData } = useGameContext();
   const { address, isConnected } = useAccount();
   const { chainLabel, usdcBalance } = useChainInfo();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isFlying = roundData?.phase === "FLYING";
 
@@ -43,6 +48,30 @@ const Nav = () => {
   }, [address, roundData?.players]);
 
   const shouldHide = isFlying && !isConnected && !hasActiveBets;
+
+  // Don't render wallet-dependent content until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <header className="px-4 py-3 relative z-50">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="Plane"
+              width={48}
+              height={48}
+              className="w-12 h-12"
+            />
+            {isMobile() ? null : (
+              <span className="font-bold text-xl text-red-800 font-orbitron uppercase tracking-wider">
+                Aviator
+              </span>
+            )}
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header

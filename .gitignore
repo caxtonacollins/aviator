@@ -45,3 +45,6 @@ old
 # backend logs
 backend/logs/
 *.log
+
+# vscode
+.vscode

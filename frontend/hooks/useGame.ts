@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import manager from "./gameSocketManager";
 import { RoundData, GameHistory, LeaderboardEntry } from "@/types/game";
-import { useWalletClient, usePublicClient } from 'wagmi';
+import { useWalletClient, usePublicClient, useChainId } from 'wagmi';
 import GameABI from "@/abis/aviator.json";
 const DEFAULT_WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001";
 import useUSDC from "@/hooks/useUSDC";
@@ -13,6 +13,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
   const wsUrl = options.wsUrl || DEFAULT_WS_URL;
   const { data: walletClient } = useWalletClient();
   const publicClient = usePublicClient();
+  const chainId = useChainId();
 
   const {
     transferUSDC,
@@ -139,7 +140,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
         }
 
         console.log("placing bet", roundData.roundId, address, amount);
-        const res = await api.placeBetRest(roundData.roundId, address, amount);
+        const res = await api.placeBetRest(roundData.roundId, address, amount, chainId);
 
         if (res.success && res.bet) {
           // Notify socket (optimistic) or wait for server push
@@ -164,14 +165,15 @@ export function useGame(options: { wsUrl?: string } = {}) {
       walletClient,
       publicClient,
       checkAllowance,
-      approveUSDC
+      approveUSDC,
+      chainId
     ],
   );
 
   const cashOut = useCallback(async (betId: number) => {
     try {
       console.log("cashout", betId);
-      const res = await api.cashOutRest(betId);
+      const res = await api.cashOutRest(betId, undefined, chainId);
       console.log("cashout result", res);
       if (res.success) {
         return { success: true };
@@ -182,7 +184,7 @@ export function useGame(options: { wsUrl?: string } = {}) {
       console.warn("REST cashout failed", e);
       return { success: false, error: 'Cashout failed' };
     }
-  }, []);
+  }, [chainId]);
 
   const reconnect = useCallback(() => {
     manager.connect(wsUrl);

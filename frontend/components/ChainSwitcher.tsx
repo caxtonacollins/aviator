@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useChainId, useSwitchChain } from "wagmi";
 import { CHAIN_CONFIGS } from "@/lib/chains";
 import { ChevronDown } from "lucide-react";
@@ -9,6 +9,13 @@ const ChainSwitcher: React.FC = () => {
   const chainId = useChainId();
   const { switchChain, isPending } = useSwitchChain();
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const currentChain = CHAIN_CONFIGS[chainId];
   const availableChains = Object.values(CHAIN_CONFIGS);

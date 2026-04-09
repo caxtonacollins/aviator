@@ -24,13 +24,22 @@ config();
 const app: Express = express();
 const port = process.env.PORT || 3001;
 
+// Build CORS origins dynamically
+const corsOrigins: (string | RegExp)[] = [
+  'https://aviator-sand.vercel.app',
+  'http://localhost:3000',
+  'https://aviator.farcast.app'
+];
+
+// Add ngrok URLs from environment or hardcoded
+if (process.env.NGROK_URL) {
+  corsOrigins.push(process.env.NGROK_URL);
+}
+corsOrigins.push(/^https:\/\/.*\.ngrok(?:-free)?\.app$/);
+
 // Middleware
 app.use(cors({
-  origin: [
-    'https://aviator-sand.vercel.app',
-    'http://localhost:3000',
-    'https://aviator.farcast.app'
-  ],
+  origin: corsOrigins as any,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -57,7 +66,13 @@ app.get('/', (req: Request, res: Response) => {
 
 // GameEngine setup
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: corsOrigins as any,
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
+});
 const gameEngine = new GameEngine(io);
 
 // Routes with dependency injection

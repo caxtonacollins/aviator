@@ -389,7 +389,7 @@ export class GameEngine {
     setTimeout(() => this.startNewRound(), 10000);
   }
 
-  async placeBet(address: string, amount: number) {
+  async placeBet(address: string, amount: number, chainId?: number) {
     if (!this.currentRound || this.currentRound.phase !== 'BETTING')
       throw new Error('Betting closed');
 
@@ -399,11 +399,18 @@ export class GameEngine {
 
     // Relay to chain if no txHash provided (meaning it's a backend-mediated bet)
     let finalTxHash = null;
-    if (!finalTxHash && this.chainService) {
+    if (!finalTxHash) {
       try {
-        finalTxHash = await this.chainService.placeBetFor(this.currentRound.roundId, address, amount);
+        // Use chainId-specific service if provided, otherwise use default
+        const chainService = chainId
+          ? new (await import('./chain.service.js')).ChainService(chainId)
+          : this.chainService;
+
+        if (chainService) {
+          finalTxHash = await chainService.placeBetFor(this.currentRound.roundId, address, amount);
+        }
       } catch (err) {
-        logger.error('Failed to relay bet to chain', { error: (err as Error).message });
+        logger.error('Failed to relay bet to chain', { error: (err as Error).message, chainId });
         throw new Error('Failed to place bet on chain: ' + (err as Error).message);
       }
     }
@@ -432,7 +439,7 @@ export class GameEngine {
     return bet;
   }
 
-  async cashOutById(betId: number) {
+  async cashOutById(betId: number, chainId?: number) {
     const bet = await this.betRepo.findOne({
       where: { id: betId },
       relations: ['round'],
@@ -447,18 +454,18 @@ export class GameEngine {
     bet.payout = Number(bet.amount) * Number(bet.cashoutMultiplier || 1);
 
     // Relay cashout to chain
-    if (this.chainService) {
+    if (this.chainService || chainId) {
       try {
-        // optimistically assume it works or handle error?
-        // If chain fails, we should probably fail the cashout?
-        // But the game is fast-paced.
-        // Let's await it to ensure user gets funds.
-        await this.chainService.cashOutFor(this.currentRound.roundId, bet.address, Number(bet.payout), Number(bet.cashoutMultiplier));
+        // Use chainId-specific service if provided, otherwise use default
+        const chainService = chainId
+          ? new (await import('./chain.service.js')).ChainService(chainId)
+          : this.chainService;
+
+        if (chainService) {
+          await chainService.cashOutFor(this.currentRound.roundId, bet.address, Number(bet.payout), Number(bet.cashoutMultiplier));
+        }
       } catch (err) {
-        logger.error('Failed to relay cashout to chain', { error: (err as Error).message });
-        // If we fail to cash out on chain, we must NOT mark it as cashed out in DB?
-        // Or mark it but flag for retry?
-        // For now, throw and fail the cashout (user clicks again).
+        logger.error('Failed to relay cashout to chain', { error: (err as Error).message, chainId });
         throw new Error('Failed to cash out on chain: ' + (err as Error).message);
       }
     }

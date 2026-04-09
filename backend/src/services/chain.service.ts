@@ -1,7 +1,7 @@
 import { ethers, type InterfaceAbi } from 'ethers';
 import { computePlayersMerkleRoot } from './merkle.js';
 import aviatorAbi from '../abi/aviator.json' with { type: 'json' };
-import { getActiveChainConfig } from '../config/chains.js';
+import { getActiveChainConfig, getChainConfig } from '../config/chains.js';
 
 const aviatorAbiTyped = aviatorAbi as unknown as InterfaceAbi;
 import type { Round } from '../entities/round.entity.js';
@@ -12,9 +12,11 @@ export class ChainService {
   provider: ethers.JsonRpcProvider;
   signer: ethers.Wallet;
   contract: ethers.Contract;
+  chainId: number;
 
-  constructor() {
-    const chainConfig = getActiveChainConfig();
+  constructor(chainId?: number) {
+    const chainConfig = chainId ? getChainConfig(chainId) : getActiveChainConfig();
+    this.chainId = chainConfig.chainId;
     const key = process.env.BACKEND_PRIVATE_KEY;
 
     if (!key)
@@ -118,13 +120,27 @@ export class ChainService {
 
       logger.info('Placing bet on chain', { roundId, player, amount, betAmount: betAmount.toString() });
 
+      // Log contract details for debugging
+      const contractAddr = await this.contract.getAddress();
+      logger.info('Contract details', {
+        contractAddress: contractAddr,
+        chainId: (await this.provider.getNetwork()).chainId,
+        serverOperator: await this.contract.serverOperator()
+      });
+
       const tx = await this.contract.placeBetFor(BigInt(roundId), player, betAmount);
       logger.info('Place bet tx submitted', { txHash: tx.hash });
 
       return tx.hash;
     } catch (err) {
       console.error('error', err);
-      logger.error('Failed to place bet on chain', { error: (err as Error).message });
+      const errorMsg = (err as Error).message;
+      logger.error('Failed to place bet on chain', {
+        error: errorMsg,
+        player,
+        amount,
+        roundId
+      });
       throw err;
     }
   }

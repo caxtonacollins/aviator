@@ -57,4 +57,35 @@ export function getActiveChainConfig(): BackendChainConfig {
     return config;
 }
 
+/**
+ * Returns the chain config for a given chainId.
+ * Supports both numeric chain IDs (8453 for Base, 42220 for Celo) and string keys.
+ */
+export function getChainConfig(chainId: number | string): BackendChainConfig {
+    let config: BackendChainConfig | undefined;
+
+    if (typeof chainId === 'number') {
+        // Look up by numeric chain ID
+        config = Object.values(CHAIN_REGISTRY).find(c => c.chainId === chainId);
+    } else {
+        // Look up by string key
+        config = CHAIN_REGISTRY[chainId.toLowerCase()];
+    }
+
+    if (!config) {
+        throw new Error(
+            `Unknown chain "${chainId}". Supported chains: ${Object.keys(CHAIN_REGISTRY).join(", ")}`
+        );
+    }
+
+    if (!config.contractAddress) {
+        throw new Error(
+            `Contract address not set for chain "${config.label}". ` +
+            `Set ${config.label.toUpperCase()}_AVIATOR_CONTRACT_ADDRESS in your .env`
+        );
+    }
+
+    return config;
+}
+
 export { CHAIN_REGISTRY };

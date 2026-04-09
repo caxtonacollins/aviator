@@ -17,10 +17,8 @@ export const createRoundsRouter = (gameEngine: GameEngine) => {
 
   router.post('/:roundId/bets', async (req, res) => {
     try {
-      // We ignore roundId param validation vs current round for simplicity, 
-      // or we can check if roundId matches current.
-      const { address, amount } = req.body;
-      const saved = await gameEngine.placeBet(address, amount);
+      const { address, amount, chainId } = req.body;
+      const saved = await gameEngine.placeBet(address, amount, chainId);
       res.json({ success: true, bet: saved });
     } catch (err) {
       res.status(500).json({ success: false, error: (err as Error).message });
@@ -30,9 +28,8 @@ export const createRoundsRouter = (gameEngine: GameEngine) => {
   router.post('/bets/:betId/cashout', async (req, res) => {
     try {
       const betId = parseInt(req.params.betId, 10);
-      // We don't need multiplier from body for cashout anymore because GameEngine calculates it
-      // based on current game state. Or we can validate it matches.
-      const updated = await gameEngine.cashOutById(betId);
+      const { chainId } = req.body;
+      const updated = await gameEngine.cashOutById(betId, chainId);
       res.json({ success: true, bet: updated });
     } catch (err) {
       res.status(500).json({ success: false, error: (err as Error).message });

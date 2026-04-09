@@ -186,7 +186,13 @@ export class ChainService {
 
   async getHouseBalance() {
     try {
-      const usdcToken = await this.contract.usdcToken();
+      const chainConfig = getChainConfig(this.chainId);
+      const usdcToken = chainConfig.usdcAddress;
+
+      if (!usdcToken) {
+        throw new Error(`USDC address not configured for chain ${this.chainId}`);
+      }
+
       const usdcContract = new ethers.Contract(
         usdcToken,
         ['function balanceOf(address) view returns (uint256)'],
@@ -194,34 +200,58 @@ export class ChainService {
       );
 
       const contractAddress = await this.contract.getAddress();
-      console.log("contractAddress", contractAddress);
       const balance = await usdcContract.balanceOf(contractAddress);
-      console.log("balance", balance);
 
       // Convert from USDC decimals (6) to human readable
       const balanceInUsdc = Number(balance) / 1e6;
 
-      logger.info('House balance retrieved', { balance: balanceInUsdc });
+      logger.info('House balance retrieved', { balance: balanceInUsdc, contractAddress, usdcToken });
 
       return balanceInUsdc;
     } catch (err) {
-      logger.error('Failed to get house balance', { error: (err as Error).message });
-      throw err;
+      logger.error('Failed to get house balance', {
+        error: (err as Error).message,
+        stack: (err as Error).stack
+      });
+      return 0;
     }
   }
 
   async getContractStatus() {
     try {
-      const [owner, serverOperator, isPaused, contractAddress, ethBalance] = await Promise.all([
-        this.contract.owner(),
-        this.contract.serverOperator(),
-        this.contract.paused(),
-        this.contract.getAddress(),
-        this.provider.getBalance(await this.contract.getAddress())
-      ]);
+      const contractAddress = await this.contract.getAddress();
+      const ethBalance = await this.provider.getBalance(contractAddress);
 
-      const usdcToken = await this.contract.usdcToken();
-      const usdcBalance = await this.getHouseBalance();
+      let owner = "0x0000000000000000000000000000000000000000";
+      let serverOperator = "0x0000000000000000000000000000000000000000";
+      let isPaused = false;
+      let usdcToken = "0x0000000000000000000000000000000000000000";
+      let usdcBalance = 0;
+
+      try {
+        owner = await this.contract.owner();
+      } catch (err) {
+        logger.warn('Failed to get owner', { error: (err as Error).message });
+      }
+
+      try {
+        serverOperator = await this.contract.serverOperator();
+      } catch (err) {
+        logger.warn('Failed to get serverOperator', { error: (err as Error).message });
+      }
+
+      try {
+        isPaused = await this.contract.paused();
+      } catch (err) {
+        logger.warn('Failed to get paused status', { error: (err as Error).message });
+      }
+
+      try {
+        usdcToken = await this.contract.usdcToken();
+        usdcBalance = await this.getHouseBalance();
+      } catch (err) {
+        logger.warn('Failed to get USDC info', { error: (err as Error).message });
+      }
 
       return {
         owner,
@@ -233,7 +263,10 @@ export class ChainService {
         usdcToken
       };
     } catch (err) {
-      logger.error('Failed to get contract status', { error: (err as Error).message });
+      logger.error('Failed to get contract status', {
+        error: (err as Error).message,
+        stack: (err as Error).stack
+      });
       throw err;
     }
   }
@@ -283,7 +316,13 @@ export class ChainService {
       logger.info('Funding house', { amount, fundAmount: fundAmount.toString() });
 
       // First approve USDC transfer
-      const usdcToken = await this.contract.usdcToken();
+      const chainConfig = getChainConfig(this.chainId);
+      const usdcToken = chainConfig.usdcAddress;
+
+      if (!usdcToken) {
+        throw new Error(`USDC address not configured for chain ${this.chainId}`);
+      }
+
       const usdcContract = new ethers.Contract(
         usdcToken,
         [

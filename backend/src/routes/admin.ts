@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { ChainService } from '../services/chain.service.js';
+import { getChainConfig } from '../config/chains.js';
 import { logger } from '../utils/logger.js';
 
 const router = Router();
-const chainService = new ChainService();
 
 // Middleware to verify admin authorization (you should implement proper auth)
 const verifyAdmin = (req: Request, res: Response, next: () => void) => {
@@ -27,14 +27,25 @@ const verifyAdmin = (req: Request, res: Response, next: () => void) => {
   next();
 };
 
+// Helper to get chain service for a specific chain
+const getChainServiceForRequest = (req: Request): ChainService => {
+  const chainId = req.body?.chainId || req.query?.chainId;
+  return new ChainService(chainId ? Number(chainId) : undefined);
+};
+
 // GET /api/admin/house/balance - Get current house balance
 router.get('/house/balance', verifyAdmin, async (req: Request, res: Response) => {
   try {
+    const chainService = getChainServiceForRequest(req);
     const balance = await chainService.getHouseBalance();
+    const chainConfig = getChainConfig(chainService.chainId);
+
     res.json({
       success: true,
       balance,
-      balanceFormatted: `${balance.toFixed(2)} USDC`
+      balanceFormatted: `${balance.toFixed(2)} USDC`,
+      chain: chainConfig.label,
+      chainId: chainService.chainId
     });
   } catch (err) {
     logger.error('Failed to get house balance', { error: (err as Error).message });
@@ -57,6 +68,9 @@ router.post('/house/withdraw', verifyAdmin, async (req: Request, res: Response) 
       });
     }
 
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
+
     // Get current balance before withdrawal
     const currentBalance = await chainService.getHouseBalance();
 
@@ -73,7 +87,9 @@ router.post('/house/withdraw', verifyAdmin, async (req: Request, res: Response) 
       success: true,
       txHash,
       amount,
-      message: `Successfully withdrew ${amount} USDC to owner wallet`
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      message: `Successfully withdrew ${amount} USDC to owner wallet on ${chainConfig.label}`
     });
   } catch (err) {
     logger.error('Failed to withdraw house profits', { error: (err as Error).message });
@@ -87,8 +103,16 @@ router.post('/house/withdraw', verifyAdmin, async (req: Request, res: Response) 
 // GET /api/admin/contract/status - Get contract status
 router.get('/contract/status', verifyAdmin, async (req: Request, res: Response) => {
   try {
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
     const status = await chainService.getContractStatus();
-    res.json({ success: true, ...status });
+
+    res.json({
+      success: true,
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      ...status
+    });
   } catch (err) {
     logger.error('Failed to get contract status', { error: (err as Error).message });
     res.status(500).json({ success: false, error: (err as Error).message });
@@ -98,11 +122,16 @@ router.get('/contract/status', verifyAdmin, async (req: Request, res: Response) 
 // POST /api/admin/contract/pause - Pause contract
 router.post('/contract/pause', verifyAdmin, async (req: Request, res: Response) => {
   try {
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
     const txHash = await chainService.pauseContract();
+
     res.json({
       success: true,
       txHash,
-      message: 'Contract paused successfully'
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      message: `Contract paused successfully on ${chainConfig.label}`
     });
   } catch (err) {
     logger.error('Failed to pause contract', { error: (err as Error).message });
@@ -113,11 +142,16 @@ router.post('/contract/pause', verifyAdmin, async (req: Request, res: Response) 
 // POST /api/admin/contract/unpause - Unpause contract
 router.post('/contract/unpause', verifyAdmin, async (req: Request, res: Response) => {
   try {
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
     const txHash = await chainService.unpauseContract();
+
     res.json({
       success: true,
       txHash,
-      message: 'Contract unpaused successfully'
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      message: `Contract unpaused successfully on ${chainConfig.label}`
     });
   } catch (err) {
     logger.error('Failed to unpause contract', { error: (err as Error).message });
@@ -137,12 +171,17 @@ router.post('/contract/operator', verifyAdmin, async (req: Request, res: Respons
       });
     }
 
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
     const txHash = await chainService.setServerOperator(address);
+
     res.json({
       success: true,
       txHash,
       address,
-      message: `Server operator updated to ${address}`
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      message: `Server operator updated to ${address} on ${chainConfig.label}`
     });
   } catch (err) {
     logger.error('Failed to set server operator', { error: (err as Error).message });
@@ -162,12 +201,17 @@ router.post('/house/fund', verifyAdmin, async (req: Request, res: Response) => {
       });
     }
 
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
     const txHash = await chainService.fundHouse(amount);
+
     res.json({
       success: true,
       txHash,
       amount,
-      message: `Successfully funded house with ${amount} USDC`
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      message: `Successfully funded house with ${amount} USDC on ${chainConfig.label}`
     });
   } catch (err) {
     logger.error('Failed to fund house', { error: (err as Error).message });
@@ -194,13 +238,18 @@ router.post('/eth/withdraw', verifyAdmin, async (req: Request, res: Response) =>
       });
     }
 
+    const chainService = getChainServiceForRequest(req);
+    const chainConfig = getChainConfig(chainService.chainId);
     const txHash = await chainService.withdrawETH(to, amount);
+
     res.json({
       success: true,
       txHash,
       to,
       amount,
-      message: `Successfully withdrew ${amount} ETH to ${to}`
+      chain: chainConfig.label,
+      chainId: chainService.chainId,
+      message: `Successfully withdrew ${amount} ETH to ${to} on ${chainConfig.label}`
     });
   } catch (err) {
     logger.error('Failed to withdraw ETH', { error: (err as Error).message });

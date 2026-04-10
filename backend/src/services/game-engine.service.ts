@@ -269,9 +269,9 @@ export class GameEngine {
     const targetCrash = generateCrashMultiplier(this.currentRound.serverSeed || '');
     const flyingDuration = Math.min(20000, Math.max(2000, targetCrash * 2000));
 
-    logger.info(
-      `Starting flying phase for round ${this.currentRound.roundId} targetCrash=${targetCrash} duration=${flyingDuration}ms`
-    );
+    // logger.info(
+    //   `Starting flying phase for round ${this.currentRound.roundId} targetCrash=${targetCrash} duration=${flyingDuration}ms`
+    // );
 
     this.currentRound.phase = 'FLYING';
     this.currentRound.flyStartTime = Date.now();

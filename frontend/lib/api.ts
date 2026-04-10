@@ -46,7 +46,7 @@ export async function adminFetchContractStatus(adminSecret: string, chainId?: nu
   const params = new URLSearchParams();
   if (chainId) params.append('chainId', chainId.toString());
 
-  const res = await fetch(`${API_BASE}/admin/contract/status?${params}`, {
+  const res = await fetch(`${API_BASE}/api/admin/contract/status?${params}`, {
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
       'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export async function adminGetHouseBalance(adminSecret: string, chainId?: number
   const params = new URLSearchParams();
   if (chainId) params.append('chainId', chainId.toString());
 
-  const res = await fetch(`${API_BASE}/admin/house/balance?${params}`, {
+  const res = await fetch(`${API_BASE}/api/admin/house/balance?${params}`, {
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
       'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export async function adminGetHouseBalance(adminSecret: string, chainId?: number
 }
 
 export async function adminWithdrawHouse(adminSecret: string, amount: number, chainId?: number) {
-  const res = await fetch(`${API_BASE}/admin/house/withdraw`, {
+  const res = await fetch(`${API_BASE}/api/admin/house/withdraw`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
@@ -84,7 +84,7 @@ export async function adminWithdrawHouse(adminSecret: string, amount: number, ch
 }
 
 export async function adminFundHouse(adminSecret: string, amount: number, chainId?: number) {
-  const res = await fetch(`${API_BASE}/admin/house/fund`, {
+  const res = await fetch(`${API_BASE}/api/admin/house/fund`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
@@ -97,7 +97,7 @@ export async function adminFundHouse(adminSecret: string, amount: number, chainI
 }
 
 export async function adminPauseContract(adminSecret: string, chainId?: number) {
-  const res = await fetch(`${API_BASE}/admin/contract/pause`, {
+  const res = await fetch(`${API_BASE}/api/admin/contract/pause`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
@@ -110,7 +110,7 @@ export async function adminPauseContract(adminSecret: string, chainId?: number) 
 }
 
 export async function adminUnpauseContract(adminSecret: string, chainId?: number) {
-  const res = await fetch(`${API_BASE}/admin/contract/unpause`, {
+  const res = await fetch(`${API_BASE}/api/admin/contract/unpause`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
@@ -123,7 +123,7 @@ export async function adminUnpauseContract(adminSecret: string, chainId?: number
 }
 
 export async function adminSetOperator(adminSecret: string, address: string, chainId?: number) {
-  const res = await fetch(`${API_BASE}/admin/contract/operator`, {
+  const res = await fetch(`${API_BASE}/api/admin/contract/operator`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${adminSecret}`,
@@ -136,7 +136,7 @@ export async function adminSetOperator(adminSecret: string, address: string, cha
 }
 
 export async function adminWithdrawETH(adminSecret: string, to: string, amount: number, chainId?: number) {
-  const res = await fetch(`${API_BASE}/admin/eth/withdraw`, {
+  const res = await fetch(`${API_BASE}/api/admin/eth/withdraw`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${adminSecret}`,

@@ -115,8 +115,14 @@ router.get('/contract/status', verifyAdmin, async (req: Request, res: Response) 
       ...status
     });
   } catch (err) {
-    logger.error('Failed to get contract status', { error: (err as Error).message });
-    res.status(500).json({ success: false, error: (err as Error).message });
+    logger.error('Failed to get contract status', {
+      error: (err as Error).message,
+      stack: (err as Error).stack
+    });
+    res.status(500).json({
+      success: false,
+      error: (err as Error).message
+    });
   }
 });
 

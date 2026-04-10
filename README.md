@@ -1,8 +1,10 @@
-# 🎮 Aviator Game - Full Stack
+# Aviator Game
 
-A real-time crash game built on Base blockchain with Farcaster integration, USDC payments, and gasless transactions via Paymaster.
+![Aviator Game Screenshot](https://purple-accessible-swift-921.mypinata.cloud/ipfs/bafkreie66ht6qors2fwlwihbbobx6umvdppyyxg4rb4fseto5u4fjvknqu)
 
-## ✨ Key Features
+A real-time crash game built on Base and Celo blockchain with Farcaster integration, USDC payments, and gasless transactions via Paymaster.
+
+## Key Features
 
 ### Core Game
 - **Real-time crash game** with exponential multiplier growth
@@ -20,10 +22,11 @@ A real-time crash game built on Base blockchain with Farcaster integration, USDC
 ### User Experience
 - ✅ **Farcaster MiniApp** - Frame SDK integrated
 - ✅ **Base Mini App Kit** - Native Base integration
+- ✅ **Celo Mini App Kit** - Native Base integration
 - ✅ **Mobile responsive** - Works everywhere
 - ✅ **Real-time feedback** - WebSocket updates
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 aviator/
